@@ -86,5 +86,5 @@ _:jits a foaf:Agent ;
 
 # Annotations are found in a separate resource 
 :ro rdfs:seeAlso <annotations> .
-
+<annotations> oac:annotates :ro .
 

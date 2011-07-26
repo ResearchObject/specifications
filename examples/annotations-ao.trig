@@ -1,4 +1,6 @@
-# Example annotations of Research Object using OAC
+# Example annotations of Research Object using AO
+# following the same pattern of named graph as in
+# <annotations-oac.trig>
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -13,6 +15,21 @@
 @prefix rel: <http://example.wf4ever-project.org/2011/ro/relations#> .
 @prefix ore: <http://www.openarchives.org/ore/terms/> .
 
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix ann: <http://www.w3.org/2000/10/annotation-ns#> .
+
+@prefix ao: <http://purl.org/ao/core/> .
+@prefix aot: <http://purl.org/ao/types/> .
+@prefix aos: <http://purl.org/ao/selectors/> .
+@prefix aoa: <http://purl.org/ao/annotea/> .
+@prefix aof: <http://purl.org/ao/foaf/> .
+
+
+
+
+
 @base <http://example.org/ROs/ro1/> .
 
 # We'll assume the resource behind this example representation
@@ -22,8 +39,8 @@
 # Where the annotation bodies live - we'll also include them in named graphs
 # below (retrieving thee with Accept: application/x-trig should redirect to
 # this document) - other representations like application/rdf+xml they might
-# have to be resolved as individual resources. 
-@prefix ann: <annotations/> .
+# have to be resolved as individual resources.
+@prefix an: <annotations/> .
 
 # references from ore.n3
 @prefix manifest: <manifest#> .
@@ -31,6 +48,26 @@
 ## Default graph contains list of annotations
 {
 
+
+
+## 'our' annotation type
+ro:DataAnnotation a owl:Class ;
+	rdfs:subClassOf oa:Annotation ,
+	[ a owl:Restriction;
+	 :minCardinality "1"^^xsd:nonNegativeInteger;
+         :onProperty ro:dataBody ],
+	]
+	rdfs:comment "An annotation where the at least one ro:dataBody points
+		to a machine-parseable annotation resource,
+		such as a named graph. " ;
+	# TODO: Should this be done with a subproperty of
+	# oa:body ?
+	rdfs:seeAlso oac:DataAnnotation .
+
+ro:dataBody a owl:ObjectProperty ;
+	rdfs:comment "An annotation body which is meant to be machine-readable to provide complex annotations of the annotated resource, e.g. a named graph or a RDF resource." ;
+	owl:subPropertyOf ao:body ;
+	rdfs:seeAlso oac:DataAnnotation .
 
 # Description of authors out of scope for this example and would typically be
 # separate resources, but using FOAF is probably a good start.
@@ -46,78 +83,73 @@ _:taverna a foaf:Agent ;
 # Two simple (yet conflicting) annotations about the
 # the title and description of the research object itself
 
-:titleByStian a oac:Annotation, oac:DataAnnotation ;
-	oac:hasTarget manifest:ro ;
-	# ann:titleByStian is a named graph below
+:titleByStian a ao:Annotation, ro:DataAnnotation ;
+	aof:annotatesResource manifest:ro ;
+	# an:titleByStian is a named graph below
 # FIXME: Can we state this somehow to avoid dereferencing the resource at
-# ann:titlebyStian ? 
-	oac:hasBody ann:titleByStian .
-
+# an:titlebyStian ?
+	ao:body an:titleByStian ;
 # Metadata about who did the annotations
-ann:titleByStian dcterms:creator _:stian ;
-	dcterms:created "2011-07-14T15:02:14Z"^^xsd:dateTime ;
-	dc:format "application/x-trig" .
+	pav:createdBy _:stian ;
+	pav:createdOn "2011-07-14T15:02:14Z"^^xsd:dateTime .
 
-:titleByJits a oac:Annotation, oac:DataAnnotation ;
-	oac:hasTarget manifest:ro ;
-	oac:hasBody ann:titleByJits .
-
-ann:titleByJits dcterms:creator _:jits ;
-	dcterms:created "2011-07-14T15:03:42Z"^^xsd:dateTime ;
-	# TODO: Do we specify dc:format here, or is it redundant?
-	dc:format "application/x-trig" .
+:titleByJits a ao:Annotation, ro:DataAnnotation ;
+	aof:annotatesResource manifest:ro ;
+	ao:body an:titleByJits ;
+	pav:createdBy _:jits ;
+	pav:createdOn "2011-07-14T15:03:42Z"^^xsd:dateTime .
 
 
 # An annotation on the aggregated resource (e.g. an assertion of a 'globally
 # true' title)
-:globalTitle a oac:Annotation, oac:DataAnnotation ;
-	oac:hasTarget <input.txt> ;
-	oac:hasBody ann:globalTitle .
-
-ann:globalTitle dcterms:creator _:jits ;
-	dcterms:created "2011-07-14T15:03:42Z"^^xsd:dateTime ;
-	dc:format "application/x-trig" .
+:globalTitle a ao:Annotation, ro:DataAnnotation ;
+	aof:annotatesResource <http://example.com/workflow.scufl2> ;
+	ao:onSourceDocument [
+		# when (and how) was the resource accessed?
+		a pav:SourceDocument ;
+		pav:retrievedFrom <http://example.com/workflow.scufl2> ;
+		pav:sourceAccessedOn  "2011-07-14T15:03:42Z"^^xsd:dateTime ;
+	] ;
+	ao:body an:globalTitle ;
+	pav:createdBy _:jits ;
+	pav:createdOn "2011-07-14T15:03:42Z"^^xsd:dateTime .
 
 
 # An annotation on the (proxy for the) resource as it is aggregated within this
 # RO (e.g. a 'local' title)
-:localTitle a oac:Annotation, oac:DataAnnotation ;
-	oac:hasTarget manifest:inputProxy;
-	oac:hasBody ann:localTitle .
-
-ann:localTitle dcterms:creator _:jits ;
-	# Notice how Jiten is behind both of these annotations, 
+:localTitle a ao:Annotation, ro:DataAnnotation ;
+	aof:annotatesResource manifest:workflowProxy ;
+	ao:body an:localTitle ;
+	pav:createdBy _:jits ;
+	# Notice how Jiten is behind both of these annotations,
 	# he's providing both the local and global title
-	dcterms:created "2011-07-14T15:03:45Z"^^xsd:dateTime ;
-	dc:format "application/x-trig" .
+	pav:createdOn "2011-07-14T15:03:45Z"^^xsd:dateTime .
 
 
-# An annotation on the 
-:asObject a oac:Annotation, oac:DataAnnotation ;
-	oac:hasTarget <output.txt> ;
-	oac:hasBody ann:asObject .
-
-ann:asObject dcterms:creator _:jits ;
-	# Notice how Jiten is behind both of these annotations, 
+# An annotation on the
+:asObject a ao:Annotation, ro:DataAnnotation ;
+	aof:annotatesResource <output.txt> ;
+	ao:body an:asObject ;
+	pav:createdBy _:jits ;
+	# Notice how Jiten is behind both of these annotations,
 	# he's providing both the local and global title
-	dcterms:created "2011-07-14T15:03:45Z"^^xsd:dateTime ;
-	dc:format "application/x-trig" .
+	pav:createdOn "2011-07-14T15:03:45Z"^^xsd:dateTime .
 
 
 # An annotation relating resources as they are aggregated within this RO,
 # could for instance be automatically derived from Taverna's provenance
-:roRelation a oac:Annotation, oac:DataAnnotation ;
-	oac:hasTarget manifest:inputProxy, manifest:workflowProxy,
-		manifest:outputProxy; 
-	oac:hasBody ann:roRelation ;
+:roRelation a ao:Annotation, ro:DataAnnotation ;
+	aof:annotatesResource manifest:inputProxy, manifest:workflowProxy,
+		manifest:outputProxy;
+	ao:body an:roRelation ;
+	pav:createdOn "2011-07-14T14:31:34Z"^^xsd:dateTime .
 	# Person who saved/uploaded the provenance
-	dcterms:creator _:stian .
+	pav:createdBy _:stian .
 
 # The annotation *body* was generated by software, not a person
-ann:roRelation dcterms:creator _:taverna ;
+an:roRelation pav:createdBy _:taverna ;
 	# and created *before* our RO
-	dcterms:created "2011-07-12T14:31:34Z"^^xsd:dateTime ;
-	dc:format "application/x-trig" .
+	pav:createdOn "2011-07-12T14:31:34Z"^^xsd:dateTime .
 
 }
 
@@ -125,50 +157,50 @@ ann:roRelation dcterms:creator _:taverna ;
 
 # One named graph per annotation body. Note that the annotation bodies don't
 # (generally) describe themselves, their content should mainly say something
-# about what is stated as their oac:hasTarget above. 
+# about what is stated as their aof:annotatesResource above.
 
 # Each of these can also be imagined as separate resourcs for
 # non-quad formats like application/rdf-xml and text/turtle
 
-ann:titleByStian {
+an:titleByStian {
 	manifest:ro dc:title "My research object"@en .
 	manifest:ro dc:description "This RO showcases my example workflow"@en .
 }
 
 
-ann:titleByJits {
+an:titleByJits {
 	manifest:ro dc:title "Stian's RO"@en .
 	manifest:ro dc:description "Stian attempts to make an example research object"@en .
 }
 
-ann:globalTitle {
+an:globalTitle {
 	# The "real" title for the free-standing resource. This could
 	# also be provided by agents such as myExperiment
 	<http://example.com/workflow.scufl2> dc:title "Hello World example workflow"@en .
 }
 
-ann:localTitle {
+an:localTitle {
 	# The title for the resourse as it is aggregated within the RO
 	manifest:workflowProxy dc:title "The simple workflow"@en ;
 		# And an explanation for why it is here
 		dc:description "A straight forward workflow to test my RO"@en .
 }
 
-# Example of how the target of the oac:Annotation does not have to be present
+# Example of how the target of the ao:Annotation does not have to be present
 # as an RDF subject within the body - here it's an object instead.
 #
-# OAC allows you to have annotations who talks about a resource without
+# You might have annotations who talks about a resource without
 # directly mentioning it, in our case this could for instance be if you talk
-# about a _workflow output port_ in an annotation which target is the 
+# about a _workflow output port_ in an annotation which target is the
 # _workflow resource._ The port is a *part of* the workflow, but that relation
 # might be stated in a different annotation.
-ann:asObject {
-	manifest:ro rel:primaryData <output.txt> . 
+an:asObject {
+	manifest:ro rel:primaryData <output.txt> .
 	# Here we don't need to use manifest:outputProxy
 	# as the property is already relating the resource directly with the
 	# aggregation - <output.txt> will always be the primary data of
 	# this RO - even if it's used in other ROs.
-	 
+	
 	# One could alternatively use typing on the proxy:
 
 	#manifest:outputProxy a rel:PrimaryData .
@@ -183,7 +215,7 @@ ann:asObject {
 # Annotation generated by Taverna, shows how a complex
 # annotation can relate proxies to each-other and their
 # role in the research object.
-ann:roRelation {
+an:roRelation {
 	
 	# Typing of the *proxies* - this means that
 	# <output.txt> is a rel:Output within the context of
@@ -208,7 +240,7 @@ ann:roRelation {
 		rel:hasInput manifest:inputProxy ;
 		rel:hasOutput manifest:outputProxy ;
 	# It might be argued that <output.txt> is always
-	# going to be an output of that workflow (run), 
+	# going to be an output of that workflow (run),
 	# and so should be described directly instead of
 	# through the proxy.
 		rel:hasWorkflow manifest:workflowProxy ;

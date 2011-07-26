@@ -22,7 +22,7 @@
 # Where the annotation bodies live - we'll also include them in named graphs
 # below (retrieving thee with Accept: application/x-trig should redirect to
 # this document) - other representations like application/rdf+xml they might
-# have to be resolved as individual resources. 
+# have to be resolved as individual resources.
 @prefix ann: <annotations/> .
 
 # references from ore.n3
@@ -50,7 +50,7 @@ _:taverna a foaf:Agent ;
 	oac:hasTarget manifest:ro ;
 	# ann:titleByStian is a named graph below
 # FIXME: Can we state this somehow to avoid dereferencing the resource at
-# ann:titlebyStian ? 
+# ann:titlebyStian ?
 	oac:hasBody ann:titleByStian .
 
 # Metadata about who did the annotations
@@ -71,7 +71,7 @@ ann:titleByJits dcterms:creator _:jits ;
 # An annotation on the aggregated resource (e.g. an assertion of a 'globally
 # true' title)
 :globalTitle a oac:Annotation, oac:DataAnnotation ;
-	oac:hasTarget <input.txt> ;
+	oac:hasTarget <http://example.com/workflow.scufl2> ;
 	oac:hasBody ann:globalTitle .
 
 ann:globalTitle dcterms:creator _:jits ;
@@ -82,23 +82,23 @@ ann:globalTitle dcterms:creator _:jits ;
 # An annotation on the (proxy for the) resource as it is aggregated within this
 # RO (e.g. a 'local' title)
 :localTitle a oac:Annotation, oac:DataAnnotation ;
-	oac:hasTarget manifest:inputProxy;
+	oac:hasTarget manifest:workflowProxy ;
 	oac:hasBody ann:localTitle .
 
 ann:localTitle dcterms:creator _:jits ;
-	# Notice how Jiten is behind both of these annotations, 
+	# Notice how Jiten is behind both of these annotations,
 	# he's providing both the local and global title
 	dcterms:created "2011-07-14T15:03:45Z"^^xsd:dateTime ;
 	dc:format "application/x-trig" .
 
 
-# An annotation on the 
+# An annotation on the
 :asObject a oac:Annotation, oac:DataAnnotation ;
 	oac:hasTarget <output.txt> ;
 	oac:hasBody ann:asObject .
 
 ann:asObject dcterms:creator _:jits ;
-	# Notice how Jiten is behind both of these annotations, 
+	# Notice how Jiten is behind both of these annotations,
 	# he's providing both the local and global title
 	dcterms:created "2011-07-14T15:03:45Z"^^xsd:dateTime ;
 	dc:format "application/x-trig" .
@@ -108,7 +108,7 @@ ann:asObject dcterms:creator _:jits ;
 # could for instance be automatically derived from Taverna's provenance
 :roRelation a oac:Annotation, oac:DataAnnotation ;
 	oac:hasTarget manifest:inputProxy, manifest:workflowProxy,
-		manifest:outputProxy; 
+		manifest:outputProxy ;
 	oac:hasBody ann:roRelation ;
 	# Person who saved/uploaded the provenance
 	dcterms:creator _:stian .
@@ -125,7 +125,7 @@ ann:roRelation dcterms:creator _:taverna ;
 
 # One named graph per annotation body. Note that the annotation bodies don't
 # (generally) describe themselves, their content should mainly say something
-# about what is stated as their oac:hasTarget above. 
+# about what is stated as their oac:hasTarget above.
 
 # Each of these can also be imagined as separate resourcs for
 # non-quad formats like application/rdf-xml and text/turtle
@@ -159,16 +159,16 @@ ann:localTitle {
 #
 # OAC allows you to have annotations who talks about a resource without
 # directly mentioning it, in our case this could for instance be if you talk
-# about a _workflow output port_ in an annotation which target is the 
+# about a _workflow output port_ in an annotation which target is the
 # _workflow resource._ The port is a *part of* the workflow, but that relation
 # might be stated in a different annotation.
 ann:asObject {
-	manifest:ro rel:primaryData <output.txt> . 
+	manifest:ro rel:primaryData <output.txt> .
 	# Here we don't need to use manifest:outputProxy
 	# as the property is already relating the resource directly with the
 	# aggregation - <output.txt> will always be the primary data of
 	# this RO - even if it's used in other ROs.
-	 
+	
 	# One could alternatively use typing on the proxy:
 
 	#manifest:outputProxy a rel:PrimaryData .
@@ -208,7 +208,7 @@ ann:roRelation {
 		rel:hasInput manifest:inputProxy ;
 		rel:hasOutput manifest:outputProxy ;
 	# It might be argued that <output.txt> is always
-	# going to be an output of that workflow (run), 
+	# going to be an output of that workflow (run),
 	# and so should be described directly instead of
 	# through the proxy.
 		rel:hasWorkflow manifest:workflowProxy ;
