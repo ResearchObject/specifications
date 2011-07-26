@@ -11,15 +11,19 @@ PREFIX ro: <http://example.wf4ever-project.org/2011/ro/core#>
 PREFIX rel: <http://example.wf4ever-project.org/2011/ro/relations#>
 PREFIX ore: <http://www.openarchives.org/ore/terms/>
 
-SELECT ?resource ?title ?authorOfTitle
+SELECT ?resource 
+	#?graph 
+	#?creator
+	?authorOfTitle
+	?title
 WHERE { 
-	?ann oac:hasTarget ?resource ;
-	       a oac:DataAnnotation ;
-	       oac:hasBody ?graph .
-	?graph dc:creator ?creator .
+	?ann a oac:DataAnnotation ;
+	    oac:hasTarget ?resource ;
+	    oac:hasBody ?graph .
+	?graph dcterms:creator ?creator .
 	?creator foaf:name ?authorOfTitle .
 	GRAPH ?graph {
-		?ro dc:title ?title .
+		?resource dc:title ?title .
 	}
 }
 

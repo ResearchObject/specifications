@@ -13,7 +13,7 @@
 @prefix rel: <http://example.wf4ever-project.org/2011/ro/relations#> .
 @prefix ore: <http://www.openarchives.org/ore/terms/> .
 
-@base <http://example.org/ROs/ro1/>
+@base <http://example.org/ROs/ro1/> .
 
 # We'll assume the resource behind this example representation
 # is called "annotations"
@@ -108,7 +108,8 @@ ann:asObject dcterms:creator _:jits ;
 # could for instance be automatically derived from Taverna's provenance
 :roRelation a oac:Annotation, oac:DataAnnotation ;
 	oac:hasTarget manifest:inputProxy, manifest:workflowProxy,
-		manifest:outputProxy; oac:hasBody ann:roRelation ;
+		manifest:outputProxy; 
+	oac:hasBody ann:roRelation ;
 	# Person who saved/uploaded the provenance
 	dcterms:creator _:stian .
 
@@ -148,7 +149,7 @@ ann:globalTitle {
 
 ann:localTitle {
 	# The title for the resourse as it is aggregated within the RO
-	:workflowProxy dc:title "The simple workflow"@en ;
+	manifest:workflowProxy dc:title "The simple workflow"@en ;
 		# And an explanation for why it is here
 		dc:description "A straight forward workflow to test my RO"@en .
 }
@@ -187,9 +188,9 @@ ann:roRelation {
 	# Typing of the *proxies* - this means that
 	# <output.txt> is a rel:Output within the context of
 	# this RO - it might be a rel:Input in another RO
-	:inputProxy a rel:Input .
-	:outputProxy a rel:Output .
-	:workflowProxy a rel:Workflow .
+	manifest:inputProxy a rel:Input .
+	manifest:outputProxy a rel:Output .
+	manifest:workflowProxy a rel:Workflow .
 
 	# Note: The above could also be stated with properties
 	# related to the RO, thus avoiding the proxies:
@@ -204,13 +205,13 @@ ann:roRelation {
 	
 	# a workflow run linking them all together
 	_:run a rel:Run ;
-		rel:hasInput :inputProxy ;
-		rel:hasOutput :outputProxy ;
+		rel:hasInput manifest:inputProxy ;
+		rel:hasOutput manifest:outputProxy ;
 	# It might be argued that <output.txt> is always
 	# going to be an output of that workflow (run), 
 	# and so should be described directly instead of
 	# through the proxy.
-		rel:hasWorfklow :workflowProxy ;
+		rel:hasWorkflow manifest:workflowProxy ;
 		dc:created "2011-07-10T09:15:22Z"^^xsd:dateTime .
 
 	# The above should also be described using provenance ontologies like

@@ -18,7 +18,7 @@
 # absolute or both (linked using owl:sameAs or ro:availableAs).
 # For this example all URIs are absolute.
 
-@base <http://example.org/ROs/ro1/>
+@base <http://example.org/ROs/ro1/> .
 
 # We'll assume the resource behind this example representation is called "manifest"
 @prefix : <manifest#> .
@@ -86,6 +86,5 @@ _:jits a foaf:Agent ;
 
 # Annotations are found in a separate resource 
 :ro rdfs:seeAlso <annotations> .
-<annotations> oac:annotates :ro .
 
 
