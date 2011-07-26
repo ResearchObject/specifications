@@ -52,104 +52,105 @@
 
 ## 'our' annotation type
 ro:DataAnnotation a owl:Class ;
-	rdfs:subClassOf oa:Annotation ,
-	[ a owl:Restriction;
-	 :minCardinality "1"^^xsd:nonNegativeInteger;
+    rdfs:subClassOf oa:Annotation ,
+    [ a owl:Restriction;
+     :minCardinality "1"^^xsd:nonNegativeInteger;
          :onProperty ro:dataBody ],
-	]
-	rdfs:comment "An annotation where the at least one ro:dataBody points
-		to a machine-parseable annotation resource,
-		such as a named graph. " ;
-	# TODO: Should this be done with a subproperty of
-	# oa:body ?
-	rdfs:seeAlso oac:DataAnnotation .
+    ]
+    rdfs:comment "An annotation where the at least one ro:dataBody points
+        to a machine-parseable annotation resource,
+        such as a named graph. " ;
+    # TODO: Should this be done with a subproperty of
+    # oa:body ?
+    rdfs:seeAlso oac:DataAnnotation .
 
 ro:dataBody a owl:ObjectProperty ;
-	rdfs:comment "An annotation body which is meant to be machine-readable to provide complex annotations of the annotated resource, e.g. a named graph or a RDF resource." ;
-	owl:subPropertyOf ao:body ;
-	rdfs:seeAlso oac:DataAnnotation .
+    rdfs:comment "An annotation body which is meant to be machine-readable to provide complex annotations of the annotated resource, e.g. a named graph or a RDF resource." ;
+    owl:subPropertyOf ao:body ;
+    rdfs:seeAlso oac:DataAnnotation .
 
 # Description of authors out of scope for this example and would typically be
 # separate resources, but using FOAF is probably a good start.
 _:stian a foaf:Person ;
-	foaf:name "Stian Soiland-Reyes"@en .
+    foaf:name "Stian Soiland-Reyes"@en .
 
 _:jits a foaf:Person ;
-	foaf:name "Jiten Bhagat"@en .
+    foaf:name "Jiten Bhagat"@en .
 
 _:taverna a foaf:Agent ;
-	foaf:name "Taverna workbench"@en .
+    foaf:name "Taverna workbench"@en .
 
 # Two simple (yet conflicting) annotations about the
 # the title and description of the research object itself
 
 :titleByStian a ao:Annotation, ro:DataAnnotation ;
-	aof:annotatesResource manifest:ro ;
-	# an:titleByStian is a named graph below
+    aof:annotatesResource manifest:ro ;
+    # an:titleByStian is a named graph below
 # FIXME: Can we state this somehow to avoid dereferencing the resource at
 # an:titlebyStian ?
-	ao:body an:titleByStian ;
+    ao:body an:titleByStian ;
 # Metadata about who did the annotations
-	pav:createdBy _:stian ;
-	pav:createdOn "2011-07-14T15:02:14Z"^^xsd:dateTime .
+    pav:createdBy _:stian ;
+    pav:createdOn "2011-07-14T15:02:14Z"^^xsd:dateTime .
 
 :titleByJits a ao:Annotation, ro:DataAnnotation ;
-	aof:annotatesResource manifest:ro ;
-	ao:body an:titleByJits ;
-	pav:createdBy _:jits ;
-	pav:createdOn "2011-07-14T15:03:42Z"^^xsd:dateTime .
+    aof:annotatesResource manifest:ro ;
+    ao:body an:titleByJits ;
+    pav:createdBy _:jits ;
+    pav:createdOn "2011-07-14T15:03:42Z"^^xsd:dateTime .
 
 
 # An annotation on the aggregated resource (e.g. an assertion of a 'globally
 # true' title)
 :globalTitle a ao:Annotation, ro:DataAnnotation ;
-	aof:annotatesResource <http://example.com/workflow.scufl2> ;
-	ao:onSourceDocument [
-		# when (and how) was the resource accessed?
-		a pav:SourceDocument ;
-		pav:retrievedFrom <http://example.com/workflow.scufl2> ;
-		pav:sourceAccessedOn  "2011-07-14T15:03:42Z"^^xsd:dateTime ;
-	] ;
-	ao:body an:globalTitle ;
-	pav:createdBy _:jits ;
-	pav:createdOn "2011-07-14T15:03:42Z"^^xsd:dateTime .
+    aof:annotatesResource <http://example.com/workflow.scufl2> ;
+    ao:onSourceDocument [
+        # when (and how) was the resource accessed?
+        a pav:SourceDocument ;
+        pav:retrievedFrom <http://example.com/workflow.scufl2> ;
+        pav:retrievedBy _:taverna ;
+        pav:sourceAccessedOn  "2011-07-14T15:03:42Z"^^xsd:dateTime ;
+    ] ;
+    ao:body an:globalTitle ;
+    pav:createdBy _:jits ;
+    pav:createdOn "2011-07-14T15:03:42Z"^^xsd:dateTime .
 
 
 # An annotation on the (proxy for the) resource as it is aggregated within this
 # RO (e.g. a 'local' title)
 :localTitle a ao:Annotation, ro:DataAnnotation ;
-	aof:annotatesResource manifest:workflowProxy ;
-	ao:body an:localTitle ;
-	pav:createdBy _:jits ;
-	# Notice how Jiten is behind both of these annotations,
-	# he's providing both the local and global title
-	pav:createdOn "2011-07-14T15:03:45Z"^^xsd:dateTime .
+    aof:annotatesResource manifest:workflowProxy ;
+    ao:body an:localTitle ;
+    pav:createdBy _:jits ;
+    # Notice how Jiten is behind both of these annotations,
+    # he's providing both the local and global title
+    pav:createdOn "2011-07-14T15:03:45Z"^^xsd:dateTime .
 
 
 # An annotation on the
 :asObject a ao:Annotation, ro:DataAnnotation ;
-	aof:annotatesResource <output.txt> ;
-	ao:body an:asObject ;
-	pav:createdBy _:jits ;
-	# Notice how Jiten is behind both of these annotations,
-	# he's providing both the local and global title
-	pav:createdOn "2011-07-14T15:03:45Z"^^xsd:dateTime .
+    aof:annotatesResource <output.txt> ;
+    ao:body an:asObject ;
+    pav:createdBy _:jits ;
+    # Notice how Jiten is behind both of these annotations,
+    # he's providing both the local and global title
+    pav:createdOn "2011-07-14T15:03:45Z"^^xsd:dateTime .
 
 
 # An annotation relating resources as they are aggregated within this RO,
 # could for instance be automatically derived from Taverna's provenance
 :roRelation a ao:Annotation, ro:DataAnnotation ;
-	aof:annotatesResource manifest:inputProxy, manifest:workflowProxy,
-		manifest:outputProxy;
-	ao:body an:roRelation ;
-	pav:createdOn "2011-07-14T14:31:34Z"^^xsd:dateTime .
-	# Person who saved/uploaded the provenance
-	pav:createdBy _:stian .
+    aof:annotatesResource manifest:inputProxy, manifest:workflowProxy,
+        manifest:outputProxy;
+    ao:body an:roRelation ;
+    pav:createdOn "2011-07-14T14:31:34Z"^^xsd:dateTime .
+    # Person who saved/uploaded the provenance
+    pav:createdBy _:stian .
 
 # The annotation *body* was generated by software, not a person
 an:roRelation pav:createdBy _:taverna ;
-	# and created *before* our RO
-	pav:createdOn "2011-07-12T14:31:34Z"^^xsd:dateTime .
+    # and created *before* our RO
+    pav:createdOn "2011-07-12T14:31:34Z"^^xsd:dateTime .
 
 }
 
@@ -163,27 +164,27 @@ an:roRelation pav:createdBy _:taverna ;
 # non-quad formats like application/rdf-xml and text/turtle
 
 an:titleByStian {
-	manifest:ro dc:title "My research object"@en .
-	manifest:ro dc:description "This RO showcases my example workflow"@en .
+    manifest:ro dc:title "My research object"@en .
+    manifest:ro dc:description "This RO showcases my example workflow"@en .
 }
 
 
 an:titleByJits {
-	manifest:ro dc:title "Stian's RO"@en .
-	manifest:ro dc:description "Stian attempts to make an example research object"@en .
+    manifest:ro dc:title "Stian's RO"@en .
+    manifest:ro dc:description "Stian attempts to make an example research object"@en .
 }
 
 an:globalTitle {
-	# The "real" title for the free-standing resource. This could
-	# also be provided by agents such as myExperiment
-	<http://example.com/workflow.scufl2> dc:title "Hello World example workflow"@en .
+    # The "real" title for the free-standing resource. This could
+    # also be provided by agents such as myExperiment
+    <http://example.com/workflow.scufl2> dc:title "Hello World example workflow"@en .
 }
 
 an:localTitle {
-	# The title for the resourse as it is aggregated within the RO
-	manifest:workflowProxy dc:title "The simple workflow"@en ;
-		# And an explanation for why it is here
-		dc:description "A straight forward workflow to test my RO"@en .
+    # The title for the resourse as it is aggregated within the RO
+    manifest:workflowProxy dc:title "The simple workflow"@en ;
+        # And an explanation for why it is here
+        dc:description "A straight forward workflow to test my RO"@en .
 }
 
 # Example of how the target of the ao:Annotation does not have to be present
@@ -195,19 +196,19 @@ an:localTitle {
 # _workflow resource._ The port is a *part of* the workflow, but that relation
 # might be stated in a different annotation.
 an:asObject {
-	manifest:ro rel:primaryData <output.txt> .
-	# Here we don't need to use manifest:outputProxy
-	# as the property is already relating the resource directly with the
-	# aggregation - <output.txt> will always be the primary data of
-	# this RO - even if it's used in other ROs.
-	
-	# One could alternatively use typing on the proxy:
+    manifest:ro rel:primaryData <output.txt> .
+    # Here we don't need to use manifest:outputProxy
+    # as the property is already relating the resource directly with the
+    # aggregation - <output.txt> will always be the primary data of
+    # this RO - even if it's used in other ROs.
+    
+    # One could alternatively use typing on the proxy:
 
-	#manifest:outputProxy a rel:PrimaryData .
+    #manifest:outputProxy a rel:PrimaryData .
 
-	# - but for something like rel:primaryData
-	# we might want to ensure it applies to only
-	# one resource in the RO.
+    # - but for something like rel:primaryData
+    # we might want to ensure it applies to only
+    # one resource in the RO.
 
 }
 
@@ -216,41 +217,41 @@ an:asObject {
 # annotation can relate proxies to each-other and their
 # role in the research object.
 an:roRelation {
-	
-	# Typing of the *proxies* - this means that
-	# <output.txt> is a rel:Output within the context of
-	# this RO - it might be a rel:Input in another RO
-	manifest:inputProxy a rel:Input .
-	manifest:outputProxy a rel:Output .
-	manifest:workflowProxy a rel:Workflow .
+    
+    # Typing of the *proxies* - this means that
+    # <output.txt> is a rel:Output within the context of
+    # this RO - it might be a rel:Input in another RO
+    manifest:inputProxy a rel:Input .
+    manifest:outputProxy a rel:Output .
+    manifest:workflowProxy a rel:Workflow .
 
-	# Note: The above could also be stated with properties
-	# related to the RO, thus avoiding the proxies:
+    # Note: The above could also be stated with properties
+    # related to the RO, thus avoiding the proxies:
 
-	#manifest:ro ro:hasInput <input.txt> .
-	#manifest:ro ro:hasOutput <output.txt> .
-	#manifest:ro ro:hasWorkflow <http://example.com/workflow.scufl2> .
+    #manifest:ro ro:hasInput <input.txt> .
+    #manifest:ro ro:hasOutput <output.txt> .
+    #manifest:ro ro:hasWorkflow <http://example.com/workflow.scufl2> .
 
-	# However, the above makes it harder to say anything else about their
-	# role as input/output, etc.
+    # However, the above makes it harder to say anything else about their
+    # role as input/output, etc.
 
-	
-	# a workflow run linking them all together
-	_:run a rel:Run ;
-		rel:hasInput manifest:inputProxy ;
-		rel:hasOutput manifest:outputProxy ;
-	# It might be argued that <output.txt> is always
-	# going to be an output of that workflow (run),
-	# and so should be described directly instead of
-	# through the proxy.
-		rel:hasWorkflow manifest:workflowProxy ;
-		dc:created "2011-07-10T09:15:22Z"^^xsd:dateTime .
+    
+    # a workflow run linking them all together
+    _:run a rel:Run ;
+        rel:hasInput manifest:inputProxy ;
+        rel:hasOutput manifest:outputProxy ;
+    # It might be argued that <output.txt> is always
+    # going to be an output of that workflow (run),
+    # and so should be described directly instead of
+    # through the proxy.
+        rel:hasWorkflow manifest:workflowProxy ;
+        dc:created "2011-07-10T09:15:22Z"^^xsd:dateTime .
 
-	# The above should also be described using provenance ontologies like
-	# OPM. We probably still want some way to state 'is input data in this
-	# RO' and similar light-weight properties, for instance for
-	# when user has just tagged the resources in a UI and we don't
-	# have access to the provenance.
+    # The above should also be described using provenance ontologies like
+    # OPM. We probably still want some way to state 'is input data in this
+    # RO' and similar light-weight properties, for instance for
+    # when user has just tagged the resources in a UI and we don't
+    # have access to the provenance.
 
 }
 
