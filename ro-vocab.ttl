@@ -1,0 +1,42 @@
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ro: <http://www.wf4ever-project.org/2011/ro/core#> .
+@prefix ore: <http://www.openarchives.org/ore/terms/> .
+
+ro:ResearchObject, ro:Workflow, ro:WebService, ro:Document, ro:Input, ro: output, ro:SoftwareTool
+	a owl:class .
+
+ro:ResearchObject a owl:Class ;
+	rdfs:subClassOf ore:Aggregation ;
+	rdfs:subClassOf ore:AggregatedResource.
+
+ro:ROManifest a owl:Class ;
+	rdfs:subClassOf ore:ResourceMap .
+
+ro:Workflow, ro:WorkflowRun, ro:WebService, ro: Document, ro:DataSet, ro:Software
+	a owl:class ;
+	rdfs:subClassOf ore:AggregatedResource .
+
+ro:isUsedIn
+	a  rdf:Property ;
+	rdfs:domain ro:WebService ;
+	rdfs:range nrl:Semantics .
+
+ro:hasInput
+	a  rdf:Property ;
+	rdfs:domain ro:DataSet ;
+	rdfs:range ro:WorkflowRun .
+
+ro:hasOutput
+	a  rdf:Property ;
+	rdfs:domain ro:WorkflowRun ;
+	rdfs:range ro:DataSet .
+
+ro:instanceOfWf
+	a  rdf:Property ;
+	rdfs:domain ro:WorkflowRun ;
+	rdfs:range ro:Workflow .
+
+ro:subWorkflowOf
+	a  rdf:Property ;
+	rdfs:domain ro:Workflow ;
+	rdfs:range ro:Workflow .
