@@ -84,7 +84,7 @@ _:taverna a foaf:Agent ;
 # the title and description of the research object itself
 
 :titleByStian a ao:Annotation, ro:DataAnnotation ;
-    aof:annotatesResource manifest:ro ;
+    ao:annotatesResource manifest:ro ;
     # an:titleByStian is a named graph below
 # FIXME: Can we state this somehow to avoid dereferencing the resource at
 # an:titlebyStian ?
@@ -94,7 +94,7 @@ _:taverna a foaf:Agent ;
     pav:createdOn "2011-07-14T15:02:14Z"^^xsd:dateTime .
 
 :titleByJits a ao:Annotation, ro:DataAnnotation ;
-    aof:annotatesResource manifest:ro ;
+    ao:annotatesResource manifest:ro ;
     ao:body an:titleByJits ;
     pav:createdBy _:jits ;
     pav:createdOn "2011-07-14T15:03:42Z"^^xsd:dateTime .
@@ -103,7 +103,7 @@ _:taverna a foaf:Agent ;
 # An annotation on the aggregated resource (e.g. an assertion of a 'globally
 # true' title)
 :globalTitle a ao:Annotation, ro:DataAnnotation ;
-    aof:annotatesResource <http://example.com/workflow.scufl2> ;
+    ao:annotatesResource <http://example.com/workflow.scufl2> ;
     ao:onSourceDocument [
         # when (and how) was the resource accessed?
         a pav:SourceDocument ;
@@ -119,7 +119,7 @@ _:taverna a foaf:Agent ;
 # An annotation on the (proxy for the) resource as it is aggregated within this
 # RO (e.g. a 'local' title)
 :localTitle a ao:Annotation, ro:DataAnnotation ;
-    aof:annotatesResource manifest:workflowProxy ;
+    ao:annotatesResource manifest:workflowProxy ;
     ao:body an:localTitle ;
     pav:createdBy _:jits ;
     # Notice how Jiten is behind both of these annotations,
@@ -129,7 +129,7 @@ _:taverna a foaf:Agent ;
 
 # An annotation on the
 :asObject a ao:Annotation, ro:DataAnnotation ;
-    aof:annotatesResource <output.txt> ;
+    ao:annotatesResource <output.txt> ;
     ao:body an:asObject ;
     pav:createdBy _:jits ;
     # Notice how Jiten is behind both of these annotations,
@@ -140,7 +140,7 @@ _:taverna a foaf:Agent ;
 # An annotation relating resources as they are aggregated within this RO,
 # could for instance be automatically derived from Taverna's provenance
 :roRelation a ao:Annotation, ro:DataAnnotation ;
-    aof:annotatesResource manifest:inputProxy, manifest:workflowProxy,
+    ao:annotatesResource manifest:inputProxy, manifest:workflowProxy,
         manifest:outputProxy;
     ao:body an:roRelation ;
     pav:createdOn "2011-07-14T14:31:34Z"^^xsd:dateTime .
@@ -158,7 +158,7 @@ an:roRelation pav:createdBy _:taverna ;
 
 # One named graph per annotation body. Note that the annotation bodies don't
 # (generally) describe themselves, their content should mainly say something
-# about what is stated as their aof:annotatesResource above.
+# about what is stated as their ao:annotatesResource above.
 
 # Each of these can also be imagined as separate resourcs for
 # non-quad formats like application/rdf-xml and text/turtle
