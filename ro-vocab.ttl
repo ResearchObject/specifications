@@ -72,16 +72,15 @@ ro:instanceOfWf
     rdfs:domain ro:WorkflowRun ;
     rdfs:range ro:Workflow .
 
-ro:subWorkflowOf
-    a rdf:Property ;
-    rdfs:domain ro:Workflow ;
-    rdfs:range ro:Workflow .
-
 ro:wasDerivedFrom
     a rdf:Property ;
     rdfs:domain ro:Artifact ;
     rdfs:range ro:Artifact .
 
+ro:subWorkflowOf
+    a rdf:Property ;
+    rdfs:domain ro:Workflow ;
+    rdfs:range ro:Workflow .
 
 
 
