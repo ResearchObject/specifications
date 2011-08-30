@@ -36,14 +36,6 @@ ro:ResearchObject a owl:Class ;
     rdfs:subClassOf ore:Aggregation ;
     rdfs:subClassOf ore:AggregatedResource.
 
-ro:ResearchObject a owl:Class .
-ro:Workflow a owl:Class .
-ro:WebService a owl:Class .
-ro:Document a owl:Class .
-ro:Input a owl:Class .
-ro:Output a owl:Class .
-ro:SoftwareTool a owl:Class .
-
 ro:Manifest a owl:Class ;
     rdfs:subClassOf ore:ResourceMap .
 ro:Workflow a owl:Class ;
@@ -54,25 +46,26 @@ ro:WebService a owl:Class ;
     rdfs:subClassOf ore:AggregatedResource .
 ro:Document a owl:Class ;
     rdfs:subClassOf ore:AggregatedResource .
-ro:DataSet a owl:Class ;
+ro:Artifact a owl:Class ;
     rdfs:subClassOf ore:AggregatedResource .
 ro:Software a owl:class ;
     rdfs:subClassOf ore:AggregatedResource .
 
+
 ro:isUsedIn
     a rdf:Property ;
     rdfs:domain ro:WebService .
-#    rdfs:range nrl:Semantics .
+    rdfs:range ro:Workflow .
 
-ro:hasInput
-    a rdf:Property ;
-    rdfs:domain ro:DataSet ;
-    rdfs:range ro:WorkflowRun .
-
-ro:hasOutput
+ro:used
     a rdf:Property ;
     rdfs:domain ro:WorkflowRun ;
-    rdfs:range ro:DataSet .
+    rdfs:range ro:Artifact .
+
+ro:wasGeneratedBy
+    a rdf:Property ;
+    rdfs:domain ro:Artifact ;
+    rdfs:range ro:WorkflowRun .
 
 ro:instanceOfWf
     a rdf:Property ;
@@ -83,3 +76,12 @@ ro:subWorkflowOf
     a rdf:Property ;
     rdfs:domain ro:Workflow ;
     rdfs:range ro:Workflow .
+
+ro:wasDerivedFrom
+    a rdf:Property ;
+    rdfs:domain ro:Artifact ;
+    rdfs:range ro:Artifact .
+
+
+
+
