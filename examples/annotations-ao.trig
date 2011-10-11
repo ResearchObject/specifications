@@ -9,7 +9,6 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix oac: <http://www.openannotation.org/ns/> .
 
 @prefix ro: <http://example.wf4ever-project.org/2011/ro/core#> .
 @prefix rel: <http://example.wf4ever-project.org/2011/ro/relations#> .
@@ -123,7 +122,7 @@ _:taverna a foaf:Agent ;
     ao:annotatesResource manifest:inputProxy, manifest:workflowProxy,
         manifest:outputProxy;
     ao:hasTopic an:roRelation ;
-    pav:createdOn "2011-07-14T14:31:34Z"^^xsd:dateTime .
+    pav:createdOn "2011-07-14T14:31:34Z"^^xsd:dateTime ;
     # Person who saved/uploaded the provenance
     pav:createdBy _:stian .
 
