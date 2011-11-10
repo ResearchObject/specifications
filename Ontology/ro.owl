@@ -1,0 +1,869 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.wf4ever-project.org/vocab/ro"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     ontologyIRI="http://www.wf4ever-project.org/vocab/ro">
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Import>http://purl.org/ao/</Import>
+    <Import>http://www.openarchives.org/ore/terms/</Import>
+    <Declaration>
+        <Class IRI="http://purl.org/net/opmv/ns#Agent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://purl.org/net/opmv/ns#Artifact"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://purl.org/net/opmv/ns#Process"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ArtifactTemplate"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Dataset"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Document"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#File"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Image"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Manifest"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ProcessTemplate"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ResearchObject"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Tool"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#WebServiceProcess"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#WorkflowEngine"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#WorkflowResearchObject"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#WorkflowRun"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#WorkflowTemplate"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#WorkflowWorkbench"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://purl.org/net/opmv/ns#used"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://purl.org/net/opmv/ns#wasControlledBy"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://purl.org/net/opmv/ns#wasGeneratedBy"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#contains"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasArtifactTemplate"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasInput"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasOutput"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasProcessTemplate"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasWorkflowTemplate"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isPartOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isSubWorkflowOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#wasEnactedBy"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#wasSpecifiedUsing"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#annotation-1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#annotation-2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#annotation-3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#annotation-4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#annotation-5"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#annotation-6"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#annotationBody-1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#annotationBody-2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#annotationBody-3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#annotationBody-4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#annotationBody-5"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#annotationBody-6"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#external-1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#external-2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#external-3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#files-576"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#files-577"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ro-217"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#user-18933"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#workflow-2464"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#workflow-run"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="http://purl.org/net/opmv/ns#Agent"/>
+        <Class IRI="http://xmlns.com/foaf/0.1/Agent"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#WorkflowResearchObject"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#ResearchObject"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="http://www.openarchives.org/ore/terms/aggregates"/>
+                <Class IRI="#WorkflowTemplate"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#Dataset"/>
+        <Class IRI="http://purl.org/net/opmv/ns#Artifact"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Document"/>
+        <Class IRI="http://purl.org/net/opmv/ns#Artifact"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#File"/>
+        <Class IRI="http://purl.org/net/opmv/ns#Artifact"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Image"/>
+        <Class IRI="http://purl.org/net/opmv/ns#Artifact"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Manifest"/>
+        <Class IRI="http://www.openarchives.org/ore/terms/ResourceMap"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ResearchObject"/>
+        <Class IRI="http://www.openarchives.org/ore/terms/Aggregation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Tool"/>
+        <Class IRI="http://purl.org/net/opmv/ns#Agent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WebServiceProcess"/>
+        <Class IRI="#ProcessTemplate"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WorkflowEngine"/>
+        <Class IRI="#Tool"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WorkflowRun"/>
+        <Class IRI="http://purl.org/net/opmv/ns#Process"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WorkflowTemplate"/>
+        <Class IRI="#ProcessTemplate"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WorkflowWorkbench"/>
+        <Class IRI="#Tool"/>
+    </SubClassOf>
+    <ClassAssertion>
+        <Class IRI="http://purl.org/ao/Annotation"/>
+        <NamedIndividual IRI="#annotation-1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://purl.org/ao/Annotation"/>
+        <NamedIndividual IRI="#annotation-2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://purl.org/ao/Annotation"/>
+        <NamedIndividual IRI="#annotation-3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://purl.org/ao/Annotation"/>
+        <NamedIndividual IRI="#annotation-4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://purl.org/ao/Annotation"/>
+        <NamedIndividual IRI="#annotation-5"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://purl.org/ao/Annotation"/>
+        <NamedIndividual IRI="#annotation-6"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="owl:Thing"/>
+        <NamedIndividual IRI="#annotationBody-1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="owl:Thing"/>
+        <NamedIndividual IRI="#annotationBody-2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="owl:Thing"/>
+        <NamedIndividual IRI="#annotationBody-3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="owl:Thing"/>
+        <NamedIndividual IRI="#annotationBody-4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="owl:Thing"/>
+        <NamedIndividual IRI="#annotationBody-5"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="owl:Thing"/>
+        <NamedIndividual IRI="#annotationBody-6"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://purl.org/net/opmv/ns#Artifact"/>
+        <NamedIndividual IRI="#external-1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://purl.org/net/opmv/ns#Artifact"/>
+        <NamedIndividual IRI="#external-2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://purl.org/net/opmv/ns#Artifact"/>
+        <NamedIndividual IRI="#external-3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#File"/>
+        <NamedIndividual IRI="#files-576"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#File"/>
+        <NamedIndividual IRI="#files-577"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ResearchObject"/>
+        <NamedIndividual IRI="#ro-217"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#WorkflowTemplate"/>
+        <NamedIndividual IRI="#workflow-2464"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#WorkflowRun"/>
+        <NamedIndividual IRI="#workflow-run"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.org/ao/annotatesResource"/>
+        <NamedIndividual IRI="#annotation-1"/>
+        <NamedIndividual IRI="#workflow-run"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.org/ao/body"/>
+        <NamedIndividual IRI="#annotation-1"/>
+        <NamedIndividual IRI="#annotationBody-1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.org/ao/annotatesResource"/>
+        <NamedIndividual IRI="#annotation-2"/>
+        <NamedIndividual IRI="#workflow-run"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.org/ao/body"/>
+        <NamedIndividual IRI="#annotation-2"/>
+        <NamedIndividual IRI="#annotationBody-2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.org/ao/annotatesResource"/>
+        <NamedIndividual IRI="#annotation-3"/>
+        <NamedIndividual IRI="#workflow-run"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.org/ao/body"/>
+        <NamedIndividual IRI="#annotation-3"/>
+        <NamedIndividual IRI="#annotationBody-3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.org/ao/annotatesResource"/>
+        <NamedIndividual IRI="#annotation-4"/>
+        <NamedIndividual IRI="#workflow-run"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.org/ao/body"/>
+        <NamedIndividual IRI="#annotation-4"/>
+        <NamedIndividual IRI="#annotationBody-4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.org/ao/annotatesResource"/>
+        <NamedIndividual IRI="#annotation-5"/>
+        <NamedIndividual IRI="#workflow-run"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.org/ao/body"/>
+        <NamedIndividual IRI="#annotation-5"/>
+        <NamedIndividual IRI="#annotationBody-5"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.org/ao/annotatesResource"/>
+        <NamedIndividual IRI="#annotation-6"/>
+        <NamedIndividual IRI="#workflow-run"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.org/ao/body"/>
+        <NamedIndividual IRI="#annotation-6"/>
+        <NamedIndividual IRI="#annotationBody-6"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.openarchives.org/ore/terms/aggregates"/>
+        <NamedIndividual IRI="#ro-217"/>
+        <NamedIndividual IRI="#files-577"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.openarchives.org/ore/terms/aggregates"/>
+        <NamedIndividual IRI="#ro-217"/>
+        <NamedIndividual IRI="#external-3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.openarchives.org/ore/terms/aggregates"/>
+        <NamedIndividual IRI="#ro-217"/>
+        <NamedIndividual IRI="#external-2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.openarchives.org/ore/terms/aggregates"/>
+        <NamedIndividual IRI="#ro-217"/>
+        <NamedIndividual IRI="#external-1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.openarchives.org/ore/terms/aggregates"/>
+        <NamedIndividual IRI="#ro-217"/>
+        <NamedIndividual IRI="#workflow-run"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.openarchives.org/ore/terms/aggregates"/>
+        <NamedIndividual IRI="#ro-217"/>
+        <NamedIndividual IRI="#files-576"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.openarchives.org/ore/terms/aggregates"/>
+        <NamedIndividual IRI="#ro-217"/>
+        <NamedIndividual IRI="#workflow-2464"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.openarchives.org/ore/terms/aggregates"/>
+        <NamedIndividual IRI="#ro-217"/>
+        <NamedIndividual IRI="#annotation-5"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.openarchives.org/ore/terms/aggregates"/>
+        <NamedIndividual IRI="#ro-217"/>
+        <NamedIndividual IRI="#annotation-3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.openarchives.org/ore/terms/aggregates"/>
+        <NamedIndividual IRI="#ro-217"/>
+        <NamedIndividual IRI="#annotation-4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.openarchives.org/ore/terms/aggregates"/>
+        <NamedIndividual IRI="#ro-217"/>
+        <NamedIndividual IRI="#annotation-1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.openarchives.org/ore/terms/aggregates"/>
+        <NamedIndividual IRI="#ro-217"/>
+        <NamedIndividual IRI="#annotation-2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasWorkflowTemplate"/>
+        <NamedIndividual IRI="#workflow-run"/>
+        <NamedIndividual IRI="#workflow-2464"/>
+    </ObjectPropertyAssertion>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://purl.org/net/opmv/ns#used"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://purl.org/net/opmv/ns#wasControlledBy"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://purl.org/net/opmv/ns#wasGeneratedBy"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#contains"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasArtifactTemplate"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasProcessTemplate"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasWorkflowTemplate"/>
+        <ObjectProperty IRI="#hasProcessTemplate"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isPartOf"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isSubWorkflowOf"/>
+        <ObjectProperty IRI="#isPartOf"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#wasEnactedBy"/>
+        <ObjectProperty IRI="http://purl.org/net/opmv/ns#wasControlledBy"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#wasSpecifiedUsing"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="http://purl.org/net/opmv/ns#used"/>
+        <Class IRI="http://purl.org/net/opmv/ns#Process"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="http://purl.org/net/opmv/ns#wasControlledBy"/>
+        <Class IRI="http://purl.org/net/opmv/ns#Process"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="http://purl.org/net/opmv/ns#wasGeneratedBy"/>
+        <Class IRI="http://purl.org/net/opmv/ns#Artifact"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#contains"/>
+        <Class IRI="#WorkflowRun"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasArtifactTemplate"/>
+        <Class IRI="http://purl.org/net/opmv/ns#Artifact"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasInput"/>
+        <Class IRI="#ProcessTemplate"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasOutput"/>
+        <Class IRI="#ProcessTemplate"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasProcessTemplate"/>
+        <Class IRI="http://purl.org/net/opmv/ns#Process"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasWorkflowTemplate"/>
+        <Class IRI="#WorkflowRun"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#isPartOf"/>
+        <Class IRI="#ProcessTemplate"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#isSubWorkflowOf"/>
+        <Class IRI="#WorkflowTemplate"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#wasEnactedBy"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#wasEnactedBy"/>
+            <Class IRI="http://purl.org/net/opmv/ns#Process"/>
+        </ObjectSomeValuesFrom>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#wasSpecifiedUsing"/>
+        <Class IRI="#WorkflowTemplate"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="http://purl.org/net/opmv/ns#used"/>
+        <Class IRI="http://purl.org/net/opmv/ns#Artifact"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="http://purl.org/net/opmv/ns#wasControlledBy"/>
+        <Class IRI="http://purl.org/net/opmv/ns#Agent"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="http://purl.org/net/opmv/ns#wasGeneratedBy"/>
+        <Class IRI="http://purl.org/net/opmv/ns#Process"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#contains"/>
+        <Class IRI="http://purl.org/net/opmv/ns#Process"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasArtifactTemplate"/>
+        <Class IRI="#ArtifactTemplate"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasInput"/>
+        <Class IRI="#ArtifactTemplate"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasOutput"/>
+        <Class IRI="#ArtifactTemplate"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasProcessTemplate"/>
+        <Class IRI="#ProcessTemplate"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasWorkflowTemplate"/>
+        <Class IRI="#WorkflowTemplate"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#isPartOf"/>
+        <Class IRI="#WorkflowTemplate"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#isSubWorkflowOf"/>
+        <Class IRI="#WorkflowTemplate"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#wasEnactedBy"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#wasEnactedBy"/>
+            <Class IRI="#WorkflowEngine"/>
+        </ObjectSomeValuesFrom>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#wasSpecifiedUsing"/>
+        <Class IRI="#WorkflowWorkbench"/>
+    </ObjectPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>http://purl.org/net/opmv/ns#Agent</IRI>
+        <Literal>An agent represents the entity that can be used to control the execution of a process, is used to specify a workflow template, or is responsible for enacting a workflow run. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>http://purl.org/net/opmv/ns#Artifact</IRI>
+        <Literal>Artifact is a general concept that represents immutable piece of state, which may have a physical embodiment in a physical object, or a digital representation in a computer system. Note, however, that in the context of the Wf4ever project, the focus is on artifact that are digital representations in a computer system.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>http://purl.org/net/opmv/ns#Process</IRI>
+        <Literal>Process refers to an action that may consume some existing arifacts, and may produce some new artifacts.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>http://purl.org/net/opmv/ns#used</IRI>
+        <Literal>used associates an artifact with a process, specifying that the former was consumed by the latter.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>http://purl.org/net/opmv/ns#wasControlledBy</IRI>
+        <Literal>wasControlledBy associates a process with an agent, specifying the process  was controlled, e.g., launched, suspended, or terminated, by the agent.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>http://purl.org/net/opmv/ns#wasGeneratedBy</IRI>
+        <Literal>wasGeneratedBy associates an artifact with a process, specifying that the former was produced by the latter.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ArtifactTemplate</IRI>
+        <Literal>ArtifactTemplate is used to provide information about a class of artifacts. For example, it can be used to specify the datatype of a dataset or the structure of a document.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Manifest</IRI>
+        <Literal>Manifest is used to describe a research object.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ProcessTemplate</IRI>
+        <Literal>A process template is used to describe a class of actions that when enacted give rise to processes. </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ResearchObject</IRI>
+        <Literal>A research object aggregates a number of resources. A resource can be a workflow, web service, document, data item, data set, workflow run, software or a research object.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Tool</IRI>
+        <Literal>represents a software program</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#WebServiceProcess</IRI>
+        <Literal>WebServiceProcess is a Process template, the enactment of which gives rise to a web service call.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#WorkflowEngine</IRI>
+        <Literal>A workflow engine is an egent that is responsible for enacting a given workflow template. The result of workflow enactment gives rise to a workflow run.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#WorkflowResearchObject</IRI>
+        <Literal>A workflow research object is a research object that contains at least one workflow template.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#WorkflowRun</IRI>
+        <Literal>A workflow run is a special kind of process that is composed of a series of actions.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#WorkflowTemplate</IRI>
+        <Literal>A workflow template is a directed graph in which the nodes are process templates and the edges represent data dependencies between the constituent process templates.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#WorkflowWorkbench</IRI>
+        <Literal>A workflow workbench is a software program that provides designers with a a means to design workflow templates.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://dublincore.org/documents/dcmi-terms/creator"/>
+        <IRI>#annotation-1</IRI>
+        <IRI>#user-18933</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://dublincore.org/documents/dcmi-terms/creator"/>
+        <IRI>#annotation-2</IRI>
+        <IRI>#user-18933</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://dublincore.org/documents/dcmi-terms/creator"/>
+        <IRI>#annotation-3</IRI>
+        <IRI>#user-18933</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://dublincore.org/documents/dcmi-terms/creator"/>
+        <IRI>#annotation-4</IRI>
+        <IRI>#user-18933</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://dublincore.org/documents/dcmi-terms/creator"/>
+        <IRI>#annotation-5</IRI>
+        <IRI>#user-18933</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#annotationBody-1</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">This is a named graph that asserts that 
+
+workflow-run1 used external-1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://dublincore.org/documents/dcmi-terms/creator"/>
+        <IRI>#annotationBody-2</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">This is a named graph that asserts that 
+
+workflow-run1 used external-2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#annotationBody-3</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">This is a named graph that asserts that 
+
+workflow-run1 used external-3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#annotationBody-4</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">This is a named graph that asserts that 
+
+file-576 wasGeneratedBy workflow-run1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#annotationBody-5</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">This is a named graph that asserts that 
+
+file-577 wasGeneratedBy workflow-run1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#annotationBody-6</IRI>
+        <Literal>This is a named graph that asserts that 
+
+workflow-run hasWorkflowTemplate workflow-2464</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#contains</IRI>
+        <Literal>This property associates a workflow run with a process to specify that the latter is a constituent of the former.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#external-1</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">TSDL Home Page</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:seeAlso"/>
+        <IRI>#external-1</IRI>
+        <Literal datatypeIRI="&xsd;anyURI">http://robjhyndman.com/TSDL/</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#external-2</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Annual Unit Price of Lynx Pelts</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:seeAlso"/>
+        <IRI>#external-2</IRI>
+        <Literal datatypeIRI="&xsd;anyURI">http://robjhyndman.com/tsdldata/data/andrews3.dat</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#external-3</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Annual Number of Lynx Pelts</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:seeAlso"/>
+        <IRI>#external-3</IRI>
+        <Literal datatypeIRI="&xsd;anyURI">http://robjhyndman.com/tsdldata/data/andrews2.dat</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#files-576</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Google charts line chart result</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#files-577</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Time Series Data Library Citation Result</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#hasArtifactTemplate</IRI>
+        <Literal>This object property is used to associate an artifact to its correponding template.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#hasInput</IRI>
+        <Literal>This object property is used to specify the template of the artifacts used as input to a given process template.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#hasOutput</IRI>
+        <Literal>This object property is used to specify the template of the artifacts used as output to a given process template.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#hasProcessTemplate</IRI>
+        <Literal>This object property associate a process to its template.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#hasWorkflowTemplate</IRI>
+        <Literal>This property associates a workflow run to its corresponding workflow template.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#isPartOf</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">This object property is used to specify that a given process template is part of a given workflow template.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#isSubWorkflowOf</IRI>
+        <Literal>This object property is used to associate a workflow template to another workflow template, specifying that the former is a sub-workflow of the latter.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#ro-217</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">ResearchObject 217</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:seeAlso"/>
+        <IRI>#ro-217</IRI>
+        <Literal datatypeIRI="&xsd;anyURI">http://www.myexperiment.org/packs/217</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#user-18933</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Tadamus</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#wasEnactedBy</IRI>
+        <Literal>wasEnactedBy associates a process with a workflow engine, specifying that the execution of the former was enacted by the latter.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#wasSpecifiedUsing</IRI>
+        <Literal>This object property is used to specify the workflow workbench using which a given workflow template was specified.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#workflow-2464</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Time Series Data Graphed and Cited</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.0.0.1451) http://owlapi.sourceforge.net -->
+
