@@ -94,7 +94,7 @@
           
           owl:equivalentClass [ rdf:type owl:Restriction ;
                                 owl:onProperty ore:describes ;
-                                owl:someValuesFrom :Manifest
+                                owl:someValuesFrom :ResearchObject
                               ] ;
           
           rdfs:subClassOf ore:ResourceMap ;
