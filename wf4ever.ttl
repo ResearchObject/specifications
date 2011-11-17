@@ -1,0 +1,59 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix opm: <http://purl.org/net/opmv/ns#> .
+@prefix wf: <http://www.wf4ever-project.org/vocab/wf#> .
+@prefix ro: <http://www.wf4ever-project.org/vocab/ro#> .
+@prefix wfprov: <http://www.wf4ever-project.org/vocab/wfprov#> .
+@prefix : <http://www.wf4ever-project.org/vocab/wf4ever#> .
+@base <http://www.wf4ever-project.org/vocab/wf4ever> .
+
+<http://www.wf4ever-project.org/vocab/wf4ever> rdf:type owl:Ontology ;
+                                          
+                                          owl:imports 
+                                                      <http://www.wf4ever-project.org/vocab/ro> ,
+                                                      <http://www.wf4ever-project.org/vocab/wf> ,
+                                                      <http://www.wf4ever-project.org/vocab/wfprov> .
+
+###  http://www.wf4ever-project.org/vocab/ro#Dataset
+
+:Dataset rdf:type owl:Class ;
+         
+         rdfs:subClassOf <http://purl.org/net/opmv/ns#Artifact> .
+
+
+
+###  http://www.wf4ever-project.org/vocab/ro#Document
+
+:Document rdf:type owl:Class ;
+          
+          rdfs:subClassOf <http://purl.org/net/opmv/ns#Artifact> .
+
+
+
+###  http://www.wf4ever-project.org/vocab/ro#File
+
+:File rdf:type owl:Class ;
+      
+      rdfs:subClassOf <http://purl.org/net/opmv/ns#Artifact> .
+
+
+
+###  http://www.wf4ever-project.org/vocab/ro#Image
+
+:Image rdf:type owl:Class ;
+       
+       rdfs:subClassOf <http://purl.org/net/opmv/ns#Artifact> .
+
+
+
+:WebServiceProcess rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf wf:ProcessTemplate ;
+                   
+                   rdfs:comment "WebServiceProcess is a Process template, the enactment of which gives rise to a web service call." .
+
+

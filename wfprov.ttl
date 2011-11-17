@@ -1,0 +1,177 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix opm: <http://purl.org/net/opmv/ns#> .
+@prefix wf: <http://www.wf4ever-project.org/vocab/wf#> .
+@prefix : <http://www.wf4ever-project.org/vocab/wfprov#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.wf4ever-project.org/vocab/wfprov> .
+
+<http://www.wf4ever-project.org/vocab/wfprov> rdf:type owl:Ontology ;
+                                            
+                                            owl:imports <http://purl.org/net/opmv/ns> ,
+                                                        <http://www.wf4ever-project.org/vocab/wf> .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+
+
+#################################################################
+#
+#    Datatypes
+#
+#################################################################
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://www.wf4ever-project.org/vocab/wfprov#hasArtifactTemplate
+
+:hasArtifactTemplate rdf:type owl:ObjectProperty ;
+                     
+                     rdfs:comment "This object property is used to associate an artifact to its correponding template."@en ;
+                     
+                     rdfs:domain opm:Artifact ;
+                     
+                     rdfs:range wf:ArtifactTemplate .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wfprov#hasProcessTemplate
+
+:hasProcessTemplate rdf:type owl:ObjectProperty ;
+                    
+                    rdfs:comment "This object property associate a process to its template."@en ;
+                    
+                    rdfs:domain opm:Process ;
+                    
+                    rdfs:subPropertyOf owl:topObjectProperty ;
+                    
+                    rdfs:range wf:ProcessTemplate .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wfprov#hasWorkflowTemplate
+
+:hasWorkflowTemplate rdf:type owl:ObjectProperty ;
+                     
+                     rdfs:comment "This property associates a workflow run to its corresponding workflow template."@en ;
+                     
+                     rdfs:domain :WorkflowRun ;
+                     
+                     rdfs:subPropertyOf :hasProcessTemplate ;
+                     
+                     rdfs:range wf:WorkflowTemplate .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wfprov#wasEnactedBy
+
+:wasEnactedBy rdf:type owl:ObjectProperty ;
+              
+              rdfs:comment "wasEnactedBy associates a process with a workflow engine, specifying that the execution of the former was enacted by the latter."@en ;
+              
+              rdfs:subPropertyOf opm:wasControlledBy ;
+              
+              rdfs:range :WorkflowEngine .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wfprov#wasPartOfWorkflowRun
+
+:wasPartOfWorkflowRun rdf:type owl:ObjectProperty ;
+                      
+                      rdfs:comment "This property associates a workflow run with a process to specify that the latter is a constituent of the former."@en ;
+                      
+                      rdfs:range :WorkflowRun .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wfprov#wasSpecifiedUsing
+
+:wasSpecifiedUsing rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:comment "This object property is used to specify the workflow workbench using which a given workflow template was specified."@en ;
+                   
+                   rdfs:subPropertyOf owl:topObjectProperty ;
+                   
+                   rdfs:range :WorkflowEditor ;
+                   
+                   rdfs:domain wf:WorkflowTemplate .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://www.wf4ever-project.org/vocab/wfprov#Tool
+
+:Tool rdf:type owl:Class ;
+      
+      rdfs:subClassOf opm:Agent ;
+      
+      rdfs:comment "A software program (which can act as an opm:Agent/foaf:Agent)"@en .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wfprov#WorkflowEditor
+
+:WorkflowEditor rdf:type owl:Class ;
+                
+                rdfs:subClassOf :Tool ;
+                
+                rdfs:comment "A workflow editor is a software program that provides designers with a a means to write Workflow Templates."@en ;
+                
+                rdfs:seeAlso wf:WorkflowTemplate .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wfprov#WorkflowEngine
+
+:WorkflowEngine rdf:type owl:Class ;
+                
+                rdfs:subClassOf :Tool ;
+                
+                rdfs:comment "A workflow engine is an egent that is responsible for enacting a given workflow template. The result of workflow enactment gives rise to a workflow run."@en ;
+                
+                rdfs:seeAlso :WorkflowRun .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wfprov#WorkflowRun
+
+:WorkflowRun rdf:type owl:Class ;
+             
+             rdfs:subClassOf opm:Process ;
+             
+             rdfs:comment "A workflow run is a Process which have been enacted by a Workflow Engine, according to the execution definition from a Workflow Template. Such a process typically contains several subprocesses corresponding to Process Definitions"@en ;
+             
+             rdfs:seeAlso :WorkflowEngine ,
+                          wf:ProcessTemplate ,
+                          wf:WorkflowTemplate .
+
+
+
+
+###  Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net
+

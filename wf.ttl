@@ -1,0 +1,181 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix : <http://www.wf4ever-project.org/vocab/wf#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.wf4ever-project.org/vocab/wf> .
+
+<http://www.wf4ever-project.org/vocab/wf> rdf:type owl:Ontology ;
+                                          
+                                          rdfs:comment """This ontology describes an abstract workflow structure, which on the top level is defined as a WorkflowTemplate.
+
+A WorkflowTemplate hasProcess ProcessTemplate, each of these (and the workflow template itself) hasInput and hasOutput some ArtifactTemplate.When an ArtifactTemplate is an output of process A, and an input to process B, then this forms a data link from A to B.
+
+Thus this ontology allows the description a direct acyclic graph, or a dataflow. 
+
+This ontology is meant as an upper ontology for more specific workflow definitions, and as a way to express abstract workflows."""@en .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+
+
+#################################################################
+#
+#    Datatypes
+#
+#################################################################
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://www.wf4ever-project.org/vocab/wf#hasInput
+
+:hasInput rdf:type owl:ObjectProperty ;
+          
+          rdfs:comment """This object property is used to specify the template of the artifacts used as input to a given process template.
+
+TODO: Need an (Input)Parameter class to specify that an ArtifactTemplate is used for a particular (input) parameter."""@en ;
+          
+          rdfs:range :ArtifactTemplate ;
+          
+          rdfs:domain :ProcessTemplate .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#hasOutput
+
+:hasOutput rdf:type owl:ObjectProperty ;
+           
+           rdfs:comment """This object property is used to specify the template of the artifacts used as output to a given process template.
+
+TODO: Need an (Input)Parameter class to specify that an ArtifactTemplate is used for a particular (input) parameter."""@en ;
+           
+           rdfs:range :ArtifactTemplate ;
+           
+           rdfs:domain :ProcessTemplate .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#hasProcess
+
+:hasProcess rdf:type owl:ObjectProperty ;
+            
+            rdfs:comment "This object property is used to specify that the given workflow template contains the given process template as part of its definition."@en ;
+            
+            rdfs:range :ProcessTemplate ;
+            
+            rdfs:domain :WorkflowTemplate .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#hasSubWorkflow
+
+:hasSubWorkflow rdf:type owl:ObjectProperty ;
+                
+                rdfs:comment """This object property is used to associate a workflow template to another workflow template, specifying that the given workflow has the given sub-workflow as a contained process. 
+
+This is a specialisation of hasProcess."""@en ;
+                
+                rdfs:range :WorkflowTemplate ;
+                
+                rdfs:domain :WorkflowTemplate ;
+                
+                rdfs:subPropertyOf :hasProcess .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://www.wf4ever-project.org/vocab/wf#ArtifactTemplate
+
+:ArtifactTemplate rdf:type owl:Class ;
+                  
+                  rdfs:comment """ArtifactTemplate is used to provide information about a class of artifacts. For example, it can be used to specify the datatype of a dataset or the structure of a document.
+
+An ArtifactTemplate is normally associated with a ProcessTemplate using hasInput and/or hasOutput. If an artifact template is associated with two ProcessTemplates with both hasOutput and a hasInput - then it signifies a datalink from the output process to the input process.
+
+TODO: Need a ParameterTemplate class to distinguish same input at different parameters.
+
+TODO: Is it allowed for several hasOutput to refer to the same ArtifactTemplate? Does it mean it would be the same instance produced, or just that both will produce artifacts according to the same artifact template?"""@en .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#ProcessTemplate
+
+:ProcessTemplate rdf:type owl:Class ;
+                 
+                 rdfs:comment """A process template is used to describe a class of actions that when enacted give rise to processes. A process template can have 0 or more ArtifactTemplate associated using hasInput and hasOutput, signifying what kind of parameters the process will require and return.
+
+TODO: Need a ParameterTemplate class to formalise which parameters."""@en .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#WorkflowTemplate
+
+:WorkflowTemplate rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf :ProcessTemplate ;
+                  
+                  rdfs:comment """A workflow template is a directed graph in which the nodes are process templates and the edges represent data dependencies between the constituent process templates.
+
+A WorkflowTemplate defines associated Process Templates using hasProcess. A specialisation of this property is hasSubWorkflow, signifying that the process is a WorkflowTemplate itself, which is further described in a similar fashion.
+
+As a subclass of ProcessTemplate a WorkflowTemplate can also define hasInput/hasOutput ArtifactTemplate's. 
+
+An ArtifactTemplate defined with hasInput on a WorkflowTemplate is considered an input \"outside\" the workflow template (ie. if it is a subworkflow), but an output \"inside\" the workflow template. Thus such ArtifactTemplate's can be linked \"through\" the workflow template.
+
+
+Example:
+##
+:outerWorkflow a wf:WorkflowTemplate ;
+  wf:hasSubWorkflow :innerWorkflow ;
+  wf:hasProcess :procA, :procC .
+
+:procA a wf:ProcessTemplate ;
+  wf:hasOutput :value1 .
+
+:procC a wf:ProcessTemplate ;
+  wf:hasInput :value2 ;
+  wf:hasOutput :value3 .
+
+:value1 a wf:ArtifactTemplate .
+:value3 a wf:ArtifactTemplate . 
+
+:innerWorkflow a wf:WorkflowTemplate ;
+  wf:hasInput :value1 ;
+  wf:hasOutput :value2 ;
+  wf:hasProcess :procB .
+
+:procB a wf:ProcessTemplate ;
+  wf:hasInput :value1 ;
+  wf:hasOutput :value2 .
+##
+
+In this example :value1 is the output of :procA, input to :innerWorkflow, but also input to :procB (inside the :innerWorkflow) - and equivalent for :value2."""@en .
+
+
+
+
+###  Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net
+
