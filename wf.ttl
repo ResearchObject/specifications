@@ -10,7 +10,7 @@
                                           
                                           rdfs:comment """This ontology describes an abstract workflow structure, which on the top level is defined as a WorkflowTemplate.
 
-A WorkflowTemplate hasProcess ProcessTemplate, each of these (and the workflow template itself) hasInput and hasOutput some ArtifactTemplate.When an ArtifactTemplate is an output of process A, and an input to process B, then this forms a data link from A to B.
+A WorkflowTemplate hasProcessTemplate ProcessTemplate, each of these (and the workflow template itself) hasInput and hasOutput some ArtifactTemplate.When an ArtifactTemplate is an output of process A, and an input to process B, then this forms a data link from A to B.
 
 Thus this ontology allows the description a direct acyclic graph, or a dataflow. 
 
@@ -70,9 +70,9 @@ TODO: Need an (Input)Parameter class to specify that an ArtifactTemplate is used
 
 
 
-###  http://www.wf4ever-project.org/vocab/wf#hasProcess
+###  http://www.wf4ever-project.org/vocab/wf#hasProcessTemplate
 
-:hasProcess rdf:type owl:ObjectProperty ;
+:hasProcessTemplate rdf:type owl:ObjectProperty ;
             
             rdfs:comment "This object property is used to specify that the given workflow template contains the given process template as part of its definition."@en ;
             
@@ -84,17 +84,17 @@ TODO: Need an (Input)Parameter class to specify that an ArtifactTemplate is used
 
 ###  http://www.wf4ever-project.org/vocab/wf#hasSubWorkflow
 
-:hasSubWorkflow rdf:type owl:ObjectProperty ;
+:hasSubWorkflowTemplate rdf:type owl:ObjectProperty ;
                 
                 rdfs:comment """This object property is used to associate a workflow template to another workflow template, specifying that the given workflow has the given sub-workflow as a contained process. 
 
-This is a specialisation of hasProcess."""@en ;
+This is a specialisation of hasProcessTemplate."""@en ;
                 
                 rdfs:range :WorkflowTemplate ;
                 
                 rdfs:domain :WorkflowTemplate ;
                 
-                rdfs:subPropertyOf :hasProcess .
+                rdfs:subPropertyOf :hasProcessTemplate .
 
 
 
@@ -139,7 +139,7 @@ TODO: Need a ParameterTemplate class to formalise which parameters."""@en .
                   
                   rdfs:comment """A workflow template is a directed graph in which the nodes are process templates and the edges represent data dependencies between the constituent process templates.
 
-A WorkflowTemplate defines associated Process Templates using hasProcess. A specialisation of this property is hasSubWorkflow, signifying that the process is a WorkflowTemplate itself, which is further described in a similar fashion.
+A WorkflowTemplate defines associated Process Templates using hasProcessTemplate. A specialisation of this property is hasSubWorkflowTempalte, signifying that the process is a WorkflowTemplate itself, which is further described in a similar fashion.
 
 As a subclass of ProcessTemplate a WorkflowTemplate can also define hasInput/hasOutput ArtifactTemplate's. 
 
@@ -149,8 +149,8 @@ An ArtifactTemplate defined with hasInput on a WorkflowTemplate is considered an
 Example:
 ##
 :outerWorkflow a wf:WorkflowTemplate ;
-  wf:hasSubWorkflow :innerWorkflow ;
-  wf:hasProcess :procA, :procC .
+  wf:hasSubWorkflowTemplate :innerWorkflow ;
+  wf:hasProcessTemplate :procA, :procC .
 
 :procA a wf:ProcessTemplate ;
   wf:hasOutput :value1 .
@@ -165,7 +165,7 @@ Example:
 :innerWorkflow a wf:WorkflowTemplate ;
   wf:hasInput :value1 ;
   wf:hasOutput :value2 ;
-  wf:hasProcess :procB .
+  wf:hasProcessTemplate :procB .
 
 :procB a wf:ProcessTemplate ;
   wf:hasInput :value1 ;

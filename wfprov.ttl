@@ -39,9 +39,7 @@
 #################################################################
 
 
-###  http://www.wf4ever-project.org/vocab/wfprov#hasArtifactTemplate
-
-:hasArtifactTemplate rdf:type owl:ObjectProperty ;
+:instanceOfArtifactTemplate rdf:type owl:ObjectProperty ;
                      
                      rdfs:comment "This object property is used to associate an artifact to its correponding template."@en ;
                      
@@ -51,29 +49,23 @@
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfprov#hasProcessTemplate
-
-:hasProcessTemplate rdf:type owl:ObjectProperty ;
+:instanceOfProcessTemplate rdf:type owl:ObjectProperty ;
                     
                     rdfs:comment "This object property associate a process to its template."@en ;
                     
                     rdfs:domain opm:Process ;
                     
-                    rdfs:subPropertyOf owl:topObjectProperty ;
-                    
                     rdfs:range wf:ProcessTemplate .
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfprov#hasWorkflowTemplate
-
-:hasWorkflowTemplate rdf:type owl:ObjectProperty ;
+:instanceOfWorkflowTemplate rdf:type owl:ObjectProperty ;
                      
                      rdfs:comment "This property associates a workflow run to its corresponding workflow template."@en ;
                      
                      rdfs:domain :WorkflowRun ;
                      
-                     rdfs:subPropertyOf :hasProcessTemplate ;
+                     rdfs:subPropertyOf :instanceOfProcessTemplate;
                      
                      rdfs:range wf:WorkflowTemplate .
 
@@ -96,7 +88,7 @@
 :wasPartOfWorkflowRun rdf:type owl:ObjectProperty ;
                       
                       rdfs:comment "This property associates a workflow run with a process to specify that the latter is a constituent of the former."@en ;
-                      
+                      rdfs:domain opm:Process ; 
                       rdfs:range :WorkflowRun .
 
 
