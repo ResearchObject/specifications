@@ -14,7 +14,7 @@ A WorkflowTemplate hasProcessTemplate ProcessTemplate, each of these (and the wo
 
 Thus this ontology allows the description a direct acyclic graph, or a dataflow. 
 
-This ontology is meant as an upper ontology for more specific workflow definitions, and as a way to express abstract workflows."""@en .
+This ontology is meant as an upper ontology for more specific workflow definitions, and as a way to express abstract workflows. The wfprov ontology shows how to link these templates to an OPMV provenance trace of a workflow execution."""@en .
 
 
 #################################################################
@@ -73,28 +73,28 @@ TODO: Need an (Input)Parameter class to specify that an ArtifactTemplate is used
 ###  http://www.wf4ever-project.org/vocab/wf#hasProcessTemplate
 
 :hasProcessTemplate rdf:type owl:ObjectProperty ;
-            
-            rdfs:comment "This object property is used to specify that the given workflow template contains the given process template as part of its definition."@en ;
-            
-            rdfs:range :ProcessTemplate ;
-            
-            rdfs:domain :WorkflowTemplate .
+                    
+                    rdfs:comment "This object property is used to specify that the given workflow template contains the given process template as part of its definition."@en ;
+                    
+                    rdfs:range :ProcessTemplate ;
+                    
+                    rdfs:domain :WorkflowTemplate .
 
 
 
-###  http://www.wf4ever-project.org/vocab/wf#hasSubWorkflow
+###  http://www.wf4ever-project.org/vocab/wf#hasSubWorkflowTemplate
 
 :hasSubWorkflowTemplate rdf:type owl:ObjectProperty ;
-                
-                rdfs:comment """This object property is used to associate a workflow template to another workflow template, specifying that the given workflow has the given sub-workflow as a contained process. 
+                        
+                        rdfs:comment """This object property is used to associate a workflow template to another workflow template, specifying that the given workflow has the given sub-workflow as a contained process. 
 
 This is a specialisation of hasProcessTemplate."""@en ;
-                
-                rdfs:range :WorkflowTemplate ;
-                
-                rdfs:domain :WorkflowTemplate ;
-                
-                rdfs:subPropertyOf :hasProcessTemplate .
+                        
+                        rdfs:range :WorkflowTemplate ;
+                        
+                        rdfs:domain :WorkflowTemplate ;
+                        
+                        rdfs:subPropertyOf :hasProcessTemplate .
 
 
 

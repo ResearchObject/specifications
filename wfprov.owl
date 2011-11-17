@@ -9,9 +9,11 @@
 @base <http://www.wf4ever-project.org/vocab/wfprov> .
 
 <http://www.wf4ever-project.org/vocab/wfprov> rdf:type owl:Ontology ;
-                                            
-                                            owl:imports <http://purl.org/net/opmv/ns> ,
-                                                        <http://www.wf4ever-project.org/vocab/wf> .
+                                              
+                                              rdfs:comment "This ontology shows how the wf ontology can be linked with the opmv ontology, linking a workflow process execution to abstract workflow templates giving the overview of the executed workflow."@en ;
+                                              
+                                              owl:imports <http://purl.org/net/opmv/ns> ,
+                                                          <http://www.wf4ever-project.org/vocab/wf> .
 
 
 #################################################################
@@ -39,35 +41,41 @@
 #################################################################
 
 
+###  http://www.wf4ever-project.org/vocab/wfprov#instanceOfArtifactTemplate
+
 :instanceOfArtifactTemplate rdf:type owl:ObjectProperty ;
-                     
-                     rdfs:comment "This object property is used to associate an artifact to its correponding template."@en ;
-                     
-                     rdfs:domain opm:Artifact ;
-                     
-                     rdfs:range wf:ArtifactTemplate .
+                            
+                            rdfs:comment "This object property is used to associate an artifact to its correponding template."@en ;
+                            
+                            rdfs:domain opm:Artifact ;
+                            
+                            rdfs:range wf:ArtifactTemplate .
 
 
+
+###  http://www.wf4ever-project.org/vocab/wfprov#instanceOfProcessTemplate
 
 :instanceOfProcessTemplate rdf:type owl:ObjectProperty ;
-                    
-                    rdfs:comment "This object property associate a process to its template."@en ;
-                    
-                    rdfs:domain opm:Process ;
-                    
-                    rdfs:range wf:ProcessTemplate .
+                           
+                           rdfs:comment "This object property associate a process to its template."@en ;
+                           
+                           rdfs:domain opm:Process ;
+                           
+                           rdfs:range wf:ProcessTemplate .
 
 
+
+###  http://www.wf4ever-project.org/vocab/wfprov#instanceOfWorkflowTemplate
 
 :instanceOfWorkflowTemplate rdf:type owl:ObjectProperty ;
-                     
-                     rdfs:comment "This property associates a workflow run to its corresponding workflow template."@en ;
-                     
-                     rdfs:domain :WorkflowRun ;
-                     
-                     rdfs:subPropertyOf :instanceOfProcessTemplate;
-                     
-                     rdfs:range wf:WorkflowTemplate .
+                            
+                            rdfs:comment "This property associates a workflow run to its corresponding workflow template."@en ;
+                            
+                            rdfs:range wf:WorkflowTemplate ;
+                            
+                            rdfs:domain :WorkflowRun ;
+                            
+                            rdfs:subPropertyOf :instanceOfProcessTemplate .
 
 
 
@@ -88,7 +96,9 @@
 :wasPartOfWorkflowRun rdf:type owl:ObjectProperty ;
                       
                       rdfs:comment "This property associates a workflow run with a process to specify that the latter is a constituent of the former."@en ;
-                      rdfs:domain opm:Process ; 
+                      
+                      rdfs:domain opm:Process ;
+                      
                       rdfs:range :WorkflowRun .
 
 
@@ -101,9 +111,9 @@
                    
                    rdfs:subPropertyOf owl:topObjectProperty ;
                    
-                   rdfs:range :WorkflowEditor ;
+                   rdfs:domain wf:WorkflowTemplate ;
                    
-                   rdfs:domain wf:WorkflowTemplate .
+                   rdfs:range :WorkflowEditor .
 
 
 
@@ -158,9 +168,9 @@
              
              rdfs:comment "A workflow run is a Process which have been enacted by a Workflow Engine, according to the execution definition from a Workflow Template. Such a process typically contains several subprocesses corresponding to Process Definitions"@en ;
              
-             rdfs:seeAlso :WorkflowEngine ,
-                          wf:ProcessTemplate ,
-                          wf:WorkflowTemplate .
+             rdfs:seeAlso wf:ProcessTemplate ,
+                          wf:WorkflowTemplate ,
+                          :WorkflowEngine .
 
 
 

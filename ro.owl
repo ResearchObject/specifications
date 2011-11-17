@@ -14,15 +14,29 @@
 
 <http://www.wf4ever-project.org/vocab/ro> rdf:type owl:Ontology ;
                                           
-                                          rdfs:comment "This ontology shows how AO and ORE ontologies can be used together to define a ResearchObject."@en ;
+                                          rdfs:comment "This ontology shows how AO and ORE ontologies can be used together to define a ResearchObject. This ontology is further customized by the wf4ever ontology."@en ;
                                           
-                                          owl:imports <http://purl.org/ao/core/> ,
-#                                                      <http://www.openarchives.org/ore/terms/> ,
-                                                    <http://www.wf4ever-project.org/vocab/ore-owl>,
+                                          owl:imports <http://purl.org/ao/core/>  ,
+                                                      <http://www.wf4ever-project.org/vocab/ore-owl> ,
                                                       <http://www.wf4ever-project.org/vocab/wf> ,
                                                       <http://www.wf4ever-project.org/vocab/wfprov> ,
                                                       <http://xmlns.com/foaf/0.1/> .
 
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+
+
+#################################################################
+#
+#    Datatypes
+#
+#################################################################
 
 
 
@@ -49,8 +63,6 @@
 #    Classes
 #
 #################################################################
-
-
 
 
 ###  http://www.wf4ever-project.org/vocab/ro#Folder
@@ -120,16 +132,6 @@
                                             ] ;
                         
                         rdfs:comment "A workflow research object is a research object that contains at least one workflow template." .
-
-
-
-
-
-#################################################################
-#
-#    Annotations
-#
-#################################################################
 
 
 
