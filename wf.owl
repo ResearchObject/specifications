@@ -11,7 +11,7 @@
                                           
                                           rdfs:comment """This ontology describes an abstract workflow structure, which on the top level is defined as a WorkflowTemplate.
 
-A WorkflowTemplate hasProcessTemplate ProcessTemplate, each of these (and the workflow template itself) hasInput and hasOutput some ArtifactTemplate.When an ArtifactTemplate is an output of process A, and an input to process B, then this forms a data link from A to B.
+A WorkflowTemplate contains several ProcessTemplates, associated using the hasProcessTemplate property. Each of these (and the workflow template itself) hasInput and hasOutput some Parameter Input or Output. An ArtifactTempalte is associated with a Parameter using hasArtifactTemplate. The WorkflowTemplate also hasDataLink several DataLinks which forms the connection between parameters.
 
 Thus this ontology allows the description a direct acyclic graph, or a dataflow. 
 
@@ -26,6 +26,18 @@ This ontology is meant as an upper ontology for more specific workflow definitio
 
 
 rdfs:comment rdf:type owl:AnnotationProperty .
+
+
+
+
+
+#################################################################
+#
+#    Datatypes
+#
+#################################################################
+
+
 
 
 #################################################################
@@ -45,7 +57,7 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
 
 :hasArtifactTemplate rdf:type owl:ObjectProperty ;
                      
-                     rdfs:comment "This property associates a process template parameter to the artifact template that characterizes it." ;
+                     rdfs:comment "This property associates a process template parameter to the artifact template that characterizes it."@en ;
                      
                      rdfs:subPropertyOf owl:topObjectProperty ;
                      
@@ -59,7 +71,7 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
 
 :hasDataLink rdf:type owl:ObjectProperty ;
              
-             rdfs:comment "This property is used to specify the workflow template a given data link belongs to." ;
+             rdfs:comment "This property is used to specify the workflow template a given data link belongs to."@en ;
              
              rdfs:subPropertyOf owl:topObjectProperty ;
              
@@ -110,7 +122,7 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
 
 :hasSink rdf:type owl:ObjectProperty ;
          
-         rdfs:comment "This property is used to specify the input parameter that acts as a sink to a given data link." ;
+         rdfs:comment "This property is used to specify the input parameter that acts as a sink to a given data link."@en ;
          
          rdfs:subPropertyOf owl:topObjectProperty ;
          
@@ -124,7 +136,7 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
 
 :hasSource rdf:type owl:ObjectProperty ;
            
-           rdfs:comment "This property is used to specify the output parameter that acts as a source to a given data link." ;
+           rdfs:comment "This property is used to specify the output parameter that acts as a source to a given data link."@en ;
            
            rdfs:subPropertyOf owl:topObjectProperty ;
            
@@ -165,11 +177,7 @@ This is a specialisation of hasProcessTemplate."""@en ;
                   
                   rdfs:comment """ArtifactTemplate is used to provide information about a class of artifacts. For example, it can be used to specify the datatype of a dataset or the structure of a document.
 
-An ArtifactTemplate is normally associated with a ProcessTemplate using hasInput and/or hasOutput. If an artifact template is associated with two ProcessTemplates with both hasOutput and a hasInput - then it signifies a datalink from the output process to the input process.
-
-TODO: Need a ParameterTemplate class to distinguish same input at different parameters.
-
-TODO: Is it allowed for several hasOutput to refer to the same ArtifactTemplate? Does it mean it would be the same instance produced, or just that both will produce artifacts according to the same artifact template?"""@en .
+An ArtifactTemplate is associated with a Parameter using hasArtifactTemplate."""@en .
 
 
 
@@ -177,7 +185,7 @@ TODO: Is it allowed for several hasOutput to refer to the same ArtifactTemplate?
 
 :DataLink rdf:type owl:Class ;
           
-          rdfs:comment "DataLink is used to represent data dependencies between process templates" .
+          rdfs:comment "DataLink is used to represent data dependencies between process templates"@en .
 
 
 
@@ -187,7 +195,7 @@ TODO: Is it allowed for several hasOutput to refer to the same ArtifactTemplate?
        
        rdfs:subClassOf :Parameter ;
        
-       rdfs:comment "It represents input parameter of a process template" .
+       rdfs:comment "It represents input parameter of a process template"@en .
 
 
 
@@ -197,7 +205,7 @@ TODO: Is it allowed for several hasOutput to refer to the same ArtifactTemplate?
         
         rdfs:subClassOf :Parameter ;
         
-        rdfs:comment "Represents output parameter of a process template" .
+        rdfs:comment "Represents output parameter of a process template"@en .
 
 
 
@@ -205,7 +213,13 @@ TODO: Is it allowed for several hasOutput to refer to the same ArtifactTemplate?
 
 :Parameter rdf:type owl:Class ;
            
-           rdfs:comment "This class represent a parameter of a process template." .
+           owl:equivalentClass [ rdf:type owl:Class ;
+                                 owl:unionOf ( :Input
+                                               :Output
+                                             )
+                               ] ;
+           
+           rdfs:comment "This class represent a parameter of a process template. A Parameter must be an Input or an Output (or both). A parameter is both an Input and Output when it is used on both sides of a nested workflow."@en .
 
 
 
@@ -213,9 +227,8 @@ TODO: Is it allowed for several hasOutput to refer to the same ArtifactTemplate?
 
 :ProcessTemplate rdf:type owl:Class ;
                  
-                 rdfs:comment """A process template is used to describe a class of actions that when enacted give rise to processes. A process template can have 0 or more ArtifactTemplate associated using hasInput and hasOutput, signifying what kind of parameters the process will require and return.
-
-TODO: Need a ParameterTemplate class to formalise which parameters."""@en .
+                 rdfs:comment """A process template is used to describe a class of actions that when enacted give rise to processes. A process template can have 0 or more Parameter associated using hasInput and hasOutput, signifying what kind of parameters the process will require and return.
+"""@en .
 
 
 
@@ -229,9 +242,11 @@ TODO: Need a ParameterTemplate class to formalise which parameters."""@en .
 
 A WorkflowTemplate defines associated Process Templates using hasProcessTemplate. A specialisation of this property is hasSubWorkflowTempalte, signifying that the process is a WorkflowTemplate itself, which is further described in a similar fashion.
 
-As a subclass of ProcessTemplate a WorkflowTemplate can also define hasInput/hasOutput ArtifactTemplate's. 
+As a subclass of ProcessTemplate a WorkflowTemplate can also define hasInput/hasOutput Parameters. 
 
-An ArtifactTemplate defined with hasInput on a WorkflowTemplate is considered an input \"outside\" the workflow template (ie. if it is a subworkflow), but an output \"inside\" the workflow template. Thus such ArtifactTemplate's can be linked \"through\" the workflow template.
+Parameters are linked using DataLink instances associated with the WorkflowTemplate using hasDataLink.
+
+A Parameter defined with hasInput on a WorkflowTemplate is considered an Input \"outside\" the workflow template (ie. if it is a subworkflow), but an Output \"inside\" the workflow template. Thus such Parameters can be linked \"through\" the workflow template.
 
 
 Example:
@@ -241,29 +256,39 @@ Example:
   wf:hasProcessTemplate :procA, :procC .
 
 :procA a wf:ProcessTemplate ;
-  wf:hasOutput :value1 .
+  wf:hasOutput :param1 .
 
 :procC a wf:ProcessTemplate ;
-  wf:hasInput :value2 ;
-  wf:hasOutput :value3 .
+  wf:hasInput :param2 ;
+  wf:hasOutput :param3 .
 
-:value1 a wf:ArtifactTemplate .
-:value3 a wf:ArtifactTemplate . 
 
 :innerWorkflow a wf:WorkflowTemplate ;
-  wf:hasInput :value1 ;
-  wf:hasOutput :value2 ;
+  wf:hasInput :param4 ;
+  wf:hasOutput :param5 ;
   wf:hasProcessTemplate :procB .
 
 :procB a wf:ProcessTemplate ;
-  wf:hasInput :value1 ;
-  wf:hasOutput :value2 .
+  wf:hasInput :param6 ;
+  wf:hasOutput :param7 .
+
+:innerWorkflow wf:hasDataLink 
+   [ wf:hasSource :param4; wf:hasSink :param6 ], 
+   [ wf:hasSource :param7; wf:hasSink :param5 ] .
+
+:outerWorkflow wf:hasDataLink
+  [ wf:hasSource :param1; wf:hasSink :param4 ],
+  [ wf:hasSource :param5; wf:hasSink :param2 ] .
+
 ##
 
-In this example :value1 is the output of :procA, input to :innerWorkflow, but also input to :procB (inside the :innerWorkflow) - and equivalent for :value2."""@en .
+
+In this example :param1 is the output of :procA. :param1 is the source in a datalink that goes to the input :param4 of the :innerWorkflow. :param4 is however also the source of an inner datalink, going to input :param6 of the nested :procB.
+
+From this :param4 is both an wf:Input and wf:Output (which is why these two classes are not disjoint)"""@en .
 
 
 
 
-###  Generated by the OWL API (version 3.0.0.1451) http://owlapi.sourceforge.net
+###  Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net
 
