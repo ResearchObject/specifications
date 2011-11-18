@@ -59,7 +59,7 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
 
 :hasDataLink rdf:type owl:ObjectProperty ;
              
-             rdfs:comment "This property is used to specify the workflow template a given data link belongs to." ;
+             rdfs:comment "This property is used to specify the data links of a given workflow template." ;
              
              rdfs:subPropertyOf owl:topObjectProperty ;
              
@@ -205,7 +205,7 @@ TODO: Is it allowed for several hasOutput to refer to the same ArtifactTemplate?
 
 :Parameter rdf:type owl:Class ;
            
-           rdfs:comment "This class represent a parameter of a process template." .
+           rdfs:comment "This class represents a parameter of a process template." .
 
 
 
