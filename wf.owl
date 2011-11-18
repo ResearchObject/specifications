@@ -71,7 +71,7 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
 
 :hasDataLink rdf:type owl:ObjectProperty ;
              
-             rdfs:comment "This property is used to specify the workflow template a given data link belongs to."@en ;
+             rdfs:comment "This property is used to specify the data links of a given workflow template." ;
              
              rdfs:subPropertyOf owl:topObjectProperty ;
              
