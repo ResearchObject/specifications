@@ -41,15 +41,15 @@
 #################################################################
 
 
-###  http://www.wf4ever-project.org/vocab/wfprov#instanceOfArtifactTemplate
+###  http://www.wf4ever-project.org/vocab/wfprov#instanceOfParameter
 
 :instanceOfParameter rdf:type owl:ObjectProperty ;
-                            
-                            rdfs:comment "This object property is used to associate an artifact to the process template it is an instance of."@en ;
-                            
-                            rdfs:domain opm:Artifact ;
-                            
-                            rdfs:range wf:Parameter .
+                     
+                     rdfs:comment "This object property is used to associate an artifact to the process template it is an instance of."@en ;
+                     
+                     rdfs:domain opm:Artifact ;
+                     
+                     rdfs:range wf:Parameter .
 
 
 
@@ -108,8 +108,6 @@
 :wasSpecifiedUsing rdf:type owl:ObjectProperty ;
                    
                    rdfs:comment "This object property is used to specify the workflow workbench using which a given workflow template was specified."@en ;
-                   
-                   rdfs:subPropertyOf owl:topObjectProperty ;
                    
                    rdfs:domain wf:WorkflowTemplate ;
                    
