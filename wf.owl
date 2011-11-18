@@ -4,6 +4,7 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @base <http://www.wf4ever-project.org/vocab/wf> .
 
 <http://www.wf4ever-project.org/vocab/wf> rdf:type owl:Ontology ;
@@ -24,15 +25,7 @@ This ontology is meant as an upper ontology for more specific workflow definitio
 #################################################################
 
 
-
-
-#################################################################
-#
-#    Datatypes
-#
-#################################################################
-
-
+rdfs:comment rdf:type owl:AnnotationProperty .
 
 
 #################################################################
@@ -42,15 +35,47 @@ This ontology is meant as an upper ontology for more specific workflow definitio
 #################################################################
 
 
+###  http://www.w3.org/2002/07/owl#topObjectProperty
+
+owl:topObjectProperty rdf:type owl:ObjectProperty .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#hasArtifactTemplate
+
+:hasArtifactTemplate rdf:type owl:ObjectProperty ;
+                     
+                     rdfs:comment "This property associates a process template parameter to the artifact template that characterizes it." ;
+                     
+                     rdfs:subPropertyOf owl:topObjectProperty ;
+                     
+                     rdfs:range :ArtifactTemplate ;
+                     
+                     rdfs:domain :Parameter .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#hasDataLink
+
+:hasDataLink rdf:type owl:ObjectProperty ;
+             
+             rdfs:comment "This property is used to specify the workflow template a given data link belongs to." ;
+             
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             
+             rdfs:range :DataLink ;
+             
+             rdfs:domain :WorkflowTemplate .
+
+
+
 ###  http://www.wf4ever-project.org/vocab/wf#hasInput
 
 :hasInput rdf:type owl:ObjectProperty ;
           
-          rdfs:comment """This object property is used to specify the template of the artifacts used as input to a given process template.
-
-TODO: Need an (Input)Parameter class to specify that an ArtifactTemplate is used for a particular (input) parameter."""@en ;
+          rdfs:comment "This object property is used to specify the input parameter of a given process template."@en ;
           
-          rdfs:range :ArtifactTemplate ;
+          rdfs:range :Input ;
           
           rdfs:domain :ProcessTemplate .
 
@@ -60,11 +85,10 @@ TODO: Need an (Input)Parameter class to specify that an ArtifactTemplate is used
 
 :hasOutput rdf:type owl:ObjectProperty ;
            
-           rdfs:comment """This object property is used to specify the template of the artifacts used as output to a given process template.
-
-TODO: Need an (Input)Parameter class to specify that an ArtifactTemplate is used for a particular (input) parameter."""@en ;
+           rdfs:comment """This object property is used to specify the output parameter of a given process template.
+"""@en ;
            
-           rdfs:range :ArtifactTemplate ;
+           rdfs:range :Output ;
            
            rdfs:domain :ProcessTemplate .
 
@@ -79,6 +103,34 @@ TODO: Need an (Input)Parameter class to specify that an ArtifactTemplate is used
                     rdfs:range :ProcessTemplate ;
                     
                     rdfs:domain :WorkflowTemplate .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#hasSink
+
+:hasSink rdf:type owl:ObjectProperty ;
+         
+         rdfs:comment "This property is used to specify the input parameter that acts as a sink to a given data link." ;
+         
+         rdfs:subPropertyOf owl:topObjectProperty ;
+         
+         rdfs:domain :DataLink ;
+         
+         rdfs:range :Input .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#hasSource
+
+:hasSource rdf:type owl:ObjectProperty ;
+           
+           rdfs:comment "This property is used to specify the output parameter that acts as a source to a given data link." ;
+           
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           
+           rdfs:domain :DataLink ;
+           
+           rdfs:range :Output .
 
 
 
@@ -118,6 +170,42 @@ An ArtifactTemplate is normally associated with a ProcessTemplate using hasInput
 TODO: Need a ParameterTemplate class to distinguish same input at different parameters.
 
 TODO: Is it allowed for several hasOutput to refer to the same ArtifactTemplate? Does it mean it would be the same instance produced, or just that both will produce artifacts according to the same artifact template?"""@en .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#DataLink
+
+:DataLink rdf:type owl:Class ;
+          
+          rdfs:comment "DataLink is used to represent data dependencies between process templates" .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#Input
+
+:Input rdf:type owl:Class ;
+       
+       rdfs:subClassOf :Parameter ;
+       
+       rdfs:comment "It represents input parameter of a process template" .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#Output
+
+:Output rdf:type owl:Class ;
+        
+        rdfs:subClassOf :Parameter ;
+        
+        rdfs:comment "Represents output parameter of a process template" .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#Parameter
+
+:Parameter rdf:type owl:Class ;
+           
+           rdfs:comment "This class represent a parameter of a process template." .
 
 
 
@@ -177,5 +265,5 @@ In this example :value1 is the output of :procA, input to :innerWorkflow, but al
 
 
 
-###  Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net
+###  Generated by the OWL API (version 3.0.0.1451) http://owlapi.sourceforge.net
 
