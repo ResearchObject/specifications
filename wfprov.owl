@@ -43,13 +43,13 @@
 
 ###  http://www.wf4ever-project.org/vocab/wfprov#instanceOfArtifactTemplate
 
-:instanceOfArtifactTemplate rdf:type owl:ObjectProperty ;
+:instanceOfParameter rdf:type owl:ObjectProperty ;
                             
-                            rdfs:comment "This object property is used to associate an artifact to its correponding template."@en ;
+                            rdfs:comment "This object property is used to associate an artifact to the process template it is an instance of."@en ;
                             
                             rdfs:domain opm:Artifact ;
                             
-                            rdfs:range wf:ArtifactTemplate .
+                            rdfs:range wf:Parameter .
 
 
 
