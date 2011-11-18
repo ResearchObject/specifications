@@ -240,7 +240,7 @@ An ArtifactTemplate is associated with a Parameter using hasArtifactTemplate."""
                   
                   rdfs:comment """A workflow template is a directed graph in which the nodes are process templates and the edges represent data dependencies between the constituent process templates.
 
-A WorkflowTemplate defines associated Process Templates using hasProcessTemplate. A specialisation of this property is hasSubWorkflowTempalte, signifying that the process is a WorkflowTemplate itself, which is further described in a similar fashion.
+A WorkflowTemplate defines associated Process Templates using hasProcessTemplate. A specialisation of this property is hasSubWorkflowTemplate, signifying that the process is a WorkflowTemplate itself, which is further described in a similar fashion.
 
 As a subclass of ProcessTemplate a WorkflowTemplate can also define hasInput/hasOutput Parameters. 
 
@@ -251,6 +251,7 @@ A Parameter defined with hasInput on a WorkflowTemplate is considered an Input \
 
 Example:
 ##
+@prefix wf: <http://www.wf4ever-project.org/vocab/wf#> .
 :outerWorkflow a wf:WorkflowTemplate ;
   wf:hasSubWorkflowTemplate :innerWorkflow ;
   wf:hasProcessTemplate :procA, :procC .
