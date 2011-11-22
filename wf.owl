@@ -1,0 +1,295 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix : <http://www.wf4ever-project.org/vocab/wf#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@base <http://www.wf4ever-project.org/vocab/wf> .
+
+<http://www.wf4ever-project.org/vocab/wf> rdf:type owl:Ontology ;
+                                          
+                                          rdfs:comment """This ontology describes an abstract workflow structure, which on the top level is defined as a WorkflowTemplate.
+
+A WorkflowTemplate contains several ProcessTemplates, associated using the hasProcessTemplate property. Each of these (and the workflow template itself) hasInput and hasOutput some Parameter Input or Output. An ArtifactTempalte is associated with a Parameter using hasArtifactTemplate. The WorkflowTemplate also hasDataLink several DataLinks which forms the connection between parameters.
+
+Thus this ontology allows the description a direct acyclic graph, or a dataflow. 
+
+This ontology is meant as an upper ontology for more specific workflow definitions, and as a way to express abstract workflows. The wfprov ontology shows how to link these templates to an OPMV provenance trace of a workflow execution."""@en .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+rdfs:comment rdf:type owl:AnnotationProperty .
+
+
+
+
+
+#################################################################
+#
+#    Datatypes
+#
+#################################################################
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://www.w3.org/2002/07/owl#topObjectProperty
+
+owl:topObjectProperty rdf:type owl:ObjectProperty .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#hasArtifactTemplate
+
+:hasArtifactTemplate rdf:type owl:ObjectProperty ;
+                     
+                     rdfs:comment "This property associates a process template parameter to the artifact template that characterizes it."@en ;
+                     
+                     rdfs:subPropertyOf owl:topObjectProperty ;
+                     
+                     rdfs:range :ArtifactTemplate ;
+                     
+                     rdfs:domain :Parameter .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#hasDataLink
+
+:hasDataLink rdf:type owl:ObjectProperty ;
+             
+             rdfs:comment "This property is used to specify the data links of a given workflow template." ;
+             
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             
+             rdfs:range :DataLink ;
+             
+             rdfs:domain :WorkflowTemplate .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#hasInput
+
+:hasInput rdf:type owl:ObjectProperty ;
+          
+          rdfs:comment "This object property is used to specify the input parameter of a given process template."@en ;
+          
+          rdfs:range :Input ;
+          
+          rdfs:domain :ProcessTemplate .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#hasOutput
+
+:hasOutput rdf:type owl:ObjectProperty ;
+           
+           rdfs:comment """This object property is used to specify the output parameter of a given process template.
+"""@en ;
+           
+           rdfs:range :Output ;
+           
+           rdfs:domain :ProcessTemplate .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#hasProcessTemplate
+
+:hasProcessTemplate rdf:type owl:ObjectProperty ;
+                    
+                    rdfs:comment "This object property is used to specify that the given workflow template contains the given process template as part of its definition."@en ;
+                    
+                    rdfs:range :ProcessTemplate ;
+                    
+                    rdfs:domain :WorkflowTemplate .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#hasSink
+
+:hasSink rdf:type owl:ObjectProperty ;
+         
+         rdfs:comment "This property is used to specify the input parameter that acts as a sink to a given data link."@en ;
+         
+         rdfs:subPropertyOf owl:topObjectProperty ;
+         
+         rdfs:domain :DataLink ;
+         
+         rdfs:range :Input .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#hasSource
+
+:hasSource rdf:type owl:ObjectProperty ;
+           
+           rdfs:comment "This property is used to specify the output parameter that acts as a source to a given data link."@en ;
+           
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           
+           rdfs:domain :DataLink ;
+           
+           rdfs:range :Output .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#hasSubWorkflowTemplate
+
+:hasSubWorkflowTemplate rdf:type owl:ObjectProperty ;
+                        
+                        rdfs:comment """This object property is used to associate a workflow template to another workflow template, specifying that the given workflow has the given sub-workflow as a contained process. 
+
+This is a specialisation of hasProcessTemplate."""@en ;
+                        
+                        rdfs:range :WorkflowTemplate ;
+                        
+                        rdfs:domain :WorkflowTemplate ;
+                        
+                        rdfs:subPropertyOf :hasProcessTemplate .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://www.wf4ever-project.org/vocab/wf#ArtifactTemplate
+
+:ArtifactTemplate rdf:type owl:Class ;
+                  
+                  rdfs:comment """ArtifactTemplate is used to provide information about a class of artifacts. For example, it can be used to specify the datatype of a dataset or the structure of a document.
+
+An ArtifactTemplate is associated with a Parameter using hasArtifactTemplate."""@en .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#DataLink
+
+:DataLink rdf:type owl:Class ;
+          
+          rdfs:comment "DataLink is used to represent data dependencies between process templates"@en .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#Input
+
+:Input rdf:type owl:Class ;
+       
+       rdfs:subClassOf :Parameter ;
+       
+       rdfs:comment "It represents input parameter of a process template"@en .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#Output
+
+:Output rdf:type owl:Class ;
+        
+        rdfs:subClassOf :Parameter ;
+        
+        rdfs:comment "Represents output parameter of a process template"@en .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#Parameter
+
+:Parameter rdf:type owl:Class ;
+           
+           owl:equivalentClass [ rdf:type owl:Class ;
+                                 owl:unionOf ( :Input
+                                               :Output
+                                             )
+                               ] ;
+           
+           rdfs:comment "This class represent a parameter of a process template. A Parameter must be an Input or an Output (or both). A parameter is both an Input and Output when it is used on both sides of a nested workflow."@en .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#ProcessTemplate
+
+:ProcessTemplate rdf:type owl:Class ;
+                 
+                 rdfs:comment """A process template is used to describe a class of actions that when enacted give rise to processes. A process template can have 0 or more Parameter associated using hasInput and hasOutput, signifying what kind of parameters the process will require and return.
+"""@en .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#WorkflowTemplate
+
+:WorkflowTemplate rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf :ProcessTemplate ;
+                  
+                  rdfs:comment """A workflow template is a directed graph in which the nodes are process templates and the edges represent data dependencies between the constituent process templates.
+
+A WorkflowTemplate defines associated Process Templates using hasProcessTemplate. A specialisation of this property is hasSubWorkflowTemplate, signifying that the process is a WorkflowTemplate itself, which is further described in a similar fashion.
+
+As a subclass of ProcessTemplate a WorkflowTemplate can also define hasInput/hasOutput Parameters. 
+
+Parameters are linked using DataLink instances associated with the WorkflowTemplate using hasDataLink.
+
+A Parameter defined with hasInput on a WorkflowTemplate is considered an Input \"outside\" the workflow template (ie. if it is a subworkflow), but an Output \"inside\" the workflow template. Thus such Parameters can be linked \"through\" the workflow template.
+
+
+Example:
+##
+@prefix wf: <http://www.wf4ever-project.org/vocab/wf#> .
+:outerWorkflow a wf:WorkflowTemplate ;
+  wf:hasSubWorkflowTemplate :innerWorkflow ;
+  wf:hasProcessTemplate :procA, :procC .
+
+:procA a wf:ProcessTemplate ;
+  wf:hasOutput :param1 .
+
+:procC a wf:ProcessTemplate ;
+  wf:hasInput :param2 ;
+  wf:hasOutput :param3 .
+
+
+:innerWorkflow a wf:WorkflowTemplate ;
+  wf:hasInput :param4 ;
+  wf:hasOutput :param5 ;
+  wf:hasProcessTemplate :procB .
+
+:procB a wf:ProcessTemplate ;
+  wf:hasInput :param6 ;
+  wf:hasOutput :param7 .
+
+:innerWorkflow wf:hasDataLink 
+   [ wf:hasSource :param4; wf:hasSink :param6 ], 
+   [ wf:hasSource :param7; wf:hasSink :param5 ] .
+
+:outerWorkflow wf:hasDataLink
+  [ wf:hasSource :param1; wf:hasSink :param4 ],
+  [ wf:hasSource :param5; wf:hasSink :param2 ] .
+
+##
+
+
+In this example :param1 is the output of :procA. :param1 is the source in a datalink that goes to the input :param4 of the :innerWorkflow. :param4 is however also the source of an inner datalink, going to input :param6 of the nested :procB.
+
+From this :param4 is both an wf:Input and wf:Output (which is why these two classes are not disjoint)"""@en .
+
+
+
+
+###  Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net
+
