@@ -9,6 +9,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ro: <http://www.wf4ever-project.org/vocab/ro#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix ore: <http://www.openarchives.org/ore/terms/> .
 @base <http://www.wf4ever-project.org/vocab/wf4ever> .
 
 <http://www.wf4ever-project.org/vocab/wf4ever> rdf:type owl:Ontology ;
