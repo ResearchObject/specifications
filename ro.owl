@@ -95,10 +95,6 @@ ro:AggregatedAnnotation rdf:type owl:Class ;
                         rdfs:subClassOf ore:AggregatedResource ,
                                         ro:SemanticAnnotation ,
                                         [ rdf:type owl:Restriction ;
-                                          owl:onProperty dct:creator ;
-                                          owl:someValuesFrom <http://xmlns.com/foaf/0.1/Agent>
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
                                           owl:onProperty <http://purl.org/ao/annotatesResource> ;
                                           owl:someValuesFrom [ rdf:type owl:Class ;
                                                                owl:unionOf ( ore:AggregatedResource
@@ -109,6 +105,10 @@ ro:AggregatedAnnotation rdf:type owl:Class ;
                                         [ rdf:type owl:Restriction ;
                                           owl:onProperty dct:created ;
                                           owl:someValuesFrom xsd:dateTime
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty dct:creator ;
+                                          owl:someValuesFrom <http://xmlns.com/foaf/0.1/Agent>
                                         ] .
 
 
