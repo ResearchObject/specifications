@@ -1,30 +1,29 @@
-@prefix wfprov: <http://www.wf4ever-project.org/vocab/wfprov#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix opm: <http://purl.org/net/opmv/ns#> .
-@prefix wf: <http://www.wf4ever-project.org/vocab/wf#> .
 @prefix ore: <http://www.openarchives.org/ore/terms/> .
-@prefix : <http://www.wf4ever-project.org/vocab/ro#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ro: <http://www.wf4ever-project.org/vocab/ro#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix wfprov: <http://www.wf4ever-project.org/vocab/wfprov#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix wf: <http://www.wf4ever-project.org/vocab/wf#> .
+@prefix rdfg: <http://www.w3.org/2004/03/trix/rdfg-1/> .
+@prefix : <http://www.wf4ever-project.org/vocab/ro#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
 @base <http://www.wf4ever-project.org/vocab/ro> .
 
 <http://www.wf4ever-project.org/vocab/ro> rdf:type owl:Ontology ;
                                           
                                           rdfs:comment "This ontology shows how AO and ORE ontologies can be used together to define a ResearchObject. This ontology is further customized by the wf4ever ontology."@en ;
                                           
-                                          owl:imports <http://purl.org/ao/core/> ,
-                                                      <http://purl.org/dc/terms/> ,
+                                          owl:imports <http://purl.org/NET/dc_owl2dl/terms_od> ,
+                                                      <http://purl.org/ao/> ,
                                                       <http://www.wf4ever-project.org/vocab/ore-owl> ,
                                                       <http://www.wf4ever-project.org/vocab/wf> ,
                                                       <http://www.wf4ever-project.org/vocab/wfprov> ,
                                                       <http://xmlns.com/foaf/0.1/> .
 
-@prefix ao: <http://purl.org/ao/> .
-@prefix dct: <http://purl.org/dc/terms/> .
-@prefix rdfg: <http://www.w3.org/2004/03/trix/rdfg-1/> .
 
 #################################################################
 #
@@ -53,13 +52,13 @@
 
 ###  http://www.wf4ever-project.org/vocab/ro#annotatesAggregatedResource
 
-:annotatesAggregatedResource rdf:type owl:ObjectProperty ;
-                             
-                             rdfs:domain ao:Annotation ;
-                             
-                             rdfs:subPropertyOf ao:annotatesResource ;
-                             
-                             rdfs:range :Resource .
+ro:annotatesAggregatedResource rdf:type owl:ObjectProperty ;
+                               
+                               rdfs:domain <http://purl.org/ao/Annotation> ;
+                               
+                               rdfs:subPropertyOf <http://purl.org/ao/annotatesResource> ;
+                               
+                               rdfs:range ro:Resource .
 
 
 
@@ -74,9 +73,9 @@
 
 ###  http://www.wf4ever-project.org/vocab/ro#entryName
 
-:entryName rdf:type owl:DatatypeProperty ;
-           
-           rdfs:domain :FolderEntry .
+ro:entryName rdf:type owl:DatatypeProperty ;
+             
+             rdfs:domain ro:FolderEntry .
 
 
 
@@ -91,104 +90,104 @@
 
 ###  http://www.wf4ever-project.org/vocab/ro#AggregatedAnnotation
 
-:AggregatedAnnotation rdf:type owl:Class ;
-                      
-                      rdfs:subClassOf ore:AggregatedResource ,
-                                      :SemanticAnnotation ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty ao:annotatesResource ;
-                                        owl:someValuesFrom [ rdf:type owl:Class ;
-                                                             owl:unionOf ( ore:AggregatedResource
-                                                                           :ResearchObject
-                                                                         )
-                                                           ]
-                                      ] ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty <http://purl.org/dc/terms/created> ;
-                                        owl:someValuesFrom xsd:dateTime
-                                      ] ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty <http://purl.org/dc/terms/creator> ;
-                                        owl:someValuesFrom <http://xmlns.com/foaf/0.1/Agent>
-                                      ] .
+ro:AggregatedAnnotation rdf:type owl:Class ;
+                        
+                        rdfs:subClassOf ore:AggregatedResource ,
+                                        ro:SemanticAnnotation ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty dct:creator ;
+                                          owl:someValuesFrom <http://xmlns.com/foaf/0.1/Agent>
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty <http://purl.org/ao/annotatesResource> ;
+                                          owl:someValuesFrom [ rdf:type owl:Class ;
+                                                               owl:unionOf ( ore:AggregatedResource
+                                                                             ro:ResearchObject
+                                                                           )
+                                                             ]
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty dct:created ;
+                                          owl:someValuesFrom xsd:dateTime
+                                        ] .
 
 
 
 ###  http://www.wf4ever-project.org/vocab/ro#Folder
 
-:Folder rdf:type owl:Class ;
-        
-        rdfs:subClassOf ore:Aggregation ;
-        
-        rdfs:comment "A Folder is a special kind of ore:Aggregation where every AggregatedResource must have a FolderEntry proxy with a unique name within that folder."@en .
+ro:Folder rdf:type owl:Class ;
+          
+          rdfs:subClassOf ore:Aggregation ;
+          
+          rdfs:comment "A Folder is a special kind of ore:Aggregation where every AggregatedResource must have a FolderEntry proxy with a unique name within that folder."@en .
 
 
 
 ###  http://www.wf4ever-project.org/vocab/ro#FolderEntry
 
-:FolderEntry rdf:type owl:Class ;
-             
-             owl:equivalentClass [ rdf:type owl:Restriction ;
-                                   owl:onProperty ore:proxyIn ;
-                                   owl:someValuesFrom :Folder
-                                 ] ;
-             
-             rdfs:subClassOf ore:Proxy .
+ro:FolderEntry rdf:type owl:Class ;
+               
+               owl:equivalentClass [ rdf:type owl:Restriction ;
+                                     owl:onProperty ore:proxyIn ;
+                                     owl:someValuesFrom ro:Folder
+                                   ] ;
+               
+               rdfs:subClassOf ore:Proxy .
 
 
 
 ###  http://www.wf4ever-project.org/vocab/ro#Manifest
 
-:Manifest rdf:type owl:Class ;
-          
-          owl:equivalentClass [ rdf:type owl:Restriction ;
-                                owl:onProperty ore:describes ;
-                                owl:someValuesFrom :ResearchObject
-                              ] ;
-          
-          rdfs:subClassOf ore:ResourceMap ;
-          
-          rdfs:comment "Manifest is used to describe a research object." .
+ro:Manifest rdf:type owl:Class ;
+            
+            owl:equivalentClass [ rdf:type owl:Restriction ;
+                                  owl:onProperty ore:describes ;
+                                  owl:someValuesFrom ro:ResearchObject
+                                ] ;
+            
+            rdfs:subClassOf ore:ResourceMap ;
+            
+            rdfs:comment "Manifest is used to describe a research object." .
 
 
 
 ###  http://www.wf4ever-project.org/vocab/ro#ResearchObject
 
-:ResearchObject rdf:type owl:Class ;
-                
-                owl:equivalentClass [ rdf:type owl:Restriction ;
-                                      owl:onProperty ore:isDescribedBy ;
-                                      owl:someValuesFrom :Manifest
-                                    ] ;
-                
-                rdfs:subClassOf ore:Aggregation ;
-                
-                rdfs:comment "A research object aggregates a number of resources. A resource can be a workflow, web service, document, data item, data set, workflow run, software or a research object." .
+ro:ResearchObject rdf:type owl:Class ;
+                  
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty ore:isDescribedBy ;
+                                        owl:someValuesFrom ro:Manifest
+                                      ] ;
+                  
+                  rdfs:subClassOf ore:Aggregation ;
+                  
+                  rdfs:comment "A research object aggregates a number of resources. A resource can be a workflow, web service, document, data item, data set, workflow run, software or a research object." .
 
 
 
 ###  http://www.wf4ever-project.org/vocab/ro#Resource
 
-:Resource rdf:type owl:Class ;
-          
-          rdfs:subClassOf ore:AggregatedResource ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty [ owl:inverseOf ore:proxyFor
-                                           ] ;
-                            owl:hasSelf "true"^^xsd:boolean
-                          ] .
+ro:Resource rdf:type owl:Class ;
+            
+            rdfs:subClassOf ore:AggregatedResource ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty [ owl:inverseOf ore:proxyFor
+                                             ] ;
+                              owl:hasSelf "true"^^xsd:boolean
+                            ] .
 
 
 
 ###  http://www.wf4ever-project.org/vocab/ro#SemanticAnnotation
 
-:SemanticAnnotation rdf:type owl:Class ;
-                    
-                    rdfs:subClassOf ao:Annotation ,
-                                    [ rdf:type owl:Restriction ;
-                                      owl:onProperty ao:body ;
-                                      owl:someValuesFrom <http://www.w3.org/2004/03/trix/rdfg-1/Graph>
-                                    ] .
+ro:SemanticAnnotation rdf:type owl:Class ;
+                      
+                      rdfs:subClassOf <http://purl.org/ao/Annotation> ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty <http://purl.org/ao/body> ;
+                                        owl:someValuesFrom rdfg:Graph
+                                      ] .
 
 
 
