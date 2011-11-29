@@ -117,7 +117,7 @@ ro:AggregatedAnnotation rdf:type owl:Class ;
 
 ro:Folder rdf:type owl:Class ;
           
-          rdfs:subClassOf ore:Aggregation ;
+          rdfs:subClassOf ore:Aggregation, ro:Resource ;
           
           rdfs:comment "A Folder is a special kind of ore:Aggregation where every AggregatedResource must have a FolderEntry proxy with a unique name within that folder."@en .
 
