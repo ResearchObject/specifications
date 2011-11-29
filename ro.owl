@@ -6,7 +6,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix wfprov: <http://www.wf4ever-project.org/vocab/wfprov#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix wf: <http://www.wf4ever-project.org/vocab/wf#> .
 @prefix rdfg: <http://www.w3.org/2004/03/trix/rdfg-1/> .
 @prefix : <http://www.wf4ever-project.org/vocab/ro#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -20,8 +19,6 @@
                                           owl:imports <http://purl.org/NET/dc_owl2dl/terms_od> ,
                                                       <http://purl.org/ao/> ,
                                                       <http://www.wf4ever-project.org/vocab/ore-owl> ,
-                                                      <http://www.wf4ever-project.org/vocab/wf> ,
-                                                      <http://www.wf4ever-project.org/vocab/wfprov> ,
                                                       <http://xmlns.com/foaf/0.1/> .
 
 
