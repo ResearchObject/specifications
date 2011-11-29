@@ -5,17 +5,17 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@base <http://www.wf4ever-project.org/vocab/wf> .
+@base <http://www.wf4ever-project.org/vocab/wfdesc> .
 
-<http://www.wf4ever-project.org/vocab/wf> rdf:type owl:Ontology ;
-                                          
-                                          rdfs:comment """This ontology describes an abstract workflow structure, which on the top level is defined as a WorkflowTemplate.
+<http://www.wf4ever-project.org/vocab/wfdesc> rdf:type owl:Ontology ;
+                                              
+                                              rdfs:comment """This ontology (\"wfdesc\") describes an abstract workflow description structure, which on the top level is defined as a wfdesc:Workflow. 
 
-A WorkflowTemplate contains several ProcessTemplates, associated using the hasProcessTemplate property. Each of these (and the workflow template itself) hasInput and hasOutput some Parameter Input or Output. An ArtifactTempalte is associated with a Parameter using hasArtifactTemplate. The WorkflowTemplate also hasDataLink several DataLinks which forms the connection between parameters.
+A wfdesc:Workflow contains several wfdesc:Process instances, associated using the wfdesc:hasSubProcess property. Each of these (and the workflow itself) wfdesc:hasInput and wfdesc:hasOutput some wfdesc:Parameter (wfdesc:Input or wfdesc:Output). An wfdesc:Artifact is associated with a wfdesc:Parameter using wfdesc:hasArtifact. The wfdesc:Workflow also wfdesc:hasDataLink several wfdesc:DataLink instances, which forms the connection between parameters.
 
 Thus this ontology allows the description a direct acyclic graph, or a dataflow. 
 
-This ontology is meant as an upper ontology for more specific workflow definitions, and as a way to express abstract workflows. The wfprov ontology shows how to link these templates to an OPMV provenance trace of a workflow execution."""@en .
+This ontology is meant as an upper ontology for more specific workflow definitions, and as a way to express abstract workflows. The wfprov ontology shows how to link these descriptions to a provenance trace of a workflow execution."""@en .
 
 
 #################################################################
@@ -53,17 +53,17 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
 
 
 
-###  http://www.wf4ever-project.org/vocab/wf#hasArtifactTemplate
+###  http://www.wf4ever-project.org/vocab/wf#hasArtifact
 
-:hasArtifactTemplate rdf:type owl:ObjectProperty ;
-                     
-                     rdfs:comment "This property associates a process template parameter to the artifact template that characterizes it."@en ;
-                     
-                     rdfs:subPropertyOf owl:topObjectProperty ;
-                     
-                     rdfs:range :ArtifactTemplate ;
-                     
-                     rdfs:domain :Parameter .
+:hasArtifact rdf:type owl:ObjectProperty ;
+             
+             rdfs:comment "This property associates a wfdesc:Parameter with an wfdesc:Artifact which can describe the artifact which would be used/generated on execution of the workflow."@en ;
+             
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             
+             rdfs:range :Artifact ;
+             
+             rdfs:domain :Parameter .
 
 
 
@@ -71,13 +71,13 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
 
 :hasDataLink rdf:type owl:ObjectProperty ;
              
-             rdfs:comment "This property is used to specify the data links of a given workflow template." ;
+             rdfs:comment "This property is used to specify the wfdesc:DataLink instances of a given workflow template."@en ;
              
              rdfs:subPropertyOf owl:topObjectProperty ;
              
              rdfs:range :DataLink ;
              
-             rdfs:domain :WorkflowTemplate .
+             rdfs:domain :Workflow .
 
 
 
@@ -85,11 +85,11 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
 
 :hasInput rdf:type owl:ObjectProperty ;
           
-          rdfs:comment "This object property is used to specify the input parameter of a given process template."@en ;
+          rdfs:comment "This object property is used to specify the wfdesc:Input parameter of a given wfdesc:Process."@en ;
           
           rdfs:range :Input ;
           
-          rdfs:domain :ProcessTemplate .
+          rdfs:domain :Process .
 
 
 
@@ -97,24 +97,12 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
 
 :hasOutput rdf:type owl:ObjectProperty ;
            
-           rdfs:comment """This object property is used to specify the output parameter of a given process template.
+           rdfs:comment """This object property is used to specify the wfdesc:Output parameter of a given wfdesc:Process.
 """@en ;
            
            rdfs:range :Output ;
            
-           rdfs:domain :ProcessTemplate .
-
-
-
-###  http://www.wf4ever-project.org/vocab/wf#hasProcessTemplate
-
-:hasProcessTemplate rdf:type owl:ObjectProperty ;
-                    
-                    rdfs:comment "This object property is used to specify that the given workflow template contains the given process template as part of its definition."@en ;
-                    
-                    rdfs:range :ProcessTemplate ;
-                    
-                    rdfs:domain :WorkflowTemplate .
+           rdfs:domain :Process .
 
 
 
@@ -122,7 +110,7 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
 
 :hasSink rdf:type owl:ObjectProperty ;
          
-         rdfs:comment "This property is used to specify the input parameter that acts as a sink to a given data link."@en ;
+         rdfs:comment "This property is used to specify the wfdesc:Input parameter that acts as a sink from a given wfdesc:DataLink, consuming data from the link."@en ;
          
          rdfs:subPropertyOf owl:topObjectProperty ;
          
@@ -136,7 +124,7 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
 
 :hasSource rdf:type owl:ObjectProperty ;
            
-           rdfs:comment "This property is used to specify the output parameter that acts as a source to a given data link."@en ;
+           rdfs:comment "This property is used to specify the wfdesc:Output parameter that acts as a source to a given wfdesc:DataLink, providing data into the link."@en ;
            
            rdfs:subPropertyOf owl:topObjectProperty ;
            
@@ -146,19 +134,35 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
 
 
 
-###  http://www.wf4ever-project.org/vocab/wf#hasSubWorkflowTemplate
+###  http://www.wf4ever-project.org/vocab/wf#hasSubProcess
 
-:hasSubWorkflowTemplate rdf:type owl:ObjectProperty ;
-                        
-                        rdfs:comment """This object property is used to associate a workflow template to another workflow template, specifying that the given workflow has the given sub-workflow as a contained process. 
+:hasSubProcess rdf:type owl:ObjectProperty ;
+               
+               rdfs:comment """This object property is used to specify that the given workflow  contains the given process as part of its definition.
+
+Although not a requirement, such sub processes should have wfdesc:DataLink within the containing workflow connecting their parameters with parameters of the containing workflow, or with parameters other contained wfdesc:Process instances.
+
+A specialialisation of sub process is wfdesc:hasSubWorkflow where the sub process is a nested wfdesc:Workflow."""@en ;
+               
+               rdfs:range :Process ;
+               
+               rdfs:domain :Workflow .
+
+
+
+###  http://www.wf4ever-project.org/vocab/wf#hasSubWorkflow
+
+:hasSubWorkflow rdf:type owl:ObjectProperty ;
+                
+                rdfs:comment """This object property is used to associate a workflow template to another workflow template, specifying that the given workflow has the given sub-workflow as a contained process. 
 
 This is a specialisation of hasProcessTemplate."""@en ;
-                        
-                        rdfs:range :WorkflowTemplate ;
-                        
-                        rdfs:domain :WorkflowTemplate ;
-                        
-                        rdfs:subPropertyOf :hasProcessTemplate .
+                
+                rdfs:domain :Workflow ;
+                
+                rdfs:range :Workflow ;
+                
+                rdfs:subPropertyOf :hasSubProcess .
 
 
 
@@ -171,13 +175,15 @@ This is a specialisation of hasProcessTemplate."""@en ;
 #################################################################
 
 
-###  http://www.wf4ever-project.org/vocab/wf#ArtifactTemplate
+###  http://www.wf4ever-project.org/vocab/wf#Artifact
 
-:ArtifactTemplate rdf:type owl:Class ;
-                  
-                  rdfs:comment """ArtifactTemplate is used to provide information about a class of artifacts. For example, it can be used to specify the datatype of a dataset or the structure of a document.
+:Artifact rdf:type owl:Class ;
+          
+          rdfs:comment """wfdesc:Artifact is used to provide information about a class of artifacts. For example, it can be used to specify the datatype of a dataset or the structure of a document.
 
-An ArtifactTemplate is associated with a Parameter using hasArtifactTemplate."""@en .
+An wfdesc:Artifact is associated with a wfdesc:Parameter using wfdesc:hasArtifact.
+
+The distinction between a parameter and artifact is that the parameter can be customized to describe the particular role the artifact plays with regards to the process (and can be linked using wfdesc:DataLink) - while the wfdesc:Artifact can describe the syntactic and semantic datatype."""@en .
 
 
 
@@ -185,7 +191,11 @@ An ArtifactTemplate is associated with a Parameter using hasArtifactTemplate."""
 
 :DataLink rdf:type owl:Class ;
           
-          rdfs:comment "DataLink is used to represent data dependencies between process templates"@en .
+          rdfs:comment """wfdesc:DataLink is used to represent data dependencies between process templates. It means that the artifact generated at an wfdesc:Output (identified using wfdesc:hasSource) will be used by a wfdescInput (identified using wfdesc:hasSink).
+
+The wfdesc:Processes that owns the wfdesc:Parameter instances which are the source and sink of a wfdesc:DataLink must be wfdesc:hasSubProcess of a the same wfdesc:Workflow which wfdesc:hasDataLink the data link, or be be parameters of that same workflow.
+
+Thus links can only be made within a wfdesc:Workflow - although ports owned by the workflow itself appear both inside and outside the workflow (in opposite roles)."""@en .
 
 
 
@@ -195,7 +205,9 @@ An ArtifactTemplate is associated with a Parameter using hasArtifactTemplate."""
        
        rdfs:subClassOf :Parameter ;
        
-       rdfs:comment "It represents input parameter of a process template"@en .
+       rdfs:comment """wfdesc:Input represents an input parameter to a wfdesc:Process. This can be compared to a function parameter, command line argument, files read, or parameter set by a user interface.
+
+It is out of scope of wfdesc to define the nature or classification of the parameter, such as giving it a name, position or data type. This can be done with subclasses and/or subproperties."""@en .
 
 
 
@@ -205,7 +217,9 @@ An ArtifactTemplate is associated with a Parameter using hasArtifactTemplate."""
         
         rdfs:subClassOf :Parameter ;
         
-        rdfs:comment "Represents output parameter of a process template"@en .
+        rdfs:comment """wfdesc:Output represents an output parameter from a wfdesc:Process. This can be compared to functional return values, stdout/stdin, files written, or results shown in a user interface.
+
+It is out of scope of wfdesc to define the nature or classification of the parameter, such as giving it a name, position or data type. This can be done with subclasses and/or subproperties."""@en .
 
 
 
@@ -219,45 +233,48 @@ An ArtifactTemplate is associated with a Parameter using hasArtifactTemplate."""
                                              )
                                ] ;
            
-           rdfs:comment "This class represent a parameter of a process template. A Parameter must be an Input or an Output (or both). A parameter is both an Input and Output when it is used on both sides of a nested workflow."@en .
+           rdfs:comment """This class represent a parameter of a process template. A wfdesc:Parameter must be a wfdesc:Input, a wfdesc:Output, or both. 
+
+A parameter is both an Input and Output when it is used on both sides of a subworkflow - see wfdesc:Workflow and wfdesc:DataLink for details."""@en .
 
 
 
-###  http://www.wf4ever-project.org/vocab/wf#ProcessTemplate
+###  http://www.wf4ever-project.org/vocab/wf#Process
 
-:ProcessTemplate rdf:type owl:Class ;
-                 
-                 rdfs:comment """A process template is used to describe a class of actions that when enacted give rise to processes. A process template can have 0 or more Parameter associated using hasInput and hasOutput, signifying what kind of parameters the process will require and return.
-"""@en .
+:Process rdf:type owl:Class ;
+         
+         rdfs:comment """A wfdesc:Process is used to describe a class of actions that when enacted give rise to processes. A process can have 0 or more wfdesc:Parameter instances associated using wfdesc:hasInput and wfdesc:hasOutput, signifying what kind of parameters the process will require and return.
+
+It is out of scope for wfdesc to classify or specify the nature of the process, this should be done by subclassing and additional subproperties, for instance ex:perlScript or ex:restServiceURI"""@en .
 
 
 
-###  http://www.wf4ever-project.org/vocab/wf#WorkflowTemplate
+###  http://www.wf4ever-project.org/vocab/wf#Workflow
 
-:WorkflowTemplate rdf:type owl:Class ;
-                  
-                  rdfs:subClassOf :ProcessTemplate ;
-                  
-                  rdfs:comment """A workflow template is a directed graph in which the nodes are process templates and the edges represent data dependencies between the constituent process templates.
+:Workflow rdf:type owl:Class ;
+          
+          rdfs:subClassOf :Process ;
+          
+          rdfs:comment """A wfdesc:Workflow is a directed graph in which the nodes are wfdesc:Process instances and the edges (wfdesc:DataLink instances) represent data dependencies between the constituent process templates.
 
-A WorkflowTemplate defines associated Process Templates using hasProcessTemplate. A specialisation of this property is hasSubWorkflowTemplate, signifying that the process is a WorkflowTemplate itself, which is further described in a similar fashion.
+A wfdesc:Workflow defines associated wfdesc:Process using hasProcessTemplate. A specialisation of this property is hasSubWorkflowTemplate, signifying that the process is a WorkflowTemplate itself, which is further described in a similar fashion.
 
-As a subclass of ProcessTemplate a WorkflowTemplate can also define hasInput/hasOutput Parameters. 
+As a subclass of wfdesc:Process a wfdesc:Workflow can also define wfdesc:hasInput/wfdesc:hasOutput parameters - these would be inputs taken at workflow execution time, and final outputs of the workflow. (Note: Not all dataflow systems have this concept of workflow parameters)
 
-Parameters are linked using DataLink instances associated with the WorkflowTemplate using hasDataLink.
+wfdesc:Parameter instances are linked using wfdesc:DataLink instances associated with the wfdesc:Workflow using wfdesc:hasDataLink.
 
-A Parameter defined with hasInput on a WorkflowTemplate is considered an Input \"outside\" the workflow template (ie. if it is a subworkflow), but an Output \"inside\" the workflow template. Thus such Parameters can be linked \"through\" the workflow template.
+A wfdesc:Parameter defined with wfdesc:hasInput on a wfdesc:Workflow is considered an wfdesc:Input \"outside\" the workflow template (ie. if it is a subworkflow), but an wfdesc:Output \"inside\" the workflow template (where it can be connected to a wfdesc:Input of a wfdesc:Process). Thus such parameters can be linked \"through\" the workflow template without having a \"mirrored\" port inside.
 
 
 Example:
 ##
-@prefix wf: <http://www.wf4ever-project.org/vocab/wf#> .
-:outerWorkflow a wf:WorkflowTemplate ;
-  wf:hasSubWorkflowTemplate :innerWorkflow ;
-  wf:hasProcessTemplate :procA, :procC .
+@prefix wf: <http://www.wf4ever-project.org/vocab/wfdesc#> .
+:outerWorkflow a wfdesc:Workflow ;
+  wfdesc:hasSubWorkflow :innerWorkflow ;
+  wfdesc:hasSubProcess :procA, :procC .
 
-:procA a wf:ProcessTemplate ;
-  wf:hasOutput :param1 .
+:procA a wfdesc:Process ;
+  wfdesc:hasOutput :param1 .
 
 :procC a wf:ProcessTemplate ;
   wf:hasInput :param2 ;
