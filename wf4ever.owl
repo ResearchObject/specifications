@@ -2,7 +2,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix opm: <http://purl.org/net/opmv/ns#> .
-@prefix wf: <http://www.wf4ever-project.org/vocab/wf#> .
+@prefix wfdesc: <http://www.wf4ever-project.org/vocab/wfdesc#> .
 @prefix : <http://www.wf4ever-project.org/vocab/wf4ever#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -82,9 +82,9 @@
 
 :WebServiceProcessTemplate rdf:type owl:Class ;
                            
-                           rdfs:subClassOf wf:ProcessTemplate ;
+                           rdfs:subClassOf wfdesc:Process ;
                            
-                           rdfs:comment "WebServiceProcess is a Process template, the enactment of which gives rise to a web service call." .
+                           rdfs:comment "WebServiceProcess is a wfdesc:Process description, the enactment of which gives rise to a web service call." .
 
 
 
@@ -96,12 +96,12 @@
                                               owl:intersectionOf ( ro:ResearchObject
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty ore:aggregates ;
-                                                                     owl:someValuesFrom wf:WorkflowTemplate
+                                                                     owl:someValuesFrom wfdesc:Workflow
                                                                    ]
                                                                  )
                                             ] ;
                         
-                        rdfs:comment "A workflow research object is a research object that contains at least one workflow template." .
+                        rdfs:comment "A workflow research object is a research object that contains at least one workflow description." .
 
 
 

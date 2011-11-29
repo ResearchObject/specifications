@@ -1,7 +1,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix opm: <http://purl.org/net/opmv/ns#> .
-@prefix wf: <http://www.wf4ever-project.org/vocab/wf#> .
+@prefix wfdesc: <http://www.wf4ever-project.org/vocab/wfdesc#> .
 @prefix : <http://www.wf4ever-project.org/vocab/wfprov#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -49,7 +49,7 @@
                      
                      rdfs:domain opm:Artifact ;
                      
-                     rdfs:range wf:Parameter .
+                     rdfs:range wfdesc:Parameter .
 
 
 
@@ -61,7 +61,7 @@
                            
                            rdfs:domain opm:Process ;
                            
-                           rdfs:range wf:ProcessTemplate .
+                           rdfs:range wfdesc:Process .
 
 
 
@@ -71,7 +71,7 @@
                             
                             rdfs:comment "This property associates a workflow run to its corresponding workflow template."@en ;
                             
-                            rdfs:range wf:WorkflowTemplate ;
+                            rdfs:range wfdesc:Workflow ;
                             
                             rdfs:domain :WorkflowRun ;
                             
@@ -109,7 +109,7 @@
                    
                    rdfs:comment "This object property is used to specify the workflow workbench using which a given workflow template was specified."@en ;
                    
-                   rdfs:domain wf:WorkflowTemplate ;
+                   rdfs:domain wfdesc:Workflow ;
                    
                    rdfs:range :WorkflowEditor .
 
@@ -142,7 +142,7 @@
                 
                 rdfs:comment "A workflow editor is a software program that provides designers with a a means to write Workflow Templates."@en ;
                 
-                rdfs:seeAlso wf:WorkflowTemplate .
+                rdfs:seeAlso wfdesc:Workflow .
 
 
 
@@ -166,8 +166,8 @@
              
              rdfs:comment "A workflow run is a Process which have been enacted by a Workflow Engine, according to the execution definition from a Workflow Template. Such a process typically contains several subprocesses corresponding to Process Definitions"@en ;
              
-             rdfs:seeAlso wf:ProcessTemplate ,
-                          wf:WorkflowTemplate ,
+             rdfs:seeAlso wfdesc:Process ,
+                          wfdesc:Workflow ,
                           :WorkflowEngine .
 
 
