@@ -4,6 +4,7 @@
 @prefix opm: <http://purl.org/net/opmv/ns#> .
 @prefix wfdesc: <http://www.wf4ever-project.org/vocab/wfdesc#> .
 @prefix : <http://www.wf4ever-project.org/vocab/wf4ever#> .
+@prefix wf4ever: <http://www.wf4ever-project.org/vocab/wf4ever#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -17,7 +18,7 @@
                                                rdfs:comment "The wf4ever ontology. This is based on the wf4ever ontologies ro, wf and wfprov - but adds custom classes like wf4ever:Image and wf4ever:WebServiceProcessTemplate"@en ;
                                                
                                                owl:imports <http://www.wf4ever-project.org/vocab/ro> ,
-                                                           <http://www.wf4ever-project.org/vocab/wf> ,
+                                                           <http://www.wf4ever-project.org/vocab/wfdesc> ,
                                                            <http://www.wf4ever-project.org/vocab/wfprov> .
 
 
