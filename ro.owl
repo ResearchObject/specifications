@@ -95,16 +95,16 @@ ro:AggregatedAnnotation rdf:type owl:Class ;
                         rdfs:subClassOf ore:AggregatedResource ,
                                         ro:SemanticAnnotation ,
                                         [ rdf:type owl:Restriction ;
+                                          owl:onProperty dct:created ;
+                                          owl:someValuesFrom xsd:dateTime
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
                                           owl:onProperty <http://purl.org/ao/annotatesResource> ;
                                           owl:someValuesFrom [ rdf:type owl:Class ;
                                                                owl:unionOf ( ore:AggregatedResource
                                                                              ro:ResearchObject
                                                                            )
                                                              ]
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty dct:created ;
-                                          owl:someValuesFrom xsd:dateTime
                                         ] ,
                                         [ rdf:type owl:Restriction ;
                                           owl:onProperty dct:creator ;
@@ -117,7 +117,8 @@ ro:AggregatedAnnotation rdf:type owl:Class ;
 
 ro:Folder rdf:type owl:Class ;
           
-          rdfs:subClassOf ore:Aggregation, ro:Resource ;
+          rdfs:subClassOf ore:Aggregation ,
+                          ro:Resource ;
           
           rdfs:comment "A Folder is a special kind of ore:Aggregation where every AggregatedResource must have a FolderEntry proxy with a unique name within that folder."@en .
 
@@ -130,6 +131,10 @@ ro:FolderEntry rdf:type owl:Class ;
                owl:equivalentClass [ rdf:type owl:Restriction ;
                                      owl:onProperty ore:proxyIn ;
                                      owl:someValuesFrom ro:Folder
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty ro:entryName ;
+                                     owl:someValuesFrom xsd:string
                                    ] ;
                
                rdfs:subClassOf ore:Proxy .
@@ -158,6 +163,14 @@ ro:ResearchObject rdf:type owl:Class ;
                   owl:equivalentClass [ rdf:type owl:Restriction ;
                                         owl:onProperty ore:isDescribedBy ;
                                         owl:someValuesFrom ro:Manifest
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty dct:creator ;
+                                        owl:someValuesFrom <http://xmlns.com/foaf/0.1/Agent>
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty dct:created ;
+                                        owl:someValuesFrom xsd:dateTime
                                       ] ;
                   
                   rdfs:subClassOf ore:Aggregation ;
@@ -174,7 +187,7 @@ ro:Resource rdf:type owl:Class ;
                             [ rdf:type owl:Restriction ;
                               owl:onProperty [ owl:inverseOf ore:proxyFor
                                              ] ;
-                              owl:hasSelf "true"^^xsd:boolean
+                              owl:someValuesFrom ore:Proxy
                             ] .
 
 
