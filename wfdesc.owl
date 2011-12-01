@@ -230,7 +230,7 @@ wfdesc:Parameter rdf:type owl:Class ;
                  
                  rdfs:comment """This class represent a parameter of a process template. A wfdesc:Parameter must be a wfdesc:Input, a wfdesc:Output, or both. 
 
-A parameter is both an Input and Output when it is used on both sides of a subworkflow - see wfdesc:Workflow and wfdesc:DataLink for details."""@en .
+A parameter is both an wfdesc:Input and wfdesc:Output when it is used on both sides of a subworkflow - see wfdesc:Workflow and wfdesc:DataLink for details."""@en .
 
 
 
