@@ -1,12 +1,13 @@
 @base <../> .
 @prefix ro: <http://purl.org/wf4ever/ro#> .
 @prefix ao: <http://purl.org/ao/> .
+@prefix ore: <http://www.openarchives.org/ore/terms/> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix rdfg: <http://www.w3.org/2004/03/trix/rdfg-1/> .
 
-<.> a ro:ResearchObject, ro:Aggregation ;
+<.> a ro:ResearchObject, ore:Aggregation ;
     ore:aggregates <a_workflow.t2flow>, :ann1 ;
     dct:created "2011-12-02T15:01:10Z"^^xsd:dateTime ;
     dct:creator [ a foaf:Person; foaf:name "Stian Soiland-Reyes" ] .
@@ -14,8 +15,8 @@
 <a_workflow.t2flow> a ro:Resource .
 
 :proxy1 a ro:Proxy ;
-    ro:proxyFor <a_workflow.t2flow> ;
-    ro:proxyIn <.> ;
+    ore:proxyFor <a_workflow.t2flow> ;
+    ore:proxyIn <.> ;
     dct:created "2011-12-02T15:02:10Z"^^xsd:dateTime ;
     dct:creator [ a foaf:Person; foaf:name "Stian Soiland-Reyes" ] .
 
