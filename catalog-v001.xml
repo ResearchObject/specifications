@@ -6,6 +6,6 @@
     <uri id="User Entered Import Resolution" name="http://purl.org/wf4ever/ore-owl" uri="ore-owl.owl"/>
     <uri id="User Entered Import Resolution" name="http://purl.org/wf4ever/ro" uri="ro.owl"/>
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1322564804618" name="file:/Users/khalidbelhajjame/Documents/ro/" uri="catalog.xml"/>
+        <uri id="Automatically generated entry, Timestamp=1322828882765" name="file:/Users/khalidbelhajjame/Documents/ro/" uri="catalog.xml"/>
     </group>
 </catalog>
