@@ -1,7 +1,6 @@
 @prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix opm: <http://purl.org/net/opmv/ns#> .
 @prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
 @prefix : <http://purl.org/wf4ever/wf4ever#> .
 @prefix wf4ever: <http://purl.org/wf4ever/wf4ever#> .
@@ -52,7 +51,7 @@
 
 :Dataset rdf:type owl:Class ;
          
-         rdfs:subClassOf opm:Artifact .
+         rdfs:subClassOf ro:Artifact .
 
 
 
@@ -60,7 +59,7 @@
 
 :Document rdf:type owl:Class ;
           
-          rdfs:subClassOf opm:Artifact .
+          rdfs:subClassOf ro:Artifact .
 
 
 
@@ -68,7 +67,7 @@
 
 :File rdf:type owl:Class ;
       
-      rdfs:subClassOf opm:Artifact .
+      rdfs:subClassOf ro:Artifact .
 
 
 
@@ -76,7 +75,7 @@
 
 :Image rdf:type owl:Class ;
        
-       rdfs:subClassOf opm:Artifact .
+       rdfs:subClassOf ro:Artifact .
 
 
 
