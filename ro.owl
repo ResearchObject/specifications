@@ -13,16 +13,18 @@
 @base <http://purl.org/wf4ever/ro> .
 
 <http://purl.org/wf4ever/ro> rdf:type owl:Ontology ;
-                                          
-                                          rdfs:comment "This ontology shows how AO and ORE ontologies can be used together to define a ResearchObject. This ontology is further customized by the wf4ever ontology."@en ;
-                                          
-                                          owl:imports <http://purl.org/NET/dc_owl2dl/terms_od> ,
-                                                      <http://purl.org/ao/core/> ,
-                                                      <http://purl.org/wf4ever/ore-owl> ;
-                                          
-                                          rdfs:seeAlso <http://www.wf4ever-project.org/wiki/display/docs/Research+Object+Vocabulary+Specification> ;
-                                          
-                                          owl:imports <http://xmlns.com/foaf/0.1/> .
+                             
+                             rdfs:comment "This ontology shows how AO and ORE ontologies can be used together to define a ResearchObject. This ontology is further customized by the wf4ever ontology."@en ;
+                             
+                             owl:imports <http://purl.org/NET/dc_owl2dl/terms_od> ,
+                                         <http://purl.org/ao/core/> ,
+                                         <http://purl.org/wf4ever/ore-owl> ;
+                             
+                             rdfs:seeAlso <http://www.wf4ever-project.org/wiki/display/docs/Research+Object+Vocabulary+Specification> ;
+                             
+                             owl:imports <http://xmlns.com/foaf/0.1/> ;
+                             
+                             owl:versionIRI <https://raw.github.com/wf4ever/ro/0.1/ro.owl> .
 
 
 #################################################################
@@ -90,9 +92,9 @@ This name must be case-sensitively unique within the ro:Folder, similar to a fil
 TODO: Need a functional property to specify the top level folder structure of an {{ro:ResearchObject}}?
 """@en ;
              
-             rdfs:range xsd:string ;
+             rdfs:domain ro:FolderEntry ;
              
-             rdfs:domain ro:FolderEntry .
+             rdfs:range xsd:string .
 
 
 
@@ -109,8 +111,21 @@ TODO: Need a functional property to specify the top level folder structure of an
 
 ro:AggregatedAnnotation rdf:type owl:Class ;
                         
-                        rdfs:subClassOf ore:AggregatedResource ,
-                                        ro:SemanticAnnotation ,
+                        rdfs:subClassOf ro:SemanticAnnotation ,
+                                        ore:AggregatedResource ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty ore:isAggregatedBy ;
+                                          owl:someValuesFrom ro:ResearchObject
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty <http://purl.org/ao/annotatesResource> ;
+                                          owl:someValuesFrom [ rdf:type owl:Class ;
+                                                               owl:unionOf ( ro:ResearchObject
+                                                                             ore:AggregatedResource
+                                                                             ore:Proxy
+                                                                           )
+                                                             ]
+                                        ] ,
                                         [ rdf:type owl:Restriction ;
                                           owl:onProperty dct:created ;
                                           owl:someValuesFrom xsd:dateTime
@@ -118,19 +133,6 @@ ro:AggregatedAnnotation rdf:type owl:Class ;
                                         [ rdf:type owl:Restriction ;
                                           owl:onProperty dct:creator ;
                                           owl:someValuesFrom <http://xmlns.com/foaf/0.1/Agent>
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty <http://purl.org/ao/annotatesResource> ;
-                                          owl:someValuesFrom [ rdf:type owl:Class ;
-                                                               owl:unionOf ( ore:AggregatedResource
-                                                                             ore:Proxy
-                                                                             ro:ResearchObject
-                                                                           )
-                                                             ]
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty ore:isAggregatedBy ;
-                                          owl:someValuesFrom ro:ResearchObject
                                         ] ;
                         
                         rdfs:comment """An annotation aggregated within an ro:ResearchObject.  
@@ -147,8 +149,8 @@ As a subclass of ro:SemanticAnnotation the ao:body must point to an rdfg:Graph w
 
 ro:Folder rdf:type owl:Class ;
           
-          rdfs:subClassOf ore:Aggregation ,
-                          ro:Resource ;
+          rdfs:subClassOf ro:Resource ,
+                          ore:Aggregation ;
           
           rdfs:comment """An ro:Folder is a special kind of ore:Aggregation where every ro:AggregatedResource must have a ro:FolderEntry proxy with a unique ro:entryName within that folder.
 
@@ -164,12 +166,12 @@ Such folders can be nested and (optionally) used to organize the resources of th
 ro:FolderEntry rdf:type owl:Class ;
                
                owl:equivalentClass [ rdf:type owl:Restriction ;
-                                     owl:onProperty ore:proxyIn ;
-                                     owl:someValuesFrom ro:Folder
-                                   ] ,
-                                   [ rdf:type owl:Restriction ;
                                      owl:onProperty ro:entryName ;
                                      owl:someValuesFrom xsd:string
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty ore:proxyIn ;
+                                     owl:someValuesFrom ro:Folder
                                    ] ;
                
                rdfs:subClassOf ore:Proxy ;
@@ -208,12 +210,12 @@ ro:ResearchObject rdf:type owl:Class ;
                   
                   rdfs:subClassOf ore:Aggregation ,
                                   [ rdf:type owl:Restriction ;
-                                    owl:onProperty dct:creator ;
-                                    owl:someValuesFrom <http://xmlns.com/foaf/0.1/Agent>
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
                                     owl:onProperty dct:created ;
                                     owl:someValuesFrom xsd:dateTime
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty dct:creator ;
+                                    owl:someValuesFrom <http://xmlns.com/foaf/0.1/Agent>
                                   ] ;
                   
                   rdfs:comment "A research object aggregates a number of resources. A resource can be a workflow, web service, document, data item, data set, workflow run, software or a research object."@en .
@@ -226,16 +228,16 @@ ro:Resource rdf:type owl:Class ;
             
             rdfs:subClassOf ore:AggregatedResource ,
                             [ rdf:type owl:Restriction ;
+                              owl:onProperty ore:isAggregatedBy ;
+                              owl:someValuesFrom ro:ResearchObject
+                            ] ,
+                            [ rdf:type owl:Restriction ;
                               owl:onProperty [ owl:inverseOf ore:proxyFor
                                              ] ;
                               owl:someValuesFrom [ rdf:type owl:Restriction ;
                                                    owl:onProperty ore:proxyIn ;
                                                    owl:someValuesFrom ro:ResearchObject
                                                  ]
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty ore:isAggregatedBy ;
-                              owl:someValuesFrom ro:ResearchObject
                             ] ;
             
             rdfs:comment """An ro:Resource is an ore:AggregatedResource which ore:isAggregatedBy an ro:ResearchObject. 

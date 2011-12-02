@@ -16,6 +16,7 @@
 <http://purl.org/wf4ever/wf4ever> rdf:type owl:Ontology ;
                                                
                                                rdfs:comment "The wf4ever ontology. This is based on the wf4ever ontologies ro, wf and wfprov - but adds custom classes like wf4ever:Image and wf4ever:WebServiceProcessTemplate"@en ;
+                                               owl:versionIRI <https://raw.github.com/wf4ever/ro/0.1/wf4ever.owl> ;
                                                
                                                owl:imports <http://purl.org/wf4ever/ro> ,
                                                            <http://purl.org/wf4ever/wfdesc> ,

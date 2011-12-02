@@ -11,7 +11,7 @@
 @base <http://purl.org/wf4ever/wfprov> .
 
 <http://purl.org/wf4ever/wfprov> rdf:type owl:Ontology ;
-                                              
+                                              owl:versionIRI <https://raw.github.com/wf4ever/ro/0.1/wfprov.owl> ;
                                               rdfs:comment """The wfprov ontology shows how to express minimal provenance information about the execution of a workflow described using the wf ontology. 
 
 Here the concern is mainly the provenance which affects the research object, so in particular how some ro:Resource's might have been generated or used by the execution of a wfdesc:Workflow.
