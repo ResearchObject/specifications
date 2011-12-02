@@ -9,7 +9,7 @@
 @base <http://purl.org/wf4ever/ore-owl> .
 
 <http://purl.org/wf4ever/ore-owl> rdf:type owl:Ontology ;
-                                               owl:versionIRI <https://raw.github.com/wf4ever/ro/0.1/ore-owl.owl> ;
+                                               owl:versionIRI <https://raw.github.com/wf4ever/ro/master/ore-owl.owl> ;
                                                
                                                :label "The OAI ORE terms vocabulary" ;
                                                

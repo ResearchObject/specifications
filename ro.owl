@@ -24,7 +24,7 @@
                              
                              owl:imports <http://xmlns.com/foaf/0.1/> ;
                              
-                             owl:versionIRI <https://raw.github.com/wf4ever/ro/0.1/ro.owl> .
+                             owl:versionIRI <https://raw.github.com/wf4ever/ro/master/ro.owl> .
 
 
 #################################################################
