@@ -1,14 +1,14 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix : <http://www.semanticweb.org/owl/owlapi/turtle#> .
-@prefix wfdesc: <http://www.wf4ever-project.org/vocab/wfdesc#> .
+@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@base <http://www.wf4ever-project.org/vocab/wfdesc> .
+@base <http://purl.org/wf4ever/wfdesc> .
 
-<http://www.wf4ever-project.org/vocab/wfdesc> rdf:type owl:Ontology ;
+<http://purl.org/wf4ever/wfdesc> rdf:type owl:Ontology ;
                                               
                                               rdfs:comment """This ontology (\"wfdesc\") describes an abstract workflow description structure, which on the top level is defined as a wfdesc:Workflow. 
 
@@ -48,7 +48,7 @@ rdfs:comment rdf:type owl:AnnotationProperty .
 #################################################################
 
 
-###  http://www.wf4ever-project.org/vocab/wfdesc#hasArtifact
+###  http://purl.org/wf4ever/wfdesc#hasArtifact
 
 wfdesc:hasArtifact rdf:type owl:ObjectProperty ;
                    
@@ -62,7 +62,7 @@ wfdesc:hasArtifact rdf:type owl:ObjectProperty ;
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfdesc#hasDataLink
+###  http://purl.org/wf4ever/wfdesc#hasDataLink
 
 wfdesc:hasDataLink rdf:type owl:ObjectProperty ;
                    
@@ -76,7 +76,7 @@ wfdesc:hasDataLink rdf:type owl:ObjectProperty ;
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfdesc#hasInput
+###  http://purl.org/wf4ever/wfdesc#hasInput
 
 wfdesc:hasInput rdf:type owl:ObjectProperty ;
                 
@@ -88,7 +88,7 @@ wfdesc:hasInput rdf:type owl:ObjectProperty ;
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfdesc#hasOutput
+###  http://purl.org/wf4ever/wfdesc#hasOutput
 
 wfdesc:hasOutput rdf:type owl:ObjectProperty ;
                  
@@ -101,7 +101,7 @@ wfdesc:hasOutput rdf:type owl:ObjectProperty ;
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfdesc#hasSink
+###  http://purl.org/wf4ever/wfdesc#hasSink
 
 wfdesc:hasSink rdf:type owl:ObjectProperty ;
                
@@ -115,7 +115,7 @@ wfdesc:hasSink rdf:type owl:ObjectProperty ;
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfdesc#hasSource
+###  http://purl.org/wf4ever/wfdesc#hasSource
 
 wfdesc:hasSource rdf:type owl:ObjectProperty ;
                  
@@ -129,7 +129,7 @@ wfdesc:hasSource rdf:type owl:ObjectProperty ;
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfdesc#hasSubProcess
+###  http://purl.org/wf4ever/wfdesc#hasSubProcess
 
 wfdesc:hasSubProcess rdf:type owl:ObjectProperty ;
                      
@@ -145,7 +145,7 @@ A specialialisation of sub process is wfdesc:hasSubWorkflow where the sub proces
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfdesc#hasSubWorkflow
+###  http://purl.org/wf4ever/wfdesc#hasSubWorkflow
 
 wfdesc:hasSubWorkflow rdf:type owl:ObjectProperty ;
                       
@@ -170,7 +170,7 @@ This is a specialisation of hasProcessTemplate."""@en ;
 #################################################################
 
 
-###  http://www.wf4ever-project.org/vocab/wfdesc#Artifact
+###  http://purl.org/wf4ever/wfdesc#Artifact
 
 wfdesc:Artifact rdf:type owl:Class ;
                 
@@ -182,7 +182,7 @@ The distinction between a parameter and artifact is that the parameter can be cu
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfdesc#DataLink
+###  http://purl.org/wf4ever/wfdesc#DataLink
 
 wfdesc:DataLink rdf:type owl:Class ;
                 
@@ -194,7 +194,7 @@ Thus links can only be made within a wfdesc:Workflow - although ports owned by t
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfdesc#Input
+###  http://purl.org/wf4ever/wfdesc#Input
 
 wfdesc:Input rdf:type owl:Class ;
              
@@ -206,7 +206,7 @@ It is out of scope of wfdesc to define the nature or classification of the param
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfdesc#Output
+###  http://purl.org/wf4ever/wfdesc#Output
 
 wfdesc:Output rdf:type owl:Class ;
               
@@ -218,7 +218,7 @@ It is out of scope of wfdesc to define the nature or classification of the param
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfdesc#Parameter
+###  http://purl.org/wf4ever/wfdesc#Parameter
 
 wfdesc:Parameter rdf:type owl:Class ;
                  
@@ -234,7 +234,7 @@ A parameter is both an wfdesc:Input and wfdesc:Output when it is used on both si
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfdesc#Process
+###  http://purl.org/wf4ever/wfdesc#Process
 
 wfdesc:Process rdf:type owl:Class ;
                
@@ -244,7 +244,7 @@ It is out of scope for wfdesc to classify or specify the nature of the process, 
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfdesc#Workflow
+###  http://purl.org/wf4ever/wfdesc#Workflow
 
 wfdesc:Workflow rdf:type owl:Class ;
                 
@@ -263,7 +263,7 @@ A wfdesc:Parameter defined with wfdesc:hasInput on a wfdesc:Workflow is consider
 
 Example:
 ##
-@prefix wfdesc: <http://www.wf4ever-project.org/vocab/wfdesc#> .
+@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
 :outerWorkflow a wfdesc:Workflow ;
   wfdesc:hasSubWorkflow :innerWorkflow ;
   wfdesc:hasSubProcess :procA, :procC .
@@ -302,7 +302,7 @@ From this :param4 is both an wfdesc:Input and wfdesc:Output (which is why these 
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfdesc#WorkflowInstance
+###  http://purl.org/wf4ever/wfdesc#WorkflowInstance
 
 wfdesc:WorkflowInstance rdf:type owl:Class ;
                         

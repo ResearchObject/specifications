@@ -1,25 +1,25 @@
-@prefix wfprov: <http://www.wf4ever-project.org/vocab/wfprov#> .
+@prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix opm: <http://purl.org/net/opmv/ns#> .
-@prefix wfdesc: <http://www.wf4ever-project.org/vocab/wfdesc#> .
-@prefix : <http://www.wf4ever-project.org/vocab/wf4ever#> .
-@prefix wf4ever: <http://www.wf4ever-project.org/vocab/wf4ever#> .
+@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
+@prefix : <http://purl.org/wf4ever/wf4ever#> .
+@prefix wf4ever: <http://purl.org/wf4ever/wf4ever#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix ro: <http://www.wf4ever-project.org/vocab/ro#> .
+@prefix ro: <http://purl.org/wf4ever/ro#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix ore: <http://www.openarchives.org/ore/terms/> .
-@base <http://www.wf4ever-project.org/vocab/wf4ever> .
+@base <http://purl.org/wf4ever/wf4ever> .
 
-<http://www.wf4ever-project.org/vocab/wf4ever> rdf:type owl:Ontology ;
+<http://purl.org/wf4ever/wf4ever> rdf:type owl:Ontology ;
                                                
                                                rdfs:comment "The wf4ever ontology. This is based on the wf4ever ontologies ro, wf and wfprov - but adds custom classes like wf4ever:Image and wf4ever:WebServiceProcessTemplate"@en ;
                                                
-                                               owl:imports <http://www.wf4ever-project.org/vocab/ro> ,
-                                                           <http://www.wf4ever-project.org/vocab/wfdesc> ,
-                                                           <http://www.wf4ever-project.org/vocab/wfprov> .
+                                               owl:imports <http://purl.org/wf4ever/ro> ,
+                                                           <http://purl.org/wf4ever/wfdesc> ,
+                                                           <http://purl.org/wf4ever/wfprov> .
 
 
 #################################################################
@@ -47,7 +47,7 @@
 #################################################################
 
 
-###  http://www.wf4ever-project.org/vocab/wf4ever#Dataset
+###  http://purl.org/wf4ever/wf4ever#Dataset
 
 :Dataset rdf:type owl:Class ;
          
@@ -55,7 +55,7 @@
 
 
 
-###  http://www.wf4ever-project.org/vocab/wf4ever#Document
+###  http://purl.org/wf4ever/wf4ever#Document
 
 :Document rdf:type owl:Class ;
           
@@ -63,7 +63,7 @@
 
 
 
-###  http://www.wf4ever-project.org/vocab/wf4ever#File
+###  http://purl.org/wf4ever/wf4ever#File
 
 :File rdf:type owl:Class ;
       
@@ -71,7 +71,7 @@
 
 
 
-###  http://www.wf4ever-project.org/vocab/wf4ever#Image
+###  http://purl.org/wf4ever/wf4ever#Image
 
 :Image rdf:type owl:Class ;
        
@@ -79,7 +79,7 @@
 
 
 
-###  http://www.wf4ever-project.org/vocab/wf4ever#WebServiceProcessTemplate
+###  http://purl.org/wf4ever/wf4ever#WebServiceProcessTemplate
 
 :WebServiceProcessTemplate rdf:type owl:Class ;
                            
@@ -89,7 +89,7 @@
 
 
 
-###  http://www.wf4ever-project.org/vocab/wf4ever#WorkflowResearchObject
+###  http://purl.org/wf4ever/wf4ever#WorkflowResearchObject
 
 :WorkflowResearchObject rdf:type owl:Class ;
                         

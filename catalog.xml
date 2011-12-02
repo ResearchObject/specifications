@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog id="file:/Users/khalidbelhajjame/Documents/ro/" prefer="public" xml:base="file:/Users/khalidbelhajjame/Documents/ro/" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
-    <uri name="http://www.wf4ever-project.org/vocab/ro" uri="ro-ontology.owl"/>
+    <uri name="http://purl.org/wf4ever/ro" uri="ro-ontology.owl"/>
 </catalog>

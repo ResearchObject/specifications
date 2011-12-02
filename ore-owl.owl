@@ -6,9 +6,9 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dct: <http://purl.org/dc/terms/> .
-@base <http://www.wf4ever-project.org/vocab/ore-owl> .
+@base <http://purl.org/wf4ever/ore-owl> .
 
-<http://www.wf4ever-project.org/vocab/ore-owl> rdf:type owl:Ontology ;
+<http://purl.org/wf4ever/ore-owl> rdf:type owl:Ontology ;
                                                
                                                :label "The OAI ORE terms vocabulary" ;
                                                
@@ -20,7 +20,7 @@
   All classes are owl:Class instead of just rdfs:Class
   These properties are made functional: ore:describes, ore:proxyFor, ore:proxyIn
   Only one of the owl:inverseOf directions stated for ore:aggregates--ore:isAggregatedBy and ore:describes--ore:isDescribedBy
-  <http://www.wf4ever-project.org/vocab/ore-owl> is an owl:Ontology and has a owl:priorVersion <http://www.openarchives.org/ore/terms/> """@en ;
+  <http://purl.org/wf4ever/ore-owl> is an owl:Ontology and has a owl:priorVersion <http://www.openarchives.org/ore/terms/> """@en ;
                                                
                                                :seeAlso <http://www.openarchives.org/ore/toc> ;
                                                

@@ -1,4 +1,4 @@
-@prefix wfprov: <http://www.wf4ever-project.org/vocab/wfprov#> .
+@prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix opm: <http://purl.org/net/opmv/ns#> .
@@ -9,16 +9,16 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dct: <http://purl.org/dc/terms/> .
-@prefix ro: <http://www.wf4ever-project.org/vocab/ro#> .
-@base <http://www.wf4ever-project.org/vocab/ro> .
+@prefix ro: <http://purl.org/wf4ever/ro#> .
+@base <http://purl.org/wf4ever/ro> .
 
-<http://www.wf4ever-project.org/vocab/ro> rdf:type owl:Ontology ;
+<http://purl.org/wf4ever/ro> rdf:type owl:Ontology ;
                                           
                                           rdfs:comment "This ontology shows how AO and ORE ontologies can be used together to define a ResearchObject. This ontology is further customized by the wf4ever ontology."@en ;
                                           
                                           owl:imports <http://purl.org/NET/dc_owl2dl/terms_od> ,
                                                       <http://purl.org/ao/core/> ,
-                                                      <http://www.wf4ever-project.org/vocab/ore-owl> ;
+                                                      <http://purl.org/wf4ever/ore-owl> ;
                                           
                                           rdfs:seeAlso <http://www.wf4ever-project.org/wiki/display/docs/Research+Object+Vocabulary+Specification> ;
                                           
@@ -50,7 +50,7 @@
 #################################################################
 
 
-###  http://www.wf4ever-project.org/vocab/ro#annotatesAggregatedResource
+###  http://purl.org/wf4ever/ro#annotatesAggregatedResource
 
 ro:annotatesAggregatedResource rdf:type owl:ObjectProperty ;
                                
@@ -78,7 +78,7 @@ TODO: Should also ro:ResearchObject and ore:Proxy be in the range of this proper
 #################################################################
 
 
-###  http://www.wf4ever-project.org/vocab/ro#entryName
+###  http://purl.org/wf4ever/ro#entryName
 
 ro:entryName rdf:type owl:DatatypeProperty ,
                       owl:FunctionalProperty ;
@@ -105,7 +105,7 @@ TODO: Need a functional property to specify the top level folder structure of an
 #################################################################
 
 
-###  http://www.wf4ever-project.org/vocab/ro#AggregatedAnnotation
+###  http://purl.org/wf4ever/ro#AggregatedAnnotation
 
 ro:AggregatedAnnotation rdf:type owl:Class ;
                         
@@ -143,7 +143,7 @@ As a subclass of ro:SemanticAnnotation the ao:body must point to an rdfg:Graph w
 
 
 
-###  http://www.wf4ever-project.org/vocab/ro#Folder
+###  http://purl.org/wf4ever/ro#Folder
 
 ro:Folder rdf:type owl:Class ;
           
@@ -159,7 +159,7 @@ Such folders can be nested and (optionally) used to organize the resources of th
 
 
 
-###  http://www.wf4ever-project.org/vocab/ro#FolderEntry
+###  http://purl.org/wf4ever/ro#FolderEntry
 
 ro:FolderEntry rdf:type owl:Class ;
                
@@ -182,7 +182,7 @@ ro:FolderEntry rdf:type owl:Class ;
 
 
 
-###  http://www.wf4ever-project.org/vocab/ro#Manifest
+###  http://purl.org/wf4ever/ro#Manifest
 
 ro:Manifest rdf:type owl:Class ;
             
@@ -197,7 +197,7 @@ ro:Manifest rdf:type owl:Class ;
 
 
 
-###  http://www.wf4ever-project.org/vocab/ro#ResearchObject
+###  http://purl.org/wf4ever/ro#ResearchObject
 
 ro:ResearchObject rdf:type owl:Class ;
                   
@@ -220,7 +220,7 @@ ro:ResearchObject rdf:type owl:Class ;
 
 
 
-###  http://www.wf4ever-project.org/vocab/ro#Resource
+###  http://purl.org/wf4ever/ro#Resource
 
 ro:Resource rdf:type owl:Class ;
             
@@ -251,7 +251,7 @@ Aggregated resources MAY also be organised in (potentially nested) ro:Folders to
 
 
 
-###  http://www.wf4ever-project.org/vocab/ro#SemanticAnnotation
+###  http://purl.org/wf4ever/ro#SemanticAnnotation
 
 ro:SemanticAnnotation rdf:type owl:Class ;
                       

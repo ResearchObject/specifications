@@ -1,16 +1,16 @@
-@prefix wfprov: <http://www.wf4ever-project.org/vocab/wfprov#> .
+@prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix opm: <http://purl.org/net/opmv/ns#> .
 @prefix : <http://www.semanticweb.org/owl/owlapi/turtle#> .
-@prefix wfdesc: <http://www.wf4ever-project.org/vocab/wfdesc#> .
+@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix ro: <http://www.wf4ever-project.org/vocab/ro#> .
-@base <http://www.wf4ever-project.org/vocab/wfprov> .
+@prefix ro: <http://purl.org/wf4ever/ro#> .
+@base <http://purl.org/wf4ever/wfprov> .
 
-<http://www.wf4ever-project.org/vocab/wfprov> rdf:type owl:Ontology ;
+<http://purl.org/wf4ever/wfprov> rdf:type owl:Ontology ;
                                               
                                               rdfs:comment """The wfprov ontology shows how to express minimal provenance information about the execution of a workflow described using the wf ontology. 
 
@@ -23,9 +23,9 @@ These provenance details are linked to the corresponding wfdesc descriptions usi
 
 This ontology can be further linked to more specific provenance ontologies like OPM-V or W3C PROV-O, but this should be done separately."""@en ;
                                               
-                                              rdfs:seeAlso <http://www.wf4ever-project.org/vocab/ro> ;
+                                              rdfs:seeAlso <http://purl.org/wf4ever/ro> ;
                                               
-                                              owl:imports <http://www.wf4ever-project.org/vocab/wfdesc> ,
+                                              owl:imports <http://purl.org/wf4ever/wfdesc> ,
                                                           <http://xmlns.com/foaf/0.1/> .
 
 
@@ -54,7 +54,7 @@ This ontology can be further linked to more specific provenance ontologies like 
 #################################################################
 
 
-###  http://www.wf4ever-project.org/vocab/wfprov#describedByParameter
+###  http://purl.org/wf4ever/wfprov#describedByParameter
 
 wfprov:describedByParameter rdf:type owl:ObjectProperty ;
                             
@@ -66,7 +66,7 @@ wfprov:describedByParameter rdf:type owl:ObjectProperty ;
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfprov#describedByProcess
+###  http://purl.org/wf4ever/wfprov#describedByProcess
 
 wfprov:describedByProcess rdf:type owl:ObjectProperty ;
                           
@@ -78,7 +78,7 @@ wfprov:describedByProcess rdf:type owl:ObjectProperty ;
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfprov#describedByWorkflow
+###  http://purl.org/wf4ever/wfprov#describedByWorkflow
 
 wfprov:describedByWorkflow rdf:type owl:ObjectProperty ;
                            
@@ -92,7 +92,7 @@ wfprov:describedByWorkflow rdf:type owl:ObjectProperty ;
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfprov#usedInput
+###  http://purl.org/wf4ever/wfprov#usedInput
 
 wfprov:usedInput rdf:type owl:ObjectProperty ;
                  
@@ -104,7 +104,7 @@ wfprov:usedInput rdf:type owl:ObjectProperty ;
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfprov#wasEnactedBy
+###  http://purl.org/wf4ever/wfprov#wasEnactedBy
 
 wfprov:wasEnactedBy rdf:type owl:ObjectProperty ;
                     
@@ -116,7 +116,7 @@ wfprov:wasEnactedBy rdf:type owl:ObjectProperty ;
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfprov#wasOutputFrom
+###  http://purl.org/wf4ever/wfprov#wasOutputFrom
 
 wfprov:wasOutputFrom rdf:type owl:ObjectProperty ;
                      
@@ -128,7 +128,7 @@ wfprov:wasOutputFrom rdf:type owl:ObjectProperty ;
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfprov#wasPartOfWorkflowRun
+###  http://purl.org/wf4ever/wfprov#wasPartOfWorkflowRun
 
 wfprov:wasPartOfWorkflowRun rdf:type owl:ObjectProperty ;
                             
@@ -150,7 +150,7 @@ wfprov:wasPartOfWorkflowRun rdf:type owl:ObjectProperty ;
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfprov#Artifact
+###  http://purl.org/wf4ever/wfprov#Artifact
 
 wfprov:Artifact rdf:type owl:Class ;
                 
@@ -165,7 +165,7 @@ wfprov:Artifact rdf:type owl:Class ;
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfprov#ProcessRun
+###  http://purl.org/wf4ever/wfprov#ProcessRun
 
 wfprov:ProcessRun rdf:type owl:Class ;
                   
@@ -180,7 +180,7 @@ wfprov:ProcessRun rdf:type owl:Class ;
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfprov#WorkflowEngine
+###  http://purl.org/wf4ever/wfprov#WorkflowEngine
 
 wfprov:WorkflowEngine rdf:type owl:Class ;
                       
@@ -193,7 +193,7 @@ wfprov:WorkflowEngine rdf:type owl:Class ;
 
 
 
-###  http://www.wf4ever-project.org/vocab/wfprov#WorkflowRun
+###  http://purl.org/wf4ever/wfprov#WorkflowRun
 
 wfprov:WorkflowRun rdf:type owl:Class ;
                    
