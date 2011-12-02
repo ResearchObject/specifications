@@ -1,0 +1,31 @@
+@base <../> .
+@prefix ro: <http://purl.org/wf4ever/ro#> .
+@prefix ao: <http://purl.org/ao/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfg: <http://www.w3.org/2004/03/trix/rdfg-1/> .
+
+<.> a ro:ResearchObject, ao:Aggregation ;
+    ro:aggregates <a_workflow.t2flow>, :ann1 ;
+    dct:created "2011-12-02T15:01:10Z"^^xsd:dateTime ;
+    dct:creator [ a foaf:Person; foaf:name "Stian Soiland-Reyes" ] .
+
+<a_workflow.t2flow> a ro:Resource .
+
+:proxy1 a ro:Proxy ;
+    ro:proxyFor <a_workflow.t2flow> ;
+    ro:proxyIn <.> ;
+    dct:created "2011-12-02T15:02:10Z"^^xsd:dateTime ;
+    dct:creator [ a foaf:Person; foaf:name "Stian Soiland-Reyes" ] .
+
+:ann1 a ro:SemanticAnnotation ;
+    ao:body <.ro/ann1> ;
+    ro:annotatesAggregatedResource <a_workflow.t2flow> ;
+    ao:annotatesResource <.> ;
+    dct:created "2011-12-02T15:02:13Z"^^xsd:dateTime ;
+    dct:creator [ a foaf:Agent ; foaf:name "t2flow workflow annotation extractor" ] .
+
+<.ro/ann1> a rdfg:Graph ;
+    dct:created "2010-05-14T12:02:12Z"^^xsd:dateTime ;
+    dct:creator [ a foaf:Person ; foaf:name "Marco Roos" ] .
