@@ -1,8 +1,8 @@
 @prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix opm: <http://purl.org/net/opmv/ns#> .
 @prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
+@prefix wfprov: <http://purl.org/wf4ever/wfdesc#> .
 @prefix : <http://purl.org/wf4ever/wf4ever#> .
 @prefix wf4ever: <http://purl.org/wf4ever/wf4ever#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -15,8 +15,8 @@
 
 <http://purl.org/wf4ever/wf4ever> rdf:type owl:Ontology ;
                                                
-                                               rdfs:comment "The wf4ever ontology. This is based on the wf4ever ontologies ro, wf and wfprov - but adds custom classes like wf4ever:Image and wf4ever:WebServiceProcessTemplate"@en ;
-                                               owl:versionIRI <https://raw.github.com/wf4ever/ro/0.1/wf4ever.owl> ;
+                                               rdfs:comment "The wf4ever ontology. This is based on the wf4ever ontologies ro, wf and wfprov - but adds custom classes like wf4ever:Image and wf4ever:WebServiceProcess"@en ;
+                                               owl:versionIRI <https://raw.github.com/wf4ever/ro/master/wf4ever.owl> ;
                                                
                                                owl:imports <http://purl.org/wf4ever/ro> ,
                                                            <http://purl.org/wf4ever/wfdesc> ,
@@ -52,7 +52,7 @@
 
 :Dataset rdf:type owl:Class ;
          
-         rdfs:subClassOf opm:Artifact .
+         rdfs:subClassOf wfprov:Artifact .
 
 
 
@@ -60,7 +60,7 @@
 
 :Document rdf:type owl:Class ;
           
-          rdfs:subClassOf opm:Artifact .
+          rdfs:subClassOf wfprov:Artifact .
 
 
 
@@ -68,7 +68,7 @@
 
 :File rdf:type owl:Class ;
       
-      rdfs:subClassOf opm:Artifact .
+      rdfs:subClassOf wfprov:Artifact .
 
 
 
@@ -76,13 +76,13 @@
 
 :Image rdf:type owl:Class ;
        
-       rdfs:subClassOf opm:Artifact .
+       rdfs:subClassOf wfprov:Artifact .
 
 
 
-###  http://purl.org/wf4ever/wf4ever#WebServiceProcessTemplate
+###  http://purl.org/wf4ever/wf4ever#WebServiceProcess
 
-:WebServiceProcessTemplate rdf:type owl:Class ;
+:WebServiceProcess rdf:type owl:Class ;
                            
                            rdfs:subClassOf wfdesc:Process ;
                            

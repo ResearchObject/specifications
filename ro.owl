@@ -1,7 +1,6 @@
 @prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix opm: <http://purl.org/net/opmv/ns#> .
 @prefix rdfg: <http://www.w3.org/2004/03/trix/rdfg-1/> .
 @prefix ore: <http://www.openarchives.org/ore/terms/> .
 @prefix : <http://www.semanticweb.org/owl/owlapi/turtle#> .
@@ -24,7 +23,7 @@
                              
                              owl:imports <http://xmlns.com/foaf/0.1/> ;
                              
-                             owl:versionIRI <https://raw.github.com/wf4ever/ro/0.1/ro.owl> .
+                             owl:versionIRI <https://raw.github.com/wf4ever/ro/master/ro.owl> .
 
 
 #################################################################
