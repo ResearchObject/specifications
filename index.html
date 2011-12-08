@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <body>
 <p>
@@ -13,50 +12,6 @@ These are the <a href="http://www.wf4ever-project.org/">Wf4Ever</a> ontologies i
 </dl>
 <p>See the <a href="http://www.wf4ever-project.org/wiki/display/docs/Research+Object+Vocabulary+Specification">Research object vocabulary specification</a> for
 further explanations - or the (possibly outdated) <a
-href="https://github.com/wf4ever/ro/tree/master/examples">examples</a>.
-</p>
-
-<div id="wfdesc">
-<h1>wfdesc ontology</h1>
-<p>
-Workflow descriptions can be made using the wfdesc ontology under the
-namespace: </p>
-<ul>
-    <li><code>http://purl.org/wf4ever/wfdesc#</code></li>
-</ul>
-
-<p>
-This ontology <code>wfdesc</code> describes an abstract workflow
-description structure, which on the top level is defined as a
-<code>wfdesc:Workflow</code>.  
-</p>
-
-<p>
-A <code>wfdesc:Workflow</code> contains several <code>wfdesc:Process</code> instances, associated
-using the <code>wfdesc:hasSubProcess</code> property. Each of these (and the workflow
-itself) <code>wfdesc:hasInput</code> and <code>wfdesc:hasOutput</code> some <code>wfdesc:Parameter</code>
-(<code>wfdesc:Input</code> or <code>wfdesc:Output</code>). An <code>wfdesc:Artifact</code> is associated with a
-<code>wfdesc:Parameter</code> using <code>wfdesc:hasArtifact</code>. The <code>wfdesc:Workflow</code> also
-<code>wfdesc:hasDataLink</code> several <code>wfdesc:DataLink</code> instances, which forms the
-connection between parameters. Thus this ontology allows the description
-a direct acyclic graph, or a dataflow.  
-</p>
-
-<p>
-This ontology is meant as an upper ontology for more specific workflow
-definitions, and as a way to express abstract workflows, which could
-either be hand-crafted by users ("ideal workflow description") or
-extracted from workflow definitions of existing workflow systems, like
-Taverna's .t2flow and Scufl2 formats.  
-</p>
-
-<p>
-The wfprov ontology shows how to link these workflow descriptions to a
-provenance trace of a workflow execution.  
-</p>
-
-
-</div>
-
+href="https://github.com/wf4ever/ro/tree/0.1/examples">examples</a>.
 </body>
 </html>
