@@ -1,113 +1,57 @@
-@prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
-@prefix wfprov: <http://purl.org/wf4ever/wfdesc#> .
-@prefix : <http://purl.org/wf4ever/wf4ever#> .
-@prefix wf4ever: <http://purl.org/wf4ever/wf4ever#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix ro: <http://purl.org/wf4ever/ro#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix ore: <http://www.openarchives.org/ore/terms/> .
-@base <http://purl.org/wf4ever/wf4ever> .
 
-<http://purl.org/wf4ever/wf4ever> rdf:type owl:Ontology ;
-                                               
-                                               rdfs:comment "The wf4ever ontology. This is based on the wf4ever ontologies ro, wf and wfprov - but adds custom classes like wf4ever:Image and wf4ever:WebServiceProcess"@en ;
-                                               owl:versionIRI <https://raw.github.com/wf4ever/ro/master/wf4ever.owl> ;
-                                               
-                                               owl:imports <http://purl.org/wf4ever/ro> ,
-                                                           <http://purl.org/wf4ever/wfdesc> ,
-                                                           <http://purl.org/wf4ever/wfprov> .
+<!-- Processed by Id: cwm.py,v 1.197 2007/12/13 15:38:39 syosi Exp -->
+<!--     using base file:///home/stain/stuff/src/wf4ever/ro/wf4ever.owl-->
 
 
-#################################################################
-#
-#    Annotation properties
-#
-#################################################################
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
 
+    <Ontology rdf:about="http://purl.org/wf4ever/wf4ever">
+        <rdfs:comment xml:lang="en">The wf4ever ontology. This is based on the wf4ever ontologies ro, wf and wfprov - but adds custom classes like wf4ever:Image and wf4ever:WebServiceProcess</rdfs:comment>
+        <imports rdf:resource="http://purl.org/wf4ever/ro"/>
+        <imports rdf:resource="http://purl.org/wf4ever/wfdesc"/>
+        <imports rdf:resource="http://purl.org/wf4ever/wfprov"/>
+        <versionIRI rdf:resource="https://raw.github.com/wf4ever/ro/master/wf4ever.owl"/>
+    </Ontology>
 
+    <Class rdf:about="http://purl.org/wf4ever/wf4ever#Dataset">
+        <rdfs:subClassOf rdf:resource="http://purl.org/wf4ever/wfdesc#Artifact"/>
+    </Class>
 
+    <Class rdf:about="http://purl.org/wf4ever/wf4ever#Document">
+        <rdfs:subClassOf rdf:resource="http://purl.org/wf4ever/wfdesc#Artifact"/>
+    </Class>
 
-#################################################################
-#
-#    Datatypes
-#
-#################################################################
+    <Class rdf:about="http://purl.org/wf4ever/wf4ever#File">
+        <rdfs:subClassOf rdf:resource="http://purl.org/wf4ever/wfdesc#Artifact"/>
+    </Class>
 
+    <Class rdf:about="http://purl.org/wf4ever/wf4ever#Image">
+        <rdfs:subClassOf rdf:resource="http://purl.org/wf4ever/wfdesc#Artifact"/>
+    </Class>
 
+    <Class rdf:about="http://purl.org/wf4ever/wf4ever#WebServiceProcess">
+        <rdfs:comment>WebServiceProcess is a wfdesc:Process description, the enactment of which gives rise to a web service call.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="http://purl.org/wf4ever/wfdesc#Process"/>
+    </Class>
 
-
-#################################################################
-#
-#    Classes
-#
-#################################################################
-
-
-###  http://purl.org/wf4ever/wf4ever#Dataset
-
-:Dataset rdf:type owl:Class ;
-         
-         rdfs:subClassOf wfprov:Artifact .
-
-
-
-###  http://purl.org/wf4ever/wf4ever#Document
-
-:Document rdf:type owl:Class ;
-          
-          rdfs:subClassOf wfprov:Artifact .
-
-
-
-###  http://purl.org/wf4ever/wf4ever#File
-
-:File rdf:type owl:Class ;
-      
-      rdfs:subClassOf wfprov:Artifact .
-
-
-
-###  http://purl.org/wf4ever/wf4ever#Image
-
-:Image rdf:type owl:Class ;
-       
-       rdfs:subClassOf wfprov:Artifact .
-
-
-
-###  http://purl.org/wf4ever/wf4ever#WebServiceProcess
-
-:WebServiceProcess rdf:type owl:Class ;
-                           
-                           rdfs:subClassOf wfdesc:Process ;
-                           
-                           rdfs:comment "WebServiceProcess is a wfdesc:Process description, the enactment of which gives rise to a web service call." .
-
-
-
-###  http://purl.org/wf4ever/wf4ever#WorkflowResearchObject
-
-:WorkflowResearchObject rdf:type owl:Class ;
-                        
-                        owl:equivalentClass [ rdf:type owl:Class ;
-                                              owl:intersectionOf ( ro:ResearchObject
-                                                                   [ rdf:type owl:Restriction ;
-                                                                     owl:onProperty ore:aggregates ;
-                                                                     owl:someValuesFrom wfdesc:Workflow
-                                                                   ]
-                                                                 )
-                                            ] ;
-                        
-                        rdfs:comment "A workflow research object is a research object that contains at least one workflow description." .
-
-
-
-
-
-###  Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net
-
+    <Class rdf:about="http://purl.org/wf4ever/wf4ever#WorkflowResearchObject">
+        <rdfs:comment>A workflow research object is a research object that contains at least one workflow description.</rdfs:comment>
+        <equivalentClass rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+            <intersectionOf rdf:parseType="Resource">
+                <rdf:first rdf:resource="http://purl.org/wf4ever/ro#ResearchObject"/>
+                <rdf:rest rdf:parseType="Resource">
+                    <rdf:first rdf:parseType="Resource">
+                        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+                        <onProperty rdf:resource="http://www.openarchives.org/ore/terms/aggregates"/>
+                        <someValuesFrom rdf:resource="http://purl.org/wf4ever/wfdesc#Workflow"/>
+                    </rdf:first>
+                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                </rdf:rest>
+            </intersectionOf>
+        </equivalentClass>
+    </Class>
+</rdf:RDF>
