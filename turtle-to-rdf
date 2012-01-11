@@ -1,0 +1,2 @@
+#!/bin/sh
+for a in *owl ; do echo $a ; cwm $a --rdf > /tmp/$$ && mv /tmp/$$ $a || break ; done
