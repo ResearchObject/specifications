@@ -1,0 +1,987 @@
+<html>
+<head>
+   <title>Wf4Ever Research Object Model</title>
+
+    <script src="http://dev.w3.org/2009/dap/ReSpec.js/js/respec.js" class="remove"></script> 
+
+    <base href="http://www.wf4ever-project.org/wiki/" />
+
+ <script class="remove">
+
+  var addExtraReferences = function() {
+         for (var k in extraReferences)
+             berjon.biblio[k] = extraReferences[k];
+         };
+
+ var extraReferences = {
+"EXEC":"Executable Papers Grand Challenge. URL: <a href=\"http://www.executablepapers.com/\">http://www.executablepapers.com/</a>",
+
+"FORCE11": "Phil Bourne, Tim Clark et. al. <cite><a href=\"http://force11.org/white_paper\">Improving Future Research Communication and e-Scholarship</a>.</cite> FORCE11 Manifesto. URL: <a href=\"http://force11.org/white_paper\">http://force11.org/white_paper</a>",
+
+"ORE":"<cite><a href=\"http://www.openarchives.org/ore/1.0/toc.html\">Open Archives Initiative Object Reuse and Exchange</a></cite>. <em>ORE Specifications and User Guides.</em> URL: <a href=\"http://www.openarchives.org/ore/1.0/toc.html\">http://www.openarchives.org/ore/1.0/toc.html</a>",
+
+"ORE-RDF":"Carl Lagoze and Herbert van de Sompel <cite><a href=\"http://www.openarchives.org/ore/1.0/rdfxml\">ORE User Guide - Resource Map Implementation in RDF/XML</a></cite>.",
+
+"AO":"Paolo Ciccarese. <cite><a href=\"http://code.google.com/p/annotation-ontology/\">The Annotation Ontology</a></cite> URL: <a href=\"http://code.google.com/p/annotation-ontology/\">http://code.google.com/p/annotation-ontology</a>",
+
+"HUNTER06":"Jane Hunter <a href=\"http://www.ijdc.net/index.php/ijdc/article/view/8\"><cite>Scientific Publication Packages: A Selective Approach to the Communication and Archival of Scientific Output.</cite></a> International Journal of Digital Curation, Vol. 1, 2006 URL: <a href=\"http://www.ijdc.net/index.php/ijdc/article/view/8\">http://www.ijdc.net/index.php/ijdc/article/view/8</a>"
+         }; 
+
+var respecConfig = {
+          // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
+          specStatus:           "unofficial",
+          
+          // the specification's short name, as in http://www.w3.org/TR/short-name/
+          shortName:            "ro",
+ 
+          // if your specification has a subtitle that goes below the main
+          // formal title, define it here
+          //subtitle   :  "",
+
+ 
+          // if you wish the publication date to be other than today, set this
+          // publishDate:  "2011-10-18",
+ 
+          // if the specification's copyright date is a range of years, specify
+          // the start date here:
+          copyrightStart: "2010",
+ 
+          // if there is a previously published draft, uncomment this and set its YYYY-MM-DD date
+          // and its maturity status
+          //previousPublishDate:  "2012-02-02",
+          //previousMaturity:  "WD",
+ 
+          // if there a publicly available Editor's Draft, this is the link
+          //edDraftURI:           "http://dvcs.w3.org/hg/prov/raw-file/default/model/prov-dm.html",
+ 
+          // if this is a LCWD, uncomment and set the end of its review period
+          // lcEnd: "2009-08-05",
+ 
+          // if you want to have extra CSS, append them to this list
+          // it is recommended that the respec.css stylesheet be kept
+          extraCSS:             ["http://dev.w3.org/2009/dap/ReSpec.js/css/respec.css", "./extra.css"],
+ 
+          // editors, add as many as you like
+          // only "name" is required
+          editors:  [
+              { name: "Stian Soiland-Reyes", url: "http://soiland-reyes.com/stian/",
+                company: "University of Manchester" },
+              { name: "Sean Bechhofer", url: "http://www.cs.manchester.ac.uk/~seanb/",
+                company: "University of Manchester" },
+          ],
+ 
+          // authors, add as many as you like. 
+          // This is optional, uncomment if you have authors as well as editors.
+          // only "name" is required. Same format as editors.
+ 
+          authors:  [
+              { name: "Khalid Belhajjame", url: "http://semanticweb.org/wiki/Khalid_Belhajjame",
+                company: "University of Manchester" },
+              { name: "Graham Klyne",
+                company: "University of Oxford" },
+              { name: "Daniel Garijo",
+                company: "UPM" },
+              { name: "Esteban Garc&#237;a Cuesta",
+                company: "iSOCO" }
+         ],
+          
+          // name of the WG
+          wg:           "Wf4Ever project",
+          
+          // URI of the public WG page
+          wgURI:        "http://www.wf4ever-project.org/",
+
+          // Add extraReferences to bibliography database
+          preProcess: [addExtraReferences],
+
+      };
+
+ </script>
+<style>
+.editorial-remove {
+   background: #ffffcc;
+   display: none;
+}
+</style>
+</head>
+<body>
+
+<section id='abstract'>
+</section> <!-- abstract -->
+
+<section id="introduction">
+
+<h2>Introduction</h2>
+
+<p>The Wf4Ever project addresses challenges for the preservation of scientific workflows in data intensive science, including: (a) the consideration of complex digital objects that comprise both their static and dynamic aspects, including workflow models, the provenance of their executions, and interconnections between workflows and related resources, (b) the provision of access, manipulation, sharing, reuse and evolution functions to these complex digital objects, (c) integral lifecycle management functions for workflows and their associated materials. To address these challenges, the Wf4Ever project is investigating and developing technological infrastructure for the preservation and efficient retrieval and reuse of scientific workflows in a range of disciplines.</p>
+
+<p>Key to the Wf4Ever approach is the notion of Research Objects. A Research Object is an aggregation of resources along with annotations or metadata providing additional information about those resources.</p>
+
+<p>The notion of Research Object is being pursued in a number of different activities. For example, the FORCE11 [[FORCE11]] group see the Research Object as a replacement for the traditional paper publication, providing a container within which resources relating to a particular publication can be aggregated. Executable papers [[EXEC]] similarly aim to support validation, exploration and interaction in publication in order to support validation. Hunter [[HUNTER06]] proposes the notion of Scientific Publication Packages (SPP) to describe the selective encapsulation of raw data, derived products, algorithms, software and textual publications. SPPs are motivated primarily by the need to create archives for the variety of artifacts produced during the course of a scientific investigation; they ideally contain data, methods, software and documents, but also their provenance as well.</p>
+
+<section id="scope">
+<h3>Scope</h3>
+
+<p>The focus of Wf4Ever is on workflow preservation (and more specifically workflows supporting scientific investigation). Thus the objects that will be described using the model are inherently workflow-centric. Although the basic infrastructure (aggregation + annotation + domain vocabularies) that the RO model supports is applicable to many situations (for example the executable or enhanced publication of FORCE11), the specific vocabularies defined within the Wf4Ever RO model are intended to support those Research Objects that have workflows (methods) as their primary content.</p>
+
+<p>The intention is that a Wf4Ever Research Object will aggregate information about a workflow (or collection of workflows) possibly including details of its execution trace, the data items consumed or produced by the workflow, plus provenance information about the lineage of the workflow, data items or the aggregation itself. This intention is that this information will support reproducability of the workflows, reuse of the components and, perhaps most importantly will facilitate subsequent understanding of the investigation that the workflow is intended to support. The support of "full-fat" reproducability in terms of re-execution of a process in order to produce identical results is problematic, particularly when operating in a distributed, web-service based ecosystem.</p>
+</section> <!-- scope -->
+
+<section id="organisation">
+<h3>Overall Model Organisation</h3>
+
+<div>Research Object = Aggregation + Annotation + RO Vocabularies</div>
+
+<p>The Wf4Ever Research Object model consists of a suite of ontologies or vocabularies that are used to describe workflow-centric ROs. The key ontologies provided are:</p>
+
+<p><b>ro</b>:<br/>
+Provides basic structure for the description of aggregated resources and the annotations that are made on those resources.</p>
+
+<p><b>wfdesc</b>:<br/>
+A vocabulary for the description of workflows. This provides an abstraction that can be mapped to different particular workflow systems.</p>
+
+<p><b>wfprov</b>:<br/>
+A vocabulary for the description of provenance information. This provides an abstraction that can be mapped to different provenance vocabularies.</p>
+
+<p>The RO Model uses two existing vocabularies to provide aggregation and annotation functionality. Object Reuse and Exchange [[ORE]] is used for specifying aggregation of resources and the Annotation Ontology [[AO]] is used to represent annotations.</p>
+
+<p>Each of these ontologies are described in more detail below.</p>
+</section> <!-- organisation -->
+</section> <!-- introduction -->
+
+<section id="at-glance">
+<h2>Research Object Vocabularies</h2>
+
+<section id="ro">
+<h3>Research object (ro)</h3>
+
+<p>A research object aggregates a number of resources that are used and/or produced in a given scientific investigation. This aggregation supports access to those collected resources &#8211; or at least access to the identification of those resources. The resources aggregated in an RO can be distributed, thus a particular user may be allowed to see the metadata associated with a resource without necessarily having access to its content. For example, dereferencing a URI which is aggregated in a Research Object may require further authentication. A research object allows for annotation of the resources aggregated in it, where by annotation we mean the general notion of decorating a resource with some additional, arbitrary information (@@NOTE: the usage of the word "aggregated" to describe the collecting of resources in the RO rather than "contained"). The aggregation provides a container within which these annotations can be asserted, allowing for the capture of context and provenance concerning those relations and annotations. Such context is needed to support, for example, measures of trust of quality.</p>
+
+<p>The aggregated resources of an RO could include workflow descriptions, workflow runs, artifacts, etc. The figure below illustrates a research object described using a manifest. It also illustrates the specific class of research object named workflow research object, which refers to research objects that contain at least one workflow description.</p>
+
+<p><img src="/wiki/download/attachments/2065997/ro.png?version=6&amp;amp;modificationDate=1329305810000" imagetext="ro.png|border=1,width=600" width="600" style="border: 1px solid black" /></p>
+
+<p>The research object is described in the <a href="ro.owl"><tt>ro</tt>
+ontology</a> under the namespace
+<code>http://purl.org/wf4ever/ro#</code></p>
+
+<p>This ontology extends the <a href="http://www.openarchives.org/ore/1.0/vocabulary">OAI-ORE ontology</a>.</p>
+
+<div id="ro-model-documentation">
+  @@Generated RO Model Documentation
+  <!-- LODE Generated documentation for ro goes here -->
+</div>
+
+<div class="editorial-remove">
+
+  <p>Next section will be removed, with narrative text moved to the OWL ontology</p>
+<h5><a name="ResearchObjectVocabularySpecification-ro%3AResearchObject"></a>ro:ResearchObject</h5>
+
+<p>An <tt>ro:ResearchObject</tt> aggregates a number of resources. A resource can be a  workflow, web service, document, data item, data set, workflow run,  software, annotation or a research object. A Research object must be described by an <tt>ro:Manifest</tt>.</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a></p>
+
+<p><b>subclass of:</b> <a href="http://www.openarchives.org/ore/1.0/vocabulary#aggr"><tt>ore:Aggregation</tt></a></p>
+
+
+<h5><a name="ResearchObjectVocabularySpecification-ro%3AManifest"></a>ro:Manifest</h5>
+
+<p>The <tt>ro:Manifest</tt> is used to describe an <tt>ro:ResearchObject</tt>. This identifies the resource for the manifest which lists all the aggregations of the research object, typically called <tt>.ro/manifest.rdf</tt> relative to the research object this manifest <tt>ore:describes</tt>.</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/ro#Manifest">ro:Manifest</a></p>
+
+<p><b>subclass of:</b> <a href="http://www.openarchives.org/ore/1.0/vocabulary#rem"><tt>ore:ResourceMap</tt></a></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-ro%3AResource"></a>ro:Resource</h5>
+
+<p>An <tt>ro:Resource</tt> is an <tt>ore:AggregatedResource</tt> which <tt>ore:isAggregatedBy</tt> an <tt>ro:ResearchObject</tt>.</p>
+
+<p>This specialisation requires that there exists an <tt>ore:Proxy</tt> which is <tt>ore:proxyFor</tt> this resource, and which is <tt>ore:proxyIn</tt> the same <tt>ro:ResearchObject</tt> the resource <tt>ore:isAggregatedBy</tt>. Any annotations on such a proxy will descrive the <tt>ro:Resource</tt> within that particular <tt>ro:ResearchObject</tt>, in particular <tt>dct:creator</tt> and <tt>dct:created</tt> on the proxy will specify who added the resource to the aggregation at what time.</p>
+
+<p>Note that annotations (<tt>ro:Annotation</tt>) can be added to both the <tt>ro:Resource</tt> and the <tt>ore:Proxy</tt> &amp;#45; depending on if the annotation is seen to be globally true (such as the provenance of how the resource was created) or locally true within the Research Object (such as the resource playing the role of a <tt>wf4ever:Dataset</tt>).</p>
+
+<p>Not all resources aggregated by an <tt>ro:ResearchObject</tt> are <tt>ro:Resource</tt> instances, in particular <tt>ro:Annotation</tt> instances MUST also be aggregated, but MIGHT NOT be <tt>ro:Resource</tt> instances (and thus don't need their own <tt>ore:Proxy</tt>).</p>
+
+<p>Aggregated resources MAY also be organised in (potentially nested) <tt>ro:Folder</tt> instances to reflect a file-system like structure. Note that any such resources SHOULD also be aggregated in the "mother" <tt>ro:ResearchObject</tt> , that is the research object has a "flat" view of all the aggregated resources.</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/ro#Resource">ro:Resource</a></p>
+
+<p><b>subclass of:</b> <a href="http://www.openarchives.org/ore/1.0/vocabulary#aggr_res"><tt>ore:AggregatedResource</tt></a></p>
+
+
+<h5><a name="ResearchObjectVocabularySpecification-ro%3AFolder"></a>ro:Folder</h5>
+
+<p><tt>ro:Folder</tt> is a special kind of <tt>ore:Aggregation</tt> where every <tt>ro:AggregatedResource</tt> must have a <tt>ro:FolderEntry</tt> proxy with a unique name within that folder. Such folders can be nested and (optionally) used to organize the resources of the research object into a file-like structure. All such resources should also be aggregated by the <tt>ro:ResearchObject</tt>.</p>
+
+<p>TODO: Need a functional property to specify the top level folder structure of an <tt>ro:ResearchObject</tt>?</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/ro#Folder">ro:Folder</a></p>
+
+<p><b>subclass of:</b> <a href="http://www.openarchives.org/ore/1.0/vocabulary#aggr"><tt>ore:Aggregation</tt></a>, <a href="http://purl.org/wf4ever/ro#Resource"><tt>ro:Resource</tt></a></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-ro%3AFolderEntry"></a>ro:FolderEntry</h5>
+
+<p>An ro:FolderEntry is an <tt>ore:Proxy</tt> instance that associates a resources aggregated within an <tt>ro:Folder</tt> with a <tt>ro:entryName</tt>. This name is unique within a given folder.</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/ro#FolderEntry">ro:FolderEntry</a></p>
+
+<p><b>subclass of:</b> <a href="http://www.openarchives.org/ore/1.0/vocabulary#proxy"><tt>ore:Proxy</tt></a></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-ro%3AentryName"></a>ro:entryName</h5>
+
+<p>This functional property specifies the name of a <tt>ro:FolderEntry</tt> within an <tt>ro:Folder</tt>.</p>
+
+<p>This name must be case-sensitively unique within the <tt>ro:Folder</tt>, similar to a filename in a directory.</p>
+
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/ro#entryName">ro:EntryName</a></p>
+
+<p><b>domain</b>: <a href="http://purl.org/wf4ever/ro#FolderEntry"><tt>ro:FolderEntry</tt></a></p>
+
+<p><b>range</b>: <tt>xsd:string</tt></p>
+
+
+<section id="ao">
+<h4>Annotations (AO)</h4>
+
+<p>Any aggregated resource of a research object can be <b>annotated</b> using the other Wf4Ever ontologies described on this page, standard ontologies like Dublin Core Terms, and third-party ontologies which may be domain-specific.</p>
+
+<p>Implementation-wise, in the <tt>ro:Manifest</tt> one should only make assertions about the RO aggregation and minimal metadata such as when it was created, while all other assertions, such as typing an <tt>ro:Resource</tt> to be a <tt>wfdesc:Workflow</tt> or providing a <tt>dct:description</tt> is performed in annotations.</p>
+
+
+<p>Wf4Ever research objects attach such annotations using the <a href="http://code.google.com/p/annotation-ontology/wiki/v2Main"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="http://code.google.com/p/annotation-ontology/wiki/v2Main" aliasspecified="true" >Annotation Ontology</a> (AOv2) - recording <b>who</b> made <em>which annotation</em> <b>when</b>, on <em>which resources</em>.</p>
+
+<p>In practice, each annotation context (for instance <tt>:resource1 dc:title "My dataset" .</tt>) is done as a separate RDF graph/resource (or as a named graph if the manifest representation supports this). An <tt>ro:Annotation</tt> is then created, which specifies the URI for this graph as its <tt>ao:body</tt>, links to any (typically aggregated) resource using <tt>ao:annotatesResource</tt>, and is itself aggregated by the <tt>ro:ResearchObject</tt> and contained within the <tt>ro:Manifest</tt> graph.</p>
+
+<p><tt>dct:created</tt> and <tt>dct:creator</tt> on the <tt>ro:Annotation</tt> will specify who made that assertion and added it to the research object.</p>
+
+<p>If the annotation body has been created independently of the research object, for instance annotations of services made within the definition of a Taverna workflow, then <tt>dct:creator</tt> and <tt>dct:created</tt> can be specified also for the resource given by <tt>ao:body</tt>.</p>
+
+
+<p>The following are Wf4Ever-specific extensions to the AO ontology:</p>
+
+
+<h5><a name="ResearchObjectVocabularySpecification-ro%3AAnnotation"></a>ro:Annotation</h5>
+
+<p>An annotation aggregated within an <tt>ro:ResearchObject</tt>.</p>
+
+<p>Instances of this class are used to annotate resources aggregated within the same aggregating research object, proxies of these resources, or the research object itself.</p>
+
+<p>In other words, an <tt>ro:Annotation</tt> MUST be <tt>ore:isAggregatedBy</tt> at least one <tt>:ro</tt>, where <tt>:ro</tt> is a <tt>ro:ResearchObject</tt>. The annotation SHOULD have at least one <tt>ao:annotatesResource :r</tt> which is either:</p>
+<ul>
+	<li><tt>:r ore:isAggregatedBy :ro .</tt></li>
+	<li><tt>:r a ore:Proxy;</tt><br/>
+&nbsp;&nbsp;&nbsp;<tt>    ore:proxyIn :ro .</tt></li>
+	<li><tt>:r a ro:ResearchObject .</tt></li>
+</ul>
+
+<p>Annotations MAY have multiple <tt>ao:annotatesResource</tt>, and an <tt>ro:Annotation</tt> MAY also annotate non-aggregated resources.</p>
+
+<p>As a subclass of <a href="http://code.google.com/p/annotation-ontology/wiki/v2AnnotationBody#Body_as_a_Named_Graph">ao:GraphAnnotation</a>  the <tt>ao:body</tt> must point to an RDF Graph which contains the actual annotation.</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/ro#Annotation">ro:Annotation</a></p>
+
+<p><b>subclass of:</b> <a href="http://code.google.com/p/annotation-ontology/wiki/v2AnnotationBody#Body_as_a_Named_Graph"><tt>ao:GraphAnnotation</tt></a>, <a href="http://www.openarchives.org/ore/1.0/vocabulary#aggr_res"><tt>ore:AggregatedResource</tt></a></p>
+</section><!-- ao -->
+
+</div><!-- End of section to remove -->
+
+
+</section><!-- ro -->
+
+<section id="wfdesc">
+<h3>Workflow definition (wfdesc)</h3>
+
+<p>Workflow descriptions can be made using the <a href="https://github.com/wf4ever/ro/blob/master/wfdesc.owl"><tt>wfdesc</tt> ontology</a> under the namespace <a href="http://purl.org/wf4ever/wfdesc#">http://purl.org/wf4ever/wfdesc#</a></p>
+
+<p><img src="/wiki/download/attachments/2065997/wf.png?version=5&amp;amp;modificationDate=1322735460000" imagetext="wf.png|border=1,width=600" width="600" style="border: 1px solid black" /></p>
+
+<p>This ontology <tt>wfdesc</tt> describes an abstract workflow description  structure, which on the top level is defined as a <tt>wfdesc:Workflow</tt>.</p>
+
+<p>A <tt>wfdesc:Workflow</tt> contains several <tt>wfdesc:Process</tt> instances, associated  using the <tt>wfdesc:hasSubProcess</tt> property. Each of these (and the workflow  itself) <tt>wfdesc:hasInput</tt> and <tt>wfdesc:hasOutput</tt> some <tt>wfdesc:Parameter</tt> (<tt>wfdesc:Input</tt> or <tt>wfdesc:Output</tt>). An <tt>wfdesc:Artifact</tt> is associated with a <tt>wfdesc:Parameter</tt> using <tt>wfdesc:hasArtifact</tt>. The <tt>wfdesc:Workflow</tt> also <tt>wfdesc:hasDataLink</tt> several <tt>wfdesc:DataLink</tt> instances, which forms the  connection between parameters.  Thus this ontology allows the description a direct acyclic graph, or a  dataflow.</p>
+
+<p>This ontology is meant as an upper ontology for more specific workflow  definitions, and as a way to express abstract workflows, which could either be hand-crafted by users ("ideal workflow description") or extracted from workflow definitions of existing workflow systems, like Taverna's <tt>.t2flow</tt> and Scufl2 formats.</p>
+
+<p>The <tt>wfprov</tt> ontology shows how to link these workflow descriptions to a provenance trace of a workflow execution.</p>
+
+<div id="wfdesc-model-documentation">
+  @@Generated wfdesc Model Documentation
+  <!-- LODE Generated documentation for wfdesc goes here -->
+</div>
+
+<h4>Examples</h4>
+
+<p>@@TODO: Examples of workflows described using wfdesc</p>
+
+
+<div class="editorial-remove">
+
+  <p>Next section will be removed, with narrative text moved to the OWL ontology</p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfdesc%3AArtifact"></a>wfdesc:Artifact</h5>
+
+<p><tt>wfdesc:Artifact</tt> is used to provide information about a class of  artifacts. For example, it can be used to specify the datatype of a  dataset or the structure of a document.  An <tt>wfdesc:Artifact</tt> is associated with a <tt>wfdesc:Parameter</tt> using <tt>wfdesc:hasArtifact</tt>.  The distinction between a parameter and artifact is that the parameter  can be customized to describe the particular role the artifact plays  with regards to the process (and can be linked using <tt>wfdesc:DataLink</tt>) -  while the <tt>wfdesc:Artifact</tt> can describe the syntactic and semantic  datatype.</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wfdesc#Artifact">wfdesc:Artifact</a></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfdesc%3ADataLink"></a>wfdesc:DataLink</h5>
+
+<p><tt>wfdesc:DataLink</tt> is used to represent data dependencies between <tt>wfdesc:Process</tt> descriptions. It means that the artifact generated at an <tt>wfdesc:Output</tt> (identified using <tt>wfdesc:hasSource</tt>) will be used by a <tt>wfdesc:Input</tt> (identified using <tt>wfdesc:hasSink</tt>).  The <tt>wfdesc:Processes</tt> that owns the <tt>wfdesc:Parameter</tt> instances which are  the source and sink of a <tt>wfdesc:DataLink</tt> must be <tt>wfdesc:hasSubProcess</tt> of  a the same <tt>wfdesc:Workflow</tt> which <tt>wfdesc:hasDataLink</tt> the data link, or  be be parameters of that same workflow.  Thus links can only be made within a <tt>wfdesc:Workflow</tt>, although ports owned by the workflow itself appear both inside and outside the workflow (in opposite roles).</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wfdesc#DataLink">wfdesc:DataLink</a></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfdesc%3AInput"></a>wfdesc:Input</h5>
+
+<p><tt>wfdesc:Input</tt> represents an input parameter to a <tt>wfdesc:Process</tt>. This can  be compared to a function parameter, command line argument, files read,  or parameter set by a user interface.  It is out of scope of <tt>wfdesc</tt> to define the nature or classification of  the parameter, such as giving it a name, position or data type. This can  be done with subclasses and/or subproperties.</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wfdesc#Input">wfdesc:Input</a></p>
+
+<p><b>subclass of:</b> <tt>wfdesc:Parameter</tt></p>
+
+
+<h5><a name="ResearchObjectVocabularySpecification-wfdesc%3AOutput"></a>wfdesc:Output</h5>
+
+<p><tt>wfdesc:Output</tt> represents an output parameter from a <tt>wfdesc:Process</tt>. This  can be compared to functional return values, stdout/stdin, files  written, or results shown in a user interface.  It is out of scope of <tt>wfdesc</tt> to define the nature or classification of  the parameter, such as giving it a name, position or data type. This can  be done with subclasses and/or subproperties.</p>
+
+<p><b>identifier</b> <a href="http://purl.org/wf4ever/wfdesc#Output">wfdesc:Output</a></p>
+
+<p><b>subclass of:</b> <tt>wfdesc:Parameter</tt></p>
+
+
+<h5><a name="ResearchObjectVocabularySpecification-wfdesc%3AParameter"></a>wfdesc:Parameter</h5>
+
+<p>This class represent a parameter of a <tt>wfdesc:Process</tt> description. A <tt>wfdesc:Parameter</tt> must be a <tt>wfdesc:Input</tt>, a <tt>wfdesc:Output</tt>, or both.   A parameter is both an <tt>wfdesc:Input</tt> and <tt>wfdesc:Output</tt> when it is used on both sides of  a subworkflow - see <tt>wfdesc:Workflow</tt> and <tt>wfdesc:DataLink</tt> for details.</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wfdesc#Parameter">wfdesc:Parameter</a></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfdesc%3AProcess"></a>wfdesc:Process</h5>
+
+<p>A <tt>wfdesc:Process</tt> is used to describe a class of actions that when  enacted give rise to processes. A process can have 0 or more <tt>wfdesc:Parameter</tt> instances associated using <tt>wfdesc:hasInput</tt> and <tt>wfdesc:hasOutput</tt>, signifying what kind of parameters the process will  require and return.  It is out of scope for wfdesc to classify or specify the nature of the  process, this should be done by subclassing and additional  subproperties, for instance ex:perlScript or ex:restServiceURI.</p>
+
+<p><b>identifier</b>: <a href="http://purl.org/wf4ever/wfdesc#Process">wfdesc:Process</a></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfdesc%3AWorkflow"></a>wfdesc:Workflow</h5>
+
+<p>A <tt>wfdesc:Workflow</tt> is a directed graph in which the nodes are <tt>wfdesc:Process</tt> instances and the edges (<tt>wfdesc:DataLink</tt> instances)  represent data dependencies between the constituent <tt>wfdesc:Process</tt> descriptions.</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wfdesc#Workflow">wfdesc:Workflow</a></p>
+
+<p><b>subclass of</b>: <tt>wfdesc:Process</tt></p>
+
+<p>A <tt>wfdesc:Workflow</tt> defines associated <tt>wfdesc:Process</tt> using <tt>wfdesc:hasSubProcess</tt>. A specialisation of this property is  hasSubWorkflowTemplate, signifying that the process is a <tt>wfdesc:Workflow</tt> itself, which is further described in a similar  fashion.  As a subclass of <tt>wfdesc:Process</tt> a <tt>wfdesc:Workflow</tt> can also define <tt>wfdesc:hasInput</tt>/<tt>wfdesc:hasOutput</tt> parameters - these would be inputs  taken at workflow execution time, and final outputs of the workflow.  (Note: Not all dataflow systems have this concept of workflow  parameters)</p>
+
+<p><tt>wfdesc:Parameter</tt> instances are linked using <tt>wfdesc:DataLink</tt> instances  associated with the <tt>wfdesc:Workflow</tt> using <tt>wfdesc:hasDataLink</tt>.  A <tt>wfdesc:Parameter</tt> defined with <tt>wfdesc:hasInput</tt> on a <tt>wfdesc:Workflow</tt> is  considered an <tt>wfdesc:Input</tt> "outside" the workflow description (ie. if it is  a subworkflow), but an <tt>wfdesc:Output</tt> "inside" the workflow (where it can be connected to a <tt>wfdesc:Input</tt> of a <tt>wfdesc:Process</tt>). Thus  such parameters can be linked "through" the workflow without having a "mirrored" port inside..</p>
+
+<div class="wysiwyg-macro" macroname="code" macrostarttag="{code:title=Example}" macrohasbody="true" wikihasnewlinebeforebody="true" wikihasnewlineafterbody="true" wikihasprecedingnewline="true" wikihastrailingnewline="true" ><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" wysiwyg="ignore"  style="border-bottom-width: 1px;"><b>Example</b></div><div class="codeContent panelContent">
+<pre class="code-java">@prefix wfdesc: &lt;http:<span class="code-comment">//purl.org/wf4ever/wfdesc#&gt; .
+</span>:outerWorkflow a wfdesc:Workflow ;
+  wfdesc:hasSubWorkflow :innerWorkflow ;
+  wfdesc:hasSubProcess :procA, :procC .
+
+:procA a wfdesc:<span class="code-object">Process</span> ;
+  wfdesc:hasOutput :param1 .
+
+:procC a wfdesc:<span class="code-object">Process</span> ;
+  wfdesc:hasInput :param2 ;
+  wfdesc:hasOutput :param3 .
+
+
+:innerWorkflow a wfdesc:Workflow ;
+  wfdesc:hasInput :param4 ;
+  wfdesc:hasOutput :param5 ;
+  wfdesc:hasProcess :procB .
+
+:procB a wfdesc:<span class="code-object">Process</span> ;
+  wfdesc:hasInput :param6 ;
+  wfdesc:hasOutput :param7 .
+
+:innerWorkflow wfdesc:hasDataLink
+   [ wfdesc:hasSource :param4; wfdesc:hasSink :param6 ],
+   [ wfdesc:hasSource :param7; wfdesc:hasSink :param5 ] .
+
+:outerWorkflow wfdesc:hasDataLink
+  [ wfdesc:hasSource :param1; wfdesc:hasSink :param4 ],
+  [ wfdesc:hasSource :param5; wfdesc:hasSink :param2 ] .
+</pre>
+</div></div></div>
+
+<p>In this example <tt>:param1</tt> is the output of <tt>:procA</tt>. <tt>:param1</tt> is the source  in a datalink that goes to the input <tt>:param4</tt> of the <tt>:innerWorkflow</tt>. <tt>:param4</tt> is however also the source of an inner datalink, going to input <tt>:param6</tt> of the nested <tt>:procB</tt>.  From this <tt>:param4</tt> is both an <tt>wfdesc:Input</tt> and <tt>wfdesc:Output</tt> (which is why these two classes are not disjoint)</p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfdesc%3AWorkflowInstance"></a>wfdesc:WorkflowInstance</h5>
+
+<p>A <tt>wfdesc:WorkflowInstance</tt> is a specialisation of a <tt>wfdesc:Workflow</tt> which defines all data/parameters/settings that are required to perform a <tt>wfprov:WorkflowRun</tt> without having executed it.</p>
+
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wfdesc#WorkflowInstance">wfdesc:WorkflowInstance</a></p>
+
+<p><b>subclass of:</b> <tt>wfdesc:Workflow</tt></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfdesc%3AhasArtifact"></a>wfdesc:hasArtifact</h5>
+
+<p>This property associates a <tt>wfdesc:Parameter</tt> with an <tt>wfdesc:Artifact</tt> which can describe the artifact which would be used/generated on  execution of the workflow.</p>
+
+<p><b>identifier</b><a href="http://purl.org/wf4ever/wfdesc#hasArtifact">wfdesc:hasArtifact</a></p>
+<p><b>domain:</b> <tt>wfdesc:Parameter</tt><br/>
+<b>range:</b> <tt>wfdesc:Artifact</tt></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfdesc%3AhasDataLink"></a>wfdesc:hasDataLink</h5>
+
+<p>This object property is used to specify the data links of a given <tt>wfdesc:Workflow</tt> description.</p>
+
+<p><b>identifier:</b> <a href=:http://purl.org/wf4ever/wfdesc#hasDataLink">wfdesc:DataLink</a></p>
+
+<p><b>domain:</b> <tt>wfdesc:Workflow</tt><br/>
+<b>range:</b> <tt>wfdesc:DataLink</tt></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfdesc%3AhasInput"></a>wfdesc:hasInput</h5>
+
+<p>This object property is used to specify the input parameter of a given <tt>wfdesc:Process</tt> description.</p>
+
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wfdesc#hasInput">wfdesc:hasInput</a></p>
+
+<p><b>domain:</b> <tt>wfdesc:Process</tt><br/>
+<b>range:</b> <tt>wfdesc:Input</tt></p>
+
+
+<h5><a name="ResearchObjectVocabularySpecification-wfdesc%3AhasOutput"></a>wfdesc:hasOutput</h5>
+
+<p>This object property is used to specify the output parameter of a given <tt>wfdesc:Process</tt> description.</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wfdesc#hasOutput">wfdesc:hasOutput</a></p>
+<p><b>domain:</b> <tt>wfdesc:Process</tt><br/>
+<b>range:</b> <tt>wfdesc:Output</tt></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfdesc%3AhasSubProcess"></a>wfdesc:hasSubProcess</h5>
+
+<p>This object property is used to specify that the given workflow   contains the given process as part of its definition.  Although not a requirement, such sub processes should have <tt>wfdesc:DataLink</tt> within the containing workflow connecting their  parameters with parameters of the containing workflow, or with  parameters other contained <tt>wfdesc:Process</tt> instances.  A specialialisation of sub process is <tt>wfdesc:hasSubWorkflow</tt> where the  sub process is a nested <tt>wfdesc:Workflow</tt>.</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wfdesc#hasSubProcess">wfdesc:hasSubProcess</a></p>
+<p><b>domain:</b> <tt>wfdesc:Workflow</tt><br/>
+<b>range:</b> <tt>wfdesc:Process</tt></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfdesc%3AhasSink"></a>wfdesc:hasSink</h5>
+
+<p>This property is used to specify the <tt>wfdesc:Input</tt> parameter that acts as  a sink from a given <tt>wfdesc:DataLink</tt>, consuming data from the link.</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wfdesc#hasSink">wfdesc:hasSink</a></p>
+
+<p><b>domain:</b> <tt>wfdesc:DataLink</tt><br/>
+<b>range:</b> <tt>wfdesc:Input</tt></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfdesc%3AhasSource"></a>wfdesc:hasSource</h5>
+
+<p>This property is used to specify the <tt>wfdesc:Output</tt> parameter that acts  as a source to a given <tt>wfdesc:DataLink</tt>, providing data into the link.</p>
+
+<p><b>identifier</b> <a href="http://purl.org/wf4ever/wfdesc#hasSource">wfdesc:hasSource</a></p>
+
+<p><b>domain:</b> <tt>wfdesc:DataLink</tt><br/>
+<b>range:</b> <tt>wfdes:Output</tt></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfdesc%3AhasSubWorkflow"></a>wfdesc:hasSubWorkflow</h5>
+
+<p>This object property is used to associate a <tt>wfdesc:Workflow</tt> description to  another <tt>wfdesc:Workflow</tt>, specifying that the given workflow has the  given sub-workflow as a contained process.</p>
+
+<p><b>identifier</b> <a href="http://purl.org/wf4ever/wfdesc#hasSubWorkflow">wfdesc:hasSubWorkflow</a></p>
+<p><b>domain:</b> <tt>wfdesc:Workflow</tt><br/>
+<b>range:</b> <tt>wdesc:Workflow</tt><br/>
+<b>subproperty of:</b> <tt>wfdesc:hasSubProcess</tt></p>
+
+</div><!-- End of section to remove -->
+
+</section><!-- wfdesc -->
+
+<section id="wfprov">
+<h3>Workflow execution provenance (wfprov)</h3>
+
+<p><img src="/wiki/download/attachments/2065997/wfprov.png?version=7&amp;amp;modificationDate=1322562729000" imagetext="wfprov.png|border=1,width=600" width="600" style="border: 1px solid black" /></p>
+
+
+<p>Provenance of workflow execution is described using the <a href="https://github.com/wf4ever/ro/blob/master/wfprov.owl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/wfprov.owl" aliasspecified="true" >wfprov ontology</a>, and is used to describe the provenance of results. </p>
+
+<div id="wfprov-model-documentation">
+  @@Generated wfprov Model Documentation
+ <!-- LODE Generated documentation for wfprov goes here -->
+</div>
+
+<h4>Examples</h4>
+
+<p>@@TODO: Examples of wfprov.</p>
+
+<div class="editorial-remove">
+
+  <p>Next section will be removed, with narrative text moved to the OWL ontology</p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfprov%3AArtifact"></a>wfprov:Artifact</h5>
+
+<p>An artifact is a data value or item which <tt>wfprov:wasOutputFrom</tt> of a <tt>wfprov:ProcessRun</tt> or that the process run used as input (<tt>wfprov:usedInput</tt>). Such an artifact might also be a <tt>ro:Resource</tt> if it has been aggregated in the <tt>ro:ResearchObject</tt> (typically if the artifact was used or generated by a <tt>wfprov:WorkflowRun</tt>) - but this might always not be the case for intermediate values from <tt>wfprov:ProcessRun</tt>.</p>
+
+<p>An <tt>wfprov:Artifact</tt> is often also a <tt>ro:Resource</tt>, aggregating the actual value. Thus the <tt>wfprov</tt> can show how an aggregated resource was generated or used in a workflow execution.</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wfprov#Artifact">wfprov:Artifact</a></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfprov%3AProcessRun"></a>wfprov:ProcessRun</h5>
+
+<p>A process run is a particular execution of a <tt>wfdesc:Process</tt> description (<tt>wfprov:describedByProcess</tt>), which can <tt>wfprov:usedInput</tt> some <tt>wfprov:Artifact</tt> instances, and produce new artifacts (<tt>wfprov:wasOutputFrom</tt>). A <tt>wfprov:WorkflowRun</tt> is a specialisation of this class.</p>
+
+<p><b>identifier:</b><a href="http://purl.org/wf4ever/wfprov#Process">wfprov:Process</a></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfprov%3AWorkflowEngine"></a>wfprov:WorkflowEngine</h5>
+
+<p>A workflow engine is a <tt>foaf:Agent</tt> that is responsible for enacting a workflow definition (which could be described in a <tt>wfdesc:Workflow</tt>). The result of workflow enactment gives rise to a <tt>wfprov:WorkflowRun</tt>..</p>
+
+<p><b>identifier:</b><a href="http://purl.org/wf4ever/wfprov#WorkflowEngine">wfprov:WorkflowEngine</a></p>
+
+<b>subclass of:</b> <tt>foaf:Agent</tt></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfprov%3AWorkflowRun"></a>wfprov:WorkflowRun</h5>
+
+<p>A workflow run is a <tt>wfprov:ProcessRun</tt> which have been enacted by a <tt>wfprov:WorkflowEngine</tt>, according to a workflow definition (which could be <tt>wfdesc:describedByWorkflow</tt> a <tt>wfdesc:Workflow</tt>). Such a process typically contains several subprocesses (<tt>wfprov:wasPartOfWorkflowRun</tt>) corresponding to <tt>wfdesc:Process</tt> descriptions</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wfprov#WorkflowRun">wfprov:WorkflowRun</a></p>
+
+<p><b>subclass of:</b> <tt>wfprov:ProcessRun</tt></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfprov%3AdescribedByParameter"></a>wfprov:describedByParameter</h5>
+
+<p>This object property is used to associate an <tt>wfprov:Artifact</tt> to the <tt>wfdesc:Parameter</tt> which describes it.</p>
+
+<p><b>identifier</b>: <a href="http://purl.org/wf4ever/wfprov#wfprov:describedByParameter">wfprov:describedByParameter</a></p>
+<p><b>domain</b>: <tt>wfprov:Artifact</tt><br/>
+<b>range</b>: <tt>wfdesc:Parameter</tt></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfprov%3AdescribedByProcess"></a>wfprov:describedByProcess</h5>
+
+<p>This object property associate a <tt>wfprov:Processrun</tt> to its <tt>wfdesc:Process</tt> description .</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wfprov#describedByProcess">wfprov:describedByProcess</a></p>
+
+<p><b>domain</b>: <tt>wfprov:ProcessRun</tt><br/>
+<b>range</b>: <tt>wfdesc:Process</tt></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfprov%3AdescribedByWorkflow"></a>wfprov:describedByWorkflow</h5>
+
+<p>This property associates a <tt>wfprov:WorkflowRun</tt> to its corresponding <tt>wfdesc:Workflow</tt> description.</p>
+
+<p><b>identifier:</b><a href="http://purl.org/wf4ever/wfprov#describedByWorkflow">wfprov:describedByWorkflow</a></p>
+
+<p><b>domain:</b> <tt>wfprov:WorkflowRun</tt><br/>
+<b>range:</b> <tt>wfdesc:Workflow</tt><br/>
+<b>subproperty of:</b> <tt>wf:describedByProcess</tt></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfprov%3AusedInput"></a>wfprov:usedInput</h5>
+
+<p>This property specifies that a <tt>wfprov:ProcessRun</tt> used an <tt>wfprov:Artifact</tt> as an input</p>
+
+<p><b>identifier</b> <a href="http://purl.org/wf4ever/wfprov#usedInput">wfprov:usedInput</a></p>
+
+<p><b>domain</b>: <tt>wfprov:ProcessRun</tt><br/>
+<b>range</b>: <tt>wfprov:</tt><tt>Artifact</tt></p>
+
+
+<h5><a name="ResearchObjectVocabularySpecification-wfprov%3AwasEnactedBy"></a>wfprov:wasEnactedBy</h5>
+
+<p><tt>wfprov:wasEnactedBy</tt> associates a <tt>wfprov:ProcessRun</tt> with a <tt>wfprov:WorkflowEngine</tt>, specifying that the execution of the process was enacted by the engine.</p>
+
+<p><b>identifier</b><a href="http://purl.org/wf4ever/wfprov#wasEnactedBy">wfprov:wasEnactedBy</a></p>
+
+<p><b>domain:</b> <tt>wfprov:ProcessRun</tt></br>
+<b>range:</b> <tt>wfprov:WorkflowEngine</tt></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wfprov%3AwasOutputFrom"></a>wfprov:wasOutputFrom</h5>
+
+<p>This property specifies that a <tt>wfprov:Artifact</tt> was generated as an output from a <tt>wfprov:ProcessRun</tt></p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wfprov#wasOutputFrom">wfprov:wasOutputFrom</a></p>
+<p><b>domain:</b> <tt>wfprov:Artifact</tt><br/>
+<b>range:</b> <tt>wfprov:ProcessRun</tt></p>
+
+
+<h5><a name="ResearchObjectVocabularySpecification-wfprov%3AwasPartOfWorkflowRun"></a>wfprov:wasPartOfWorkflowRun</h5>
+
+<p>This property specifies that a <tt>wfprov:ProcessRun</tt> was executed as part of a <tt>wfprov:WorkflowRun</tt>. This typically corresponds to <tt>wfdesc:hasSubProcess</tt> in the workflow description.</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wfprov#wasPartOfWorkflowRun">wfprov:wasPartOfWorkflowRun</a></p>
+
+<p><b>domain:</b>: <tt>wfprov:ProcessRun</tt><br/>
+<b>range:</b> <tt>wfprov:WorkflowRun</tt></p>
+
+</section><!-- wfprov -->
+
+
+<section id="wf4ever">
+<h3>Wf4Ever-specific extensions (wf4ever)</h3>
+
+<p><img src="/wiki/download/attachments/2065997/wf4ever.png?version=5&amp;amp;modificationDate=1323180540000" imagetext="wf4ever.png|border=1,width=600" width="600" style="border: 1px solid black" /></p>
+
+<p>The <a href="https://github.com/wf4ever/ro/blob/master/wf4ever.owl">wf4ever ontology</a> specifies extensions that we feel are quite specific to Wf4Ever, and  probably not as liable for reuse as the previous ontologies. This  ontology imports all the other ontologies described on this page, and so  can also be used to get a complete picture of all the Wf4Ever  ontologies. The namespace is <a href="http://purl.org/wf4ever/wf4ever#">http://purl.org/wf4ever/wf4ever#</a></p>
+
+<div id="wf4ever-model-documentation">
+  @@Generated wf4ever Model Documentation
+  <!-- LODE Generated documentation for wf4ever goes here -->
+</div>
+
+<div class="editorial-remove">
+
+  <p>Next section will be removed, with narrative text moved to the OWL ontology</p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wf4ever%3AWebServiceProcess"></a>wf4ever:WebServiceProcess</h5>
+
+<p>A <tt>wf4ever:WebServiceProcess</tt> is an <tt>wfdesc:Process</tt>, the enactment of which gives rise to a web service call.</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wf4ever#WebServiceProcess">wf4ever:WebServiceProcess</a></p>
+
+<p><b>subclass of:</b> <tt>wf:ProcessTemplate</tt></p>
+
+<p>TODO: Give details of which webservice endpoint, port and operation. What about REST services, etc? Local tools?</p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wf4ever%3AWorkflowResearchObject"></a>wf4ever:WorkflowResearchObject</h5>
+
+<p>A workflow research object is a research object that contains at  least one <tt>wfdesc:Workflow</tt>. Note that asserting that a resource is a <tt>wfdesc:Workflow</tt> or that an RO is a <tt>ro:WorkflowResearchObject</tt> is an <b>annotation</b> which normally goes in an annotation body instead of in the manifest - thus we can see who or what claimed an RO was a WorkflowResearchObject.</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wf4ever#WorkflowResearchObject">wf4ever:WorkflowResearchObject</a></p>
+
+<p><b>subclass of:</b> <tt>ro:ResearchObject</tt></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wf4ever%3AFile"></a>wf4ever:File</h5>
+
+<p>A subclass of <tt>wfprov:Artifact</tt> to signify a file stored on a file system.</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wf4ever#File">wf4ever:File</a></p>
+
+<p><b>subclass of:</b> <tt>wfprov:Artifact</tt></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wf4ever%3AImage"></a>wf4ever:Image</h5>
+
+<p>A subclass of <tt>wfprov:Artifact</tt> to signify a visual image.</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wf4ever#Image">wf4ever:Image</a></p>
+
+<p><b>subclass of:</b> <tt>wfprov:Artifact</tt></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wf4ever%3ADocument"></a>wf4ever:Document</h5>
+
+<p>A subclass of <tt>wfprov:Artifact</tt> to signify a document.</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wf4ever#Document">wf4ever:Document</a></p>
+<p><b>subclass of:</b> <tt>wfprov:Artifact</tt></p>
+
+<h5><a name="ResearchObjectVocabularySpecification-wf4ever%3ADataset"></a>wf4ever:Dataset</h5>
+
+<p>A subclass of <tt>wfprov:Artifact</tt> to signify a dataset.</p>
+
+<p><b>identifier:</b> <a href="http://purl.org/wf4ever/wf4ever#Dataset">wf4ever:Dataset</a></p>
+
+<p><b>subclass of:</b> <tt>wfprov:Artifact</tt></p>
+
+<p><b>TODO</b>: Why these four?</p>
+
+</div><!-- End of section to remove -->
+
+</section><!-- wfprov-->
+</section><!-- at-glance -->
+
+<section id="examples">
+<h2>Examples</h2>
+
+
+<section id="annotations-example">
+<h3>Annotations and manifests</h3>
+
+<p>Here is an example research object containing a single workflow <tt>a_workflow.t2flow</tt> and an annotation which as been automatically added.</p>
+
+<div class="wysiwyg-macro" macroname="code" macrostarttag="{code:title=.ro/manifest}" macrohasbody="true" wikihasnewlinebeforebody="true" wikihasnewlineafterbody="true" wikihasprecedingnewline="true" wikihastrailingnewline="true" ><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" wysiwyg="ignore"  style="border-bottom-width: 1px;"><b>.ro/manifest</b></div><div class="codeContent panelContent">
+<pre class="code-java">@base &amp;lt;../&amp;gt; .
+@prefix ro: &amp;lt;http:<span class="code-comment">//purl.org/wf4ever/ro#&amp;gt; .
+</span>@prefix ao: &amp;lt;http:<span class="code-comment">//purl.org/ao/&amp;gt; .
+</span>@prefix ore: &amp;lt;http:<span class="code-comment">//www.openarchives.org/ore/terms/&amp;gt; .
+</span>@prefix dct: &amp;lt;http:<span class="code-comment">//purl.org/dc/terms/&amp;gt; .
+</span>@prefix xsd: &amp;lt;http:<span class="code-comment">//www.w3.org/2001/XMLSchema#&amp;gt; .
+</span>@prefix foaf: &amp;lt;http:<span class="code-comment">//xmlns.com/foaf/0.1/&amp;gt; .
+</span>@prefix rdfg: &amp;lt;http:<span class="code-comment">//www.w3.org/2004/03/trix/rdfg-1/&amp;gt; .
+</span>
+&amp;lt;.&amp;gt; a ro:ResearchObject, ore:Aggregation ;
+    ore:aggregates &amp;lt;a_workflow.t2flow&amp;gt;, :ann1 ;
+    dct:created <span class="code-quote">"2011-12-02T15:01:10Z"</span>^^xsd:dateTime ;
+    dct:creator [ a foaf:Person; foaf:name <span class="code-quote">"Stian Soiland-Reyes"</span> ] .
+
+&amp;lt;a_workflow.t2flow&amp;gt; a ro:Resource .
+
+:proxy1 a ro:Proxy ;
+    ore:proxyFor &amp;lt;a_workflow.t2flow&amp;gt; ;
+    ore:proxyIn &amp;lt;.&amp;gt; ;
+    dct:created <span class="code-quote">"2011-12-02T15:02:10Z"</span>^^xsd:dateTime ;
+    dct:creator [ a foaf:Person; foaf:name <span class="code-quote">"Stian Soiland-Reyes"</span> ] .
+
+:ann1 a ro:Annotation, ao:GraphAnnotation ;
+    ao:body &amp;lt;.ro/ann1&amp;gt; ;
+    ao:annotatesResource &amp;lt;a_workflow.t2flow&amp;gt;, &amp;lt;.&amp;gt; ;
+    dct:created <span class="code-quote">"2011-12-02T15:02:13Z"</span>^^xsd:dateTime ;
+    dct:creator [ a foaf:Agent ; foaf:name <span class="code-quote">"t2flow workflow annotation extractor"</span> ] .
+
+&amp;lt;.ro/ann1&amp;gt; a rdfg:Graph ;
+    dct:created <span class="code-quote">"2010-05-14T12:02:12Z"</span>^^xsd:dateTime ;
+    dct:creator [ a foaf:Person ; foaf:name <span class="code-quote">"Marco Roos"</span> ] .
+
+</pre>
+</div></div></div>
+<p>Here we can see that Stian has made a research object at 15:01:10, and at 15:02:10 he added <tt>&amp;lt;a_workflow.t2flow&amp;gt;</tt> to the research object. Note that in this case we don't know when <tt>&amp;lt;a_workflow.t2flow&amp;gt;</tt> itself was created or when.  The research object also aggregates an annotation <tt>:ann1</tt>, this annotation was created by "t2flow workflow annotation extractor" a few seconds after Stian added <tt>&amp;lt;a_workflow.t2flow&amp;gt;</tt> &amp;#45; and indeed this is the aggregated resource which has been annotated. It also annotates the resource object itself. We have been told that the content of that annotation, <tt>&amp;lt;.ro/ann1&amp;gt;</tt>, was created by Marco more than a year earlier, which in this case makes sense because it is an annotation which the extractor has found inside the <tt>t2flow</tt>.</p>
+
+
+<p>Resolving the annotation body gives:</p>
+
+<div class="wysiwyg-macro" macroname="code" macrostarttag="{code:title=.ro/ann1}" macrohasbody="true" wikihasnewlinebeforebody="true" wikihasnewlineafterbody="true" wikihasprecedingnewline="true" wikihastrailingnewline="true" ><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" wysiwyg="ignore"  style="border-bottom-width: 1px;"><b>.ro/ann1</b></div><div class="codeContent panelContent">
+<pre class="code-java">@base &amp;lt;../&amp;gt; .
+@prefix ro: &amp;lt;http:<span class="code-comment">//purl.org/wf4ever/ro#&amp;gt; .
+</span>@prefix wfdesc: &amp;lt;http:<span class="code-comment">//purl.org/wf4ever/wfdesc#&amp;gt; .
+</span>@prefix wf4ever: &amp;lt;http:<span class="code-comment">//purl.org/wf4ever/wf4ever#&amp;gt; .
+</span>@prefix foaf: &amp;lt;http:<span class="code-comment">//xmlns.com/foaf/0.1/&amp;gt; .
+</span>@prefix ao: &amp;lt;http:<span class="code-comment">//purl.org/ao/&amp;gt; .
+</span>@prefix dct: &amp;lt;http:<span class="code-comment">//purl.org/dc/terms/&amp;gt; .
+</span>@prefix xsd: &amp;lt;http:<span class="code-comment">//www.w3.org/2001/XMLSchema#&amp;gt; .
+</span>
+&amp;lt;.&amp;gt; a wf4ever:WorkflowResearchObject .
+
+&amp;lt;a_workflow.t2flow&amp;gt; a wfdesc:Workflow ;
+    wfdesc:hasInput :in1 ;
+    wfdesc:hasOutput :out1 ;
+    wfdesc:hasDataLink [
+        wfdesc:hasSource :in1 ;
+        wfdesc:hasSink :out1 ;
+    ] ;
+    dct:title <span class="code-quote">"A workflow"</span> ;
+    dct:description <span class="code-quote">"A workflow that directly outputs its only input"</span> ;
+    dct:created <span class="code-quote">"2010-05-14T12:02:12Z"</span>^^xsd:dateTime ;
+    dct:creator [ a foaf:Person ; foaf:name <span class="code-quote">"Marco Roos"</span> ] .
+
+:in1 dct:description <span class="code-quote">"Any value"</span> .
+:out1 dct:description <span class="code-quote">"The value given to in1"</span> .
+</pre>
+</div></div></div>
+<p>Inside the annotation body, which we have been told was done by Marco, we find an abstract version of the .t2flow workflow (using the <tt>wfdesc</tt> ontology) which has been extracted by the agent. This reveals some workflow annotations done by Marco in 2010; title and description on the workflow, and descriptions for the input and output ports.</p>
+</section><!-- annotation-examples -->
+
+<section id="folders-example">
+<h3>Folder structures using ro:Folder</h3>
+
+<p>The <tt>ro</tt> ontology contains <tt>ro:Folder</tt> and <tt>ro:FolderEntry</tt> which can be used to organise aggregated resourced in a folder-like structure. Folders themselves are also aggregated by the research object, and can be the target of ?annotations just like other resources. This example shows how such a folder structure could be maintained in a "checked out" research object where each aggregated resource exists as a file or folder on a local file system. For increased readability, this example represents the individual <tt>ore:ResourceMap</tt> documents as <a href="http://www.w3.org/TeamSubmission/turtle/"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="http://www.w3.org/TeamSubmission/turtle/" aliasspecified="true" >Turtle</a> files, but these could be in formats like RDF/XML, as a single file with named graphs, like TriG, or other representations as appropriate. </p>
+
+<p>Note that the actual folder structure used, in particular of the <tt>.ro/</tt> metadata folder, is currently non-normative. If such a folder structure was exposed as a web resource, then the resource maps currently in <tt>.ro</tt> could (and perhaps even should) be resolved by <em>content negotiation</em> on the <tt>ro:Folder</tt> resources like <tt>&amp;lt;b/c/&amp;gt;</tt>. <b> </b></p>
+
+<p>See <a href="https://github.com/wf4ever/ro/tree/master/examples/folders"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/tree/master/examples/folders" aliasspecified="true" >https://github.com/wf4ever/ro/tree/master/examples/folders</a> to browse the RO folder structure of this example. </p>
+
+<p>See the .ro/ folder for the RDF/Turtle resource maps describing each of these folders, in addition to the <tt>ro:Manifest</tt> for the research object itself.  The filename structure and identifier scheme here is non-normative and is a suggestion only.</p>
+
+<p>The RO model does not (yet) assign a name to the top-level <tt>ro:Folder</tt>, which in this example has been called <tt>&amp;lt;.ro/root&amp;gt;</tt> &amp;#45; although its children (<tt>&amp;lt;a/&amp;gt;</tt> etc.) are in this example organised directly within the folder structure of the Research Object. An alternative organisation might be <tt>root/</tt> and <tt>root/a/</tt>. </p>
+
+<p>The Research Object aggregates all individual resources that are organised into the folders, no matter at what folder level they have <tt>ro:FolderEntry</tt> representations. The <tt>ro:Folder</tt> instances themselves, as instances of <tt>ro:Resource</tt> &amp;#45; are also aggregated by the Research Object. Note that the <tt>ore:ResourceMap}}s (the {{.ttl files</tt>) would not normally be considered aggregated by the research object.</p>
+
+<p>Each <tt>ore:ResourceMap</tt> (each .ttl file in this example) contains relevant links to other resource maps, as if it was a REST resource. As a minimum a resource map for a <tt>ro:Folder</tt> should contain a link to the aggregating research object's <tt>ro:Manifest</tt>, and for each <tt>ro:FolderEntry</tt> which resource is another <tt>ro:Folder</tt>, a link to its <tt>ore:ResourceMap</tt>.</p>
+
+<p>In this example, the <tt>ro:Folder</tt> entries mainly correspond to the actual resource paths, for instance <tt>&amp;lt;b/file3.txt&amp;gt;</tt> has the folder entry with <tt>ro:entryName "file3"</tt>, and is a proxy of the <tt>ro:Folder &amp;lt;b&amp;gt;</tt> which has the <tt>ro:entryName "b"</tt> within the root folder <tt>&amp;lt;.ro/root&amp;gt;</tt> (which is not aggregated by any <tt>ro:Folder</tt>).</p>
+
+<p>There is no requirements for the entry names to match parts of the URI of the aggregated resource, this is examplified in this example where the aggregated resource {{&amp;lt;</p>
+<div class="wysiwyg-macro wysiwyg-macro-inline" macroname="nolink" macrohasbody="false" wikihasprecedingnewline="false" wikihastrailingnewline="false" ><div class="wysiwyg-macro-tag wysiwyg-macro-starttag">{nolink:http://www.example.com/external.txt}</div></div>
+<p>&amp;gt;}} has folder entries both as <tt>"a/other.txt"</tt> and <tt>"b/external.txt"</tt> in this imagined "check out" of a complete research object.</p>
+
+<p>Secondly, aggregated resources, even if they are <tt>ro:Resource</tt> instances, are not required to be present within an <tt>ro:Folder</tt> structure. In this RO, this is exemplified by the aggregation of another research object {{&amp;lt;</p>
+<div class="wysiwyg-macro wysiwyg-macro-inline" macroname="nolink" macrohasbody="false" wikihasprecedingnewline="false" wikihastrailingnewline="false" ><div class="wysiwyg-macro-tag wysiwyg-macro-starttag">{nolink:http://www.example.org/another-ro/}</div></div>
+<p>&amp;gt;}} which does not appear as an <tt>ro:FolderEntry</tt>.</p>
+
+<p>Content:</p>
+<table class='confluenceTable'><tbody>
+<tr>
+<th class='confluenceTh'> Resource </th>
+<th class='confluenceTh'> Type/description </th>
+</tr>
+<tr>
+<td class='confluenceTd'> . </td>
+<td class='confluenceTd'> ro:ResourceObject aggregating all except <tt>&amp;lt;.ro/*&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <a href="https://github.com/wf4ever/ro/tree/master/examples/folders/.ro"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/tree/master/examples/folders/.ro" aliasspecified="true" >./.ro</a> </td>
+<td class='confluenceTd'> Research Object metadata </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <a href="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/manifest.ttl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/manifest.ttl" aliasspecified="true" >./.ro/manifest.ttl</a> </td>
+<td class='confluenceTd'> ro:Manifest / ore:ResourceMap describing <tt>&amp;lt;.&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <a href="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root.ttl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root.ttl" aliasspecified="true" >./.ro/root.ttl</a> </td>
+<td class='confluenceTd'> ore:ResourceMap describing <tt>&amp;lt;.ro/root&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./.ro/root </td>
+<td class='confluenceTd'> Top-level ro:Folder <tt>&amp;lt;.ro/root&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <a href="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root/a.ttl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root/a.ttl" aliasspecified="true" >./.ro/root/a.ttl</a> </td>
+<td class='confluenceTd'> ore:ResourceMap describing the ro:Folder <tt>&amp;lt;a/&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./.ro/root/b </td>
+<td class='confluenceTd'> &amp;#42;) </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <a href="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root/b.ttl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root/b.ttl" aliasspecified="true" >./.ro/root/b.ttl</a> </td>
+<td class='confluenceTd'> ore:ResourceMap describing <tt>&amp;lt;b/&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <a href="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root/b/c.ttl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root/b/c.ttl" aliasspecified="true" >./.ro/root/b/c.ttl</a> </td>
+<td class='confluenceTd'> ore:ResourceMap describing <tt>&amp;lt;b/c/&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./file1.txt </td>
+<td class='confluenceTd'> ro:Resource <tt>&amp;lt;file1.txt&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./a </td>
+<td class='confluenceTd'> ro:Folder &amp;lt;a/&amp;gt;}} </td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./a/other.txt </td>
+<td class='confluenceTd'> ro:Resource {{&amp;lt;
+<div class="wysiwyg-macro wysiwyg-macro-inline" macroname="nolink" macrohasbody="false" wikihasprecedingnewline="false" wikihastrailingnewline="false" ><div class="wysiwyg-macro-tag wysiwyg-macro-starttag">{nolink:http://www.example.com/external.txt}</div></div>
+<p>&amp;gt;}} </p></td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./a/file2.txt </td>
+<td class='confluenceTd'> ro:Resource <tt>&amp;lt;a/file2.txt&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./b </td>
+<td class='confluenceTd'> ro:Folder &amp;lt;b/&amp;gt;}} </td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./b/external.txt </td>
+<td class='confluenceTd'> ro:Resource {{&amp;lt;
+<div class="wysiwyg-macro wysiwyg-macro-inline" macroname="nolink" macrohasbody="false" wikihasprecedingnewline="false" wikihastrailingnewline="false" ><div class="wysiwyg-macro-tag wysiwyg-macro-starttag">{nolink:http://www.example.com/external.txt}</div></div>
+<p>&amp;gt;}} </p></td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./b/file3.txt </td>
+<td class='confluenceTd'> ro:Resource <tt>&amp;lt;b/file3.txt&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./b/c </td>
+<td class='confluenceTd'> ro:Folder <tt>&amp;lt;b/c/&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./b/c/file4.txt </td>
+<td class='confluenceTd'> ro:Resource <tt>&amp;lt;b/c/file4.txt&amp;gt;</tt> </td>
+</tr>
+</tbody></table>
+
+
+
+
+<p>&amp;#42;) The metadata folder <tt>&amp;lt;.ro/root/b/&amp;gt;</tt> does not represent anything in the research object, and is in this example used to organize the <tt>ro:ResourceMap</tt>. If the <tt>ore:ResourceMap</tt> documents describing the <tt>ro:Folder</tt> are delivered through Content Negotiation directly on the <tt>ro:Folder</tt> resource, like <tt>&amp;lt;b/c/&amp;gt;</tt>, there might not be any need for such a metadata folder structure.</p>
+
+</section><!-- folders-examples -->
+
+
+<section id="myExperiment-pack-example">
+<h3>myExperiment Pack as a Research Object</h3>
+
+<p>As a proof of concept, we show how a myExperiment pack can be specified using research object vocabulary. The pack used is the myExperiment <a href="http://www.myexperiment.org/packs/217.html"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="http://www.myexperiment.org/packs/217.html" aliasspecified="true" >Graphing and Citing Time Series Data pack</a>, as it contains a workflow template, and is, therefore, useful for illustrating a workflow research object. This pack includes a workflow and its results. The workflow is used to  extract data from the Times Series Data Library and plots it using  Google  charts.</p>
+
+<p>The RO ontology contains individuals that allow to see what the resources aggregated within the pack are, and how their relationships can be encoded using AO annotations. The figure below illustrates the structure of the research object, which is represented by the node <em>ro-217</em>. This node aggregates 7 resources representing the wfdesc:Workflow, <em>workflow-2464</em>, the workflow run obtained by enacting such wfdesc:Workflow, <em>workflow-run1</em>, the artifacts used as inputs to the workflow run, <em>external-1</em>, <em>external-2</em> and <em>external-3</em>, and the artifacts generated as a result of the enactment, <em>file-576</em> and <em>file-577</em>. Additionally, the research object <em>ro-217</em> aggregates 6 annotations that are used to encode the relationships between aggregated resources. Specifically, <em>annotation-1</em>, <em>annotation-2</em> and <em>annotation-3</em> are used to specify that <em>workflow-run1</em> used the artifact <em>external-1</em>, <em>external-2</em> and <em>external-3</em>, and <em>annotation-4</em> and <em>annotation-5</em> are used to specify that the artifacts <em>file-576</em> and <em>file-577</em> were generated by <em>workflow-run1</em>. Finally, <em>annotation-6</em> is used to specify that <em>workflow-run1</em> has as <em>wfdesc:Workflow workflow-2464</em>.</p>
+
+</section><!-- myExperiment-pack-example -->
+
+<section><!-- OWL -->
+<h2>OWL versions</h2>
+
+<p>The RO ontologies can be found on <a href="https://github.com/wf4ever/ro"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro" aliasspecified="true" >github</a> as OWL/Turtle format:</p>
+<ul>
+	<li><a href="https://raw.github.com/wf4ever/ro/master/ro.owl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/ro.owl" aliasspecified="true" >https://raw.github.com/wf4ever/ro/master/ro.owl</a></li>
+	<li><a href="https://raw.github.com/wf4ever/ro/master/wfdesc.owl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/wfdesc.owl" aliasspecified="true" >https://raw.github.com/wf4ever/ro/master/wfdesc.owl</a></li>
+	<li><a href="https://raw.github.com/wf4ever/ro/master/wfprov.owl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/wfprov.owl" aliasspecified="true" >https://raw.github.com/wf4ever/ro/master/wfprov.owl</a></li>
+	<li><a href="https://raw.github.com/wf4ever/ro/master/wf4ever.owl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/wf4ever.owl" aliasspecified="true" >https://raw.github.com/wf4ever/ro/master/wf4ever.owl</a></li>
+	<li><a href="https://github.com/wf4ever/ro/blob/master/ore-owl.owl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/ore-owl.owl" aliasspecified="true" >https://github.com/wf4ever/ro/blob/master/ore-owl.owl</a> (OWL-version of OAI-ORE vocabulary)</li>
+</ul>
+
+
+<p>Other formats will be produced when these are published at their official namespace URIs.</p>
+
+<p>If you are viewing these in Protege, it is recommended that you:</p>
+<ul>
+	<li>Download all OWL files to the same folder (simplest is using <tt>git clone git://github.com/wf4ever/ro.git</tt> &amp;#45; this will also include <tt>catalog-v001.xml</tt> which avoids the below)</li>
+	<li>If Protege says it can't find <tt><a href="http://purl.org/wf4ever/wfdesc#"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="http://purl.org/wf4ever/wfdesc#" originalalias="http://purl.org/wf4ever/wfdesc#" >http://purl.org/wf4ever/wfdesc#</a></tt> &amp;#45; select &amp;#42;Yes&amp;#42; to choose the corresponding file locally, select <tt>wf.owl</tt> &amp;#45; and similar for the other ontologies.</li>
+	<li>In the menu, select <b>View &amp;#45;&amp;gt; Show only the active ontology</b> to avoid showing all of <tt>foaf</tt>, <tt>ao</tt>, etc.</li>
+	<li>In the menu, select <b>View &amp;#45;&amp;gt; Custom rendering..</b> and select <b>Render by qualified name</b>. This will show the prefixes, like <tt>opm:Agent</tt> and <tt>wfdesc:Workflow</tt>.</li>
+</ul>
+
+
+<p>Note on namespaces:</p>
+<ul>
+	<li><tt><a href="http://purl.org/wf4ever/ro#"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="http://purl.org/wf4ever/ro#" originalalias="http://purl.org/wf4ever/ro#" >http://purl.org/wf4ever/ro#</a></tt>, etc. redirects to <tt><a href="http://wf4ever.github.com/ro/ro.owl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="http://wf4ever.github.com/ro/ro.owl" originalalias="http://wf4ever.github.com/ro/ro.owl" >http://wf4ever.github.com/ro/ro.owl</a></tt> which is the <tt>gh-pages</tt> branch in github - this should match the latest released version.</li>
+</ul>
+</section><!-- OWL -->
+
+<section id="refs">
+<h2><a name="ResearchObjectVocabularySpecification-References"></a>References</h2>
+
+</section><!-- References -->
+
+ <section id='appendix'>
+<section id="changelog">
+<h2>Changelog</h2>
+
+<section id="v0.2">
+<h3><a name="ResearchObjectVocabularySpecification-v0.2%28workingdraft%29"></a>v0.2 (working draft)</h3>
+
+<p>Documentation: <a href="/wiki/display/docs/Research+Object+Vocabulary+Specification"
+ title="Research Object Vocabulary Specification"linktype="raw" wikidestination="docs:Research Object Vocabulary Specification" originalalias="Research Object Vocabulary Specification" >Research Object Vocabulary Specification</a> (this page)</p>
+
+<p>OWL version: <a href="https://github.com/wf4ever/ro"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro" aliasspecified="true" >https://github.com/wf4ever/ro</a> (not yet tagged)</p>
+
+<ul>
+	<li><tt>ro:SemanticAnnotation</tt> replaced with <a href="http://code.google.com/p/annotation-ontology/wiki/v2AnnotationBody#Body_as_a_Named_Graph"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="http://code.google.com/p/annotation-ontology/wiki/v2AnnotationBody#Body_as_a_Named_Graph" aliasspecified="true" >ao:GraphAnnotation</a> from AO v2</li>
+	<li><tt>ro:AggregatedAnnotation</tt> renamed to <tt>ro:Annotation</tt></li>
+	<li><tt>ro:annotatesAggregatedResource</tt> removed, use plain <tt>ro:annotatesResource</tt> instead</li>
+	<li>Now Referring to AO v2 which introduces <tt>ao:GraphAnnotation</tt> - <a href="http://code.google.com/p/annotation-ontology/wiki/v2Main"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="http://code.google.com/p/annotation-ontology/wiki/v2Main" originalalias="http://code.google.com/p/annotation-ontology/wiki/v2Main" >http://code.google.com/p/annotation-ontology/wiki/v2Main</a></li>
+</ul>
+</section>
+
+<section id="v0.1">
+<h3>v0.1</h3>
+
+<p>Documentation: <a href="/wiki/display/docs/Research+Object+Vocabulary+Specification+v0.1"
+ title="Research Object Vocabulary Specification v0.1"linktype="raw" wikidestination="docs:Research Object Vocabulary Specification v0.1" originalalias="Research Object Vocabulary Specification v0.1" >Research Object Vocabulary Specification v0.1</a></p>
+
+<p>OWL version: <a href="https://github.com/wf4ever/ro/tree/0.1"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/tree/0.1" aliasspecified="true" >https://github.com/wf4ever/ro/tree/0.1</a> (or <a href="https://github.com/wf4ever/ro/zipball/0.1"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/zipball/0.1" aliasspecified="true" >Download as zip</a>)</p>
+
+<ul>
+	<li>First release</li>
+</ul>
+ </section>
+</section>
+
+</body>
+</html>
