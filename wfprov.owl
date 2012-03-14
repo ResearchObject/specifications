@@ -97,7 +97,7 @@ This ontology can be further linked to more specific provenance ontologies like 
 
     <owl:ObjectProperty rdf:about="&wfprov;describedByWorkflow">
         <comment xml:lang="en">This property associates a wfprov:WorkflowRun to its corresponding wfdesc:Workflow description.</comment>
-        <range rdf:resource="&wfdesc;Workflow"/>
+        <range rdf:resource="&wfdesc;WorkflowTemplate"/>
         <domain rdf:resource="&wfprov;WorkflowRun"/>
         <subPropertyOf rdf:resource="&wfprov;describedByProcess"/>
     </owl:ObjectProperty>
