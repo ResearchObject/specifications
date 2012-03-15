@@ -31,7 +31,7 @@ public class HTMLFromOwlGenerator {
      */
     public static void main(String[] args) {
         //Get the argument for the input file, output files
-        String input = null, outClasses="classes", outProps="props";
+        String input = null, outClasses="classes", outProps="props", outDataProps = "dataProps";
         for(int a =0; a<args.length;a++){
             if(args[a].equals("-uri")){
                 input = args[a+1];
@@ -39,10 +39,12 @@ public class HTMLFromOwlGenerator {
                 outClasses = args[a+1];
             }else if(args[a].equals("-p")){
                 outProps = args[a+1];
+            }else if(args[a].equals("-d")){
+                outDataProps = args[a+1];
             }
         }
         if(input == null){
-            System.out.println("Usage: java -jar HTMLFromOwlGenerator.jar -uri URI -c ClassesOutputFileName -p PropertiesOutputFileName");
+            System.out.println("Usage: java -jar HTMLFromOwlGenerator.jar -uri URI -c ClassesOutputFileName -p PropertiesOutputFileName -d DataPropertiesOutputFilename");
             return;
         }
         //HTTP GET to the LODE servers
@@ -51,7 +53,7 @@ public class HTMLFromOwlGenerator {
         System.out.println("Querying LODE services for the HTML generation...");
         resource.get();            
         if (resource.getStatus().isSuccess()) {
-            System.out.println("Generating HTML files "+outClasses+".html and "+outProps+".html ...");
+            System.out.println("Generating HTML files "+outClasses+".html, "+outProps+".html and "+outDataProps+".html...");
             try {
                 Representation r = resource.getResponseEntity();
                 DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -59,8 +61,10 @@ public class HTMLFromOwlGenerator {
                 Document doc = db.parse(r.getStream());
                 FileWriter fstreamC = new FileWriter(outClasses+".html");
                 FileWriter fstreamP = new FileWriter(outProps+".html");
+                FileWriter fstreamD = new FileWriter(outDataProps+".html");
                 BufferedWriter outC = new BufferedWriter(fstreamC);
                 BufferedWriter outP = new BufferedWriter(fstreamP);
+                BufferedWriter outD = new BufferedWriter(fstreamD);
 
                 NodeList c = doc.getElementsByTagName("div");
                 for(int i = 0; i<c.getLength();i++){
@@ -77,9 +81,16 @@ public class HTMLFromOwlGenerator {
                         outP.write("\n\n\n\n<!-- This is the html code for the properties -->\n\n\n\n");
                         outP.write(nodeToString(c.item(i)));
                     }
+                    else if(attrID.equals("dataproperties")){
+                        outD.write("\n\n\n\n<!-- This is the html code for the dataproperties list -->\n\n\n\n");
+                        outD.write(getTermList(c.item(i)));
+                        outD.write("\n\n\n\n<!-- This is the html code for the dataproperties -->\n\n\n\n");
+                        outD.write(nodeToString(c.item(i)));
+                    }
                 }
                 outC.close();
                 outP.close();
+                outD.close();
                 System.out.println("Done!");
             } catch (Exception ex) {
                 System.out.println("Exception interpreting the resource: "+ ex.getMessage());
@@ -111,7 +122,7 @@ public static String nodeToString(Node n){
             StreamResult result = new StreamResult(sw);
             DOMSource source = new DOMSource(n);
             trans.transform(source, result);
-            return(sw.toString());
+            return(sw.toString().replace("\n", ""));
         }
         
         catch (Exception ex) {
