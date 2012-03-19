@@ -47,14 +47,63 @@ mappings.each do |model, url|
   objectproperties = doc.xpath("//div[@id='objectproperties']")
   # Looks for <div id="[model]-documentation"> and injects the appropriate div from LODE
   template_doc.xpath("//div[@id='#{model}-documentation']").each do |div|
+    # Ideally h2 should be downgraded to h3 as the headings end up a
+    # bit iffy.  This is done via some hacking, ignoring the first
+    # child of the generated LODE code and then inserting an h3. Not ideal. 
     if classes[0] then 
-      div.add_child(classes[0])
+      # Assumes that the first child is the <h2></h2>
+      div.add_child("<h3>Classes</h3>")
+      first = true
+      classes[0].children.each do |child|
+        if first then
+          first = false
+        else
+          div.add_child(child)
+        end
+      end
     end
     if dataproperties[0] then 
-      div.add_child(dataproperties[0])
+      # Assumes that the first child is the <h2></h2>
+      div.add_child("<h3>Data Properties</h3>")
+      first = true
+      dataproperties[0].children.each do |child|
+        if first then
+          first = false
+        else
+          div.add_child(child)
+        end
+      end
     end
     if objectproperties[0] then 
-      div.add_child(objectproperties[0])
+      # Assumes that the first child is the <h2></h2>
+      div.add_child("<h3>Object Properties</h3>")
+      first = true
+      objectproperties[0].children.each do |child|
+        if first then
+          first = false
+        else
+          div.add_child(child)
+        end
+      end
+    end
+  end
+end
+
+# Where to find the examples
+examples = {
+  'wfdesc-model' => './examples/wfdescExample.html'
+}
+
+examples.each do |model, url| 
+  puts model if BEHAVIOUR[:debug]
+  puts "#{LODE}#{url}" if BEHAVIOUR[:debug]
+  doc = Nokogiri::HTML(open("#{url}"))
+  puts doc if BEHAVIOUR[:debug]
+  example = doc.xpath("//div[@id='examples']")
+  # Looks for <div id="[model]-model-examples"> and injects the appropriate div from LODE
+  template_doc.xpath("//div[@id='#{model}-examples']").each do |div|
+    if example[0] then 
+      div.add_child(example[0])
     end
   end
 end
