@@ -19,6 +19,8 @@
  var extraReferences = {
 "EXEC":"Executable Papers Grand Challenge. URL: <a href=\"http://www.executablepapers.com/\">http://www.executablepapers.com/</a>",
 
+"BECHHOFER11":"Sean Bechhofer et. al.<cite>Linked Data is Not Enough for Scientists</cite>, Future Generation Computer Systems, DOI: <a href="http://dx.doi.org/10.1016/j.future.2011.08.004">201110.1016/j.future.2011.08.004</a>.
+
 "FORCE11": "Phil Bourne, Tim Clark et. al. <cite><a href=\"http://force11.org/white_paper\">Improving Future Research Communication and e-Scholarship</a>.</cite> FORCE11 Manifesto. URL: <a href=\"http://force11.org/white_paper\">http://force11.org/white_paper</a>",
 
 "ORE":"<cite><a href=\"http://www.openarchives.org/ore/1.0/toc.html\">Open Archives Initiative Object Reuse and Exchange</a></cite>. <em>ORE Specifications and User Guides.</em> URL: <a href=\"http://www.openarchives.org/ore/1.0/toc.html\">http://www.openarchives.org/ore/1.0/toc.html</a>",
@@ -62,7 +64,7 @@ var respecConfig = {
  
           // if you want to have extra CSS, append them to this list
           // it is recommended that the respec.css stylesheet be kept
-          extraCSS:             ["http://dev.w3.org/2009/dap/ReSpec.js/css/respec.css", "./extra.css"],
+          extraCSS:             ["http://dev.w3.org/2009/dap/ReSpec.js/css/respec.css", "./ro/extra.css"],
  
           // editors, add as many as you like
           // only "name" is required
@@ -83,6 +85,8 @@ var respecConfig = {
               { name: "Graham Klyne",
                 company: "University of Oxford" },
               { name: "Daniel Garijo",
+                company: "UPM" },
+              { name: "Oscar Corcho",
                 company: "UPM" },
               { name: "Esteban Garc&#237;a Cuesta",
                 company: "iSOCO" }
@@ -110,11 +114,15 @@ var respecConfig = {
 
 <h2>Introduction</h2>
 
-<p>The Wf4Ever project addresses challenges for the preservation of scientific workflows in data intensive science, including: (a) the consideration of complex digital objects that comprise both their static and dynamic aspects, including workflow models, the provenance of their executions, and interconnections between workflows and related resources, (b) the provision of access, manipulation, sharing, reuse and evolution functions to these complex digital objects, (c) integral lifecycle management functions for workflows and their associated materials. To address these challenges, the Wf4Ever project is investigating and developing technological infrastructure for the preservation and efficient retrieval and reuse of scientific workflows in a range of disciplines.</p>
+<p>Scientific workflows are used to describe series of structured activities and computations that arise in scientific problem-solving, providing scientists from virtually any discipline with a means to specify and enact their experiments. From a computational perspective, such experiments (workflows) can be defined as directed acyclic graphs where the nodes correspond to analysis operations, which can be supplied locally or by third party web services, and where the edges specify the flow of data between those operations.</p>
 
-<p>Key to the Wf4Ever approach is the notion of Research Objects. A Research Object is an aggregation of resources along with annotations or metadata providing additional information about those resources.</p>
+<p>Besides being useful to describe and execute computations, workflows also allow encoding of scientific methods and know-how. Hence they are valuable objects from a scholarly point of view, for several reasons: (i) to allow assessment of the reproducability of results; (ii) to be reused by the same or by a different scientist; (iii) to be repurposed for other goals than those for which it was originally built; (iv) to validate the method that led to a new scientific insight; (v) to serve as live-tutorials, exposing how to take advantage of existing data infrastructure, etc. This follows a trend that can be observed in disciplines such as Biology and Astronomy, with other types of objects, such as databases, increasingly becoming part of the research outcomes of an individual or a group, and hence also being shared, cited, reused, versioned, etc. </p>
 
-<p>The notion of Research Object is being pursued in a number of different activities. For example, the FORCE11 [[FORCE11]] group see the Research Object as a replacement for the traditional paper publication, providing a container within which resources relating to a particular publication can be aggregated. Executable papers [[EXEC]] similarly aim to support validation, exploration and interaction in publication in order to support validation. Hunter [[HUNTER06]] proposes the notion of Scientific Publication Packages (SPP) to describe the selective encapsulation of raw data, derived products, algorithms, software and textual publications. SPPs are motivated primarily by the need to create archives for the variety of artifacts produced during the course of a scientific investigation; they ideally contain data, methods, software and documents, but also their provenance as well.</p>
+<p>Challenges for the preservation of scientific workflows in data intensive science, include: (a) the consideration of complex digital objects that comprise both their static and dynamic aspects, including workflow models, the provenance of their executions, and interconnections between workflows and related resources, (b) the provision of access, manipulation, sharing, reuse and evolution functions to these complex digital objects, (c) integral lifecycle management functions for workflows and their associated materials.</p>
+
+<p>Thus the use of workflow specifications on their own does not guarantee to support reusability, shareability, reproducibility, or better understanding of scientific methods. Workflow environment tools evolve across the years, or they may even disappear. The services and tools used by the workflow may change or evolve too. Finally, the data used by the workflow may be updated or no longer available. To overcome these issues, additional information may be needed. This includes annotations to describe the operations performed by the workflow; annotations to provide details like authors, versions, citations, etc.; links to other resources, such as the provenance of the results obtained by executing the workflow, datasets used as input, etc.. Such additional annotations enable a comprehensive view of the experiment, and encourage inspection of the different elements of that experiment, providing the scientist with a picture of the strengths and weaknesses of the digital experiment in relation to decay, adaptability, stability, etc.</p>
+
+<p>These richly annotation objects are what we call workflow-centric Research Objects. The notion of Research Object (as discussed in [[BECHHOFER11]]) is a general idea that aims to extend traditional publication mechanisms and take us "beyond the pdf" [[FORCE11]]]. An RO is an aggregation of resources along with annotations on those resources. The aggregation itself may also be annotated, where by annotation, we mean the association of arbitrary additional information with a resource. The Research Object thus collects together relevant resources along with annotations that enable the understanding, reuse etc. of its constituent parts. In a workflow-centric Reearch Object describing an investigation for example, annotations could describe how data sources have been used or how intermediate results were derived. Executable papers [[EXEC]] similarly aim to support validation, exploration and interaction in publication in order to support validation. Hunter [[HUNTER06]] proposes the notion of Scientific Publication Packages (SPP) to describe "the selective encapsulation of raw data, derived products, algorithms, software and textual publications". SPPs are motivated primarily by the need to create archives for the variety of artifacts produced during the course of a scientific investigation; they ideally contain data, methods, software and documents, but also their provenance as well.</p>
 
 <section id="scope">
 <h3>Scope</h3>
