@@ -62,7 +62,7 @@ var respecConfig = {
  
           // if you want to have extra CSS, append them to this list
           // it is recommended that the respec.css stylesheet be kept
-          extraCSS:             ["http://dev.w3.org/2009/dap/ReSpec.js/css/respec.css", "./ro/extra.css"],
+          extraCSS:             ["http://dev.w3.org/2009/dap/ReSpec.js/css/respec.css", "./css/extra.css"],
  
           // editors, add as many as you like
           // only "name" is required
@@ -213,7 +213,7 @@ ontology</a> under the namespace
 <span class="dotted" title="http://www.openarchives.org/ore/terms/AggregatedResource">terms:AggregatedResource</span><sup title="class" class="type-c">c</sup>
 </li>
 <li>
-<span class="dotted" title="http://purl.org/dc/terms/created">terms2:created</span><sup title="data property" class="type-dp">dp</sup><span class="logic">some</span> <span class="dotted" title="http://www.w3.org/2001/XMLSchema#dateTime">xsd:dateTime</span>
+<span class="dotted" title="http://purl.org/dc/terms/creator">terms2:creator</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <span class="dotted" title="http://xmlns.com/foaf/0.1/Agent">foaf:Agent</span><sup title="class" class="type-c">c</sup>
 </li>
 <li>
 <span class="dotted" title="http://purl.org/ao/annotatesResource">ao:annotatesResource</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e226" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup><span class="logic">or</span> <span class="dotted" title="http://www.openarchives.org/ore/terms/AggregatedResource">terms:AggregatedResource</span><sup title="class" class="type-c">c</sup><span class="logic">or</span> <span class="dotted" title="http://www.openarchives.org/ore/terms/Proxy">terms:Proxy</span><sup title="class" class="type-c">c</sup>
@@ -222,7 +222,7 @@ ontology</a> under the namespace
 <span class="dotted" title="http://www.openarchives.org/ore/terms/isAggregatedBy">terms:isAggregatedBy</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e226" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup>
 </li>
 <li>
-<span class="dotted" title="http://purl.org/dc/terms/creator">terms2:creator</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <span class="dotted" title="http://xmlns.com/foaf/0.1/Agent">foaf:Agent</span><sup title="class" class="type-c">c</sup>
+<span class="dotted" title="http://purl.org/dc/terms/created">terms2:created</span><sup title="data property" class="type-dp">dp</sup><span class="logic">some</span> <span class="dotted" title="http://www.w3.org/2001/XMLSchema#dateTime">xsd:dateTime</span>
 </li>
 </ul></dd>
 </dl>
@@ -259,10 +259,10 @@ ontology</a> under the namespace
 <dt>is equivalent to</dt>
 <dd><ul>
 <li>
-<a href="#d3e69" title="http://purl.org/wf4ever/ro#entryName">ro:entryName</a><sup title="data property" class="type-dp">dp</sup><span class="logic">some</span> <span class="dotted" title="http://www.w3.org/2001/XMLSchema#string">xsd:string</span>
+<span class="dotted" title="http://www.openarchives.org/ore/terms/proxyIn">terms:proxyIn</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e156" title="http://purl.org/wf4ever/ro#Folder">ro:Folder</a><sup title="class" class="type-c">c</sup>
 </li>
 <li>
-<span class="dotted" title="http://www.openarchives.org/ore/terms/proxyIn">terms:proxyIn</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e156" title="http://purl.org/wf4ever/ro#Folder">ro:Folder</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e69" title="http://purl.org/wf4ever/ro#entryName">ro:entryName</a><sup title="data property" class="type-dp">dp</sup><span class="logic">some</span> <span class="dotted" title="http://www.w3.org/2001/XMLSchema#string">xsd:string</span>
 </li>
 </ul></dd>
 <dt>has super-classes</dt>
@@ -313,10 +313,10 @@ ontology</a> under the namespace
 <span class="dotted" title="http://www.openarchives.org/ore/terms/Aggregation">terms:Aggregation</span><sup title="class" class="type-c">c</sup>
 </li>
 <li>
-<span class="dotted" title="http://purl.org/dc/terms/created">terms2:created</span><sup title="data property" class="type-dp">dp</sup><span class="logic">some</span> <span class="dotted" title="http://www.w3.org/2001/XMLSchema#dateTime">xsd:dateTime</span>
+<span class="dotted" title="http://purl.org/dc/terms/creator">terms2:creator</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <span class="dotted" title="http://xmlns.com/foaf/0.1/Agent">foaf:Agent</span><sup title="class" class="type-c">c</sup>
 </li>
 <li>
-<span class="dotted" title="http://purl.org/dc/terms/creator">terms2:creator</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <span class="dotted" title="http://xmlns.com/foaf/0.1/Agent">foaf:Agent</span><sup title="class" class="type-c">c</sup>
+<span class="dotted" title="http://purl.org/dc/terms/created">terms2:created</span><sup title="data property" class="type-dp">dp</sup><span class="logic">some</span> <span class="dotted" title="http://www.w3.org/2001/XMLSchema#dateTime">xsd:dateTime</span>
 </li>
 </ul></dd>
 </dl>
