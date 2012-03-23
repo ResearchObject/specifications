@@ -215,16 +215,16 @@ ontology</a> under the namespace
 <span class="dotted" title="http://www.openarchives.org/ore/terms/AggregatedResource">terms:AggregatedResource</span><sup title="class" class="type-c">c</sup>
 </li>
 <li>
-<span class="dotted" title="http://purl.org/dc/terms/created">terms2:created</span><sup title="data property" class="type-dp">dp</sup><span class="logic">some</span> <span class="dotted" title="http://www.w3.org/2001/XMLSchema#dateTime">xsd:dateTime</span>
-</li>
-<li>
-<span class="dotted" title="http://purl.org/ao/annotatesResource">ao:annotatesResource</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e226" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup><span class="logic">or</span> <span class="dotted" title="http://www.openarchives.org/ore/terms/AggregatedResource">terms:AggregatedResource</span><sup title="class" class="type-c">c</sup><span class="logic">or</span> <span class="dotted" title="http://www.openarchives.org/ore/terms/Proxy">terms:Proxy</span><sup title="class" class="type-c">c</sup>
+<span class="dotted" title="http://purl.org/dc/terms/creator">terms2:creator</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <span class="dotted" title="http://xmlns.com/foaf/0.1/Agent">foaf:Agent</span><sup title="class" class="type-c">c</sup>
 </li>
 <li>
 <span class="dotted" title="http://www.openarchives.org/ore/terms/isAggregatedBy">terms:isAggregatedBy</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e226" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup>
 </li>
 <li>
-<span class="dotted" title="http://purl.org/dc/terms/creator">terms2:creator</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <span class="dotted" title="http://xmlns.com/foaf/0.1/Agent">foaf:Agent</span><sup title="class" class="type-c">c</sup>
+<span class="dotted" title="http://purl.org/ao/annotatesResource">ao:annotatesResource</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e226" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup><span class="logic">or</span> <span class="dotted" title="http://www.openarchives.org/ore/terms/AggregatedResource">terms:AggregatedResource</span><sup title="class" class="type-c">c</sup><span class="logic">or</span> <span class="dotted" title="http://www.openarchives.org/ore/terms/Proxy">terms:Proxy</span><sup title="class" class="type-c">c</sup>
+</li>
+<li>
+<span class="dotted" title="http://purl.org/dc/terms/created">terms2:created</span><sup title="data property" class="type-dp">dp</sup><span class="logic">some</span> <span class="dotted" title="http://www.w3.org/2001/XMLSchema#dateTime">xsd:dateTime</span>
 </li>
 </ul></dd>
 </dl>
@@ -261,10 +261,10 @@ ontology</a> under the namespace
 <dt>is equivalent to</dt>
 <dd><ul>
 <li>
-<a href="#d3e69" title="http://purl.org/wf4ever/ro#entryName">ro:entryName</a><sup title="data property" class="type-dp">dp</sup><span class="logic">some</span> <span class="dotted" title="http://www.w3.org/2001/XMLSchema#string">xsd:string</span>
+<span class="dotted" title="http://www.openarchives.org/ore/terms/proxyIn">terms:proxyIn</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e156" title="http://purl.org/wf4ever/ro#Folder">ro:Folder</a><sup title="class" class="type-c">c</sup>
 </li>
 <li>
-<span class="dotted" title="http://www.openarchives.org/ore/terms/proxyIn">terms:proxyIn</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e156" title="http://purl.org/wf4ever/ro#Folder">ro:Folder</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e69" title="http://purl.org/wf4ever/ro#entryName">ro:entryName</a><sup title="data property" class="type-dp">dp</sup><span class="logic">some</span> <span class="dotted" title="http://www.w3.org/2001/XMLSchema#string">xsd:string</span>
 </li>
 </ul></dd>
 <dt>has super-classes</dt>
@@ -1102,8 +1102,9 @@ ontology</a> under the namespace
 
 </section><!-- wf4ever--></section><!-- at-glance --><section id="examples"><h2>Examples</h2>
 
-
-<section id="annotations-example"><h3>Annotations and manifests</h3>
+<div id="annotations-examples">
+<div id="examples">
+  <section id="annotations-example-sec"><h3>Annotations and manifests</h3>
 
 <p>Here is an example research object containing a single workflow <tt>a_workflow.t2flow</tt> and an annotation which as been added by a software agent.</p>
 
@@ -1183,7 +1184,13 @@ ontology</a> under the namespace
 </div>
 </div></div>
 <p>Inside the annotation body, which we have been told was done by Marco, we find an abstract version of the .t2flow workflow (using the <tt>wfdesc</tt> ontology) which has been extracted by the agent. This reveals some workflow annotations done by Marco in 2010; title and description on the workflow, and descriptions for the input and output ports.</p>
-</section><!-- annotation-examples --><section id="folders-example"><h3>Folder structures using ro:Folder</h3>
+</section><!-- annotation-examples -->
+</div>
+</div>
+
+<div id="folders-examples">
+<div id="examples">
+  <section id="folders-example-sec"><h3>Folder structures using ro:Folder</h3>
 
 <p>The <tt>ro</tt> ontology contains <tt>ro:Folder</tt> and <tt>ro:FolderEntry</tt> which can be used to organise aggregated resourced in a folder-like structure. Folders themselves are also aggregated by the research object, and can be the target of ?annotations just like other resources. This example shows how such a folder structure could be maintained in a "checked out" research object where each aggregated resource exists as a file or folder on a local file system. For increased readability, this example represents the individual <tt>ore:ResourceMap</tt> documents as <a href="http://www.w3.org/TeamSubmission/turtle/" class="external-link" rel="nofollow" linktype="raw" wikidestination="http://www.w3.org/TeamSubmission/turtle/" aliasspecified="true">Turtle</a> files, but these could be in formats like RDF/XML, as a single file with named graphs, like TriG, or other representations as appropriate. </p>
 
@@ -1296,13 +1303,30 @@ ontology</a> under the namespace
 </tbody></table>
 <p>&amp;#42;) The metadata folder <tt>&amp;lt;.ro/root/b/&amp;gt;</tt> does not represent anything in the research object, and is in this example used to organize the <tt>ro:ResourceMap</tt>. If the <tt>ore:ResourceMap</tt> documents describing the <tt>ro:Folder</tt> are delivered through Content Negotiation directly on the <tt>ro:Folder</tt> resource, like <tt>&amp;lt;b/c/&amp;gt;</tt>, there might not be any need for such a metadata folder structure.</p>
 
-</section><!-- folders-examples --><section id="myExperiment-pack-example"><h3>myExperiment Pack as a Research Object</h3>
+</section><!-- folders-examples -->
+</div>
+</div>
+  
+<div id="myexperiment-examples">
+<div id="examples">
+  <section id="myExperiment-pack-example-sec"><h3>myExperiment Pack as a Research Object</h3>
 
 <p>As a proof of concept, we show how a myExperiment pack can be specified using research object vocabulary. The pack used is the myExperiment <a href="http://www.myexperiment.org/packs/217.html" class="external-link" rel="nofollow" linktype="raw" wikidestination="http://www.myexperiment.org/packs/217.html" aliasspecified="true">Graphing and Citing Time Series Data pack</a>, as it contains a workflow template, and is, therefore, useful for illustrating a workflow research object. This pack includes a workflow and its results. The workflow is used to  extract data from the Times Series Data Library and plots it using  Google  charts.</p>
 
 <p>The RO ontology contains individuals that allow to see what the resources aggregated within the pack are, and how their relationships can be encoded using AO annotations. The figure below illustrates the structure of the research object, which is represented by the node <em>ro-217</em>. This node aggregates 7 resources representing the wfdesc:Workflow, <em>workflow-2464</em>, the workflow run obtained by enacting such wfdesc:Workflow, <em>workflow-run1</em>, the artifacts used as inputs to the workflow run, <em>external-1</em>, <em>external-2</em> and <em>external-3</em>, and the artifacts generated as a result of the enactment, <em>file-576</em> and <em>file-577</em>. Additionally, the research object <em>ro-217</em> aggregates 6 annotations that are used to encode the relationships between aggregated resources. Specifically, <em>annotation-1</em>, <em>annotation-2</em> and <em>annotation-3</em> are used to specify that <em>workflow-run1</em> used the artifact <em>external-1</em>, <em>external-2</em> and <em>external-3</em>, and <em>annotation-4</em> and <em>annotation-5</em> are used to specify that the artifacts <em>file-576</em> and <em>file-577</em> were generated by <em>workflow-run1</em>. Finally, <em>annotation-6</em> is used to specify that <em>workflow-run1</em> has as <em>wfdesc:Workflow workflow-2464</em>.</p>
 
-</section><!-- myExperiment-pack-example --></section><!-- examples --><section id="ontologies"><!-- OWL --><h2>OWL versions</h2>
+</section><!-- myExperiment-pack-example -->
+</div>
+</div>
+
+<div id="astro-examples">
+  <div id="examples">
+  <section id="astro-example-sec"><h3>Astro Example</h3>
+  </section>
+</div>
+</div>
+
+</section><!-- examples --><section id="ontologies"><!-- OWL --><h2>OWL versions</h2>
 
 <p>The RO ontologies can be found on <a href="https://github.com/wf4ever/ro" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://github.com/wf4ever/ro" aliasspecified="true">github</a> as OWL/Turtle format:</p>
 <ul>

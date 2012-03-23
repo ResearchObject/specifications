@@ -91,8 +91,12 @@ end
 
 # Where to find the examples
 examples = {
-  'wfdesc' => './examples/wfdescExample.html',
-  'wfprov' => './examples/wfprovExample.html'
+  'wfdesc-model' => './examples/wfdescExample.html',
+  'wfprov-model' => './examples/wfprovExample.html',
+  'annotations' => './examples/annotations.html',
+  'myexperiment' => './examples/myexperiment.html',
+  'folders' => './examples/folders.html',
+  'astro' => './examples/astro.html'
 }
 
 examples.each do |model, url| 
@@ -101,8 +105,8 @@ examples.each do |model, url|
   doc = Nokogiri::HTML(open("#{url}"))
   puts doc if BEHAVIOUR[:debug]
   example = doc.xpath("//div[@id='examples']")
-  # Looks for <div id="[model]-model-examples"> and injects the appropriate div from LODE
-  template_doc.xpath("//div[@id='#{model}-model-examples']").each do |div|
+  # Looks for <div id="[model]-model-examples"> and injects the appropriate div from a file
+  template_doc.xpath("//div[@id='#{model}-examples']").each do |div|
     if example[0] then 
       div.add_child(example[0])
     end
