@@ -125,13 +125,22 @@ var respecConfig = {
 <p>These richly annotation objects are what we call workflow-centric Research Objects. The notion of Research Object (as discussed in [[BECHHOFER11]]) is a general idea that aims to extend traditional publication mechanisms and take us "beyond the pdf" [[FORCE11]]]. An RO is an aggregation of resources along with annotations on those resources. The aggregation itself may also be annotated, where by annotation, we mean the association of arbitrary additional information with a resource. The Research Object thus collects together relevant resources along with annotations that enable the understanding, reuse etc. of its constituent parts. In a workflow-centric Reearch Object describing an investigation for example, annotations could describe how data sources have been used or how intermediate results were derived. Executable papers [[EXEC]] similarly aim to support validation, exploration and interaction in publication in order to support validation. Hunter [[HUNTER06]] proposes the notion of Scientific Publication Packages (SPP) to describe "the selective encapsulation of raw data, derived products, algorithms, software and textual publications". SPPs are motivated primarily by the need to create archives for the variety of artifacts produced during the course of a scientific investigation; they ideally contain data, methods, software and documents, but also their provenance as well.</p>
 
 <section id="scope">
-<h3>Scope</h3>
+<h3>Scope of Wf4Ever Research Objects</h3>
 
 <p>The focus of Wf4Ever is on workflow preservation (and more specifically workflows supporting scientific investigation). Thus the objects that will be described using the model are inherently workflow-centric. Although the basic infrastructure (aggregation + annotation + domain vocabularies) that the RO model supports is applicable to many situations (for example the executable or enhanced publication of FORCE11), the specific vocabularies defined within the Wf4Ever RO model are intended to support those Research Objects that have workflows (methods) as their primary content.</p>
 
 <p>The intention is that a Wf4Ever Research Object will aggregate information about a workflow (or collection of workflows) possibly including details of its execution trace, the data items consumed or produced by the workflow, plus provenance information about the lineage of the workflow, data items or the aggregation itself. This intention is that this information will support reproducability of the workflows, reuse of the components and, perhaps most importantly will facilitate subsequent understanding of the investigation that the workflow is intended to support. The support of "full-fat" reproducability in terms of re-execution of a process in order to produce identical results is problematic, particularly when operating in a distributed, web-service based ecosystem.</p>
+</section><!-- scope -->
 
-<h4>Technical and Social Objects</h4>
+<section id="scope-doc">
+<h3>Scope of this document</h3>
+
+<p>This particular document describes the vocabularies that describe Workflow-centric Research Objects within Wf4ever. A complete, functional RO based ecosystem will require a number of different services for creation, storage, manipulation, recommendation, visualisation etc. of Research Objects. These services are not considered here. Nor do we discuss vocabularies or mechanisms that support Research Object evolution.</p>
+</section><!-- scope-doc -->
+
+<section id="tech-soc">
+
+<h3>Technical and Social Objects</h3>
 
 <p>Research Objects play multiple roles. In the first case, they are
 <em>technical</em> objects. They provide access to the resources that
@@ -156,7 +165,7 @@ structures and vocabulary for describing workflow objects. Additional
 vocabularies covering evolution, lifecycle, versioning and other
 social aspects will be covered elsewhere.</p>
 
-</section> <!-- scope -->
+</section> <!-- tech-soc -->
 
 <section id="organisation">
 <h3>Overall Model Organisation</h3>
@@ -263,61 +272,62 @@ ontology</a> under the namespace
 <section id="annotations-example">
 <h3>Annotations and manifests</h3>
 
-<p>Here is an example research object containing a single workflow <tt>a_workflow.t2flow</tt> and an annotation which as been automatically added.</p>
+<p>Here is an example research object containing a single workflow <tt>a_workflow.t2flow</tt> and an annotation which as been added by a software agent.</p>
 
 <div class="wysiwyg-macro" macroname="code" macrostarttag="{code:title=.ro/manifest}" macrohasbody="true" wikihasnewlinebeforebody="true" wikihasnewlineafterbody="true" wikihasprecedingnewline="true" wikihastrailingnewline="true" ><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" wysiwyg="ignore"  style="border-bottom-width: 1px;"><b>.ro/manifest</b></div><div class="codeContent panelContent">
-<pre class="code-java">@base &amp;lt;../&amp;gt; .
-@prefix ro: &amp;lt;http:<span class="code-comment">//purl.org/wf4ever/ro#&amp;gt; .
-</span>@prefix ao: &amp;lt;http:<span class="code-comment">//purl.org/ao/&amp;gt; .
-</span>@prefix ore: &amp;lt;http:<span class="code-comment">//www.openarchives.org/ore/terms/&amp;gt; .
-</span>@prefix dct: &amp;lt;http:<span class="code-comment">//purl.org/dc/terms/&amp;gt; .
-</span>@prefix xsd: &amp;lt;http:<span class="code-comment">//www.w3.org/2001/XMLSchema#&amp;gt; .
-</span>@prefix foaf: &amp;lt;http:<span class="code-comment">//xmlns.com/foaf/0.1/&amp;gt; .
-</span>@prefix rdfg: &amp;lt;http:<span class="code-comment">//www.w3.org/2004/03/trix/rdfg-1/&amp;gt; .
+<pre class="code-java">@base &lt;../&gt; .
+@prefix ro: &lt;http:<span class="code-comment">//purl.org/wf4ever/ro#&gt; .
+</span>@prefix ao: &lt;http:<span class="code-comment">//purl.org/ao/&gt; .
+</span>@prefix ore: &lt;http:<span class="code-comment">//www.openarchives.org/ore/terms/&gt; .
+</span>@prefix dct: &lt;http:<span class="code-comment">//purl.org/dc/terms/&gt; .
+</span>@prefix xsd: &lt;http:<span class="code-comment">//www.w3.org/2001/XMLSchema#&gt; .
+</span>@prefix foaf: &lt;http:<span class="code-comment">//xmlns.com/foaf/0.1/&gt; .
+</span>@prefix rdfg: &lt;http:<span class="code-comment">//www.w3.org/2004/03/trix/rdfg-1/&gt; .
 </span>
-&amp;lt;.&amp;gt; a ro:ResearchObject, ore:Aggregation ;
-    ore:aggregates &amp;lt;a_workflow.t2flow&amp;gt;, :ann1 ;
+&lt;.&gt; a ro:ResearchObject, ore:Aggregation ;
+    ore:aggregates &lt;a_workflow.t2flow&gt;, :ann1 ;
     dct:created <span class="code-quote">"2011-12-02T15:01:10Z"</span>^^xsd:dateTime ;
     dct:creator [ a foaf:Person; foaf:name <span class="code-quote">"Stian Soiland-Reyes"</span> ] .
 
-&amp;lt;a_workflow.t2flow&amp;gt; a ro:Resource .
+&lt;a_workflow.t2flow&gt; a ro:Resource .
 
 :proxy1 a ro:Proxy ;
-    ore:proxyFor &amp;lt;a_workflow.t2flow&amp;gt; ;
-    ore:proxyIn &amp;lt;.&amp;gt; ;
+    ore:proxyFor &lt;a_workflow.t2flow&gt; ;
+    ore:proxyIn &lt;.&gt; ;
     dct:created <span class="code-quote">"2011-12-02T15:02:10Z"</span>^^xsd:dateTime ;
     dct:creator [ a foaf:Person; foaf:name <span class="code-quote">"Stian Soiland-Reyes"</span> ] .
 
 :ann1 a ro:Annotation, ao:GraphAnnotation ;
-    ao:body &amp;lt;.ro/ann1&amp;gt; ;
-    ao:annotatesResource &amp;lt;a_workflow.t2flow&amp;gt;, &amp;lt;.&amp;gt; ;
+    ao:body &lt;.ro/ann1&gt; ;
+    ao:annotatesResource &lt;a_workflow.t2flow&gt;, &lt;.&gt; ;
     dct:created <span class="code-quote">"2011-12-02T15:02:13Z"</span>^^xsd:dateTime ;
     dct:creator [ a foaf:Agent ; foaf:name <span class="code-quote">"t2flow workflow annotation extractor"</span> ] .
 
-&amp;lt;.ro/ann1&amp;gt; a rdfg:Graph ;
+&lt;.ro/ann1&gt; a rdfg:Graph ;
     dct:created <span class="code-quote">"2010-05-14T12:02:12Z"</span>^^xsd:dateTime ;
     dct:creator [ a foaf:Person ; foaf:name <span class="code-quote">"Marco Roos"</span> ] .
 
 </pre>
 </div></div></div>
-<p>Here we can see that Stian has made a research object at 15:01:10, and at 15:02:10 he added <tt>&amp;lt;a_workflow.t2flow&amp;gt;</tt> to the research object. Note that in this case we don't know when <tt>&amp;lt;a_workflow.t2flow&amp;gt;</tt> itself was created or when.  The research object also aggregates an annotation <tt>:ann1</tt>, this annotation was created by "t2flow workflow annotation extractor" a few seconds after Stian added <tt>&amp;lt;a_workflow.t2flow&amp;gt;</tt> &amp;#45; and indeed this is the aggregated resource which has been annotated. It also annotates the resource object itself. We have been told that the content of that annotation, <tt>&amp;lt;.ro/ann1&amp;gt;</tt>, was created by Marco more than a year earlier, which in this case makes sense because it is an annotation which the extractor has found inside the <tt>t2flow</tt>.</p>
+<p>Here we can see that Stian has made a research object at 15:01:10, and at 15:02:10 he added <tt>&lt;a_workflow.t2flow&gt;</tt> to the research object. Note that in this case we do not have informatio about when <tt>&lt;a_workflow.t2flow&gt;</tt> was created or by whom.  The research object also aggregates an annotation <tt>:ann1</tt>. This annotation was created by "t2flow workflow annotation extractor" a few seconds after Stian added <tt>&lt;a_workflow.t2flow&gt;</tt> and is an annotation on the aggregated resource. We are also told that the content of annotation <tt>&lt;.ro/ann1&gt;</tt> was created by Marco more than a year earlier. The original annotation by Marco was found inside the <tt>t2flow</tt> by the extractor.</p>
 
+<p>This example serves to illustrate that annotations can be made on both the entire RO and resources aggregated within it.</p>
 
 <p>Resolving the annotation body gives:</p>
 
 <div class="wysiwyg-macro" macroname="code" macrostarttag="{code:title=.ro/ann1}" macrohasbody="true" wikihasnewlinebeforebody="true" wikihasnewlineafterbody="true" wikihasprecedingnewline="true" wikihastrailingnewline="true" ><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" wysiwyg="ignore"  style="border-bottom-width: 1px;"><b>.ro/ann1</b></div><div class="codeContent panelContent">
-<pre class="code-java">@base &amp;lt;../&amp;gt; .
-@prefix ro: &amp;lt;http:<span class="code-comment">//purl.org/wf4ever/ro#&amp;gt; .
-</span>@prefix wfdesc: &amp;lt;http:<span class="code-comment">//purl.org/wf4ever/wfdesc#&amp;gt; .
-</span>@prefix wf4ever: &amp;lt;http:<span class="code-comment">//purl.org/wf4ever/wf4ever#&amp;gt; .
-</span>@prefix foaf: &amp;lt;http:<span class="code-comment">//xmlns.com/foaf/0.1/&amp;gt; .
-</span>@prefix ao: &amp;lt;http:<span class="code-comment">//purl.org/ao/&amp;gt; .
-</span>@prefix dct: &amp;lt;http:<span class="code-comment">//purl.org/dc/terms/&amp;gt; .
-</span>@prefix xsd: &amp;lt;http:<span class="code-comment">//www.w3.org/2001/XMLSchema#&amp;gt; .
+<pre class="code-java">@base &lt;../&gt; .
+@prefix ro: &lt;http:<span class="code-comment">//purl.org/wf4ever/ro#&gt; .
+</span>@prefix wfdesc: &lt;http:<span class="code-comment">//purl.org/wf4ever/wfdesc#&gt; .
+</span>@prefix wf4ever: &lt;http:<span class="code-comment">//purl.org/wf4ever/wf4ever#&gt; .
+</span>@prefix foaf: &lt;http:<span class="code-comment">//xmlns.com/foaf/0.1/&gt; .
+</span>@prefix ao: &lt;http:<span class="code-comment">//purl.org/ao/&gt; .
+</span>@prefix dct: &lt;http:<span class="code-comment">//purl.org/dc/terms/&gt; .
+</span>@prefix xsd: &lt;http:<span class="code-comment">//www.w3.org/2001/XMLSchema#&gt; .
 </span>
-&amp;lt;.&amp;gt; a wf4ever:WorkflowResearchObject .
+&lt;.&gt; a wf4ever:WorkflowResearchObject .
 
-&amp;lt;a_workflow.t2flow&amp;gt; a wfdesc:Workflow ;
+&lt;a_workflow.t2flow&gt; a wfdesc:Workflow ;
     wfdesc:hasInput :in1 ;
     wfdesc:hasOutput :out1 ;
     wfdesc:hasDataLink [
@@ -472,8 +482,9 @@ ontology</a> under the namespace
 <p>The RO ontology contains individuals that allow to see what the resources aggregated within the pack are, and how their relationships can be encoded using AO annotations. The figure below illustrates the structure of the research object, which is represented by the node <em>ro-217</em>. This node aggregates 7 resources representing the wfdesc:Workflow, <em>workflow-2464</em>, the workflow run obtained by enacting such wfdesc:Workflow, <em>workflow-run1</em>, the artifacts used as inputs to the workflow run, <em>external-1</em>, <em>external-2</em> and <em>external-3</em>, and the artifacts generated as a result of the enactment, <em>file-576</em> and <em>file-577</em>. Additionally, the research object <em>ro-217</em> aggregates 6 annotations that are used to encode the relationships between aggregated resources. Specifically, <em>annotation-1</em>, <em>annotation-2</em> and <em>annotation-3</em> are used to specify that <em>workflow-run1</em> used the artifact <em>external-1</em>, <em>external-2</em> and <em>external-3</em>, and <em>annotation-4</em> and <em>annotation-5</em> are used to specify that the artifacts <em>file-576</em> and <em>file-577</em> were generated by <em>workflow-run1</em>. Finally, <em>annotation-6</em> is used to specify that <em>workflow-run1</em> has as <em>wfdesc:Workflow workflow-2464</em>.</p>
 
 </section><!-- myExperiment-pack-example -->
+</section><!-- examples -->
 
-<section><!-- OWL -->
+<section id="ontologies"><!-- OWL -->
 <h2>OWL versions</h2>
 
 <p>The RO ontologies can be found on <a href="https://github.com/wf4ever/ro"
@@ -491,7 +502,7 @@ ontology</a> under the namespace
  class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/ore-owl.owl" aliasspecified="true" >https://github.com/wf4ever/ro/blob/master/ore-owl.owl</a> (OWL-version of OAI-ORE vocabulary)</li>
 </ul>
 
-
+<!--
 <p>Other formats will be produced when these are published at their official namespace URIs.</p>
 
 <p>If you are viewing these in Protege, it is recommended that you:</p>
@@ -502,7 +513,7 @@ ontology</a> under the namespace
 	<li>In the menu, select <b>View &amp;#45;&amp;gt; Show only the active ontology</b> to avoid showing all of <tt>foaf</tt>, <tt>ao</tt>, etc.</li>
 	<li>In the menu, select <b>View &amp;#45;&amp;gt; Custom rendering..</b> and select <b>Render by qualified name</b>. This will show the prefixes, like <tt>opm:Agent</tt> and <tt>wfdesc:Workflow</tt>.</li>
 </ul>
-
+-->
 
 <p>Note on namespaces:</p>
 <ul>
@@ -512,48 +523,9 @@ ontology</a> under the namespace
 </ul>
 </section><!-- OWL -->
 
-<section id="refs">
-<h2><a name="ResearchObjectVocabularySpecification-References"></a>References</h2>
-
-</section><!-- References -->
-
- <section id='appendix'>
+<section id='appendix'>
 <section id="changelog">
-<h2>Changelog</h2>
-
-<section id="v0.2">
-<h3><a name="ResearchObjectVocabularySpecification-v0.2%28workingdraft%29"></a>v0.2 (working draft)</h3>
-
-<p>Documentation: <a href="/wiki/display/docs/Research+Object+Vocabulary+Specification"
- title="Research Object Vocabulary Specification"linktype="raw" wikidestination="docs:Research Object Vocabulary Specification" originalalias="Research Object Vocabulary Specification" >Research Object Vocabulary Specification</a> (this page)</p>
-
-<p>OWL version: <a href="https://github.com/wf4ever/ro"
- class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro" aliasspecified="true" >https://github.com/wf4ever/ro</a> (not yet tagged)</p>
-
-<ul>
-	<li><tt>ro:SemanticAnnotation</tt> replaced with <a href="http://code.google.com/p/annotation-ontology/wiki/v2AnnotationBody#Body_as_a_Named_Graph"
- class="external-link" rel="nofollow"linktype="raw" wikidestination="http://code.google.com/p/annotation-ontology/wiki/v2AnnotationBody#Body_as_a_Named_Graph" aliasspecified="true" >ao:GraphAnnotation</a> from AO v2</li>
-	<li><tt>ro:AggregatedAnnotation</tt> renamed to <tt>ro:Annotation</tt></li>
-	<li><tt>ro:annotatesAggregatedResource</tt> removed, use plain <tt>ro:annotatesResource</tt> instead</li>
-	<li>Now Referring to AO v2 which introduces <tt>ao:GraphAnnotation</tt> - <a href="http://code.google.com/p/annotation-ontology/wiki/v2Main"
- class="external-link" rel="nofollow"linktype="raw" wikidestination="http://code.google.com/p/annotation-ontology/wiki/v2Main" originalalias="http://code.google.com/p/annotation-ontology/wiki/v2Main" >http://code.google.com/p/annotation-ontology/wiki/v2Main</a></li>
-</ul>
 </section>
-
-<section id="v0.1">
-<h3>v0.1</h3>
-
-<p>Documentation: <a href="/wiki/display/docs/Research+Object+Vocabulary+Specification+v0.1"
- title="Research Object Vocabulary Specification v0.1"linktype="raw" wikidestination="docs:Research Object Vocabulary Specification v0.1" originalalias="Research Object Vocabulary Specification v0.1" >Research Object Vocabulary Specification v0.1</a></p>
-
-<p>OWL version: <a href="https://github.com/wf4ever/ro/tree/0.1"
- class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/tree/0.1" aliasspecified="true" >https://github.com/wf4ever/ro/tree/0.1</a> (or <a href="https://github.com/wf4ever/ro/zipball/0.1"
- class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/zipball/0.1" aliasspecified="true" >Download as zip</a>)</p>
-
-<ul>
-	<li>First release</li>
-</ul>
- </section>
 </section>
 
 </body>

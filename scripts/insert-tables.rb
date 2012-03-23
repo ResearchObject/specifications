@@ -91,7 +91,8 @@ end
 
 # Where to find the examples
 examples = {
-  'wfdesc-model' => './examples/wfdescExample.html'
+  'wfdesc' => './examples/wfdescExample.html',
+  'wfprov' => './examples/wfprovExample.html'
 }
 
 examples.each do |model, url| 
@@ -101,7 +102,7 @@ examples.each do |model, url|
   puts doc if BEHAVIOUR[:debug]
   example = doc.xpath("//div[@id='examples']")
   # Looks for <div id="[model]-model-examples"> and injects the appropriate div from LODE
-  template_doc.xpath("//div[@id='#{model}-examples']").each do |div|
+  template_doc.xpath("//div[@id='#{model}-model-examples']").each do |div|
     if example[0] then 
       div.add_child(example[0])
     end
