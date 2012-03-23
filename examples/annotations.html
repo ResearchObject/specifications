@@ -1,0 +1,78 @@
+<div id="examples">
+  <section id="annotations-example-sec">
+<h3>Annotations and manifests</h3>
+
+<p>Here is an example research object containing a single workflow <tt>a_workflow.t2flow</tt> and an annotation which as been added by a software agent.</p>
+
+<div class="wysiwyg-macro" macroname="code" macrostarttag="{code:title=.ro/manifest}" macrohasbody="true" wikihasnewlinebeforebody="true" wikihasnewlineafterbody="true" wikihasprecedingnewline="true" wikihastrailingnewline="true" ><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" wysiwyg="ignore"  style="border-bottom-width: 1px;"><b>.ro/manifest</b></div><div class="codeContent panelContent">
+<pre class="code-java">@base &lt;../&gt; .
+@prefix ro: &lt;http:<span class="code-comment">//purl.org/wf4ever/ro#&gt; .
+</span>@prefix ao: &lt;http:<span class="code-comment">//purl.org/ao/&gt; .
+</span>@prefix ore: &lt;http:<span class="code-comment">//www.openarchives.org/ore/terms/&gt; .
+</span>@prefix dct: &lt;http:<span class="code-comment">//purl.org/dc/terms/&gt; .
+</span>@prefix xsd: &lt;http:<span class="code-comment">//www.w3.org/2001/XMLSchema#&gt; .
+</span>@prefix foaf: &lt;http:<span class="code-comment">//xmlns.com/foaf/0.1/&gt; .
+</span>@prefix rdfg: &lt;http:<span class="code-comment">//www.w3.org/2004/03/trix/rdfg-1/&gt; .
+</span>
+&lt;.&gt; a ro:ResearchObject, ore:Aggregation ;
+    ore:aggregates &lt;a_workflow.t2flow&gt;, :ann1 ;
+    dct:created <span class="code-quote">"2011-12-02T15:01:10Z"</span>^^xsd:dateTime ;
+    dct:creator [ a foaf:Person; foaf:name <span class="code-quote">"Stian Soiland-Reyes"</span> ] .
+
+&lt;a_workflow.t2flow&gt; a ro:Resource .
+
+:proxy1 a ro:Proxy ;
+    ore:proxyFor &lt;a_workflow.t2flow&gt; ;
+    ore:proxyIn &lt;.&gt; ;
+    dct:created <span class="code-quote">"2011-12-02T15:02:10Z"</span>^^xsd:dateTime ;
+    dct:creator [ a foaf:Person; foaf:name <span class="code-quote">"Stian Soiland-Reyes"</span> ] .
+
+:ann1 a ro:Annotation, ao:GraphAnnotation ;
+    ao:body &lt;.ro/ann1&gt; ;
+    ao:annotatesResource &lt;a_workflow.t2flow&gt;, &lt;.&gt; ;
+    dct:created <span class="code-quote">"2011-12-02T15:02:13Z"</span>^^xsd:dateTime ;
+    dct:creator [ a foaf:Agent ; foaf:name <span class="code-quote">"t2flow workflow annotation extractor"</span> ] .
+
+&lt;.ro/ann1&gt; a rdfg:Graph ;
+    dct:created <span class="code-quote">"2010-05-14T12:02:12Z"</span>^^xsd:dateTime ;
+    dct:creator [ a foaf:Person ; foaf:name <span class="code-quote">"Marco Roos"</span> ] .
+
+</pre>
+</div></div></div>
+<p>Here we can see that Stian has made a research object at 15:01:10, and at 15:02:10 he added <tt>&lt;a_workflow.t2flow&gt;</tt> to the research object. Note that in this case we do not have informatio about when <tt>&lt;a_workflow.t2flow&gt;</tt> was created or by whom.  The research object also aggregates an annotation <tt>:ann1</tt>. This annotation was created by "t2flow workflow annotation extractor" a few seconds after Stian added <tt>&lt;a_workflow.t2flow&gt;</tt> and is an annotation on the aggregated resource. We are also told that the content of annotation <tt>&lt;.ro/ann1&gt;</tt> was created by Marco more than a year earlier. The original annotation by Marco was found inside the <tt>t2flow</tt> by the extractor.</p>
+
+<p>This example serves to illustrate that annotations can be made on both the entire RO and resources aggregated within it.</p>
+
+<p>Resolving the annotation body gives:</p>
+
+<div class="wysiwyg-macro" macroname="code" macrostarttag="{code:title=.ro/ann1}" macrohasbody="true" wikihasnewlinebeforebody="true" wikihasnewlineafterbody="true" wikihasprecedingnewline="true" wikihastrailingnewline="true" ><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" wysiwyg="ignore"  style="border-bottom-width: 1px;"><b>.ro/ann1</b></div><div class="codeContent panelContent">
+<pre class="code-java">@base &lt;../&gt; .
+@prefix ro: &lt;http:<span class="code-comment">//purl.org/wf4ever/ro#&gt; .
+</span>@prefix wfdesc: &lt;http:<span class="code-comment">//purl.org/wf4ever/wfdesc#&gt; .
+</span>@prefix wf4ever: &lt;http:<span class="code-comment">//purl.org/wf4ever/wf4ever#&gt; .
+</span>@prefix foaf: &lt;http:<span class="code-comment">//xmlns.com/foaf/0.1/&gt; .
+</span>@prefix ao: &lt;http:<span class="code-comment">//purl.org/ao/&gt; .
+</span>@prefix dct: &lt;http:<span class="code-comment">//purl.org/dc/terms/&gt; .
+</span>@prefix xsd: &lt;http:<span class="code-comment">//www.w3.org/2001/XMLSchema#&gt; .
+</span>
+&lt;.&gt; a wf4ever:WorkflowResearchObject .
+
+&lt;a_workflow.t2flow&gt; a wfdesc:Workflow ;
+    wfdesc:hasInput :in1 ;
+    wfdesc:hasOutput :out1 ;
+    wfdesc:hasDataLink [
+        wfdesc:hasSource :in1 ;
+        wfdesc:hasSink :out1 ;
+    ] ;
+    dct:title <span class="code-quote">"A workflow"</span> ;
+    dct:description <span class="code-quote">"A workflow that directly outputs its only input"</span> ;
+    dct:created <span class="code-quote">"2010-05-14T12:02:12Z"</span>^^xsd:dateTime ;
+    dct:creator [ a foaf:Person ; foaf:name <span class="code-quote">"Marco Roos"</span> ] .
+
+:in1 dct:description <span class="code-quote">"Any value"</span> .
+:out1 dct:description <span class="code-quote">"The value given to in1"</span> .
+</pre>
+</div></div></div>
+<p>Inside the annotation body, which we have been told was done by Marco, we find an abstract version of the .t2flow workflow (using the <tt>wfdesc</tt> ontology) which has been extracted by the agent. This reveals some workflow annotations done by Marco in 2010; title and description on the workflow, and descriptions for the input and output ports.</p>
+</section><!-- annotation-examples -->
+</div>

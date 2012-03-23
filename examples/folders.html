@@ -1,0 +1,127 @@
+<div id="examples">
+  <section id="folders-example-sec">
+<h3>Folder structures using ro:Folder</h3>
+
+<p>The <tt>ro</tt> ontology contains <tt>ro:Folder</tt> and <tt>ro:FolderEntry</tt> which can be used to organise aggregated resourced in a folder-like structure. Folders themselves are also aggregated by the research object, and can be the target of ?annotations just like other resources. This example shows how such a folder structure could be maintained in a "checked out" research object where each aggregated resource exists as a file or folder on a local file system. For increased readability, this example represents the individual <tt>ore:ResourceMap</tt> documents as <a href="http://www.w3.org/TeamSubmission/turtle/"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="http://www.w3.org/TeamSubmission/turtle/" aliasspecified="true" >Turtle</a> files, but these could be in formats like RDF/XML, as a single file with named graphs, like TriG, or other representations as appropriate. </p>
+
+<p>Note that the actual folder structure used, in particular of the <tt>.ro/</tt> metadata folder, is currently non-normative. If such a folder structure was exposed as a web resource, then the resource maps currently in <tt>.ro</tt> could (and perhaps even should) be resolved by <em>content negotiation</em> on the <tt>ro:Folder</tt> resources like <tt>&amp;lt;b/c/&amp;gt;</tt>. <b> </b></p>
+
+<p>See <a href="https://github.com/wf4ever/ro/tree/master/examples/folders"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/tree/master/examples/folders" aliasspecified="true" >https://github.com/wf4ever/ro/tree/master/examples/folders</a> to browse the RO folder structure of this example. </p>
+
+<p>See the .ro/ folder for the RDF/Turtle resource maps describing each of these folders, in addition to the <tt>ro:Manifest</tt> for the research object itself.  The filename structure and identifier scheme here is non-normative and is a suggestion only.</p>
+
+<p>The RO model does not (yet) assign a name to the top-level <tt>ro:Folder</tt>, which in this example has been called <tt>&amp;lt;.ro/root&amp;gt;</tt> &amp;#45; although its children (<tt>&amp;lt;a/&amp;gt;</tt> etc.) are in this example organised directly within the folder structure of the Research Object. An alternative organisation might be <tt>root/</tt> and <tt>root/a/</tt>. </p>
+
+<p>The Research Object aggregates all individual resources that are organised into the folders, no matter at what folder level they have <tt>ro:FolderEntry</tt> representations. The <tt>ro:Folder</tt> instances themselves, as instances of <tt>ro:Resource</tt> &amp;#45; are also aggregated by the Research Object. Note that the <tt>ore:ResourceMap}}s (the {{.ttl files</tt>) would not normally be considered aggregated by the research object.</p>
+
+<p>Each <tt>ore:ResourceMap</tt> (each .ttl file in this example) contains relevant links to other resource maps, as if it was a REST resource. As a minimum a resource map for a <tt>ro:Folder</tt> should contain a link to the aggregating research object's <tt>ro:Manifest</tt>, and for each <tt>ro:FolderEntry</tt> which resource is another <tt>ro:Folder</tt>, a link to its <tt>ore:ResourceMap</tt>.</p>
+
+<p>In this example, the <tt>ro:Folder</tt> entries mainly correspond to the actual resource paths, for instance <tt>&amp;lt;b/file3.txt&amp;gt;</tt> has the folder entry with <tt>ro:entryName "file3"</tt>, and is a proxy of the <tt>ro:Folder &amp;lt;b&amp;gt;</tt> which has the <tt>ro:entryName "b"</tt> within the root folder <tt>&amp;lt;.ro/root&amp;gt;</tt> (which is not aggregated by any <tt>ro:Folder</tt>).</p>
+
+<p>There is no requirements for the entry names to match parts of the URI of the aggregated resource, this is examplified in this example where the aggregated resource {{&amp;lt;</p>
+<div class="wysiwyg-macro wysiwyg-macro-inline" macroname="nolink" macrohasbody="false" wikihasprecedingnewline="false" wikihastrailingnewline="false" ><div class="wysiwyg-macro-tag wysiwyg-macro-starttag">{nolink:http://www.example.com/external.txt}</div></div>
+<p>&amp;gt;}} has folder entries both as <tt>"a/other.txt"</tt> and <tt>"b/external.txt"</tt> in this imagined "check out" of a complete research object.</p>
+
+<p>Secondly, aggregated resources, even if they are <tt>ro:Resource</tt> instances, are not required to be present within an <tt>ro:Folder</tt> structure. In this RO, this is exemplified by the aggregation of another research object {{&amp;lt;</p>
+<div class="wysiwyg-macro wysiwyg-macro-inline" macroname="nolink" macrohasbody="false" wikihasprecedingnewline="false" wikihastrailingnewline="false" ><div class="wysiwyg-macro-tag wysiwyg-macro-starttag">{nolink:http://www.example.org/another-ro/}</div></div>
+<p>&amp;gt;}} which does not appear as an <tt>ro:FolderEntry</tt>.</p>
+
+<p>Content:</p>
+<table class='confluenceTable'><tbody>
+<tr>
+<th class='confluenceTh'> Resource </th>
+<th class='confluenceTh'> Type/description </th>
+</tr>
+<tr>
+<td class='confluenceTd'> . </td>
+<td class='confluenceTd'> ro:ResourceObject aggregating all except <tt>&amp;lt;.ro/*&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <a href="https://github.com/wf4ever/ro/tree/master/examples/folders/.ro"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/tree/master/examples/folders/.ro" aliasspecified="true" >./.ro</a> </td>
+<td class='confluenceTd'> Research Object metadata </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <a href="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/manifest.ttl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/manifest.ttl" aliasspecified="true" >./.ro/manifest.ttl</a> </td>
+<td class='confluenceTd'> ro:Manifest / ore:ResourceMap describing <tt>&amp;lt;.&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <a href="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root.ttl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root.ttl" aliasspecified="true" >./.ro/root.ttl</a> </td>
+<td class='confluenceTd'> ore:ResourceMap describing <tt>&amp;lt;.ro/root&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./.ro/root </td>
+<td class='confluenceTd'> Top-level ro:Folder <tt>&amp;lt;.ro/root&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <a href="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root/a.ttl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root/a.ttl" aliasspecified="true" >./.ro/root/a.ttl</a> </td>
+<td class='confluenceTd'> ore:ResourceMap describing the ro:Folder <tt>&amp;lt;a/&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./.ro/root/b </td>
+<td class='confluenceTd'> &amp;#42;) </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <a href="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root/b.ttl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root/b.ttl" aliasspecified="true" >./.ro/root/b.ttl</a> </td>
+<td class='confluenceTd'> ore:ResourceMap describing <tt>&amp;lt;b/&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <a href="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root/b/c.ttl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root/b/c.ttl" aliasspecified="true" >./.ro/root/b/c.ttl</a> </td>
+<td class='confluenceTd'> ore:ResourceMap describing <tt>&amp;lt;b/c/&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./file1.txt </td>
+<td class='confluenceTd'> ro:Resource <tt>&amp;lt;file1.txt&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./a </td>
+<td class='confluenceTd'> ro:Folder &amp;lt;a/&amp;gt;}} </td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./a/other.txt </td>
+<td class='confluenceTd'> ro:Resource {{&amp;lt;
+<div class="wysiwyg-macro wysiwyg-macro-inline" macroname="nolink" macrohasbody="false" wikihasprecedingnewline="false" wikihastrailingnewline="false" ><div class="wysiwyg-macro-tag wysiwyg-macro-starttag">{nolink:http://www.example.com/external.txt}</div></div>
+<p>&amp;gt;}} </p></td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./a/file2.txt </td>
+<td class='confluenceTd'> ro:Resource <tt>&amp;lt;a/file2.txt&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./b </td>
+<td class='confluenceTd'> ro:Folder &amp;lt;b/&amp;gt;}} </td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./b/external.txt </td>
+<td class='confluenceTd'> ro:Resource {{&amp;lt;
+<div class="wysiwyg-macro wysiwyg-macro-inline" macroname="nolink" macrohasbody="false" wikihasprecedingnewline="false" wikihastrailingnewline="false" ><div class="wysiwyg-macro-tag wysiwyg-macro-starttag">{nolink:http://www.example.com/external.txt}</div></div>
+<p>&amp;gt;}} </p></td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./b/file3.txt </td>
+<td class='confluenceTd'> ro:Resource <tt>&amp;lt;b/file3.txt&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./b/c </td>
+<td class='confluenceTd'> ro:Folder <tt>&amp;lt;b/c/&amp;gt;</tt> </td>
+</tr>
+<tr>
+<td class='confluenceTd'> ./b/c/file4.txt </td>
+<td class='confluenceTd'> ro:Resource <tt>&amp;lt;b/c/file4.txt&amp;gt;</tt> </td>
+</tr>
+</tbody></table>
+
+
+
+
+<p>&amp;#42;) The metadata folder <tt>&amp;lt;.ro/root/b/&amp;gt;</tt> does not represent anything in the research object, and is in this example used to organize the <tt>ro:ResourceMap</tt>. If the <tt>ore:ResourceMap</tt> documents describing the <tt>ro:Folder</tt> are delivered through Content Negotiation directly on the <tt>ro:Folder</tt> resource, like <tt>&amp;lt;b/c/&amp;gt;</tt>, there might not be any need for such a metadata folder structure.</p>
+
+</section><!-- folders-examples -->
+</div>
