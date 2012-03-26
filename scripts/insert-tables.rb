@@ -11,8 +11,12 @@ BEHAVIOUR = {
   :verbose => false
 }
 
-opt = Getopt::Std.getopts("t:o:vd")
+opt = Getopt::Std.getopts("lt:o:vd")
 
+$local = false
+if opt ["l"] then
+  $local = true
+end
 if opt["t"] then
   $template = opt["t"]
 end
@@ -32,15 +36,24 @@ LODE='http://www.essepuntato.it/lode/owlapi/'
 mappings = {
   'ro-model' => 'https://raw.github.com/wf4ever/ro/master/ro.owl',
   'wfdesc-model' => 'https://raw.github.com/wf4ever/ro/master/wfdesc.owl',
-  'wfprov-model' => 'https://raw.github.com/wf4ever/ro/master/wfprov.owl'
+  'wfprov-model' => 'https://raw.github.com/wf4ever/ro/master/wfprov.owl',
+  'wf4ever-model' => 'https://raw.github.com/wf4ever/ro/master/wf4ever.owl'
 }
 
 template_doc = Nokogiri::HTML(open($template))
 
 mappings.each do |model, url| 
   puts model if BEHAVIOUR[:debug]
-  puts "#{LODE}#{url}" if BEHAVIOUR[:debug]
-  doc = Nokogiri::HTML(open("#{LODE}#{url}"))
+  if $local then
+    doc = Nokogiri::HTML(open("cache/#{model}.html"))
+  else
+    puts "#{LODE}#{url}" if BEHAVIOUR[:debug]
+    doc = Nokogiri::HTML(open("#{LODE}#{url}"))
+    # Cache the results of LODE
+    File.open("cache/#{model}.html",'w') do |f|
+      f.puts doc.to_html
+    end
+  end
   puts doc if BEHAVIOUR[:debug]
   classes = doc.xpath("//div[@id='classes']")
   dataproperties = doc.xpath("//div[@id='dataproperties']")

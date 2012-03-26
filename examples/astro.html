@@ -1,6 +1,285 @@
 <div id="examples">
-  <section id="astro-example-sec">
-  <h3>Astro Example</h3>
-  </section>
+ <p>This example comes from a use case that deals with large sets of
+  tabular data (catalogues of numbers) curated by the user. The data are calculated by means of mathematical equations based on experimental values coming from external data repositories. Updating of the external data repositories has an impact on the curation of the user dataset, it is essential to know how (in which quantity) and when these databases are updated, so that the propagation of these changes through the existing internal relation among the data can be triggered and registered. 
+  </p>The scientific experiment represented by this research object pertains to the multi-wavelength study for a sample of the most isolated galaxies in the local universe. This study characterizes each galaxy of this sample through both the measurement of basic astrophysical properties:</p> 
+
+<ul>
+  <li>The equatorial coordinates in J2000 epoch</li>
+<li>The velocities in km/s (v)</li>
+<li>The dust extinction coefficient (ag)</li>
+<li>The axis ratio of the isophote 25 mag/arcsec2 (logr25)</li>
+<li>The apparent total B magnitude (BT)</li>
+<li>The morphological type (t)</li>
+</ul>
+
+and the calculation of the more complex properties:</li>
+<ul>
+<li>The distance in Mega parsecs (D)</li>
+<li>The corrected apparent B magnitude (btc)</li>
+<li>The optical luminosity in B-band (LB)</li>
+</ul>
+
+<p>Specifically, this research object is focused on the calculation of the intrinsic luminosity in the Johnson B-band, in order to achieve it the measurement or calculation of all those astrophysical properties is needed.<p>
+
+<p>This research object consists of several resources, including workflows, input and output datasets, scripts, web services and other documents. The type and role of each of these resources (by their relative name) are as follows:</p>
+
+<ul>
+  <li><b>Workflows</b>
+  <ul>
+    <li><em>Gathering (gathering_galaxy_properties_using_hyperleda_129473)</em>
+    <ul>
+      <li><b>Web Services</b>
+      <ul>
+	<li><a href="http://leda.univ-lyon1.fr/ledacat.cgi?{object_name}?ob=ra" class="external-link" rel="nofollow">http://leda.univ-lyon1.fr/ledacat.cgi?{object_name}?ob=ra</a></li>
+      </ul>
+    </li>
+    <li><b>Datasets</b>
+    <ul>
+      <li>Input
+      <ul>
+	<li>NamesLEDA.txt</li>
+      </ul>
+    </li>
+    <li>Output
+    <ul>
+      <li>agNew,txt</li>
+      <li>btNew.txt</li>
+      <li>j2000Coords.txt</li>
+      <li>logr25New.txt</li>
+      <li>velocitiesNew.txt</li>
+    </ul>
+  </li>
+</ul>
+</li>
+<li><b>Scripts</b>
+<ul>
+  <li>extractJ2000Coord.py</li>
+  <li>extractPropertyVal.py</li>
+  <li>Merge_String_List_To_A_String.java</li>
+  <li>Split_String_Into_String_List_By_Regular_Expression.java</li>
+  <li>Write_Text_File.java</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em>Propagation (calculating_the_total_luminosity_of_a_galaxy_using_properties_from_text_files_608870)</em>
+<ul>
+  <li><b>Datasets</b>
+  <ul>
+    <li>Input
+    <ul>
+      <li>agNew,txt</li>
+      <li>btNew.txt</li>
+      <li>j2000Coords.txt</li>
+      <li>logr25New.txt</li>
+      <li>morphoNew.txt</li>
+      <li>velocitiesNew.txt</li>
+    </ul>
+  </li>
+  <li>Output
+  <ul>
+    <li>btcNew.txt</li>
+    <li>distancesNew.txt</li>
+    <li>lbNew.txt</li>
+  </ul>
+</li>
+</ul>
+</li>
+<li><b>Scripts</b>
+<ul>
+  <li>BTCorrectionCalculation.py</li>
+  <li>calculateDistance.py</li>
+  <li>coords2Deg.py</li>
+  <li>eq2gal.py</li>
+  <li>luminositiesCalculation.py</li>
+  <li>Merge_String_List_To_A_String.java</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em>Comparing_update (comparison_and_update_values_475535)</em>
+<ul>
+  <li><b>Datasets</b>
+  <ul>
+    <li>Input
+    <ul>
+      <li>lbNew.txt</li>
+      <li>lbOld.txt</li>
+    </ul>
+  </li>
+  <li>Output
+  <ul>
+    <li>diff_lb.txt</li>
+    <li>lb.sql</li>
+  </ul>
+</li>
+</ul>
+</li>
+<li><b>Scripts</b>
+<ul>
+  <li>comparing.py</li>
+  <li>updating.py</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Documents</b>
+<ul>
+  <li>Used by the RO (Papers that have inspired the development of this RO or some of its componets)
+  <ul>
+    <li>D1.2.pdf</li>
+    <li>D2.1.pdf</li>
+    <li>D3.1.pdf</li>
+    <li>D4.1.pdf</li>
+    <li>D5.1.pdf</li>
+    <li>Paturel.pdf (related with gathering Wf)</li>
+    <li>Vauglin.pdf (related with gathering Wf)</li>
+    <li>Ruiz.pdf</li>
+  </ul>
+</li>
+<li>Produced by the RO (Papers that have made use of this RO or some of its components)
+<ul>
+  <li>D5.3v1_1.0.pdf</li>
+  <li>ColorsAA.pdf</li>
+</ul>
+</li>
+<li>General (documents and notes related to the whole RO)
+<ul>
+  <li>CONTENT.txt</li>
+  <li>README.txt</li>
+  <li>RECIPES.txt</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<h4>RDF RO Representation</h4>
+
+<p>Here we provide snippets of RDF illustrating particular aspects of the RO description. These snippets are all taken from the RO <em>manifest</em>.</p>
+
+<p->Manifest description. This asserts the type of the manifest, the fact that it describes the RO in question, and also includes information about the creator of the manifest (the RODL service).</p>
+<pre class="code-java">
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/manifest&gt;
+    dct:created "2012-02-01T09:33:56.923Z"^^&lt;http://www.w3.org/2001/XMLSchema#dateTime&gt; ;
+    dct:creator [
+        a &lt;http://xmlns.com/foaf/0.1/Agent&gt; ;
+        foaf:name "RODL"
+    ] ;
+    ore:describes &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/&gt; ;
+    a &lt;http://purl.org/wf4ever/ro#Manifest&gt; .
+</pre>
+
+<p>The following snippet captures the basic aggregation of resources within the RO.</p>
+
+<pre class="code-java">
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/&gt;
+    dct:created "2012-02-01T09:33:56.832Z"^^&lt;http://www.w3.org/2001/XMLSchema#dateTime&gt; ;
+    dct:creator &lt;https://www.google.com/accounts/o8/id?id=AItOawl7tEZAtdiQmIigvXcU4KkhGsBzgm0gfKM&gt; ;
+    ore:isDescribedBy &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/manifest&gt; ;
+    a &lt;http://purl.org/wf4ever/ro#ResearchObject&gt; ;
+
+    ore:aggregates &lt;http://leda.univ-lyon1.fr/ledacat.cgi&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/manifest#0f184259-a189-4d2c-8c04-66d7d322d1a8&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/manifest#14e42518-b337-2312-a76b-aa2b21cb3222&gt;,
+      ...
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/manifest#annGathering&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/manifest#annPropagation&gt;,
+      ...
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/CONTENT.txt&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/D1.2.pdf&gt;,
+      ...
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/GoldenTrace.txt&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/NamesLEDA.txt&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/Paturel.pdf&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/README.txt&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/RECIPES.txt&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/Ruiz.pdf&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/Vauglin.pdf&gt;,
+      ...
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/btcNew.txt&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/calculateDistance.py&gt;,
+      ...
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/comparison_and_update_values_475535.&gt;,
+      ...
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/eq2gal.py&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/extractJ2000Coord.py&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/extractPropertyVal.py&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/morphoNew.txt&gt;,
+      ..
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/updating.py&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/velocitiesNew.txt&gt; .
+</pre>
+      
+<p>An annotation expressing creation metadata. Jose Enrique Luiz created resources <tt>GoldenTrace.txt</tt>.
+<pre class="java-code">
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/manifest#14e42518-b337-2312-a76b-aa2b21cb3222&gt;
+    ao:body <http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/GoldenTrace.txt> ;
+    dct:created "2012-02-01T09:37:23.662Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    dct:creator _:A0 ;
+    ao:annotatesResource <http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/> ;
+    a ao:GraphAnnotation .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/manifest#14e42518-b337-4698-a76b-aa2b21cb3222&gt;
+    ao:body <http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/RECIPES.txt-8230278887054687059> ;
+    dct:created "2012-02-01T09:37:23.662Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    dct:creator _:A0 ;
+    ao:annotatesResource <http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/RECIPES.txt> ;
+    a ao:GraphAnnotation .
+
+_:A0
+    a &lt;http://xmlns.com/foaf/0.1/Agent&gt; ;
+    foaf:name "Jose Enrique Ruiz" .
+
+</pre>
+
+<p>Finally, we have annotations that describe the fact that a particular workflow run made use of a data sets to produce some results.</p>
+
+<pre class="java-code">
+&lt;http://leda.univ-lyon1.fr/ledacat.cgi&gt;
+    a &lt;http://purl.org/wf4ever/wf4ever#WebService&gt; .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/annGathering#GatheringRun1&gt;
+    wfprov:describedByWorkflow &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/gathering_galaxy_properties_using_hyperleda_129473.&gt; ;
+    wfprov:usedInput &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/NamesLEDA.txt&gt; ;
+    a &lt;http://purl.org/wf4ever/wfprov#WorkflowRun&gt; .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/NamesLEDA.txt&gt;
+    a &lt;http://purl.org/wf4ever/wf4ever#Dataset&gt; .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/agNew.txt&gt;
+    wfprov:wasOutputFrom &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/annGathering#GatheringRun1&gt; ;
+    a &lt;http://purl.org/wf4ever/wf4ever#Dataset&gt; .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/btNew.txt&gt;
+    wfprov:wasOutputFrom &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/annGathering#GatheringRun1&gt; ;
+    a &lt;http://purl.org/wf4ever/wf4ever#Dataset&gt; .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/extractJ2000Coord.py&gt;
+    a &lt;http://purl.org/wf4ever/wfdesc#Process&gt; .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/extractPropertyVal.py&gt;
+    a &lt;http://purl.org/wf4ever/wfdesc#Process&gt; .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/gathering_galaxy_properties_using_hyperleda_129473.&gt;
+    wfdesc:hasSubProcess &lt;http://leda.univ-lyon1.fr/ledacat.cgi&gt;, &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/extractJ2000Coord.py&gt;, &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/extractPropertyVal.py&gt; ;
+    a &lt;http://purl.org/wf4ever/wfdesc#Workflow&gt; .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/j2000Coords.txt&gt;
+    wfprov:wasOutputFrom &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/annGathering#GatheringRun1&gt; ;
+    a &lt;http://purl.org/wf4ever/wf4ever#Dataset&gt; .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/logr25New.txt&gt;
+    wfprov:wasOutputFrom &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/annGathering#GatheringRun1&gt; ;
+    a &lt;http://purl.org/wf4ever/wf4ever#Dataset&gt; .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/velocitiesNew.txt&gt;
+    wfprov:wasOutputFrom &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/annGathering#GatheringRun1&gt; ;
+    a &lt;http://purl.org/wf4ever/wf4ever#Dataset&gt; .
+
+</pre>
+
 </div>
   
