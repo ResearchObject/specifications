@@ -1,4 +1,35 @@
 <div id="examples">
 <h2>Wfprov Example</h2>
-  <p>@@wfprov example</p>
+  <p>The example below illustrates a workflow execution we1 that was composed of two processes :proc1 and :proc2. The output of :proc1 (:o1) is the input used by :proc2. Both processes are described by a wfdesc:Process</p>
+  <pre class="code-java">
+@prefix wfprov: &lt;http:<span class="code-comment">//purl.org/wf4ever/wfprov#&gt; .
+</span>
+  :wf1 a wfprov:WorkflowRun ;
+  wfprov:describedByWorkflow :wfTempl;
+  wfprov:wasEnactedBy :Taverna.
+ #Additional metadata about the workflow run could be added here: start time, end time, whether it has bees successful, etc.  
+
+:proc1 a wfprov:<span class="code-object">ProcessRun</span> ;
+  wfprov:usedInput :i1 ;
+  wfprov:wasPartOfWorkflowRun :wf1;
+  wfprov:describedByProcess :templProcess1.
+
+:proc2 a wfprov:<span class="code-object">ProcessRun</span> ;
+  wfprov:usedIntput :o1 ;
+  wfprov:wasPartOfWorkflowRun :wf1;
+  wfprov:describedByProcess :templProcess2 .
+
+:i1 a wfprov:Artifact;
+    wfprov:describedByParameter :param1.
+   
+:o1 a wfprov:Artifact;
+    wfprov:wasOutputFrom :proc1;
+	wfprov:describedByParameter :param2.
+  
+:o2 a wfprov:Artifact;
+    wfprov:wasOutputFrom :proc2;
+	wfprov:describedByparameter :param3.
+	
+#wfdesc:parameters and templates have been omitted to leave the example as simple as possible.
+</pre>
 </div>
