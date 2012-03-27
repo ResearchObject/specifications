@@ -82,9 +82,9 @@ var respecConfig = {
                 company: "University of Manchester" },
               { name: "Graham Klyne",
                 company: "University of Oxford" },
-              { name: "Daniel Garijo",
+              { name: "Daniel Garijo", url: "http://mayor2.dia.fi.upm.es/oeg-upm/index.php/es/phdstudents/28-dgarijo",
                 company: "UPM" },
-              { name: "Oscar Corcho",
+              { name: "Oscar Corcho", url: "http://mayor2.dia.fi.upm.es/oeg-upm/index.php/es/teachers/11-ocorcho",
                 company: "UPM" },
               { name: "Esteban Garc&#237;a Cuesta",
                 company: "iSOCO" },
@@ -188,7 +188,6 @@ ontology</a> under the namespace
 
 <div id="ro-model-documentation">
 <h3>Classes</h3>
-<h2>Classes</h2>
 <ul class="hlist">
 <li><a href="#d3e90" title="http://purl.org/wf4ever/ro#Annotation"><span>ro:Annotation</span></a></li>
 <li><a href="#d3e156" title="http://purl.org/wf4ever/ro#Folder"><span>ro:Folder</span></a></li>
@@ -218,13 +217,13 @@ ontology</a> under the namespace
 <span class="dotted" title="http://www.openarchives.org/ore/terms/AggregatedResource">terms:AggregatedResource</span><sup title="class" class="type-c">c</sup>
 </li>
 <li>
+<span class="dotted" title="http://purl.org/ao/annotatesResource">ao:annotatesResource</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e226" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup><span class="logic">or</span> <span class="dotted" title="http://www.openarchives.org/ore/terms/AggregatedResource">terms:AggregatedResource</span><sup title="class" class="type-c">c</sup><span class="logic">or</span> <span class="dotted" title="http://www.openarchives.org/ore/terms/Proxy">terms:Proxy</span><sup title="class" class="type-c">c</sup>
+</li>
+<li>
 <span class="dotted" title="http://www.openarchives.org/ore/terms/isAggregatedBy">terms:isAggregatedBy</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e226" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup>
 </li>
 <li>
 <span class="dotted" title="http://purl.org/dc/terms/created">terms2:created</span><sup title="data property" class="type-dp">dp</sup><span class="logic">some</span> <span class="dotted" title="http://www.w3.org/2001/XMLSchema#dateTime">xsd:dateTime</span>
-</li>
-<li>
-<span class="dotted" title="http://purl.org/ao/annotatesResource">ao:annotatesResource</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e226" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup><span class="logic">or</span> <span class="dotted" title="http://www.openarchives.org/ore/terms/AggregatedResource">terms:AggregatedResource</span><sup title="class" class="type-c">c</sup><span class="logic">or</span> <span class="dotted" title="http://www.openarchives.org/ore/terms/Proxy">terms:Proxy</span><sup title="class" class="type-c">c</sup>
 </li>
 <li>
 <span class="dotted" title="http://purl.org/dc/terms/creator">terms2:creator</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <span class="dotted" title="http://xmlns.com/foaf/0.1/Agent">foaf:Agent</span><sup title="class" class="type-c">c</sup>
@@ -264,10 +263,10 @@ ontology</a> under the namespace
 <dt>is equivalent to</dt>
 <dd><ul>
 <li>
-<span class="dotted" title="http://www.openarchives.org/ore/terms/proxyIn">terms:proxyIn</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e156" title="http://purl.org/wf4ever/ro#Folder">ro:Folder</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e69" title="http://purl.org/wf4ever/ro#entryName">ro:entryName</a><sup title="data property" class="type-dp">dp</sup><span class="logic">some</span> <span class="dotted" title="http://www.w3.org/2001/XMLSchema#string">xsd:string</span>
 </li>
 <li>
-<a href="#d3e69" title="http://purl.org/wf4ever/ro#entryName">ro:entryName</a><sup title="data property" class="type-dp">dp</sup><span class="logic">some</span> <span class="dotted" title="http://www.w3.org/2001/XMLSchema#string">xsd:string</span>
+<span class="dotted" title="http://www.openarchives.org/ore/terms/proxyIn">terms:proxyIn</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e156" title="http://purl.org/wf4ever/ro#Folder">ro:Folder</a><sup title="class" class="type-c">c</sup>
 </li>
 </ul></dd>
 <dt>has super-classes</dt>
@@ -345,10 +344,10 @@ ontology</a> under the namespace
 <span class="dotted" title="http://www.openarchives.org/ore/terms/AggregatedResource">terms:AggregatedResource</span><sup title="class" class="type-c">c</sup>
 </li>
 <li>
-<span class="dotted" title="http://www.openarchives.org/ore/terms/isAggregatedBy">terms:isAggregatedBy</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e226" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup>
+<span class="logic">inverse</span>(<span class="dotted" title="http://www.openarchives.org/ore/terms/proxyFor">terms:proxyFor</span><sup title="object property" class="type-op">op</sup>) <span class="logic">some</span> <span class="dotted" title="http://www.openarchives.org/ore/terms/proxyIn">terms:proxyIn</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e226" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup>
 </li>
 <li>
-<span class="logic">inverse</span>(<span class="dotted" title="http://www.openarchives.org/ore/terms/proxyFor">terms:proxyFor</span><sup title="object property" class="type-op">op</sup>) <span class="logic">some</span> <span class="dotted" title="http://www.openarchives.org/ore/terms/proxyIn">terms:proxyIn</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e226" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup>
+<span class="dotted" title="http://www.openarchives.org/ore/terms/isAggregatedBy">terms:isAggregatedBy</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e226" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup>
 </li>
 </ul></dd>
 <dt>has sub-classes</dt>
@@ -358,7 +357,6 @@ ontology</a> under the namespace
 </dl>
 </div>
 <h3>Data Properties</h3>
-<h2>Data Properties</h2>
 <ul class="hlist"><li><a href="#d3e69" title="http://purl.org/wf4ever/ro#entryName"><span>ro:entryName</span></a></li></ul>
 <div id="d3e69" class="entity">
 <a name="http://purl.org/wf4ever/ro#entryName"></a><h3>
@@ -390,7 +388,7 @@ ontology</a> under the namespace
 
 <p><img src="diagrams/wf.png" imagetext="wf.png|border=1,width=600" width="600" style="border: 1px solid black"></p>
 
-<p>This ontology <tt>wfdesc</tt> describes an abstract workflow description  structure, which on the top level is defined as a <tt>wfdesc:Workflow</tt>.</p>
+<p>The <tt>wfdesc</tt> ontology describes an abstract workflow description structure, which on the top level is defined as a <tt>wfdesc:Workflow</tt>.</p>
 
 <p>A <tt>wfdesc:Workflow</tt> contains several <tt>wfdesc:Process</tt> instances, associated  using the <tt>wfdesc:hasSubProcess</tt> property. Each of these (and the workflow  itself) <tt>wfdesc:hasInput</tt> and <tt>wfdesc:hasOutput</tt> some <tt>wfdesc:Parameter</tt> (<tt>wfdesc:Input</tt> or <tt>wfdesc:Output</tt>). An <tt>wfdesc:Artifact</tt> is associated with a <tt>wfdesc:Parameter</tt> using <tt>wfdesc:hasArtifact</tt>. The <tt>wfdesc:Workflow</tt> also <tt>wfdesc:hasDataLink</tt> several <tt>wfdesc:DataLink</tt> instances, which forms the  connection between parameters.  Thus this ontology allows the description a direct acyclic graph, or a  dataflow.</p>
 
@@ -400,7 +398,6 @@ ontology</a> under the namespace
 
 <div id="wfdesc-model-documentation">
 <h3>Classes</h3>
-<h2>Classes</h2>
 <ul class="hlist">
 <li><a href="#d3e145" title="http://purl.org/wf4ever/wfdesc#Artifact"><span>wfdesc:Artifact</span></a></li>
 <li><a href="#d3e155" title="http://purl.org/wf4ever/wfdesc#DataLink"><span>wfdesc:DataLink</span></a></li>
@@ -642,7 +639,6 @@ ontology</a> under the namespace
 </dl>
 </div>
 <h3>Object Properties</h3>
-<h2>Object Properties</h2>
 <ul class="hlist">
 <li><a href="#d3e24" title="http://purl.org/wf4ever/wfdesc#hasArtifact"><span>wfdesc:hasArtifact</span></a></li>
 <li><a href="#d3e38" title="http://purl.org/wf4ever/wfdesc#hasDataLink"><span>wfdesc:hasDataLink</span></a></li>
@@ -862,14 +858,19 @@ ontology</a> under the namespace
 
 </section><!-- wfdesc --><section id="wfprov"><h3>Workflow execution provenance (wfprov)</h3>
 
+<p>Provenance of workflow execution is described using the <a href="https://github.com/wf4ever/ro/blob/master/wfprov.owl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/wfprov.owl" aliasspecified="true">wfprov ontology</a>, under namespace <a href="http://purl.org/wf4ever/wfdesc#">http://purl.org/wf4ever/wfprov#</a>. </p>
 <p><img src="diagrams/wfprov.png" imagetext="wfprov.png|border=1,width=600" width="600" style="border: 1px solid black"></p>
+<p>The <tt>wfprov</tt> ontology describes the provenance of the workflow results. A <tt>wfprov:WorkflowRun</tt> describes the activity of running a <tt>wfdesc:WorkflowInstance</tt>. It groups the <tt>wfprov:ProcessRuns</tt> of the execution with the relationship <tt>wfprov:wasPartOfWorkflowRun</tt>.</p>
 
+<p>Each <tt>wfprov:ProcessRun</tt> represents a step of the workflow execution. It may have dependencies to different <tt>wfprov:Artifacts</tt>, which are modeled with the relationship <tt>wfprov:usedInput</tt>. Every result generated by one of the <tt>wfprov:ProcessRuns</tt> is linked by the relation <tt>wfprov:wasOutputFrom</tt></p>
 
-<p>Provenance of workflow execution is described using the <a href="https://github.com/wf4ever/ro/blob/master/wfprov.owl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/wfprov.owl" aliasspecified="true">wfprov ontology</a>, and is used to describe the provenance of results. </p>
+<p>Different <tt>wfprov:ProcessRuns</tt> may have been executed by different workflow engines. We can specify which one run each step with the <tt>wfprov:wasEnactedBy</tt> relationship.</p>
+
+<p>Finally, we can link each <tt>wfprov:Artifact</tt>, <tt>wfprov:ProcessRun</tt> and <tt>wfprov:WorkflowRun</tt> to their correspondant <tt>wfdesc</tt> description by the <tt>wfprov:describedByParameter</tt>, <tt>wfprov:describedByProcess</tt> and <tt>wfprov:describedByWorkflow</tt> respectively.</p>
+
 
 <div id="wfprov-model-documentation">
 <h3>Classes</h3>
-<h2>Classes</h2>
 <ul class="hlist">
 <li><a href="#d3e131" title="http://purl.org/wf4ever/wfprov#Artifact"><span>wfprov:Artifact</span></a></li>
 <li><a href="#d3e152" title="http://purl.org/wf4ever/wfprov#ProcessRun"><span>wfprov:ProcessRun</span></a></li>
@@ -953,7 +954,6 @@ ontology</a> under the namespace
 </dl>
 </div>
 <h3>Object Properties</h3>
-<h2>Object Properties</h2>
 <ul class="hlist">
 <li><a href="#d3e28" title="http://purl.org/wf4ever/wfprov#describedByParameter"><span>wfprov:describedByParameter</span></a></li>
 <li><a href="#d3e40" title="http://purl.org/wf4ever/wfprov#describedByProcess"><span>wfprov:describedByProcess</span></a></li>
@@ -1095,7 +1095,38 @@ ontology</a> under the namespace
 <div id="wfprov-model-examples">
 <div id="examples">
 <h2>Wfprov Example</h2>
-  <p>@@wfprov example</p>
+  <p>The example below illustrates a workflow execution we1 that was composed of two processes :proc1 and :proc2. The output of :proc1 (:o1) is the input used by :proc2. Both processes are described by a wfdesc:Process</p>
+  <pre class="code-java">
+@prefix wfprov: &lt;http:<span class="code-comment">//purl.org/wf4ever/wfprov#&gt; .
+</span>
+  :wf1 a wfprov:WorkflowRun ;
+  wfprov:describedByWorkflow :wfTempl;
+  wfprov:wasEnactedBy :Taverna.
+ #Additional metadata about the workflow run could be added here: start time, end time, whether it has bees successful, etc.  
+
+:proc1 a wfprov:<span class="code-object">ProcessRun</span> ;
+  wfprov:usedInput :i1 ;
+  wfprov:wasPartOfWorkflowRun :wf1;
+  wfprov:describedByProcess :templProcess1.
+
+:proc2 a wfprov:<span class="code-object">ProcessRun</span> ;
+  wfprov:usedIntput :o1 ;
+  wfprov:wasPartOfWorkflowRun :wf1;
+  wfprov:describedByProcess :templProcess2 .
+
+:i1 a wfprov:Artifact;
+    wfprov:describedByParameter :param1.
+   
+:o1 a wfprov:Artifact;
+    wfprov:wasOutputFrom :proc1;
+	wfprov:describedByParameter :param2.
+  
+:o2 a wfprov:Artifact;
+    wfprov:wasOutputFrom :proc2;
+	wfprov:describedByparameter :param3.
+	
+#wfdesc:parameters and templates have been omitted to leave the example as simple as possible.
+</pre>
 </div>
 </div>
 
@@ -1107,7 +1138,6 @@ ontology</a> under the namespace
 
 <div id="wf4ever-model-documentation">
 <h3>Classes</h3>
-<h2>Classes</h2>
 <ul class="hlist">
 <li><a href="#d3e80" title="http://purl.org/wf4ever/wf4ever#BeanshellScript"><span>wf4ever:BeanshellScript</span></a></li>
 <li><a href="#d3e87" title="http://purl.org/wf4ever/wf4ever#CommandLineTool"><span>wf4ever:CommandLineTool</span></a></li>
@@ -1292,7 +1322,6 @@ ontology</a> under the namespace
 <div class="comment"><p>A workflow research object is a research object that contains at least one workflow description.</p></div>
 </div>
 <h3>Data Properties</h3>
-<h2>Data Properties</h2>
 <ul class="hlist">
 <li><a href="#d3e26" title="http://purl.org/wf4ever/wf4ever#command"><span>wf4ever:command</span></a></li>
 <li><a href="#d3e35" title="http://purl.org/wf4ever/wf4ever#script"><span>wf4ever:script</span></a></li>
