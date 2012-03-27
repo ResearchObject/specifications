@@ -121,12 +121,14 @@ var respecConfig = {
 
 <section id="scope"><h3>Scope of Wf4Ever Research Objects</h3>
 
-<p>The focus of Wf4Ever is on workflow preservation (and more specifically workflows supporting scientific investigation). Thus the objects that will be described using the model are inherently workflow-centric. Although the basic infrastructure (aggregation + annotation + domain vocabularies) that the RO model supports is applicable to many situations (for example the executable or enhanced publication of FORCE11), the specific vocabularies defined within the Wf4Ever RO model are intended to support those Research Objects that have workflows (methods) as their primary content.</p>
+<p>The focus of Wf4Ever is on workflow preservation (and more specifically workflows supporting scientific investigation). Thus the objects that will be described using the model are inherently workflow-centric. Although the basic infrastructure (aggregation + annotation + domain vocabularies) that the RO model supports is applicable to many situations (for example the executable or enhanced publication of [[FORCE11]]), the specific vocabularies defined within the Wf4Ever RO model are intended to support those Research Objects that have workflows (methods) as their primary content.</p>
 
 <p>The intention is that a Wf4Ever Research Object will aggregate information about a workflow (or collection of workflows) possibly including details of its execution trace, the data items consumed or produced by the workflow, plus provenance information about the lineage of the workflow, data items or the aggregation itself. This intention is that this information will support reproducability of the workflows, reuse of the components and, perhaps most importantly will facilitate subsequent understanding of the investigation that the workflow is intended to support. The support of "full-fat" reproducability in terms of re-execution of a process in order to produce identical results is problematic, particularly when operating in a distributed, web-service based ecosystem.</p>
 </section><!-- scope --><section id="scope-doc"><h3>Scope of this document</h3>
 
 <p>This particular document describes the vocabularies that describe Workflow-centric Research Objects within Wf4ever. A complete, functional RO based ecosystem will require a number of different services for creation, storage, manipulation, recommendation, visualisation etc. of Research Objects. These services are not considered here. Nor do we discuss vocabularies or mechanisms that support Research Object evolution.</p>
+
+<p>This document describes the v0.1 release of the ontologies.</p>
 </section><!-- scope-doc --><section id="tech-soc"><h3>Technical and Social Objects</h3>
 
 <p>Research Objects play multiple roles. In the first case, they are
@@ -188,50 +190,52 @@ ontology</a> under the namespace
 
 <div id="ro-model-documentation">
 <h3>Classes</h3>
+<h2>Classes</h2>
 <ul class="hlist">
-<li><a href="#d3e90" title="http://purl.org/wf4ever/ro#Annotation"><span>ro:Annotation</span></a></li>
-<li><a href="#d3e156" title="http://purl.org/wf4ever/ro#Folder"><span>ro:Folder</span></a></li>
-<li><a href="#d3e169" title="http://purl.org/wf4ever/ro#FolderEntry"><span>ro:FolderEntry</span></a></li>
-<li><a href="#d3e206" title="http://purl.org/wf4ever/ro#Manifest"><span>ro:Manifest</span></a></li>
-<li><a href="#d3e226" title="http://purl.org/wf4ever/ro#ResearchObject"><span>ro:ResearchObject</span></a></li>
-<li><a href="#d3e267" title="http://purl.org/wf4ever/ro#Resource"><span>ro:Resource</span></a></li>
+<li><a href="#d3e109" title="http://purl.org/wf4ever/ro#AggregatedAnnotation"><span>ro:AggregatedAnnotation</span></a></li>
+<li><a href="#d3e175" title="http://purl.org/wf4ever/ro#Folder"><span>ro:Folder</span></a></li>
+<li><a href="#d3e187" title="http://purl.org/wf4ever/ro#FolderEntry"><span>ro:FolderEntry</span></a></li>
+<li><a href="#d3e225" title="http://purl.org/wf4ever/ro#Manifest"><span>ro:Manifest</span></a></li>
+<li><a href="#d3e245" title="http://purl.org/wf4ever/ro#ResearchObject"><span>ro:ResearchObject</span></a></li>
+<li><a href="#d3e285" title="http://purl.org/wf4ever/ro#Resource"><span>ro:Resource</span></a></li>
+<li><a href="#d3e330" title="http://purl.org/wf4ever/ro#SemanticAnnotation"><span>ro:SemanticAnnotation</span></a></li>
 </ul>
-<div id="d3e90" class="entity">
-<a name="http://purl.org/wf4ever/ro#Annotation"></a><h3>
-<span class="dotted" title="http://purl.org/wf4ever/ro#Annotation">ro:Annotation</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
+<div id="d3e109" class="entity">
+<a name="http://purl.org/wf4ever/ro#AggregatedAnnotation"></a><h3>
+<span class="dotted" title="http://purl.org/wf4ever/ro#AggregatedAnnotation">ro:AggregatedAnnotation</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
 </h3>
-<p><strong>IRI:</strong> http://purl.org/wf4ever/ro#Annotation</p>
+<p><strong>IRI:</strong> http://purl.org/wf4ever/ro#AggregatedAnnotation</p>
 <div class="comment">
 <p>An annotation aggregated within an ro:ResearchObject.  </p>
 <p>Instances of this class are used to annotated resources aggregated within the aggregating research object, proxies of these resources, or the research object itself. In other words, if :ro is the ro:ResearchObject this annotation has been ore:isAggregatedBy, then the annotation should have at least one ao:annotatesResource which is an ore:AggregatedResource which is ore:isAggregatedBy :ro, or the annotated resource is an ore:Proxy which ore:proxyIn :ro, or the annotated resource is :ro.</p>
 <p>It is possible for the annotation to also annotate non-aggregated resources, but as above, at least one of them needs to be part of the RO or the RO itself.</p>
-<p>As a subclass of ao:GraphAnnotation the ao:body must point to an rdfg:Graph which contains the actual annotation. </p>
+<p>As a subclass of ro:SemanticAnnotation the ao:body must point to an rdfg:Graph which contains the actual annotation. </p>
 </div>
 <dl class="description">
 <dt>has super-classes</dt>
 <dd><ul>
 <li>
-<span class="dotted" title="http://purl.org/ao/GraphAnnotation">ao:GraphAnnotation</span><sup title="class" class="type-c">c</sup>
+<a href="#d3e330" title="http://purl.org/wf4ever/ro#SemanticAnnotation">ro:SemanticAnnotation</a><sup title="class" class="type-c">c</sup>
 </li>
 <li>
 <span class="dotted" title="http://www.openarchives.org/ore/terms/AggregatedResource">terms:AggregatedResource</span><sup title="class" class="type-c">c</sup>
 </li>
 <li>
-<span class="dotted" title="http://purl.org/ao/annotatesResource">ao:annotatesResource</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e226" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup><span class="logic">or</span> <span class="dotted" title="http://www.openarchives.org/ore/terms/AggregatedResource">terms:AggregatedResource</span><sup title="class" class="type-c">c</sup><span class="logic">or</span> <span class="dotted" title="http://www.openarchives.org/ore/terms/Proxy">terms:Proxy</span><sup title="class" class="type-c">c</sup>
-</li>
-<li>
-<span class="dotted" title="http://www.openarchives.org/ore/terms/isAggregatedBy">terms:isAggregatedBy</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e226" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup>
-</li>
-<li>
-<span class="dotted" title="http://purl.org/dc/terms/created">terms2:created</span><sup title="data property" class="type-dp">dp</sup><span class="logic">some</span> <span class="dotted" title="http://www.w3.org/2001/XMLSchema#dateTime">xsd:dateTime</span>
+<span class="dotted" title="http://purl.org/ao/annotatesResource">ao:annotatesResource</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e245" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup><span class="logic">or</span> <span class="dotted" title="http://www.openarchives.org/ore/terms/AggregatedResource">terms:AggregatedResource</span><sup title="class" class="type-c">c</sup><span class="logic">or</span> <span class="dotted" title="http://www.openarchives.org/ore/terms/Proxy">terms:Proxy</span><sup title="class" class="type-c">c</sup>
 </li>
 <li>
 <span class="dotted" title="http://purl.org/dc/terms/creator">terms2:creator</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <span class="dotted" title="http://xmlns.com/foaf/0.1/Agent">foaf:Agent</span><sup title="class" class="type-c">c</sup>
 </li>
+<li>
+<span class="dotted" title="http://www.openarchives.org/ore/terms/isAggregatedBy">terms:isAggregatedBy</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e245" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup>
+</li>
+<li>
+<span class="dotted" title="http://purl.org/dc/terms/created">terms2:created</span><sup title="data property" class="type-dp">dp</sup><span class="logic">some</span> <span class="dotted" title="http://www.w3.org/2001/XMLSchema#dateTime">xsd:dateTime</span>
+</li>
 </ul></dd>
 </dl>
 </div>
-<div id="d3e156" class="entity">
+<div id="d3e175" class="entity">
 <a name="http://purl.org/wf4ever/ro#Folder"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/ro#Folder">ro:Folder</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
 </h3>
@@ -245,7 +249,7 @@ ontology</a> under the namespace
 <dt>has super-classes</dt>
 <dd><ul>
 <li>
-<a href="#d3e267" title="http://purl.org/wf4ever/ro#Resource">ro:Resource</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e285" title="http://purl.org/wf4ever/ro#Resource">ro:Resource</a><sup title="class" class="type-c">c</sup>
 </li>
 <li>
 <span class="dotted" title="http://www.openarchives.org/ore/terms/Aggregation">terms:Aggregation</span><sup title="class" class="type-c">c</sup>
@@ -253,7 +257,7 @@ ontology</a> under the namespace
 </ul></dd>
 </dl>
 </div>
-<div id="d3e169" class="entity">
+<div id="d3e187" class="entity">
 <a name="http://purl.org/wf4ever/ro#FolderEntry"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/ro#FolderEntry">ro:FolderEntry</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
 </h3>
@@ -263,10 +267,10 @@ ontology</a> under the namespace
 <dt>is equivalent to</dt>
 <dd><ul>
 <li>
-<a href="#d3e69" title="http://purl.org/wf4ever/ro#entryName">ro:entryName</a><sup title="data property" class="type-dp">dp</sup><span class="logic">some</span> <span class="dotted" title="http://www.w3.org/2001/XMLSchema#string">xsd:string</span>
+<span class="dotted" title="http://www.openarchives.org/ore/terms/proxyIn">terms:proxyIn</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e175" title="http://purl.org/wf4ever/ro#Folder">ro:Folder</a><sup title="class" class="type-c">c</sup>
 </li>
 <li>
-<span class="dotted" title="http://www.openarchives.org/ore/terms/proxyIn">terms:proxyIn</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e156" title="http://purl.org/wf4ever/ro#Folder">ro:Folder</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e88" title="http://purl.org/wf4ever/ro#entryName">ro:entryName</a><sup title="data property" class="type-dp">dp</sup><span class="logic">some</span> <span class="dotted" title="http://www.w3.org/2001/XMLSchema#string">xsd:string</span>
 </li>
 </ul></dd>
 <dt>has super-classes</dt>
@@ -275,15 +279,15 @@ ontology</a> under the namespace
 </li></ul></dd>
 <dt>is in domain of</dt>
 <dd>
-<a href="#d3e69" title="http://purl.org/wf4ever/ro#entryName">ro:entryName</a><sup title="data property" class="type-dp">dp</sup>
+<a href="#d3e88" title="http://purl.org/wf4ever/ro#entryName">ro:entryName</a><sup title="data property" class="type-dp">dp</sup>
 </dd>
 <dt>has keys</dt>
 <dd><ul><li>
-<span class="dotted" title="http://www.openarchives.org/ore/terms/proxyIn">terms:proxyIn</span><sup title="object property" class="type-op">op</sup> , <a href="#d3e69" title="http://purl.org/wf4ever/ro#entryName">ro:entryName</a><sup title="data property" class="type-dp">dp</sup>
+<span class="dotted" title="http://www.openarchives.org/ore/terms/proxyIn">terms:proxyIn</span><sup title="object property" class="type-op">op</sup> , <a href="#d3e88" title="http://purl.org/wf4ever/ro#entryName">ro:entryName</a><sup title="data property" class="type-dp">dp</sup>
 </li></ul></dd>
 </dl>
 </div>
-<div id="d3e206" class="entity">
+<div id="d3e225" class="entity">
 <a name="http://purl.org/wf4ever/ro#Manifest"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/ro#Manifest">ro:Manifest</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
 </h3>
@@ -292,7 +296,7 @@ ontology</a> under the namespace
 <dl class="description">
 <dt>is equivalent to</dt>
 <dd><ul><li>
-<span class="dotted" title="http://www.openarchives.org/ore/terms/describes">terms:describes</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e226" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup>
+<span class="dotted" title="http://www.openarchives.org/ore/terms/describes">terms:describes</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e245" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 <dt>has super-classes</dt>
 <dd><ul><li>
@@ -300,7 +304,7 @@ ontology</a> under the namespace
 </li></ul></dd>
 </dl>
 </div>
-<div id="d3e226" class="entity">
+<div id="d3e245" class="entity">
 <a name="http://purl.org/wf4ever/ro#ResearchObject"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
 </h3>
@@ -309,7 +313,7 @@ ontology</a> under the namespace
 <dl class="description">
 <dt>is equivalent to</dt>
 <dd><ul><li>
-<span class="dotted" title="http://www.openarchives.org/ore/terms/isDescribedBy">terms:isDescribedBy</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e206" title="http://purl.org/wf4ever/ro#Manifest">ro:Manifest</a><sup title="class" class="type-c">c</sup>
+<span class="dotted" title="http://www.openarchives.org/ore/terms/isDescribedBy">terms:isDescribedBy</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e225" title="http://purl.org/wf4ever/ro#Manifest">ro:Manifest</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 <dt>has super-classes</dt>
 <dd><ul>
@@ -325,7 +329,7 @@ ontology</a> under the namespace
 </ul></dd>
 </dl>
 </div>
-<div id="d3e267" class="entity">
+<div id="d3e285" class="entity">
 <a name="http://purl.org/wf4ever/ro#Resource"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/ro#Resource">ro:Resource</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
 </h3>
@@ -333,8 +337,8 @@ ontology</a> under the namespace
 <div class="comment">
 <p>An ro:Resource is an ore:AggregatedResource which ore:isAggregatedBy an ro:ResearchObject. </p>
 <p>This specialisation requires that there exists an ore:Proxy which is ore:proxyFor this resource, and which is ore:proxyIn the same ro:ResearchObject the resource ore:isAggregatedBy. Any annotations on such a proxy will descrive the ro:Resource within that particular ro:ResearchObject, in particular dct:creator and dct:created on the proxy will specify who added the resource to the aggregation at what time.</p>
-<p>Note that annotations (ro:Annotation) can be added to both the ro:Resource and the ore:Proxy - depending on if the annotation is seen to be globally true (such as the provenance of how the resource was created) or locally true within the Research Object (such as the the resource playing the role of a wf4ever:Dataset).</p>
-<p>Not all resources aggregated by an ro:ResearchObject are ro:Resource instances, in particular ro:Annotations will also be aggregated, but are not required to also be ro:Resources (needing their own ore:Proxy).  </p>
+<p>Note that annotations (ro:AggregatedAnnotation) can be added to both the ro:Resource and the ore:Proxy - depending on if the annotation is seen to be globally true (such as the provenance of how the resource was created) or locally true within the Research Object (such as the the resource playing the role of a wf4ever:Dataset).</p>
+<p>Not all resources aggregated by an ro:ResearchObject are ro:Resource instances, in particular ro:AggregatedAnnotations will also be aggregated, but will not be "true" RO resources (and thus don't need their own ore:Proxy).  </p>
 <p>Aggregated resources MAY also be organised in (potentially nested) ro:Folders to reflect a file-system like structure. Note that any such resources SHOULD also be aggregated in the "mother" ro:ResearchObject.</p>
 </div>
 <dl class="description">
@@ -344,21 +348,53 @@ ontology</a> under the namespace
 <span class="dotted" title="http://www.openarchives.org/ore/terms/AggregatedResource">terms:AggregatedResource</span><sup title="class" class="type-c">c</sup>
 </li>
 <li>
-<span class="logic">inverse</span>(<span class="dotted" title="http://www.openarchives.org/ore/terms/proxyFor">terms:proxyFor</span><sup title="object property" class="type-op">op</sup>) <span class="logic">some</span> <span class="dotted" title="http://www.openarchives.org/ore/terms/proxyIn">terms:proxyIn</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e226" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup>
+<span class="dotted" title="http://www.openarchives.org/ore/terms/isAggregatedBy">terms:isAggregatedBy</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e245" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup>
 </li>
 <li>
-<span class="dotted" title="http://www.openarchives.org/ore/terms/isAggregatedBy">terms:isAggregatedBy</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e226" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup>
+<span class="logic">inverse</span>(<span class="dotted" title="http://www.openarchives.org/ore/terms/proxyFor">terms:proxyFor</span><sup title="object property" class="type-op">op</sup>) <span class="logic">some</span> <span class="dotted" title="http://www.openarchives.org/ore/terms/proxyIn">terms:proxyIn</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <a href="#d3e245" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</a><sup title="class" class="type-c">c</sup>
 </li>
 </ul></dd>
 <dt>has sub-classes</dt>
 <dd>
-<a href="#d3e156" title="http://purl.org/wf4ever/ro#Folder">ro:Folder</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e175" title="http://purl.org/wf4ever/ro#Folder">ro:Folder</a><sup title="class" class="type-c">c</sup>
+</dd>
+<dt>is in range of</dt>
+<dd>
+<a href="#d3e46" title="http://purl.org/wf4ever/ro#annotatesAggregatedResource">ro:annotatesAggregatedResource</a><sup title="object property" class="type-op">op</sup>
+</dd>
+</dl>
+</div>
+<div id="d3e330" class="entity">
+<a name="http://purl.org/wf4ever/ro#SemanticAnnotation"></a><h3>
+<span class="dotted" title="http://purl.org/wf4ever/ro#SemanticAnnotation">ro:SemanticAnnotation</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
+</h3>
+<p><strong>IRI:</strong> http://purl.org/wf4ever/ro#SemanticAnnotation</p>
+<div class="comment">
+<p>An ro:SemanticAnnotation is a specialisation of ao:Annotation which requires that ao:body points to an RDF Graph.</p>
+<p>This might be a Named Graph or a resource which can be resolved separately from the URI given by ao:body.</p>
+<p>This graph SHOULD mention the resources identified by ao:annotatesResource from this annotation, preferably by using their URIs as subject or object of statements.</p>
+<p>Note that this use of ao:body is distinct from ao:hasTopic, which also allows the association of a an RDF Graph with an ao:Annotation, but which also implies that this graph is the "topic" (subproperty of bookmark:hasTopic) of the annotated resource. This class does not require this interpretation, it is merely enough that the annotation body mentions the annotated resource, for instance to give it a dc:title or to relate two annotated resources.  Also note that the next version of the AO ontology (v2) might change this definition of ao:hasTopic, removing the need for this class.</p>
+</div>
+<dl class="description">
+<dt>has super-classes</dt>
+<dd><ul>
+<li>
+<span class="dotted" title="http://purl.org/ao/Annotation">ao:Annotation</span><sup title="class" class="type-c">c</sup>
+</li>
+<li>
+<span class="dotted" title="http://purl.org/ao/body">ao:body</span><sup title="object property" class="type-op">op</sup><span class="logic">only</span> <span class="dotted" title="http://www.w3.org/2004/03/trix/rdfg-1/Graph">rdfg-1:Graph</span><sup title="class" class="type-c">c</sup>
+</li>
+</ul></dd>
+<dt>has sub-classes</dt>
+<dd>
+<a href="#d3e109" title="http://purl.org/wf4ever/ro#AggregatedAnnotation">ro:AggregatedAnnotation</a><sup title="class" class="type-c">c</sup>
 </dd>
 </dl>
 </div>
 <h3>Data Properties</h3>
-<ul class="hlist"><li><a href="#d3e69" title="http://purl.org/wf4ever/ro#entryName"><span>ro:entryName</span></a></li></ul>
-<div id="d3e69" class="entity">
+<h2>Data Properties</h2>
+<ul class="hlist"><li><a href="#d3e88" title="http://purl.org/wf4ever/ro#entryName"><span>ro:entryName</span></a></li></ul>
+<div id="d3e88" class="entity">
 <a name="http://purl.org/wf4ever/ro#entryName"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/ro#entryName">ro:entryName</span><sup title="data property" class="type-dp">dp</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a></span>
 </h3>
@@ -373,12 +409,40 @@ ontology</a> under the namespace
 <dl>
 <dt>has domain</dt>
 <dd><ul><li>
-<a href="#d3e169" title="http://purl.org/wf4ever/ro#FolderEntry">ro:FolderEntry</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e187" title="http://purl.org/wf4ever/ro#FolderEntry">ro:FolderEntry</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 <dt>has range</dt>
 <dd><ul><li><span class="dotted" title="http://www.w3.org/2001/XMLSchema#string">xsd:string</span></li></ul></dd>
 </dl>
 </div>
+</div>
+<h3>Object Properties</h3>
+<h2>Object Properties</h2>
+<ul class="hlist"><li><a href="#d3e46" title="http://purl.org/wf4ever/ro#annotatesAggregatedResource"><span>ro:annotatesAggregatedResource</span></a></li></ul>
+<div id="d3e46" class="entity">
+<a name="http://purl.org/wf4ever/ro#annotatesAggregatedResource"></a><h3>
+<span class="dotted" title="http://purl.org/wf4ever/ro#annotatesAggregatedResource">ro:annotatesAggregatedResource</span><sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span>
+</h3>
+<p><strong>IRI:</strong> http://purl.org/wf4ever/ro#annotatesAggregatedResource</p>
+<div class="comment">
+<p>ro:annotatesAggregatedResource specifies that an ao:Annotation annotates an aggregated ro:Resource. </p>
+<p>When used on an ro:AggregatedAnnotation, both the domain and range of this property must ore:isAggregatedBy the same ro:ResearchObject.  </p>
+<p>TODO: Should also ro:ResearchObject and ore:Proxy be in the range of this property, or is this subproperty even needed?</p>
+</div>
+<div class="description"><dl>
+<dt>has super-properties</dt>
+<dd><ul><li>
+<span class="dotted" title="http://purl.org/ao/annotatesResource">ao:annotatesResource</span><sup title="object property" class="type-op">op</sup>
+</li></ul></dd>
+<dt>has domain</dt>
+<dd><ul><li>
+<span class="dotted" title="http://purl.org/ao/Annotation">ao:Annotation</span><sup title="class" class="type-c">c</sup>
+</li></ul></dd>
+<dt>has range</dt>
+<dd><ul><li>
+<a href="#d3e285" title="http://purl.org/wf4ever/ro#Resource">ro:Resource</a><sup title="class" class="type-c">c</sup>
+</li></ul></dd>
+</dl></div>
 </div>
 </div>
 
@@ -398,18 +462,18 @@ ontology</a> under the namespace
 
 <div id="wfdesc-model-documentation">
 <h3>Classes</h3>
+<h2>Classes</h2>
 <ul class="hlist">
-<li><a href="#d3e145" title="http://purl.org/wf4ever/wfdesc#Artifact"><span>wfdesc:Artifact</span></a></li>
-<li><a href="#d3e155" title="http://purl.org/wf4ever/wfdesc#DataLink"><span>wfdesc:DataLink</span></a></li>
-<li><a href="#d3e166" title="http://purl.org/wf4ever/wfdesc#Description"><span>wfdesc:Description</span></a></li>
-<li><a href="#d3e181" title="http://purl.org/wf4ever/wfdesc#Input"><span>wfdesc:Input</span></a></li>
-<li><a href="#d3e191" title="http://purl.org/wf4ever/wfdesc#Output"><span>wfdesc:Output</span></a></li>
-<li><a href="#d3e202" title="http://purl.org/wf4ever/wfdesc#Parameter"><span>wfdesc:Parameter</span></a></li>
-<li><a href="#d3e225" title="http://purl.org/wf4ever/wfdesc#Process"><span>wfdesc:Process</span></a></li>
-<li><a href="#d3e235" title="http://purl.org/wf4ever/wfdesc#Workflow"><span>wfdesc:Workflow</span></a></li>
-<li><a href="#d3e246" title="http://purl.org/wf4ever/wfdesc#WorkflowInstance"><span>wfdesc:WorkflowInstance</span></a></li>
+<li><a href="#d3e135" title="http://purl.org/wf4ever/wfdesc#Artifact"><span>wfdesc:Artifact</span></a></li>
+<li><a href="#d3e143" title="http://purl.org/wf4ever/wfdesc#DataLink"><span>wfdesc:DataLink</span></a></li>
+<li><a href="#d3e151" title="http://purl.org/wf4ever/wfdesc#Input"><span>wfdesc:Input</span></a></li>
+<li><a href="#d3e162" title="http://purl.org/wf4ever/wfdesc#Output"><span>wfdesc:Output</span></a></li>
+<li><a href="#d3e172" title="http://purl.org/wf4ever/wfdesc#Parameter"><span>wfdesc:Parameter</span></a></li>
+<li><a href="#d3e193" title="http://purl.org/wf4ever/wfdesc#Process"><span>wfdesc:Process</span></a></li>
+<li><a href="#d3e202" title="http://purl.org/wf4ever/wfdesc#Workflow"><span>wfdesc:Workflow</span></a></li>
+<li><a href="#d3e212" title="http://purl.org/wf4ever/wfdesc#WorkflowInstance"><span>wfdesc:WorkflowInstance</span></a></li>
 </ul>
-<div id="d3e145" class="entity">
+<div id="d3e135" class="entity">
 <a name="http://purl.org/wf4ever/wfdesc#Artifact"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wfdesc#Artifact">wfdesc:Artifact</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
 </h3>
@@ -420,58 +484,34 @@ ontology</a> under the namespace
 <p>The distinction between a parameter and artifact is that the parameter can be customized to describe the particular role the artifact plays with regards to the process (and can be linked using wfdesc:DataLink) - while the wfdesc:Artifact can describe the syntactic and semantic datatype.</p>
 </div>
 <dl class="description">
-<dt>has super-classes</dt>
-<dd><ul><li>
-<a href="#d3e166" title="http://purl.org/wf4ever/wfdesc#Description">wfdesc:Description</a><sup title="class" class="type-c">c</sup>
-</li></ul></dd>
 <dt>is in range of</dt>
 <dd>
-<a href="#d3e24" title="http://purl.org/wf4ever/wfdesc#hasArtifact">wfdesc:hasArtifact</a><sup title="object property" class="type-op">op</sup>
+<a href="#d3e20" title="http://purl.org/wf4ever/wfdesc#hasArtifact">wfdesc:hasArtifact</a><sup title="object property" class="type-op">op</sup>
 </dd>
 </dl>
 </div>
-<div id="d3e155" class="entity">
+<div id="d3e143" class="entity">
 <a name="http://purl.org/wf4ever/wfdesc#DataLink"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wfdesc#DataLink">wfdesc:DataLink</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
 </h3>
 <p><strong>IRI:</strong> http://purl.org/wf4ever/wfdesc#DataLink</p>
 <div class="comment">
-<p>wfdesc:DataLink is used to represent data dependencies between wfdesc:Process descriptions. It means that the artifact generated at an wfdesc:Output (identified using wfdesc:hasSource) will be used by a wfdescInput (identified using wfdesc:hasSink).</p>
+<p>wfdesc:DataLink is used to represent data dependencies between process templates. It means that the artifact generated at an wfdesc:Output (identified using wfdesc:hasSource) will be used by a wfdescInput (identified using wfdesc:hasSink).</p>
 <p>The wfdesc:Processes that owns the wfdesc:Parameter instances which are the source and sink of a wfdesc:DataLink must be wfdesc:hasSubProcess of a the same wfdesc:Workflow which wfdesc:hasDataLink the data link, or be be parameters of that same workflow.</p>
 <p>Thus links can only be made within a wfdesc:Workflow - although ports owned by the workflow itself appear both inside and outside the workflow (in opposite roles).</p>
 </div>
 <dl class="description">
-<dt>has super-classes</dt>
-<dd><ul><li>
-<a href="#d3e166" title="http://purl.org/wf4ever/wfdesc#Description">wfdesc:Description</a><sup title="class" class="type-c">c</sup>
-</li></ul></dd>
 <dt>is in domain of</dt>
 <dd>
-<a href="#d3e77" title="http://purl.org/wf4ever/wfdesc#hasSink">wfdesc:hasSink</a><sup title="object property" class="type-op">op</sup>, <a href="#d3e91" title="http://purl.org/wf4ever/wfdesc#hasSource">wfdesc:hasSource</a><sup title="object property" class="type-op">op</sup>
+<a href="#d3e73" title="http://purl.org/wf4ever/wfdesc#hasSink">wfdesc:hasSink</a><sup title="object property" class="type-op">op</sup>, <a href="#d3e87" title="http://purl.org/wf4ever/wfdesc#hasSource">wfdesc:hasSource</a><sup title="object property" class="type-op">op</sup>
 </dd>
 <dt>is in range of</dt>
 <dd>
-<a href="#d3e38" title="http://purl.org/wf4ever/wfdesc#hasDataLink">wfdesc:hasDataLink</a><sup title="object property" class="type-op">op</sup>
+<a href="#d3e34" title="http://purl.org/wf4ever/wfdesc#hasDataLink">wfdesc:hasDataLink</a><sup title="object property" class="type-op">op</sup>
 </dd>
 </dl>
 </div>
-<div id="d3e166" class="entity">
-<a name="http://purl.org/wf4ever/wfdesc#Description"></a><h3>
-<span class="dotted" title="http://purl.org/wf4ever/wfdesc#Description">wfdesc:Description</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
-</h3>
-<p><strong>IRI:</strong> http://purl.org/wf4ever/wfdesc#Description</p>
-<dl class="description">
-<dt>has super-classes</dt>
-<dd><ul><li>
-<span class="dotted" title="http://www.w3.org/2000/01/rdf-schema#label">rdfs:label</span><sup title="data property" class="type-dp">dp</sup><span class="logic">only</span> <span class="dotted" title="http://www.w3.org/2001/XMLSchema#string">xsd:string</span>
-</li></ul></dd>
-<dt>has sub-classes</dt>
-<dd>
-<a href="#d3e145" title="http://purl.org/wf4ever/wfdesc#Artifact">wfdesc:Artifact</a><sup title="class" class="type-c">c</sup>, <a href="#d3e155" title="http://purl.org/wf4ever/wfdesc#DataLink">wfdesc:DataLink</a><sup title="class" class="type-c">c</sup>, <a href="#d3e202" title="http://purl.org/wf4ever/wfdesc#Parameter">wfdesc:Parameter</a><sup title="class" class="type-c">c</sup>, <a href="#d3e225" title="http://purl.org/wf4ever/wfdesc#Process">wfdesc:Process</a><sup title="class" class="type-c">c</sup>
-</dd>
-</dl>
-</div>
-<div id="d3e181" class="entity">
+<div id="d3e151" class="entity">
 <a name="http://purl.org/wf4ever/wfdesc#Input"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wfdesc#Input">wfdesc:Input</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
 </h3>
@@ -483,15 +523,15 @@ ontology</a> under the namespace
 <dl class="description">
 <dt>has super-classes</dt>
 <dd><ul><li>
-<a href="#d3e202" title="http://purl.org/wf4ever/wfdesc#Parameter">wfdesc:Parameter</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e172" title="http://purl.org/wf4ever/wfdesc#Parameter">wfdesc:Parameter</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 <dt>is in range of</dt>
 <dd>
-<a href="#d3e52" title="http://purl.org/wf4ever/wfdesc#hasInput">wfdesc:hasInput</a><sup title="object property" class="type-op">op</sup>, <a href="#d3e77" title="http://purl.org/wf4ever/wfdesc#hasSink">wfdesc:hasSink</a><sup title="object property" class="type-op">op</sup>
+<a href="#d3e48" title="http://purl.org/wf4ever/wfdesc#hasInput">wfdesc:hasInput</a><sup title="object property" class="type-op">op</sup>, <a href="#d3e73" title="http://purl.org/wf4ever/wfdesc#hasSink">wfdesc:hasSink</a><sup title="object property" class="type-op">op</sup>
 </dd>
 </dl>
 </div>
-<div id="d3e191" class="entity">
+<div id="d3e162" class="entity">
 <a name="http://purl.org/wf4ever/wfdesc#Output"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wfdesc#Output">wfdesc:Output</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
 </h3>
@@ -503,43 +543,39 @@ ontology</a> under the namespace
 <dl class="description">
 <dt>has super-classes</dt>
 <dd><ul><li>
-<a href="#d3e202" title="http://purl.org/wf4ever/wfdesc#Parameter">wfdesc:Parameter</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e172" title="http://purl.org/wf4ever/wfdesc#Parameter">wfdesc:Parameter</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 <dt>is in range of</dt>
 <dd>
-<a href="#d3e65" title="http://purl.org/wf4ever/wfdesc#hasOutput">wfdesc:hasOutput</a><sup title="object property" class="type-op">op</sup>, <a href="#d3e91" title="http://purl.org/wf4ever/wfdesc#hasSource">wfdesc:hasSource</a><sup title="object property" class="type-op">op</sup>
+<a href="#d3e61" title="http://purl.org/wf4ever/wfdesc#hasOutput">wfdesc:hasOutput</a><sup title="object property" class="type-op">op</sup>, <a href="#d3e87" title="http://purl.org/wf4ever/wfdesc#hasSource">wfdesc:hasSource</a><sup title="object property" class="type-op">op</sup>
 </dd>
 </dl>
 </div>
-<div id="d3e202" class="entity">
+<div id="d3e172" class="entity">
 <a name="http://purl.org/wf4ever/wfdesc#Parameter"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wfdesc#Parameter">wfdesc:Parameter</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
 </h3>
 <p><strong>IRI:</strong> http://purl.org/wf4ever/wfdesc#Parameter</p>
 <div class="comment">
-<p>This class represent a parameter of a wfdesc:Process. A wfdesc:Parameter must be a wfdesc:Input, a wfdesc:Output, or both. </p>
+<p>This class represent a parameter of a process template. A wfdesc:Parameter must be a wfdesc:Input, a wfdesc:Output, or both. </p>
 <p>A parameter is both an wfdesc:Input and wfdesc:Output when it is used on both sides of a subworkflow - see wfdesc:Workflow and wfdesc:DataLink for details.</p>
 </div>
 <dl class="description">
 <dt>is equivalent to</dt>
 <dd><ul><li>
-<a href="#d3e181" title="http://purl.org/wf4ever/wfdesc#Input">wfdesc:Input</a><sup title="class" class="type-c">c</sup><span class="logic">or</span> <a href="#d3e191" title="http://purl.org/wf4ever/wfdesc#Output">wfdesc:Output</a><sup title="class" class="type-c">c</sup>
-</li></ul></dd>
-<dt>has super-classes</dt>
-<dd><ul><li>
-<a href="#d3e166" title="http://purl.org/wf4ever/wfdesc#Description">wfdesc:Description</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e151" title="http://purl.org/wf4ever/wfdesc#Input">wfdesc:Input</a><sup title="class" class="type-c">c</sup><span class="logic">or</span> <a href="#d3e162" title="http://purl.org/wf4ever/wfdesc#Output">wfdesc:Output</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 <dt>has sub-classes</dt>
 <dd>
-<a href="#d3e181" title="http://purl.org/wf4ever/wfdesc#Input">wfdesc:Input</a><sup title="class" class="type-c">c</sup>, <a href="#d3e191" title="http://purl.org/wf4ever/wfdesc#Output">wfdesc:Output</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e151" title="http://purl.org/wf4ever/wfdesc#Input">wfdesc:Input</a><sup title="class" class="type-c">c</sup>, <a href="#d3e162" title="http://purl.org/wf4ever/wfdesc#Output">wfdesc:Output</a><sup title="class" class="type-c">c</sup>
 </dd>
 <dt>is in domain of</dt>
 <dd>
-<a href="#d3e24" title="http://purl.org/wf4ever/wfdesc#hasArtifact">wfdesc:hasArtifact</a><sup title="object property" class="type-op">op</sup>
+<a href="#d3e20" title="http://purl.org/wf4ever/wfdesc#hasArtifact">wfdesc:hasArtifact</a><sup title="object property" class="type-op">op</sup>
 </dd>
 </dl>
 </div>
-<div id="d3e225" class="entity">
+<div id="d3e193" class="entity">
 <a name="http://purl.org/wf4ever/wfdesc#Process"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wfdesc#Process">wfdesc:Process</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
 </h3>
@@ -549,35 +585,31 @@ ontology</a> under the namespace
 <p>It is out of scope for wfdesc to classify or specify the nature of the process, this should be done by subclassing and additional subproperties, for instance ex:perlScript or ex:restServiceURI</p>
 </div>
 <dl class="description">
-<dt>has super-classes</dt>
-<dd><ul><li>
-<a href="#d3e166" title="http://purl.org/wf4ever/wfdesc#Description">wfdesc:Description</a><sup title="class" class="type-c">c</sup>
-</li></ul></dd>
 <dt>has sub-classes</dt>
 <dd>
-<a href="#d3e235" title="http://purl.org/wf4ever/wfdesc#Workflow">wfdesc:Workflow</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e202" title="http://purl.org/wf4ever/wfdesc#Workflow">wfdesc:Workflow</a><sup title="class" class="type-c">c</sup>
 </dd>
 <dt>is in domain of</dt>
 <dd>
-<a href="#d3e52" title="http://purl.org/wf4ever/wfdesc#hasInput">wfdesc:hasInput</a><sup title="object property" class="type-op">op</sup>, <a href="#d3e65" title="http://purl.org/wf4ever/wfdesc#hasOutput">wfdesc:hasOutput</a><sup title="object property" class="type-op">op</sup>
+<a href="#d3e48" title="http://purl.org/wf4ever/wfdesc#hasInput">wfdesc:hasInput</a><sup title="object property" class="type-op">op</sup>, <a href="#d3e61" title="http://purl.org/wf4ever/wfdesc#hasOutput">wfdesc:hasOutput</a><sup title="object property" class="type-op">op</sup>
 </dd>
 <dt>is in range of</dt>
 <dd>
-<a href="#d3e106" title="http://purl.org/wf4ever/wfdesc#hasSubProcess">wfdesc:hasSubProcess</a><sup title="object property" class="type-op">op</sup>
+<a href="#d3e102" title="http://purl.org/wf4ever/wfdesc#hasSubProcess">wfdesc:hasSubProcess</a><sup title="object property" class="type-op">op</sup>
 </dd>
 </dl>
 </div>
-<div id="d3e235" class="entity">
+<div id="d3e202" class="entity">
 <a name="http://purl.org/wf4ever/wfdesc#Workflow"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wfdesc#Workflow">wfdesc:Workflow</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
 </h3>
 <p><strong>IRI:</strong> http://purl.org/wf4ever/wfdesc#Workflow</p>
 <div class="comment">
-<p>A wfdesc:Workflow is a directed graph in which the nodes are wfdesc:Process instances and the edges (wfdesc:DataLink instances) represent data dependencies between the constituent wfdesc:Process descriptions.</p>
-<p>A wfdesc:Workflow defines associated wfdesc:Process using wfdesc:hasSubProcess. A specialisation of this property is wfdesc:hasSubWorkflow, signifying that the process is a wfdesc:Workflow itself, which is further described in a similar fashion.</p>
+<p>A wfdesc:Workflow is a directed graph in which the nodes are wfdesc:Process instances and the edges (wfdesc:DataLink instances) represent data dependencies between the constituent process templates.</p>
+<p>A wfdesc:Workflow defines associated wfdesc:Process using hasProcessTemplate. A specialisation of this property is hasSubWorkflowTemplate, signifying that the process is a WorkflowTemplate itself, which is further described in a similar fashion.</p>
 <p>As a subclass of wfdesc:Process a wfdesc:Workflow can also define wfdesc:hasInput/wfdesc:hasOutput parameters - these would be inputs taken at workflow execution time, and final outputs of the workflow. (Note: Not all dataflow systems have this concept of workflow parameters)</p>
-<p>wfdesc:Parameter descriptions are linked using wfdesc:DataLink descriptions associated with the wfdesc:Workflow using wfdesc:hasDataLink.</p>
-<p>A wfdesc:Parameter defined with wfdesc:hasInput on a wfdesc:Workflow is considered an wfdesc:Input "outside" the workflow (ie. if it is a subworkflow), but an wfdesc:Output "inside" the workflow (where it can be connected to a wfdesc:Input of a wfdesc:Process). Thus such parameters can be linked "through" the workflow without having a "mirrored" port inside.</p>
+<p>wfdesc:Parameter instances are linked using wfdesc:DataLink instances associated with the wfdesc:Workflow using wfdesc:hasDataLink.</p>
+<p>A wfdesc:Parameter defined with wfdesc:hasInput on a wfdesc:Workflow is considered an wfdesc:Input "outside" the workflow template (ie. if it is a subworkflow), but an wfdesc:Output "inside" the workflow template (where it can be connected to a wfdesc:Input of a wfdesc:Process). Thus such parameters can be linked "through" the workflow template without having a "mirrored" port inside.</p>
 <p>Example:</p>
 <p>##</p>
 <p>@prefix wfdesc: &lt;http://purl.org/wf4ever/wfdesc#&gt; .</p>
@@ -609,47 +641,48 @@ ontology</a> under the namespace
 <dl class="description">
 <dt>has super-classes</dt>
 <dd><ul><li>
-<a href="#d3e225" title="http://purl.org/wf4ever/wfdesc#Process">wfdesc:Process</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e193" title="http://purl.org/wf4ever/wfdesc#Process">wfdesc:Process</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 <dt>has sub-classes</dt>
 <dd>
-<a href="#d3e246" title="http://purl.org/wf4ever/wfdesc#WorkflowInstance">wfdesc:WorkflowInstance</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e212" title="http://purl.org/wf4ever/wfdesc#WorkflowInstance">wfdesc:WorkflowInstance</a><sup title="class" class="type-c">c</sup>
 </dd>
 <dt>is in domain of</dt>
 <dd>
-<a href="#d3e38" title="http://purl.org/wf4ever/wfdesc#hasDataLink">wfdesc:hasDataLink</a><sup title="object property" class="type-op">op</sup>, <a href="#d3e106" title="http://purl.org/wf4ever/wfdesc#hasSubProcess">wfdesc:hasSubProcess</a><sup title="object property" class="type-op">op</sup>, <a href="#d3e118" title="http://purl.org/wf4ever/wfdesc#hasSubWorkflow">wfdesc:hasSubWorkflow</a><sup title="object property" class="type-op">op</sup>
+<a href="#d3e34" title="http://purl.org/wf4ever/wfdesc#hasDataLink">wfdesc:hasDataLink</a><sup title="object property" class="type-op">op</sup>, <a href="#d3e102" title="http://purl.org/wf4ever/wfdesc#hasSubProcess">wfdesc:hasSubProcess</a><sup title="object property" class="type-op">op</sup>, <a href="#d3e114" title="http://purl.org/wf4ever/wfdesc#hasSubWorkflow">wfdesc:hasSubWorkflow</a><sup title="object property" class="type-op">op</sup>
 </dd>
 <dt>is in range of</dt>
 <dd>
-<a href="#d3e118" title="http://purl.org/wf4ever/wfdesc#hasSubWorkflow">wfdesc:hasSubWorkflow</a><sup title="object property" class="type-op">op</sup>
+<a href="#d3e114" title="http://purl.org/wf4ever/wfdesc#hasSubWorkflow">wfdesc:hasSubWorkflow</a><sup title="object property" class="type-op">op</sup>
 </dd>
 </dl>
 </div>
-<div id="d3e246" class="entity">
+<div id="d3e212" class="entity">
 <a name="http://purl.org/wf4ever/wfdesc#WorkflowInstance"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wfdesc#WorkflowInstance">wfdesc:WorkflowInstance</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
 </h3>
 <p><strong>IRI:</strong> http://purl.org/wf4ever/wfdesc#WorkflowInstance</p>
-<div class="comment"><p>A wfdesc:WorkflowInstance is a specialisation of a wfdesc:Workflow description which defines all data/parameters/settings that are required to form a wfprov:WorkflowRun.</p></div>
+<div class="comment"><p>A wfdesc:WorkflowInstance is a specialisation of a wfdesc:Workflow template which defines all data/parameters/settings that are required to form a wfprov:WorkflowRun.</p></div>
 <dl class="description">
 <dt>has super-classes</dt>
 <dd><ul><li>
-<a href="#d3e235" title="http://purl.org/wf4ever/wfdesc#Workflow">wfdesc:Workflow</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e202" title="http://purl.org/wf4ever/wfdesc#Workflow">wfdesc:Workflow</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 </dl>
 </div>
 <h3>Object Properties</h3>
+<h2>Object Properties</h2>
 <ul class="hlist">
-<li><a href="#d3e24" title="http://purl.org/wf4ever/wfdesc#hasArtifact"><span>wfdesc:hasArtifact</span></a></li>
-<li><a href="#d3e38" title="http://purl.org/wf4ever/wfdesc#hasDataLink"><span>wfdesc:hasDataLink</span></a></li>
-<li><a href="#d3e52" title="http://purl.org/wf4ever/wfdesc#hasInput"><span>wfdesc:hasInput</span></a></li>
-<li><a href="#d3e65" title="http://purl.org/wf4ever/wfdesc#hasOutput"><span>wfdesc:hasOutput</span></a></li>
-<li><a href="#d3e77" title="http://purl.org/wf4ever/wfdesc#hasSink"><span>wfdesc:hasSink</span></a></li>
-<li><a href="#d3e91" title="http://purl.org/wf4ever/wfdesc#hasSource"><span>wfdesc:hasSource</span></a></li>
-<li><a href="#d3e106" title="http://purl.org/wf4ever/wfdesc#hasSubProcess"><span>wfdesc:hasSubProcess</span></a></li>
-<li><a href="#d3e118" title="http://purl.org/wf4ever/wfdesc#hasSubWorkflow"><span>wfdesc:hasSubWorkflow</span></a></li>
+<li><a href="#d3e20" title="http://purl.org/wf4ever/wfdesc#hasArtifact"><span>wfdesc:hasArtifact</span></a></li>
+<li><a href="#d3e34" title="http://purl.org/wf4ever/wfdesc#hasDataLink"><span>wfdesc:hasDataLink</span></a></li>
+<li><a href="#d3e48" title="http://purl.org/wf4ever/wfdesc#hasInput"><span>wfdesc:hasInput</span></a></li>
+<li><a href="#d3e61" title="http://purl.org/wf4ever/wfdesc#hasOutput"><span>wfdesc:hasOutput</span></a></li>
+<li><a href="#d3e73" title="http://purl.org/wf4ever/wfdesc#hasSink"><span>wfdesc:hasSink</span></a></li>
+<li><a href="#d3e87" title="http://purl.org/wf4ever/wfdesc#hasSource"><span>wfdesc:hasSource</span></a></li>
+<li><a href="#d3e102" title="http://purl.org/wf4ever/wfdesc#hasSubProcess"><span>wfdesc:hasSubProcess</span></a></li>
+<li><a href="#d3e114" title="http://purl.org/wf4ever/wfdesc#hasSubWorkflow"><span>wfdesc:hasSubWorkflow</span></a></li>
 </ul>
-<div id="d3e24" class="entity">
+<div id="d3e20" class="entity">
 <a name="http://purl.org/wf4ever/wfdesc#hasArtifact"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wfdesc#hasArtifact">wfdesc:hasArtifact</span><sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span>
 </h3>
@@ -662,20 +695,20 @@ ontology</a> under the namespace
 </li></ul></dd>
 <dt>has domain</dt>
 <dd><ul><li>
-<a href="#d3e202" title="http://purl.org/wf4ever/wfdesc#Parameter">wfdesc:Parameter</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e172" title="http://purl.org/wf4ever/wfdesc#Parameter">wfdesc:Parameter</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 <dt>has range</dt>
 <dd><ul><li>
-<a href="#d3e145" title="http://purl.org/wf4ever/wfdesc#Artifact">wfdesc:Artifact</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e135" title="http://purl.org/wf4ever/wfdesc#Artifact">wfdesc:Artifact</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 </dl></div>
 </div>
-<div id="d3e38" class="entity">
+<div id="d3e34" class="entity">
 <a name="http://purl.org/wf4ever/wfdesc#hasDataLink"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wfdesc#hasDataLink">wfdesc:hasDataLink</span><sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span>
 </h3>
 <p><strong>IRI:</strong> http://purl.org/wf4ever/wfdesc#hasDataLink</p>
-<div class="comment"><p>This property is used to specify the wfdesc:DataLink instances of a given wfdesc:Workflow.</p></div>
+<div class="comment"><p>This property is used to specify the wfdesc:DataLink instances of a given workflow template.</p></div>
 <div class="description"><dl>
 <dt>has super-properties</dt>
 <dd><ul><li>
@@ -683,15 +716,15 @@ ontology</a> under the namespace
 </li></ul></dd>
 <dt>has domain</dt>
 <dd><ul><li>
-<a href="#d3e235" title="http://purl.org/wf4ever/wfdesc#Workflow">wfdesc:Workflow</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e202" title="http://purl.org/wf4ever/wfdesc#Workflow">wfdesc:Workflow</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 <dt>has range</dt>
 <dd><ul><li>
-<a href="#d3e155" title="http://purl.org/wf4ever/wfdesc#DataLink">wfdesc:DataLink</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e143" title="http://purl.org/wf4ever/wfdesc#DataLink">wfdesc:DataLink</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 </dl></div>
 </div>
-<div id="d3e52" class="entity">
+<div id="d3e48" class="entity">
 <a name="http://purl.org/wf4ever/wfdesc#hasInput"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wfdesc#hasInput">wfdesc:hasInput</span><sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span>
 </h3>
@@ -700,15 +733,15 @@ ontology</a> under the namespace
 <div class="description"><dl>
 <dt>has domain</dt>
 <dd><ul><li>
-<a href="#d3e225" title="http://purl.org/wf4ever/wfdesc#Process">wfdesc:Process</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e193" title="http://purl.org/wf4ever/wfdesc#Process">wfdesc:Process</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 <dt>has range</dt>
 <dd><ul><li>
-<a href="#d3e181" title="http://purl.org/wf4ever/wfdesc#Input">wfdesc:Input</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e151" title="http://purl.org/wf4ever/wfdesc#Input">wfdesc:Input</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 </dl></div>
 </div>
-<div id="d3e65" class="entity">
+<div id="d3e61" class="entity">
 <a name="http://purl.org/wf4ever/wfdesc#hasOutput"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wfdesc#hasOutput">wfdesc:hasOutput</span><sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span>
 </h3>
@@ -717,15 +750,15 @@ ontology</a> under the namespace
 <div class="description"><dl>
 <dt>has domain</dt>
 <dd><ul><li>
-<a href="#d3e225" title="http://purl.org/wf4ever/wfdesc#Process">wfdesc:Process</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e193" title="http://purl.org/wf4ever/wfdesc#Process">wfdesc:Process</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 <dt>has range</dt>
 <dd><ul><li>
-<a href="#d3e191" title="http://purl.org/wf4ever/wfdesc#Output">wfdesc:Output</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e162" title="http://purl.org/wf4ever/wfdesc#Output">wfdesc:Output</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 </dl></div>
 </div>
-<div id="d3e77" class="entity">
+<div id="d3e73" class="entity">
 <a name="http://purl.org/wf4ever/wfdesc#hasSink"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wfdesc#hasSink">wfdesc:hasSink</span><sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span>
 </h3>
@@ -738,15 +771,15 @@ ontology</a> under the namespace
 </li></ul></dd>
 <dt>has domain</dt>
 <dd><ul><li>
-<a href="#d3e155" title="http://purl.org/wf4ever/wfdesc#DataLink">wfdesc:DataLink</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e143" title="http://purl.org/wf4ever/wfdesc#DataLink">wfdesc:DataLink</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 <dt>has range</dt>
 <dd><ul><li>
-<a href="#d3e181" title="http://purl.org/wf4ever/wfdesc#Input">wfdesc:Input</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e151" title="http://purl.org/wf4ever/wfdesc#Input">wfdesc:Input</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 </dl></div>
 </div>
-<div id="d3e91" class="entity">
+<div id="d3e87" class="entity">
 <a name="http://purl.org/wf4ever/wfdesc#hasSource"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wfdesc#hasSource">wfdesc:hasSource</span><sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span>
 </h3>
@@ -759,15 +792,15 @@ ontology</a> under the namespace
 </li></ul></dd>
 <dt>has domain</dt>
 <dd><ul><li>
-<a href="#d3e155" title="http://purl.org/wf4ever/wfdesc#DataLink">wfdesc:DataLink</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e143" title="http://purl.org/wf4ever/wfdesc#DataLink">wfdesc:DataLink</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 <dt>has range</dt>
 <dd><ul><li>
-<a href="#d3e191" title="http://purl.org/wf4ever/wfdesc#Output">wfdesc:Output</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e162" title="http://purl.org/wf4ever/wfdesc#Output">wfdesc:Output</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 </dl></div>
 </div>
-<div id="d3e106" class="entity">
+<div id="d3e102" class="entity">
 <a name="http://purl.org/wf4ever/wfdesc#hasSubProcess"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wfdesc#hasSubProcess">wfdesc:hasSubProcess</span><sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span>
 </h3>
@@ -780,39 +813,39 @@ ontology</a> under the namespace
 <div class="description"><dl>
 <dt>has sub-properties</dt>
 <dd>
-<a href="#d3e118" title="http://purl.org/wf4ever/wfdesc#hasSubWorkflow">wfdesc:hasSubWorkflow</a><sup title="object property" class="type-op">op</sup>
+<a href="#d3e114" title="http://purl.org/wf4ever/wfdesc#hasSubWorkflow">wfdesc:hasSubWorkflow</a><sup title="object property" class="type-op">op</sup>
 </dd>
 <dt>has domain</dt>
 <dd><ul><li>
-<a href="#d3e235" title="http://purl.org/wf4ever/wfdesc#Workflow">wfdesc:Workflow</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e202" title="http://purl.org/wf4ever/wfdesc#Workflow">wfdesc:Workflow</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 <dt>has range</dt>
 <dd><ul><li>
-<a href="#d3e225" title="http://purl.org/wf4ever/wfdesc#Process">wfdesc:Process</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e193" title="http://purl.org/wf4ever/wfdesc#Process">wfdesc:Process</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 </dl></div>
 </div>
-<div id="d3e118" class="entity">
+<div id="d3e114" class="entity">
 <a name="http://purl.org/wf4ever/wfdesc#hasSubWorkflow"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wfdesc#hasSubWorkflow">wfdesc:hasSubWorkflow</span><sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span>
 </h3>
 <p><strong>IRI:</strong> http://purl.org/wf4ever/wfdesc#hasSubWorkflow</p>
 <div class="comment">
-<p>This object property is used to associate a wfdesc:Workflow description to another wfdesc:Workflow, specifying that the first workflow has the given sub-workflow as a contained process. </p>
-<p>This is a specialisation of wfdesc:hasSubProcess.</p>
+<p>This object property is used to associate a workflow template to another workflow template, specifying that the given workflow has the given sub-workflow as a contained process. </p>
+<p>This is a specialisation of hasProcessTemplate.</p>
 </div>
 <div class="description"><dl>
 <dt>has super-properties</dt>
 <dd><ul><li>
-<a href="#d3e106" title="http://purl.org/wf4ever/wfdesc#hasSubProcess">wfdesc:hasSubProcess</a><sup title="object property" class="type-op">op</sup>
+<a href="#d3e102" title="http://purl.org/wf4ever/wfdesc#hasSubProcess">wfdesc:hasSubProcess</a><sup title="object property" class="type-op">op</sup>
 </li></ul></dd>
 <dt>has domain</dt>
 <dd><ul><li>
-<a href="#d3e235" title="http://purl.org/wf4ever/wfdesc#Workflow">wfdesc:Workflow</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e202" title="http://purl.org/wf4ever/wfdesc#Workflow">wfdesc:Workflow</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 <dt>has range</dt>
 <dd><ul><li>
-<a href="#d3e235" title="http://purl.org/wf4ever/wfdesc#Workflow">wfdesc:Workflow</a><sup title="class" class="type-c">c</sup>
+<a href="#d3e202" title="http://purl.org/wf4ever/wfdesc#Workflow">wfdesc:Workflow</a><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 </dl></div>
 </div>
@@ -871,6 +904,7 @@ ontology</a> under the namespace
 
 <div id="wfprov-model-documentation">
 <h3>Classes</h3>
+<h2>Classes</h2>
 <ul class="hlist">
 <li><a href="#d3e131" title="http://purl.org/wf4ever/wfprov#Artifact"><span>wfprov:Artifact</span></a></li>
 <li><a href="#d3e152" title="http://purl.org/wf4ever/wfprov#ProcessRun"><span>wfprov:ProcessRun</span></a></li>
@@ -954,6 +988,7 @@ ontology</a> under the namespace
 </dl>
 </div>
 <h3>Object Properties</h3>
+<h2>Object Properties</h2>
 <ul class="hlist">
 <li><a href="#d3e28" title="http://purl.org/wf4ever/wfprov#describedByParameter"><span>wfprov:describedByParameter</span></a></li>
 <li><a href="#d3e40" title="http://purl.org/wf4ever/wfprov#describedByProcess"><span>wfprov:describedByProcess</span></a></li>
@@ -1138,49 +1173,16 @@ ontology</a> under the namespace
 
 <div id="wf4ever-model-documentation">
 <h3>Classes</h3>
+<h2>Classes</h2>
 <ul class="hlist">
-<li><a href="#d3e80" title="http://purl.org/wf4ever/wf4ever#BeanshellScript"><span>wf4ever:BeanshellScript</span></a></li>
-<li><a href="#d3e87" title="http://purl.org/wf4ever/wf4ever#CommandLineTool"><span>wf4ever:CommandLineTool</span></a></li>
-<li><a href="#d3e94" title="http://purl.org/wf4ever/wf4ever#Dataset"><span>wf4ever:Dataset</span></a></li>
-<li><a href="#d3e102" title="http://purl.org/wf4ever/wf4ever#Document"><span>wf4ever:Document</span></a></li>
-<li><a href="#d3e109" title="http://purl.org/wf4ever/wf4ever#File"><span>wf4ever:File</span></a></li>
-<li><a href="#d3e116" title="http://purl.org/wf4ever/wf4ever#Image"><span>wf4ever:Image</span></a></li>
-<li><a href="#d3e124" title="http://purl.org/wf4ever/wf4ever#RESTService"><span>wf4ever:RESTService</span></a></li>
-<li><a href="#d3e134" title="http://purl.org/wf4ever/wf4ever#RScript"><span>wf4ever:RScript</span></a></li>
-<li><a href="#d3e152" title="http://purl.org/wf4ever/wf4ever#Script"><span>wf4ever:Script</span></a></li>
-<li><a href="#d3e141" title="http://purl.org/wf4ever/wf4ever#SOAPService"><span>wf4ever:SOAPService</span></a></li>
-<li><a href="#d3e159" title="http://purl.org/wf4ever/wf4ever#WebService"><span>wf4ever:WebService</span></a></li>
-<li><a href="#d3e169" title="http://purl.org/wf4ever/wf4ever#WorkflowResearchObject"><span>wf4ever:WorkflowResearchObject</span></a></li>
+<li><a href="#d3e41" title="http://purl.org/wf4ever/wf4ever#Dataset"><span>wf4ever:Dataset</span></a></li>
+<li><a href="#d3e48" title="http://purl.org/wf4ever/wf4ever#Document"><span>wf4ever:Document</span></a></li>
+<li><a href="#d3e55" title="http://purl.org/wf4ever/wf4ever#File"><span>wf4ever:File</span></a></li>
+<li><a href="#d3e63" title="http://purl.org/wf4ever/wf4ever#Image"><span>wf4ever:Image</span></a></li>
+<li><a href="#d3e70" title="http://purl.org/wf4ever/wf4ever#WebServiceProcessTemplate"><span>wf4ever:WebServiceProcessTemplate</span></a></li>
+<li><a href="#d3e80" title="http://purl.org/wf4ever/wf4ever#WorkflowResearchObject"><span>wf4ever:WorkflowResearchObject</span></a></li>
 </ul>
-<div id="d3e80" class="entity">
-<a name="http://purl.org/wf4ever/wf4ever#BeanshellScript"></a><h3>
-<span class="dotted" title="http://purl.org/wf4ever/wf4ever#BeanshellScript">wf4ever:BeanshellScript</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
-</h3>
-<p><strong>IRI:</strong> http://purl.org/wf4ever/wf4ever#BeanshellScript</p>
-<dl class="description">
-<dt>has super-classes</dt>
-<dd><ul><li>
-<a href="#d3e152" title="http://purl.org/wf4ever/wf4ever#Script">wf4ever:Script</a><sup title="class" class="type-c">c</sup>
-</li></ul></dd>
-</dl>
-</div>
-<div id="d3e87" class="entity">
-<a name="http://purl.org/wf4ever/wf4ever#CommandLineTool"></a><h3>
-<span class="dotted" title="http://purl.org/wf4ever/wf4ever#CommandLineTool">wf4ever:CommandLineTool</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
-</h3>
-<p><strong>IRI:</strong> http://purl.org/wf4ever/wf4ever#CommandLineTool</p>
-<dl class="description">
-<dt>has super-classes</dt>
-<dd><ul><li>
-<span class="dotted" title="http://purl.org/wf4ever/wfdesc#Process">wfdesc:Process</span><sup title="class" class="type-c">c</sup>
-</li></ul></dd>
-<dt>is in domain of</dt>
-<dd>
-<a href="#d3e26" title="http://purl.org/wf4ever/wf4ever#command">wf4ever:command</a><sup title="data property" class="type-dp">dp</sup>
-</dd>
-</dl>
-</div>
-<div id="d3e94" class="entity">
+<div id="d3e41" class="entity">
 <a name="http://purl.org/wf4ever/wf4ever#Dataset"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wf4ever#Dataset">wf4ever:Dataset</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
 </h3>
@@ -1188,11 +1190,11 @@ ontology</a> under the namespace
 <dl class="description">
 <dt>has super-classes</dt>
 <dd><ul><li>
-<span class="dotted" title="http://purl.org/wf4ever/wfprov#Artifact">wfprov:Artifact</span><sup title="class" class="type-c">c</sup>
+<span class="dotted" title="http://purl.org/net/opmv/ns#Artifact">ns:Artifact</span><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 </dl>
 </div>
-<div id="d3e102" class="entity">
+<div id="d3e48" class="entity">
 <a name="http://purl.org/wf4ever/wf4ever#Document"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wf4ever#Document">wf4ever:Document</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
 </h3>
@@ -1200,11 +1202,11 @@ ontology</a> under the namespace
 <dl class="description">
 <dt>has super-classes</dt>
 <dd><ul><li>
-<span class="dotted" title="http://purl.org/wf4ever/wfprov#Artifact">wfprov:Artifact</span><sup title="class" class="type-c">c</sup>
+<span class="dotted" title="http://purl.org/net/opmv/ns#Artifact">ns:Artifact</span><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 </dl>
 </div>
-<div id="d3e109" class="entity">
+<div id="d3e55" class="entity">
 <a name="http://purl.org/wf4ever/wf4ever#File"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wf4ever#File">wf4ever:File</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
 </h3>
@@ -1212,11 +1214,11 @@ ontology</a> under the namespace
 <dl class="description">
 <dt>has super-classes</dt>
 <dd><ul><li>
-<span class="dotted" title="http://purl.org/wf4ever/wfprov#Artifact">wfprov:Artifact</span><sup title="class" class="type-c">c</sup>
+<span class="dotted" title="http://purl.org/net/opmv/ns#Artifact">ns:Artifact</span><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 </dl>
 </div>
-<div id="d3e116" class="entity">
+<div id="d3e63" class="entity">
 <a name="http://purl.org/wf4ever/wf4ever#Image"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wf4ever#Image">wf4ever:Image</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
 </h3>
@@ -1224,197 +1226,34 @@ ontology</a> under the namespace
 <dl class="description">
 <dt>has super-classes</dt>
 <dd><ul><li>
-<span class="dotted" title="http://purl.org/wf4ever/wfprov#Artifact">wfprov:Artifact</span><sup title="class" class="type-c">c</sup>
+<span class="dotted" title="http://purl.org/net/opmv/ns#Artifact">ns:Artifact</span><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
 </dl>
 </div>
-<div id="d3e124" class="entity">
-<a name="http://purl.org/wf4ever/wf4ever#RESTService"></a><h3>
-<span class="dotted" title="http://purl.org/wf4ever/wf4ever#RESTService">wf4ever:RESTService</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
+<div id="d3e70" class="entity">
+<a name="http://purl.org/wf4ever/wf4ever#WebServiceProcessTemplate"></a><h3>
+<span class="dotted" title="http://purl.org/wf4ever/wf4ever#WebServiceProcessTemplate">wf4ever:WebServiceProcessTemplate</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
 </h3>
-<p><strong>IRI:</strong> http://purl.org/wf4ever/wf4ever#RESTService</p>
-<div class="comment"><p>A RESTful web service</p></div>
-<dl class="description">
-<dt>has super-classes</dt>
-<dd><ul><li>
-<a href="#d3e159" title="http://purl.org/wf4ever/wf4ever#WebService">wf4ever:WebService</a><sup title="class" class="type-c">c</sup>
-</li></ul></dd>
-</dl>
-</div>
-<div id="d3e134" class="entity">
-<a name="http://purl.org/wf4ever/wf4ever#RScript"></a><h3>
-<span class="dotted" title="http://purl.org/wf4ever/wf4ever#RScript">wf4ever:RScript</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
-</h3>
-<p><strong>IRI:</strong> http://purl.org/wf4ever/wf4ever#RScript</p>
-<dl class="description">
-<dt>has super-classes</dt>
-<dd><ul><li>
-<a href="#d3e152" title="http://purl.org/wf4ever/wf4ever#Script">wf4ever:Script</a><sup title="class" class="type-c">c</sup>
-</li></ul></dd>
-</dl>
-</div>
-<div id="d3e152" class="entity">
-<a name="http://purl.org/wf4ever/wf4ever#Script"></a><h3>
-<span class="dotted" title="http://purl.org/wf4ever/wf4ever#Script">wf4ever:Script</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
-</h3>
-<p><strong>IRI:</strong> http://purl.org/wf4ever/wf4ever#Script</p>
-<dl class="description">
-<dt>has super-classes</dt>
-<dd><ul><li>
-<span class="dotted" title="http://purl.org/wf4ever/wfdesc#Process">wfdesc:Process</span><sup title="class" class="type-c">c</sup>
-</li></ul></dd>
-<dt>has sub-classes</dt>
-<dd>
-<a href="#d3e80" title="http://purl.org/wf4ever/wf4ever#BeanshellScript">wf4ever:BeanshellScript</a><sup title="class" class="type-c">c</sup>, <a href="#d3e134" title="http://purl.org/wf4ever/wf4ever#RScript">wf4ever:RScript</a><sup title="class" class="type-c">c</sup>
-</dd>
-<dt>is in domain of</dt>
-<dd>
-<a href="#d3e35" title="http://purl.org/wf4ever/wf4ever#script">wf4ever:script</a><sup title="data property" class="type-dp">dp</sup>
-</dd>
-</dl>
-</div>
-<div id="d3e141" class="entity">
-<a name="http://purl.org/wf4ever/wf4ever#SOAPService"></a><h3>
-<span class="dotted" title="http://purl.org/wf4ever/wf4ever#SOAPService">wf4ever:SOAPService</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
-</h3>
-<p><strong>IRI:</strong> http://purl.org/wf4ever/wf4ever#SOAPService</p>
-<div class="comment">
-<p>A SOAP service is typically described in a WSDL 1.1 or WSDL 2.0</p>
-<p>TODO: Do we need to distinguish between WSDL and SOAP? WSDL 1.1 and WSDL 2.0? RPC/Encoded vs.Wrapped Document/Literal?</p>
-</div>
-<dl class="description">
-<dt>has super-classes</dt>
-<dd><ul><li>
-<a href="#d3e159" title="http://purl.org/wf4ever/wf4ever#WebService">wf4ever:WebService</a><sup title="class" class="type-c">c</sup>
-</li></ul></dd>
-<dt>is in domain of</dt>
-<dd>
-<a href="#d3e54" title="http://purl.org/wf4ever/wf4ever#wsdlOperationName">wf4ever:wsdlOperationName</a><sup title="data property" class="type-dp">dp</sup>, <a href="#d3e61" title="http://purl.org/wf4ever/wf4ever#wsdlPortName">wf4ever:wsdlPortName</a><sup title="data property" class="type-dp">dp</sup>, <a href="#d3e68" title="http://purl.org/wf4ever/wf4ever#wsdlURI">wf4ever:wsdlURI</a><sup title="data property" class="type-dp">dp</sup>
-</dd>
-</dl>
-</div>
-<div id="d3e159" class="entity">
-<a name="http://purl.org/wf4ever/wf4ever#WebService"></a><h3>
-<span class="dotted" title="http://purl.org/wf4ever/wf4ever#WebService">wf4ever:WebService</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
-</h3>
-<p><strong>IRI:</strong> http://purl.org/wf4ever/wf4ever#WebService</p>
+<p><strong>IRI:</strong> http://purl.org/wf4ever/wf4ever#WebServiceProcessTemplate</p>
 <div class="comment"><p>WebServiceProcess is a wfdesc:Process description, the enactment of which gives rise to a web service call.</p></div>
 <dl class="description">
 <dt>has super-classes</dt>
 <dd><ul><li>
 <span class="dotted" title="http://purl.org/wf4ever/wfdesc#Process">wfdesc:Process</span><sup title="class" class="type-c">c</sup>
 </li></ul></dd>
-<dt>has sub-classes</dt>
-<dd>
-<a href="#d3e124" title="http://purl.org/wf4ever/wf4ever#RESTService">wf4ever:RESTService</a><sup title="class" class="type-c">c</sup>, <a href="#d3e141" title="http://purl.org/wf4ever/wf4ever#SOAPService">wf4ever:SOAPService</a><sup title="class" class="type-c">c</sup>
-</dd>
-<dt>is in domain of</dt>
-<dd>
-<a href="#d3e44" title="http://purl.org/wf4ever/wf4ever#serviceURI">wf4ever:serviceURI</a><sup title="data property" class="type-dp">dp</sup>
-</dd>
 </dl>
 </div>
-<div id="d3e169" class="entity">
+<div id="d3e80" class="entity">
 <a name="http://purl.org/wf4ever/wf4ever#WorkflowResearchObject"></a><h3>
 <span class="dotted" title="http://purl.org/wf4ever/wf4ever#WorkflowResearchObject">wf4ever:WorkflowResearchObject</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
 </h3>
 <p><strong>IRI:</strong> http://purl.org/wf4ever/wf4ever#WorkflowResearchObject</p>
 <div class="comment"><p>A workflow research object is a research object that contains at least one workflow description.</p></div>
-</div>
-<h3>Data Properties</h3>
-<ul class="hlist">
-<li><a href="#d3e26" title="http://purl.org/wf4ever/wf4ever#command"><span>wf4ever:command</span></a></li>
-<li><a href="#d3e35" title="http://purl.org/wf4ever/wf4ever#script"><span>wf4ever:script</span></a></li>
-<li><a href="#d3e44" title="http://purl.org/wf4ever/wf4ever#serviceURI"><span>wf4ever:serviceURI</span></a></li>
-<li><a href="#d3e54" title="http://purl.org/wf4ever/wf4ever#wsdlOperationName"><span>wf4ever:wsdlOperationName</span></a></li>
-<li><a href="#d3e61" title="http://purl.org/wf4ever/wf4ever#wsdlPortName"><span>wf4ever:wsdlPortName</span></a></li>
-<li><a href="#d3e68" title="http://purl.org/wf4ever/wf4ever#wsdlURI"><span>wf4ever:wsdlURI</span></a></li>
-</ul>
-<div id="d3e26" class="entity">
-<a name="http://purl.org/wf4ever/wf4ever#command"></a><h3>
-<span class="dotted" title="http://purl.org/wf4ever/wf4ever#command">wf4ever:command</span><sup title="data property" class="type-dp">dp</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a></span>
-</h3>
-<p><strong>IRI:</strong> http://purl.org/wf4ever/wf4ever#command</p>
-<div class="description"><dl>
-<dt>has domain</dt>
+<dl class="description">
+<dt>is equivalent to</dt>
 <dd><ul><li>
-<a href="#d3e87" title="http://purl.org/wf4ever/wf4ever#CommandLineTool">wf4ever:CommandLineTool</a><sup title="class" class="type-c">c</sup>
-</li></ul></dd>
-<dt>has range</dt>
-<dd><ul><li><span class="dotted" title="http://www.w3.org/2001/XMLSchema#string">xsd:string</span></li></ul></dd>
-</dl></div>
-</div>
-<div id="d3e35" class="entity">
-<a name="http://purl.org/wf4ever/wf4ever#script"></a><h3>
-<span class="dotted" title="http://purl.org/wf4ever/wf4ever#script">wf4ever:script</span><sup title="data property" class="type-dp">dp</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a></span>
-</h3>
-<p><strong>IRI:</strong> http://purl.org/wf4ever/wf4ever#script</p>
-<div class="description"><dl>
-<dt>has domain</dt>
-<dd><ul><li>
-<a href="#d3e152" title="http://purl.org/wf4ever/wf4ever#Script">wf4ever:Script</a><sup title="class" class="type-c">c</sup>
-</li></ul></dd>
-<dt>has range</dt>
-<dd><ul><li><span class="dotted" title="http://www.w3.org/2001/XMLSchema#string">xsd:string</span></li></ul></dd>
-</dl></div>
-</div>
-<div id="d3e44" class="entity">
-<a name="http://purl.org/wf4ever/wf4ever#serviceURI"></a><h3>
-<span class="dotted" title="http://purl.org/wf4ever/wf4ever#serviceURI">wf4ever:serviceURI</span><sup title="data property" class="type-dp">dp</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a></span>
-</h3>
-<p><strong>IRI:</strong> http://purl.org/wf4ever/wf4ever#serviceURI</p>
-<div class="description"><dl>
-<dt>has sub-properties</dt>
-<dd>
-<a href="#d3e68" title="http://purl.org/wf4ever/wf4ever#wsdlURI">wf4ever:wsdlURI</a><sup title="data property" class="type-dp">dp</sup>
-</dd>
-<dt>has domain</dt>
-<dd><ul><li>
-<a href="#d3e159" title="http://purl.org/wf4ever/wf4ever#WebService">wf4ever:WebService</a><sup title="class" class="type-c">c</sup>
-</li></ul></dd>
-<dt>has range</dt>
-<dd><ul><li><span class="dotted" title="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</span></li></ul></dd>
-</dl></div>
-</div>
-<div id="d3e54" class="entity">
-<a name="http://purl.org/wf4ever/wf4ever#wsdlOperationName"></a><h3>
-<span class="dotted" title="http://purl.org/wf4ever/wf4ever#wsdlOperationName">wf4ever:wsdlOperationName</span><sup title="data property" class="type-dp">dp</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a></span>
-</h3>
-<p><strong>IRI:</strong> http://purl.org/wf4ever/wf4ever#wsdlOperationName</p>
-<div class="description"><dl>
-<dt>has domain</dt>
-<dd><ul><li>
-<a href="#d3e141" title="http://purl.org/wf4ever/wf4ever#SOAPService">wf4ever:SOAPService</a><sup title="class" class="type-c">c</sup>
-</li></ul></dd>
-</dl></div>
-</div>
-<div id="d3e61" class="entity">
-<a name="http://purl.org/wf4ever/wf4ever#wsdlPortName"></a><h3>
-<span class="dotted" title="http://purl.org/wf4ever/wf4ever#wsdlPortName">wf4ever:wsdlPortName</span><sup title="data property" class="type-dp">dp</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a></span>
-</h3>
-<p><strong>IRI:</strong> http://purl.org/wf4ever/wf4ever#wsdlPortName</p>
-<div class="description"><dl>
-<dt>has domain</dt>
-<dd><ul><li>
-<a href="#d3e141" title="http://purl.org/wf4ever/wf4ever#SOAPService">wf4ever:SOAPService</a><sup title="class" class="type-c">c</sup>
-</li></ul></dd>
-</dl></div>
-</div>
-<div id="d3e68" class="entity">
-<a name="http://purl.org/wf4ever/wf4ever#wsdlURI"></a><h3>
-<span class="dotted" title="http://purl.org/wf4ever/wf4ever#wsdlURI">wf4ever:wsdlURI</span><sup title="data property" class="type-dp">dp</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a></span>
-</h3>
-<p><strong>IRI:</strong> http://purl.org/wf4ever/wf4ever#wsdlURI</p>
-<div class="description"><dl>
-<dt>has super-properties</dt>
-<dd><ul><li>
-<a href="#d3e44" title="http://purl.org/wf4ever/wf4ever#serviceURI">wf4ever:serviceURI</a><sup title="data property" class="type-dp">dp</sup>
-</li></ul></dd>
-<dt>has domain</dt>
-<dd><ul><li>
-<a href="#d3e141" title="http://purl.org/wf4ever/wf4ever#SOAPService">wf4ever:SOAPService</a><sup title="class" class="type-c">c</sup>
-</li></ul></dd>
-</dl></div>
+<span class="dotted" title="http://purl.org/wf4ever/ro#ResearchObject">ro:ResearchObject</span><sup title="class" class="type-c">c</sup><span class="logic">and</span> (<span class="dotted" title="http://www.openarchives.org/ore/terms/aggregates">terms:aggregates</span><sup title="object property" class="type-op">op</sup><span class="logic">some</span> <span class="dotted" title="http://purl.org/wf4ever/wfdesc#Workflow">wfdesc:Workflow</span><sup title="class" class="type-c">c</sup>)</li></ul></dd>
+</dl>
 </div>
 </div>
 
@@ -1451,7 +1290,7 @@ ontology</a> under the namespace
     dct:created <span class="code-quote">"2011-12-02T15:02:10Z"</span>^^xsd:dateTime ;
     dct:creator [ a foaf:Person; foaf:name <span class="code-quote">"Stian Soiland-Reyes"</span> ] .
 
-:ann1 a ro:Annotation, ao:GraphAnnotation ;
+:ann1 a ro:Annotation, ro:SemanticAnnotation ;
     ao:body &lt;.ro/ann1&gt; ;
     ao:annotatesResource &lt;a_workflow.t2flow&gt;, &lt;.&gt; ;
     dct:created <span class="code-quote">"2011-12-02T15:02:13Z"</span>^^xsd:dateTime ;
@@ -1504,135 +1343,19 @@ ontology</a> under the namespace
 <p>Inside the annotation body, which we have been told was done by Marco, we find an abstract version of the .t2flow workflow (using the <tt>wfdesc</tt> ontology) which has been extracted by the agent. This reveals some workflow annotations done by Marco in 2010; title and description on the workflow, and descriptions for the input and output ports.</p>
 </div>
 </div>
-</section><section id="folders-example-sec"><h3>Folder structures using ro:Folder</h3>
+</section><!--
+<section id="folders-example-sec">
+<h3>Folder structures using ro:Folder</h3>
 <div id="folders-examples">
-<div id="examples">
-
-<p>The <tt>ro</tt> ontology contains <tt>ro:Folder</tt> and <tt>ro:FolderEntry</tt> which can be used to organise aggregated resourced in a folder-like structure. Folders themselves are also aggregated by the research object, and can be the target of ?annotations just like other resources. This example shows how such a folder structure could be maintained in a "checked out" research object where each aggregated resource exists as a file or folder on a local file system. For increased readability, this example represents the individual <tt>ore:ResourceMap</tt> documents as <a href="http://www.w3.org/TeamSubmission/turtle/" class="external-link" rel="nofollow" linktype="raw" wikidestination="http://www.w3.org/TeamSubmission/turtle/" aliasspecified="true">Turtle</a> files, but these could be in formats like RDF/XML, as a single file with named graphs, like TriG, or other representations as appropriate. </p>
-
-<p>Note that the actual folder structure used, in particular of the <tt>.ro/</tt> metadata folder, is currently non-normative. If such a folder structure was exposed as a web resource, then the resource maps currently in <tt>.ro</tt> could (and perhaps even should) be resolved by <em>content negotiation</em> on the <tt>ro:Folder</tt> resources like <tt>&amp;lt;b/c/&amp;gt;</tt>. <b> </b></p>
-
-<p>See <a href="https://github.com/wf4ever/ro/tree/master/examples/folders" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://github.com/wf4ever/ro/tree/master/examples/folders" aliasspecified="true">https://github.com/wf4ever/ro/tree/master/examples/folders</a> to browse the RO folder structure of this example. </p>
-
-<p>See the .ro/ folder for the RDF/Turtle resource maps describing each of these folders, in addition to the <tt>ro:Manifest</tt> for the research object itself.  The filename structure and identifier scheme here is non-normative and is a suggestion only.</p>
-
-<p>The RO model does not (yet) assign a name to the top-level <tt>ro:Folder</tt>, which in this example has been called <tt>&amp;lt;.ro/root&amp;gt;</tt> &amp;#45; although its children (<tt>&amp;lt;a/&amp;gt;</tt> etc.) are in this example organised directly within the folder structure of the Research Object. An alternative organisation might be <tt>root/</tt> and <tt>root/a/</tt>. </p>
-
-<p>The Research Object aggregates all individual resources that are organised into the folders, no matter at what folder level they have <tt>ro:FolderEntry</tt> representations. The <tt>ro:Folder</tt> instances themselves, as instances of <tt>ro:Resource</tt> &amp;#45; are also aggregated by the Research Object. Note that the <tt>ore:ResourceMap}}s (the {{.ttl files</tt>) would not normally be considered aggregated by the research object.</p>
-
-<p>Each <tt>ore:ResourceMap</tt> (each .ttl file in this example) contains relevant links to other resource maps, as if it was a REST resource. As a minimum a resource map for a <tt>ro:Folder</tt> should contain a link to the aggregating research object's <tt>ro:Manifest</tt>, and for each <tt>ro:FolderEntry</tt> which resource is another <tt>ro:Folder</tt>, a link to its <tt>ore:ResourceMap</tt>.</p>
-
-<p>In this example, the <tt>ro:Folder</tt> entries mainly correspond to the actual resource paths, for instance <tt>&amp;lt;b/file3.txt&amp;gt;</tt> has the folder entry with <tt>ro:entryName "file3"</tt>, and is a proxy of the <tt>ro:Folder &amp;lt;b&amp;gt;</tt> which has the <tt>ro:entryName "b"</tt> within the root folder <tt>&amp;lt;.ro/root&amp;gt;</tt> (which is not aggregated by any <tt>ro:Folder</tt>).</p>
-
-<p>There is no requirements for the entry names to match parts of the URI of the aggregated resource, this is examplified in this example where the aggregated resource {{&amp;lt;</p>
-<div class="wysiwyg-macro wysiwyg-macro-inline" macroname="nolink" macrohasbody="false" wikihasprecedingnewline="false" wikihastrailingnewline="false"><div class="wysiwyg-macro-tag wysiwyg-macro-starttag">{nolink:http://www.example.com/external.txt}</div></div>
-<p>&amp;gt;}} has folder entries both as <tt>"a/other.txt"</tt> and <tt>"b/external.txt"</tt> in this imagined "check out" of a complete research object.</p>
-
-<p>Secondly, aggregated resources, even if they are <tt>ro:Resource</tt> instances, are not required to be present within an <tt>ro:Folder</tt> structure. In this RO, this is exemplified by the aggregation of another research object {{&amp;lt;</p>
-<div class="wysiwyg-macro wysiwyg-macro-inline" macroname="nolink" macrohasbody="false" wikihasprecedingnewline="false" wikihastrailingnewline="false"><div class="wysiwyg-macro-tag wysiwyg-macro-starttag">{nolink:http://www.example.org/another-ro/}</div></div>
-<p>&amp;gt;}} which does not appear as an <tt>ro:FolderEntry</tt>.</p>
-
-<p>Content:</p>
-<table class="confluenceTable"><tbody>
-<tr>
-<th class="confluenceTh"> Resource </th>
-<th class="confluenceTh"> Type/description </th>
-</tr>
-<tr>
-<td class="confluenceTd"> . </td>
-<td class="confluenceTd"> ro:ResourceObject aggregating all except <tt>&amp;lt;.ro/*&amp;gt;</tt> </td>
-</tr>
-<tr>
-<td class="confluenceTd"> <a href="https://github.com/wf4ever/ro/tree/master/examples/folders/.ro" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://github.com/wf4ever/ro/tree/master/examples/folders/.ro" aliasspecified="true">./.ro</a> </td>
-<td class="confluenceTd"> Research Object metadata </td>
-</tr>
-<tr>
-<td class="confluenceTd"> <a href="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/manifest.ttl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/manifest.ttl" aliasspecified="true">./.ro/manifest.ttl</a> </td>
-<td class="confluenceTd"> ro:Manifest / ore:ResourceMap describing <tt>&amp;lt;.&amp;gt;</tt> </td>
-</tr>
-<tr>
-<td class="confluenceTd"> <a href="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root.ttl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root.ttl" aliasspecified="true">./.ro/root.ttl</a> </td>
-<td class="confluenceTd"> ore:ResourceMap describing <tt>&amp;lt;.ro/root&amp;gt;</tt> </td>
-</tr>
-<tr>
-<td class="confluenceTd"> ./.ro/root </td>
-<td class="confluenceTd"> Top-level ro:Folder <tt>&amp;lt;.ro/root&amp;gt;</tt> </td>
-</tr>
-<tr>
-<td class="confluenceTd"> <a href="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root/a.ttl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root/a.ttl" aliasspecified="true">./.ro/root/a.ttl</a> </td>
-<td class="confluenceTd"> ore:ResourceMap describing the ro:Folder <tt>&amp;lt;a/&amp;gt;</tt> </td>
-</tr>
-<tr>
-<td class="confluenceTd"> ./.ro/root/b </td>
-<td class="confluenceTd"> &amp;#42;) </td>
-</tr>
-<tr>
-<td class="confluenceTd"> <a href="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root/b.ttl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root/b.ttl" aliasspecified="true">./.ro/root/b.ttl</a> </td>
-<td class="confluenceTd"> ore:ResourceMap describing <tt>&amp;lt;b/&amp;gt;</tt> </td>
-</tr>
-<tr>
-<td class="confluenceTd"> <a href="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root/b/c.ttl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/examples/folders/.ro/root/b/c.ttl" aliasspecified="true">./.ro/root/b/c.ttl</a> </td>
-<td class="confluenceTd"> ore:ResourceMap describing <tt>&amp;lt;b/c/&amp;gt;</tt> </td>
-</tr>
-<tr>
-<td class="confluenceTd"> ./file1.txt </td>
-<td class="confluenceTd"> ro:Resource <tt>&amp;lt;file1.txt&amp;gt;</tt> </td>
-</tr>
-<tr>
-<td class="confluenceTd"> ./a </td>
-<td class="confluenceTd"> ro:Folder &amp;lt;a/&amp;gt;}} </td>
-</tr>
-<tr>
-<td class="confluenceTd"> ./a/other.txt </td>
-<td class="confluenceTd"> ro:Resource {{&amp;lt;
-<div class="wysiwyg-macro wysiwyg-macro-inline" macroname="nolink" macrohasbody="false" wikihasprecedingnewline="false" wikihastrailingnewline="false"><div class="wysiwyg-macro-tag wysiwyg-macro-starttag">{nolink:http://www.example.com/external.txt}</div></div>
-<p>&amp;gt;}} </p>
-</td>
-</tr>
-<tr>
-<td class="confluenceTd"> ./a/file2.txt </td>
-<td class="confluenceTd"> ro:Resource <tt>&amp;lt;a/file2.txt&amp;gt;</tt> </td>
-</tr>
-<tr>
-<td class="confluenceTd"> ./b </td>
-<td class="confluenceTd"> ro:Folder &amp;lt;b/&amp;gt;}} </td>
-</tr>
-<tr>
-<td class="confluenceTd"> ./b/external.txt </td>
-<td class="confluenceTd"> ro:Resource {{&amp;lt;
-<div class="wysiwyg-macro wysiwyg-macro-inline" macroname="nolink" macrohasbody="false" wikihasprecedingnewline="false" wikihastrailingnewline="false"><div class="wysiwyg-macro-tag wysiwyg-macro-starttag">{nolink:http://www.example.com/external.txt}</div></div>
-<p>&amp;gt;}} </p>
-</td>
-</tr>
-<tr>
-<td class="confluenceTd"> ./b/file3.txt </td>
-<td class="confluenceTd"> ro:Resource <tt>&amp;lt;b/file3.txt&amp;gt;</tt> </td>
-</tr>
-<tr>
-<td class="confluenceTd"> ./b/c </td>
-<td class="confluenceTd"> ro:Folder <tt>&amp;lt;b/c/&amp;gt;</tt> </td>
-</tr>
-<tr>
-<td class="confluenceTd"> ./b/c/file4.txt </td>
-<td class="confluenceTd"> ro:Resource <tt>&amp;lt;b/c/file4.txt&amp;gt;</tt> </td>
-</tr>
-</tbody></table>
-<p>&amp;#42;) The metadata folder <tt>&amp;lt;.ro/root/b/&amp;gt;</tt> does not represent anything in the research object, and is in this example used to organize the <tt>ro:ResourceMap</tt>. If the <tt>ore:ResourceMap</tt> documents describing the <tt>ro:Folder</tt> are delivered through Content Negotiation directly on the <tt>ro:Folder</tt> resource, like <tt>&amp;lt;b/c/&amp;gt;</tt>, there might not be any need for such a metadata folder structure.</p>
-
 </div>
-</div>
-</section><section id="myExperiment-pack-example-sec"><h3>myExperiment Pack as a Research Object</h3>
+</section>
+--><!--
+<section id="myExperiment-pack-example-sec">
+<h3>myExperiment Pack as a Research Object</h3>
 <div id="myexperiment-examples">
-<div id="examples">
-
-<p>As a proof of concept, we show how a myExperiment pack can be specified using research object vocabulary. The pack used is the myExperiment <a href="http://www.myexperiment.org/packs/217.html" class="external-link" rel="nofollow" linktype="raw" wikidestination="http://www.myexperiment.org/packs/217.html" aliasspecified="true">Graphing and Citing Time Series Data pack</a>, as it contains a workflow template, and is, therefore, useful for illustrating a workflow research object. This pack includes a workflow and its results. The workflow is used to  extract data from the Times Series Data Library and plots it using  Google  charts.</p>
-
-<p>The RO ontology contains individuals that allow to see what the resources aggregated within the pack are, and how their relationships can be encoded using AO annotations. The figure below illustrates the structure of the research object, which is represented by the node <em>ro-217</em>. This node aggregates 7 resources representing the wfdesc:Workflow, <em>workflow-2464</em>, the workflow run obtained by enacting such wfdesc:Workflow, <em>workflow-run1</em>, the artifacts used as inputs to the workflow run, <em>external-1</em>, <em>external-2</em> and <em>external-3</em>, and the artifacts generated as a result of the enactment, <em>file-576</em> and <em>file-577</em>. Additionally, the research object <em>ro-217</em> aggregates 6 annotations that are used to encode the relationships between aggregated resources. Specifically, <em>annotation-1</em>, <em>annotation-2</em> and <em>annotation-3</em> are used to specify that <em>workflow-run1</em> used the artifact <em>external-1</em>, <em>external-2</em> and <em>external-3</em>, and <em>annotation-4</em> and <em>annotation-5</em> are used to specify that the artifacts <em>file-576</em> and <em>file-577</em> were generated by <em>workflow-run1</em>. Finally, <em>annotation-6</em> is used to specify that <em>workflow-run1</em> has as <em>wfdesc:Workflow workflow-2464</em>.</p>
-
-<!-- myExperiment-pack-example -->
 </div>
-</div>
-</section><section id="astro-example-sec"><h3>Astronomy RO Example</h3>
+</section>
+--><section id="astro-example-sec"><h3>Astronomy RO Example</h3>
 <div id="astro-examples">
 <div id="examples">
  <p>This example comes from a use case that deals with large sets of
@@ -1864,30 +1587,30 @@ and the calculation of the more complex properties:
 <p>An annotation expressing creation metadata. Jose Enrique Luiz created resources <tt>GoldenTrace.txt</tt>.
 </p><pre class="java-code">
 &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/manifest#14e42518-b337-2312-a76b-aa2b21cb3222&gt;
-    ao:body <http:> ;
-    dct:created "2012-02-01T09:37:23.662Z"^^<http:> ;
+    ao:body &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/GoldenTrace.txt&gt; ;
+    dct:created "2012-02-01T09:37:23.662Z"^^&lt;http://www.w3.org/2001/XMLSchema#dateTime&gt; ;
     dct:creator _:A0 ;
-    ao:annotatesResource <http:></http:> ;
-    a ao:GraphAnnotation .
+    ao:annotatesResource &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/&gt; ;
+    a ao:Annotation .
 
 &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/manifest#14e42518-b337-4698-a76b-aa2b21cb3222&gt;
-    ao:body <http:> ;
-    dct:created "2012-02-01T09:37:23.662Z"^^<http:> ;
+    ao:body &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/RECIPES.txt-8230278887054687059&gt; ;
+    dct:created "2012-02-01T09:37:23.662Z"^^&lt;http://www.w3.org/2001/XMLSchema#dateTime&gt; ;
     dct:creator _:A0 ;
-    ao:annotatesResource <http:> ;
-    a ao:GraphAnnotation .
+    ao:annotatesResource &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/RECIPES.txt&gt; ;
+    a ao:Annotation .
 
 _:A0
     a &lt;http://xmlns.com/foaf/0.1/Agent&gt; ;
     foaf:name "Jose Enrique Ruiz" .
 
-</http:></http:></http:></http:></http:></pre>
+</pre>
 
-<p>Finally, we have annotations that describe the fact that a particular workflow run made use of a data sets to produce some results.</p>
+<p>Finally, we have annotations that describe the fact that a particular workflow run made use of data sets to produce some results.</p>
 
 <pre class="java-code">
 &lt;http://leda.univ-lyon1.fr/ledacat.cgi&gt;
-    a &lt;http://purl.org/wf4ever/wf4ever#WebService&gt; .
+    a &lt;http://purl.org/wf4ever/wf4ever#WebServiceProcessTemplate&gt; .
 
 &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/annGathering#GatheringRun1&gt;
     wfprov:describedByWorkflow &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/gathering_galaxy_properties_using_hyperleda_129473.&gt; ;
@@ -1934,12 +1657,25 @@ _:A0
 </div>
 </section></section><!-- examples --><section id="ontologies"><!-- OWL --><h2>OWL versions</h2>
 
-<p>The RO ontologies can be found on <a href="https://github.com/wf4ever/ro" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://github.com/wf4ever/ro" aliasspecified="true">github</a> as OWL/Turtle format:</p>
+<p>The v0.1 RO ontologies can be found on <a href="https://github.com/wf4ever/ro" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://github.com/wf4ever/ro" aliasspecified="true">github</a> as OWL/Turtle format:</p>
 <ul>
-<li><a href="https://raw.github.com/wf4ever/ro/master/ro.owl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/ro.owl" aliasspecified="true">https://raw.github.com/wf4ever/ro/master/ro.owl</a></li>
-	<li><a href="https://raw.github.com/wf4ever/ro/master/wfdesc.owl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/wfdesc.owl" aliasspecified="true">https://raw.github.com/wf4ever/ro/master/wfdesc.owl</a></li>
-	<li><a href="https://raw.github.com/wf4ever/ro/master/wfprov.owl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/wfprov.owl" aliasspecified="true">https://raw.github.com/wf4ever/ro/master/wfprov.owl</a></li>
-	<li><a href="https://raw.github.com/wf4ever/ro/master/wf4ever.owl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/wf4ever.owl" aliasspecified="true">https://raw.github.com/wf4ever/ro/master/wf4ever.owl</a></li>
+<li><a href="https://raw.github.com/wf4ever/ro/0.1/ro.owl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/0.1/ro.owl" aliasspecified="true">https://raw.github.com/wf4ever/ro/0.1/ro.owl</a></li>
+	<li><a href="https://raw.github.com/wf4ever/ro/0.1/wfdesc.owl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/0.1/wfdesc.owl" aliasspecified="true">https://raw.github.com/wf4ever/ro/0.1/wfdesc.owl</a></li>
+	<li><a href="https://raw.github.com/wf4ever/ro/0.1/wfprov.owl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/0.1/wfprov.owl" aliasspecified="true">https://raw.github.com/wf4ever/ro/0.1/wfprov.owl</a></li>
+	<li><a href="https://raw.github.com/wf4ever/ro/0.1/wf4ever.owl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/0.1/wf4ever.owl" aliasspecified="true">https://raw.github.com/wf4ever/ro/0.1/wf4ever.owl</a></li>
+
+
+  
+<!--
+ <li><a href="https://raw.github.com/wf4ever/ro/master/ro.owl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/ro.owl" aliasspecified="true">https://raw.github.com/wf4ever/ro/master/ro.owl</a></li>
+	<li><a href="https://raw.github.com/wf4ever/ro/master/wfdesc.owl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/wfdesc.owl" aliasspecified="true" >https://raw.github.com/wf4ever/ro/master/wfdesc.owl</a></li>
+	<li><a href="https://raw.github.com/wf4ever/ro/master/wfprov.owl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/wfprov.owl" aliasspecified="true" >https://raw.github.com/wf4ever/ro/master/wfprov.owl</a></li>
+	<li><a href="https://raw.github.com/wf4ever/ro/master/wf4ever.owl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/wf4ever.owl" aliasspecified="true" >https://raw.github.com/wf4ever/ro/master/wf4ever.owl</a></li>
+-->
 	<li>
 <a href="https://github.com/wf4ever/ro/blob/master/ore-owl.owl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/ore-owl.owl" aliasspecified="true">https://github.com/wf4ever/ro/blob/master/ore-owl.owl</a> (OWL-version of OAI-ORE vocabulary)</li>
 </ul>

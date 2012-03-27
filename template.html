@@ -129,7 +129,7 @@ var respecConfig = {
 <section id="scope">
 <h3>Scope of Wf4Ever Research Objects</h3>
 
-<p>The focus of Wf4Ever is on workflow preservation (and more specifically workflows supporting scientific investigation). Thus the objects that will be described using the model are inherently workflow-centric. Although the basic infrastructure (aggregation + annotation + domain vocabularies) that the RO model supports is applicable to many situations (for example the executable or enhanced publication of FORCE11), the specific vocabularies defined within the Wf4Ever RO model are intended to support those Research Objects that have workflows (methods) as their primary content.</p>
+<p>The focus of Wf4Ever is on workflow preservation (and more specifically workflows supporting scientific investigation). Thus the objects that will be described using the model are inherently workflow-centric. Although the basic infrastructure (aggregation + annotation + domain vocabularies) that the RO model supports is applicable to many situations (for example the executable or enhanced publication of [[FORCE11]]), the specific vocabularies defined within the Wf4Ever RO model are intended to support those Research Objects that have workflows (methods) as their primary content.</p>
 
 <p>The intention is that a Wf4Ever Research Object will aggregate information about a workflow (or collection of workflows) possibly including details of its execution trace, the data items consumed or produced by the workflow, plus provenance information about the lineage of the workflow, data items or the aggregation itself. This intention is that this information will support reproducability of the workflows, reuse of the components and, perhaps most importantly will facilitate subsequent understanding of the investigation that the workflow is intended to support. The support of "full-fat" reproducability in terms of re-execution of a process in order to produce identical results is problematic, particularly when operating in a distributed, web-service based ecosystem.</p>
 </section><!-- scope -->
@@ -138,6 +138,8 @@ var respecConfig = {
 <h3>Scope of this document</h3>
 
 <p>This particular document describes the vocabularies that describe Workflow-centric Research Objects within Wf4ever. A complete, functional RO based ecosystem will require a number of different services for creation, storage, manipulation, recommendation, visualisation etc. of Research Objects. These services are not considered here. Nor do we discuss vocabularies or mechanisms that support Research Object evolution.</p>
+
+<p>This document describes the v0.1 release of the ontologies.</p>
 </section><!-- scope-doc -->
 
 <section id="tech-soc">
@@ -282,17 +284,21 @@ ontology</a> under the namespace
 </div>
 </section>
 
+<!--
 <section id="folders-example-sec">
 <h3>Folder structures using ro:Folder</h3>
 <div id="folders-examples">
 </div>
 </section>
+-->
 
+<!--
 <section id="myExperiment-pack-example-sec">
 <h3>myExperiment Pack as a Research Object</h3>
 <div id="myexperiment-examples">
 </div>
 </section>
+-->
 
 <section id="astro-example-sec">
 <h3>Astronomy RO Example</h3>
@@ -305,17 +311,30 @@ ontology</a> under the namespace
 <section id="ontologies"><!-- OWL -->
 <h2>OWL versions</h2>
 
-<p>The RO ontologies can be found on <a href="https://github.com/wf4ever/ro"
+<p>The v0.1 RO ontologies can be found on <a href="https://github.com/wf4ever/ro"
  class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro" aliasspecified="true" >github</a> as OWL/Turtle format:</p>
 <ul>
-	<li><a href="https://raw.github.com/wf4ever/ro/master/ro.owl"
- class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/ro.owl" aliasspecified="true" >https://raw.github.com/wf4ever/ro/master/ro.owl</a></li>
+	<li><a href="https://raw.github.com/wf4ever/ro/0.1/ro.owl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/0.1/ro.owl" aliasspecified="true" >https://raw.github.com/wf4ever/ro/0.1/ro.owl</a></li>
+	<li><a href="https://raw.github.com/wf4ever/ro/0.1/wfdesc.owl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/0.1/wfdesc.owl" aliasspecified="true" >https://raw.github.com/wf4ever/ro/0.1/wfdesc.owl</a></li>
+	<li><a href="https://raw.github.com/wf4ever/ro/0.1/wfprov.owl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/0.1/wfprov.owl" aliasspecified="true" >https://raw.github.com/wf4ever/ro/0.1/wfprov.owl</a></li>
+	<li><a href="https://raw.github.com/wf4ever/ro/0.1/wf4ever.owl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/0.1/wf4ever.owl" aliasspecified="true" >https://raw.github.com/wf4ever/ro/0.1/wf4ever.owl</a></li>
+
+
+  
+<!--
+ <li><a href="https://raw.github.com/wf4ever/ro/master/ro.owl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/ro.owl" aliasspecified="true">https://raw.github.com/wf4ever/ro/master/ro.owl</a></li>
 	<li><a href="https://raw.github.com/wf4ever/ro/master/wfdesc.owl"
  class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/wfdesc.owl" aliasspecified="true" >https://raw.github.com/wf4ever/ro/master/wfdesc.owl</a></li>
 	<li><a href="https://raw.github.com/wf4ever/ro/master/wfprov.owl"
  class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/wfprov.owl" aliasspecified="true" >https://raw.github.com/wf4ever/ro/master/wfprov.owl</a></li>
 	<li><a href="https://raw.github.com/wf4ever/ro/master/wf4ever.owl"
  class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/wf4ever.owl" aliasspecified="true" >https://raw.github.com/wf4ever/ro/master/wf4ever.owl</a></li>
+-->
 	<li><a href="https://github.com/wf4ever/ro/blob/master/ore-owl.owl"
  class="external-link" rel="nofollow"linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/ore-owl.owl" aliasspecified="true" >https://github.com/wf4ever/ro/blob/master/ore-owl.owl</a> (OWL-version of OAI-ORE vocabulary)</li>
 </ul>

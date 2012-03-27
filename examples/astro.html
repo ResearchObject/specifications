@@ -216,18 +216,18 @@ and the calculation of the more complex properties:</li>
 <p>An annotation expressing creation metadata. Jose Enrique Luiz created resources <tt>GoldenTrace.txt</tt>.
 <pre class="java-code">
 &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/manifest#14e42518-b337-2312-a76b-aa2b21cb3222&gt;
-    ao:body <http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/GoldenTrace.txt> ;
-    dct:created "2012-02-01T09:37:23.662Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    ao:body &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/GoldenTrace.txt&gt; ;
+    dct:created "2012-02-01T09:37:23.662Z"^^&lt;http://www.w3.org/2001/XMLSchema#dateTime&gt; ;
     dct:creator _:A0 ;
-    ao:annotatesResource <http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/> ;
-    a ao:GraphAnnotation .
+    ao:annotatesResource &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/&gt; ;
+    a ao:Annotation .
 
 &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/manifest#14e42518-b337-4698-a76b-aa2b21cb3222&gt;
-    ao:body <http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/RECIPES.txt-8230278887054687059> ;
-    dct:created "2012-02-01T09:37:23.662Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    ao:body &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/RECIPES.txt-8230278887054687059&gt; ;
+    dct:created "2012-02-01T09:37:23.662Z"^^&lt;http://www.w3.org/2001/XMLSchema#dateTime&gt; ;
     dct:creator _:A0 ;
-    ao:annotatesResource <http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/RECIPES.txt> ;
-    a ao:GraphAnnotation .
+    ao:annotatesResource &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/RECIPES.txt&gt; ;
+    a ao:Annotation .
 
 _:A0
     a &lt;http://xmlns.com/foaf/0.1/Agent&gt; ;
@@ -235,11 +235,11 @@ _:A0
 
 </pre>
 
-<p>Finally, we have annotations that describe the fact that a particular workflow run made use of a data sets to produce some results.</p>
+<p>Finally, we have annotations that describe the fact that a particular workflow run made use of data sets to produce some results.</p>
 
 <pre class="java-code">
 &lt;http://leda.univ-lyon1.fr/ledacat.cgi&gt;
-    a &lt;http://purl.org/wf4ever/wf4ever#WebService&gt; .
+    a &lt;http://purl.org/wf4ever/wf4ever#WebServiceProcessTemplate&gt; .
 
 &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/annGathering#GatheringRun1&gt;
     wfprov:describedByWorkflow &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/gathering_galaxy_properties_using_hyperleda_129473.&gt; ;
