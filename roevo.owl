@@ -1,0 +1,422 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY ao "http://purl.org/ao/" >
+    <!ENTITY dcterms "http://purl.org/dc/terms/" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY ro "http://purl.org/wf4ever/ro#" >
+    <!ENTITY roevo "http://purl.org/wf4ever/roevo#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY terms "http://www.openarchives.org/ore/terms/" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:ro="http://purl.org/wf4ever/ro#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:ao="http://purl.org/ao/"
+     xmlns:roevo="http://purl.org/wf4ever/roevo#"
+     xmlns:terms="http://www.openarchives.org/ore/terms/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dcterms="http://purl.org/dc/terms/">
+    <Ontology rdf:about="http://purl.org/wf4ever/roevo">
+        <rdfs:comment xml:lang="en">The Research Object evolution ontology, which extends the RO ontology to capture the lifecycle and versioning of research objects</rdfs:comment>
+        <imports rdf:resource="http://purl.org/wf4ever/wf4ever"/>
+        <versionIRI rdf:resource="https://raw.github.com/wf4ever/ro/master/roevo.owl"/>
+    </Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#contribution -->
+
+    <ObjectProperty rdf:about="&roevo;contribution">
+        <rdfs:range rdf:resource="&roevo;Version"/>
+        <rdfs:domain rdf:resource="&roevo;Version"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#derivedFrom -->
+
+    <ObjectProperty rdf:about="&roevo;derivedFrom">
+        <rdfs:subPropertyOf rdf:resource="&roevo;contribution"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#hasArchive -->
+
+    <ObjectProperty rdf:about="&roevo;hasArchive">
+        <rdfs:range rdf:resource="&roevo;ArchivedRO"/>
+        <rdfs:domain rdf:resource="&roevo;LiveRO"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#hasChange -->
+
+    <ObjectProperty rdf:about="&roevo;hasChange">
+        <rdfs:range rdf:resource="&roevo;Change"/>
+        <rdfs:domain rdf:resource="&roevo;Version"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#hasPreviousChange -->
+
+    <ObjectProperty rdf:about="&roevo;hasPreviousChange">
+        <rdfs:range rdf:resource="&roevo;Change"/>
+        <rdfs:domain rdf:resource="&roevo;Change"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#hasSnapshot -->
+
+    <ObjectProperty rdf:about="&roevo;hasSnapshot">
+        <rdfs:domain rdf:resource="&roevo;LiveRO"/>
+        <rdfs:range rdf:resource="&roevo;SnapshotRO"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#importedFrom -->
+
+    <ObjectProperty rdf:about="&roevo;importedFrom">
+        <rdfs:subPropertyOf rdf:resource="&roevo;contribution"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#relatedResource -->
+
+    <ObjectProperty rdf:about="&roevo;relatedResource">
+        <rdfs:range rdf:resource="&roevo;AggregatedResourceVersion"/>
+        <rdfs:domain rdf:resource="&roevo;AggregationChange"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#relatesTo -->
+
+    <ObjectProperty rdf:about="&roevo;relatesTo">
+        <rdfs:subPropertyOf rdf:resource="&roevo;contribution"/>
+    </ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#AddAggregatedResource -->
+
+    <Class rdf:about="&roevo;AddAggregatedResource">
+        <rdfs:subClassOf rdf:resource="&roevo;AggregationChange"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#AddStatement -->
+
+    <Class rdf:about="&roevo;AddStatement">
+        <rdfs:subClassOf rdf:resource="&roevo;StatementChange"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#AddTarget -->
+
+    <Class rdf:about="&roevo;AddTarget">
+        <rdfs:subClassOf rdf:resource="&roevo;TargetChange"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#AggregatedResourceVersion -->
+
+    <Class rdf:about="&roevo;AggregatedResourceVersion">
+        <rdfs:subClassOf rdf:resource="&roevo;Version"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#AggregationChange -->
+
+    <Class rdf:about="&roevo;AggregationChange">
+        <rdfs:subClassOf rdf:resource="&roevo;ROChange"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#AnnotationChange -->
+
+    <Class rdf:about="&roevo;AnnotationChange">
+        <rdfs:subClassOf rdf:resource="&roevo;Change"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#ArchivedRO -->
+
+    <Class rdf:about="&roevo;ArchivedRO">
+        <rdfs:subClassOf rdf:resource="&ro;ResearchObject"/>
+        <rdfs:subClassOf rdf:resource="&roevo;ROVersion"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#Change -->
+
+    <Class rdf:about="&roevo;Change">
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&dcterms;creator"/>
+                <someValuesFrom rdf:resource="&foaf;Agent"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&dcterms;created"/>
+                <someValuesFrom rdf:resource="&xsd;dateTime"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&ao;annotatesResource"/>
+                <someValuesFrom rdf:resource="&roevo;Change"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#DatasetChange -->
+
+    <Class rdf:about="&roevo;DatasetChange">
+        <rdfs:subClassOf rdf:resource="&roevo;ResourceChange"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#DocumentChange -->
+
+    <Class rdf:about="&roevo;DocumentChange">
+        <rdfs:subClassOf rdf:resource="&roevo;ResourceChange"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#FileChange -->
+
+    <Class rdf:about="&roevo;FileChange">
+        <rdfs:subClassOf rdf:resource="&roevo;ResourceChange"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#ImageChange -->
+
+    <Class rdf:about="&roevo;ImageChange">
+        <rdfs:subClassOf rdf:resource="&roevo;ResourceChange"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#LiveRO -->
+
+    <Class rdf:about="&roevo;LiveRO">
+        <rdfs:subClassOf rdf:resource="&ro;ResearchObject"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#ModifyAggregatedResource -->
+
+    <Class rdf:about="&roevo;ModifyAggregatedResource">
+        <rdfs:subClassOf rdf:resource="&roevo;AggregationChange"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#ModifyStatement -->
+
+    <Class rdf:about="&roevo;ModifyStatement">
+        <rdfs:subClassOf rdf:resource="&roevo;StatementChange"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#ModifyTarget -->
+
+    <Class rdf:about="&roevo;ModifyTarget">
+        <rdfs:subClassOf rdf:resource="&roevo;TargetChange"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#ROChange -->
+
+    <Class rdf:about="&roevo;ROChange">
+        <rdfs:subClassOf rdf:resource="&roevo;Change"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#ROVersion -->
+
+    <Class rdf:about="&roevo;ROVersion">
+        <rdfs:subClassOf rdf:resource="&roevo;Version"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#RemoveAggregatedResource -->
+
+    <Class rdf:about="&roevo;RemoveAggregatedResource">
+        <rdfs:subClassOf rdf:resource="&roevo;AggregationChange"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#RemoveStatement -->
+
+    <Class rdf:about="&roevo;RemoveStatement">
+        <rdfs:subClassOf rdf:resource="&roevo;StatementChange"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#RemoveTarget -->
+
+    <Class rdf:about="&roevo;RemoveTarget">
+        <rdfs:subClassOf rdf:resource="&roevo;TargetChange"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#ResourceChange -->
+
+    <Class rdf:about="&roevo;ResourceChange">
+        <rdfs:subClassOf rdf:resource="&roevo;Change"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#SnapshotRO -->
+
+    <Class rdf:about="&roevo;SnapshotRO">
+        <rdfs:subClassOf rdf:resource="&ro;ResearchObject"/>
+        <rdfs:subClassOf rdf:resource="&roevo;ROVersion"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#StatementChange -->
+
+    <Class rdf:about="&roevo;StatementChange">
+        <rdfs:subClassOf rdf:resource="&roevo;AnnotationChange"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#TargetChange -->
+
+    <Class rdf:about="&roevo;TargetChange">
+        <rdfs:subClassOf rdf:resource="&roevo;AnnotationChange"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#Version -->
+
+    <Class rdf:about="&roevo;Version">
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&ao;annotatesResource"/>
+                <someValuesFrom rdf:resource="&roevo;Version"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&dcterms;identifier"/>
+                <someValuesFrom rdf:resource="&rdfs;Literal"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#WebServiceChange -->
+
+    <Class rdf:about="&roevo;WebServiceChange">
+        <rdfs:subClassOf rdf:resource="&roevo;ResourceChange"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#WorkflowChange -->
+
+    <Class rdf:about="&roevo;WorkflowChange">
+        <rdfs:subClassOf rdf:resource="&roevo;ResourceChange"/>
+    </Class>
+    
+
+
+    <!-- http://www.openarchives.org/ore/terms/AggregatedResource -->
+
+    <rdf:Description rdf:about="&terms;AggregatedResource">
+        <rdfs:subClassOf rdf:resource="&roevo;AggregatedResourceVersion"/>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+
