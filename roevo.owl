@@ -71,8 +71,8 @@
     <!-- http://purl.org/wf4ever/roevo#contribution -->
 
     <ObjectProperty rdf:about="&roevo;contribution">
-        <rdfs:range rdf:resource="&roevo;Version"/>
-        <rdfs:domain rdf:resource="&roevo;Version"/>
+        <rdfs:range rdf:resource="&ro;ResearchObject"/>
+        <rdfs:domain rdf:resource="&ro;ResearchObject"/>
     </ObjectProperty>
     
 
@@ -134,6 +134,22 @@
 
     <ObjectProperty rdf:about="&roevo;importedFrom">
         <rdfs:subPropertyOf rdf:resource="&roevo;contribution"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#isArchivedOf -->
+
+    <ObjectProperty rdf:about="&roevo;isArchivedOf">
+        <inverseOf rdf:resource="&roevo;hasArchive"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#isSnapshotOf -->
+
+    <ObjectProperty rdf:about="&roevo;isSnapshotOf">
+        <inverseOf rdf:resource="&roevo;hasSnapshot"/>
     </ObjectProperty>
     
 
@@ -228,8 +244,8 @@
     <Class rdf:about="&roevo;Change">
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&ao;annotatesResource"/>
-                <someValuesFrom rdf:resource="&roevo;Change"/>
+                <onProperty rdf:resource="&dcterms;created"/>
+                <someValuesFrom rdf:resource="&xsd;dateTime"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -240,8 +256,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&dcterms;created"/>
-                <someValuesFrom rdf:resource="&xsd;dateTime"/>
+                <onProperty rdf:resource="&ao;annotatesResource"/>
+                <someValuesFrom rdf:resource="&roevo;Change"/>
             </Restriction>
         </rdfs:subClassOf>
     </Class>
@@ -390,14 +406,14 @@
     <Class rdf:about="&roevo;Version">
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&ao;annotatesResource"/>
-                <someValuesFrom rdf:resource="&roevo;Version"/>
+                <onProperty rdf:resource="&dcterms;identifier"/>
+                <someValuesFrom rdf:resource="&rdfs;Literal"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="&dcterms;identifier"/>
-                <someValuesFrom rdf:resource="&rdfs;Literal"/>
+                <onProperty rdf:resource="&ao;annotatesResource"/>
+                <someValuesFrom rdf:resource="&roevo;Version"/>
             </Restriction>
         </rdfs:subClassOf>
     </Class>
