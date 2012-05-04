@@ -8,6 +8,7 @@
     <!ENTITY ro "http://purl.org/wf4ever/ro#" >
     <!ENTITY roevo "http://purl.org/wf4ever/roevo#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY terms "http://www.openarchives.org/ore/terms/" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
@@ -24,6 +25,7 @@
      xmlns:terms="http://www.openarchives.org/ore/terms/"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:dcterms="http://purl.org/dc/terms/">
     <Ontology rdf:about="http://purl.org/wf4ever/roevo">
         <rdfs:comment xml:lang="en">The Research Object evolution ontology, which extends the RO ontology to capture the lifecycle and versioning of research objects</rdfs:comment>
@@ -106,6 +108,15 @@
     <ObjectProperty rdf:about="&roevo;hasPreviousChange">
         <rdfs:range rdf:resource="&roevo;Change"/>
         <rdfs:domain rdf:resource="&roevo;Change"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#hasPreviousVersion -->
+
+    <ObjectProperty rdf:about="&roevo;hasPreviousVersion">
+        <rdfs:range rdf:resource="&roevo;Version"/>
+        <rdfs:domain rdf:resource="&roevo;Version"/>
     </ObjectProperty>
     
 
@@ -217,6 +228,12 @@
     <Class rdf:about="&roevo;Change">
         <rdfs:subClassOf>
             <Restriction>
+                <onProperty rdf:resource="&ao;annotatesResource"/>
+                <someValuesFrom rdf:resource="&roevo;Change"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
                 <onProperty rdf:resource="&dcterms;creator"/>
                 <someValuesFrom rdf:resource="&foaf;Agent"/>
             </Restriction>
@@ -225,12 +242,6 @@
             <Restriction>
                 <onProperty rdf:resource="&dcterms;created"/>
                 <someValuesFrom rdf:resource="&xsd;dateTime"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="&ao;annotatesResource"/>
-                <someValuesFrom rdf:resource="&roevo;Change"/>
             </Restriction>
         </rdfs:subClassOf>
     </Class>
