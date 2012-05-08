@@ -70,10 +70,7 @@
 
     <!-- http://purl.org/wf4ever/roevo#contribution -->
 
-    <ObjectProperty rdf:about="&roevo;contribution">
-        <rdfs:range rdf:resource="&ro;ResearchObject"/>
-        <rdfs:domain rdf:resource="&ro;ResearchObject"/>
-    </ObjectProperty>
+    <ObjectProperty rdf:about="&roevo;contribution"/>
     
 
 
@@ -99,6 +96,14 @@
     <ObjectProperty rdf:about="&roevo;hasChange">
         <rdfs:range rdf:resource="&roevo;Change"/>
         <rdfs:domain rdf:resource="&roevo;Version"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#hasNextVersion -->
+
+    <ObjectProperty rdf:about="&roevo;hasNextVersion">
+        <inverseOf rdf:resource="&roevo;hasPreviousVersion"/>
     </ObjectProperty>
     
 
