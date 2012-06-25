@@ -191,9 +191,9 @@
     
 
 
-    <!-- http://www.w3.org/ns/prov#hadPrimarySource -->
+    <!-- http://www.w3.org/ns/prov#hadOriginalSource -->
 
-    <owl:ObjectProperty rdf:about="&prov;hadPrimarySource">
+    <owl:ObjectProperty rdf:about="&prov;hadOriginalSource">
         <rdfs:range rdf:resource="&prov;Entity"/>
         <rdfs:domain rdf:resource="&prov;Entity"/>
         <rdfs:subPropertyOf rdf:resource="&prov;wasDerivedFrom"/>
