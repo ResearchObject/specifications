@@ -39,10 +39,10 @@ mappings = {
 #  'wfprov-model' => 'https://raw.github.com/wf4ever/ro/master/wfprov.owl',
 #  'wf4ever-model' => 'https://raw.github.com/wf4ever/ro/master/wf4ever.owl'
 
-  'ro-model' => 'https://raw.github.com/wf4ever/ro/0.1/ro.owl',
-  'wfdesc-model' => 'https://raw.github.com/wf4ever/ro/0.1/wfdesc.owl',
-  'wfprov-model' => 'https://raw.github.com/wf4ever/ro/0.1/wfprov.owl',
-  'wf4ever-model' => 'https://raw.github.com/wf4ever/ro/0.1/wf4ever.owl'
+  'ro-model' => 'http://purl.org/wf4ever/ro',
+  'wfdesc-model' => 'http://purl.org/wf4ever/wfdesc',
+  'wfprov-model' => 'http://purl.org/wf4ever/wfprov',
+  'wf4ever-model' => 'http://purl.org/wf4ever/wf4ever',
 }
 
 template_doc = Nokogiri::HTML(open($template))
