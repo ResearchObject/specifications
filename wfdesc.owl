@@ -25,7 +25,7 @@ A wfdesc:Workflow contains several wfdesc:Process instances, associated using th
 Thus this ontology allows the description a direct acyclic graph, or a dataflow. 
 
 This ontology is meant as an upper ontology for more specific workflow definitions, and as a way to express abstract workflows. The wfprov ontology shows how to link these descriptions to a provenance trace of a workflow execution.</comment>
-        <owl:versionIRI rdf:resource="https://raw.github.com/wf4ever/ro/master/wfdesc.owl"/>
+        <owl:versionIRI rdf:resource="https://raw.github.com/wf4ever/ro/0.1/wfdesc.owl"/>
     </owl:Ontology>
     
 

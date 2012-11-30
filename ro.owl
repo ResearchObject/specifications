@@ -15,7 +15,7 @@
         <imports rdf:resource="http://purl.org/ao/core/"/>
         <imports rdf:resource="http://purl.org/wf4ever/ore-owl"/>
         <imports rdf:resource="http://xmlns.com/foaf/0.1/"/>
-        <versionIRI rdf:resource="https://raw.github.com/wf4ever/ro/master/ro.owl"/>
+        <versionIRI rdf:resource="https://raw.github.com/wf4ever/ro/0.1/ro.owl"/>
     </Ontology>
 
     <Class rdf:about="http://purl.org/wf4ever/ro#AggregatedAnnotation">

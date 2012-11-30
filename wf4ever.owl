@@ -26,7 +26,7 @@
         <imports rdf:resource="http://purl.org/wf4ever/ro"/>
         <imports rdf:resource="http://purl.org/wf4ever/wfdesc"/>
         <imports rdf:resource="http://purl.org/wf4ever/wfprov"/>
-        <versionIRI rdf:resource="https://raw.github.com/wf4ever/ro/master/wf4ever.owl"/>
+        <versionIRI rdf:resource="https://raw.github.com/wf4ever/ro/0.1/wf4ever.owl"/>
     </Ontology>
     
 
