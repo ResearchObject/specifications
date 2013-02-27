@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wf4Ever Research Object Bundle</title>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
+    <!-- 
+      === NOTA BENE ===
+      For the three scripts below, if your spec resides on dev.w3 you can check them
+      out in the same tree and use relative links so that they'll work offline,
+     -->
+    <script src='http://darobin.github.com/respec/builds/respec-w3c-common.js' async class='remove'></script>
+    <!--
+    <script src='http://dev.w3.org/2009/dap/ReSpec.js/js/respec.js' class='remove'></script> 
+    -->
+
+    <script class='remove'>
+
+        
+    var addExtraReferences = function() {
+         for (var k in extraReferences)
+             berjon.biblio[k] = extraReferences[k];
+         };
+
+     var extraReferences = {
+"RO": "Stian Soiland-Reyes, Sean Bechhofer, et al.: <cite><a href='http://purl.org/wf4ever/model'>Wf4Ever Research Object Model</a></cite>. 30 November 2012. URL: <a href='http://purl.org/wf4ever/model'>http://purl.org/wf4ever/model</a>",         
+"ROPrimer": "Jun Zhao, et al: <cite><a href='http://purl.org/wf4ever/ro-primer'>Wf4Ever Research Object Ontologies and Vocabularies Primer</a></cite>. 13 April 2012. URL: <a href='http://purl.org/wf4ever/primer'>http://purl.org/wf4ever/primer</a> accessed 2013-02-27",         
+"ROSRS": "Piotr Holubowicz, Graham Klyne, et al.: <cite><a href='http://www.wf4ever-project.org/wiki/display/docs/RO+SRS+interface+6'>RO SRS interface 6</a></cite>. 21 December 2012. URL: <a href='http://www.wf4ever-project.org/wiki/display/docs/RO+SRS+interface+6'>http://www.wf4ever-project.org/wiki/display/docs/RO+SRS+interface+6</a>",
+
+         }; 
+
+
+      var respecConfig = {
+          // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
+          specStatus:           "unofficial",
+          
+          // the specification's short name, as in http://www.w3.org/TR/short-name/
+          shortName:            "ro-bundle",
+
+          // if your specification has a subtitle that goes below the main
+          // formal title, define it here
+          // subtitle   :  "an excellent document",
+
+          // if you wish the publication date to be other than today, set this
+          // publishDate:  "2009-08-06",
+
+          // if the specification's copyright date is a range of years, specify
+          // the start date here:
+          copyrightStart: "2013",
+
+          // if there is a previously published draft, uncomment this and set its YYYY-MM-DD date
+          // and its maturity status
+          previousPublishDate:  "1977-03-15",
+          previousMaturity:  "WD",
+          prevRecURI: "http://example.com/previous",
+          latestVersion: "http://purl.org/wf4ever/ro-bundle",
+          prevVersion: "http://example.com/otherPrevious",
+          thisVersion: "http://purl.org/wf4ever/ro-bundle/2013-xx-xx",
+          
+
+          // if there a publicly available Editor's Draft, this is the link
+          edDraftURI: "https://raw.github.com/wf4ever/ro/gh-pages/bundle/index.html",
+          
+
+          // if this is a LCWD, uncomment and set the end of its review period
+          // lcEnd: "2009-08-05",
+//          doRDFa: "1.1",
+
+          // editors, add as many as you like
+          // only "name" is required
+          editors:  [
+              { name: "Stian Soiland-Reyes", url:
+                  "http://soiland-reyes.com/stian/work/",
+                company: "University of Manchester", companyURL:
+                "http://www.cs.manchester.ac.uk/" },
+          ],
+
+          // authors, add as many as you like. 
+          // This is optional, uncomment if you have authors as well as editors.
+          // only "name" is required. Same format as editors.
+
+          //authors:  [
+          //    { name: "Your Name", url: "http://example.org/",
+          //      company: "Your Company", companyURL: "http://example.com/" },
+          //],
+          
+          // name of the WG
+          wg:           "Wf4Ever project",
+          
+          // URI of the public WG page
+          wgURI:        "http://www.wf4ever-project.org/",
+          
+          // name (without the @w3c.org) of the public mailing to which comments are due
+          wgPublicList: "wf4ever-public@googlegroups.com",
+          
+          // URI of the patent status for this WG, for Rec-track documents
+          // !!!! IMPORTANT !!!!
+          // This is important for Rec-track documents, do not copy a patent URI from a random
+          // document unless you know what you're doing. If in doubt ask your friendly neighbourhood
+          // Team Contact.
+          wgPatentURI:  "",
+          // Add extraReferences to bibliography database
+          preProcess: [addExtraReferences],
+      };
+    </script>
+    <link rel="stylesheet" href="wf4ever.css" type="text/css" />
+    <link rel="stylesheet" href="http://www.w3.org/StyleSheets/TR/w3c-unofficial" type="text/css" />
+  </head>
+  <body class="wf4ever">
+    <section id='abstract'>
+    <p>
+        This specification defines a file format for storage and 
+        distribution of Research Objects as a ZIP archive; called a
+        <strong>Research Object Bundle</strong> (RO Bundle). RO Bundles
+        allow capturing a Research Object to a single file or
+        byte-stream by including its manifest, annotations and some or
+        all of its aggregated resources for the purposes of exporting,
+        archiving, publishing and transferring research objects. </p>
+    </section>
+    <section id="sotd">
+    This document is an Editors Draft published by the 
+    <a href="http://www.wf4ever-project.org/">Wf4Ever project<a>.
+
+    This document is a work in progress and should not yet be used as a
+    basis for implementations. Questions, feedback and comments are
+    kindly requested to be sent to the <a href="">wf4ever-public</a>
+    mailing list/forum.
+    </section>
+
+    
+    <section class="informative">
+      <h2>Introduction</h2>
+        <p>
+            The <a href="http://purl.org/wf4ever/model">Wf4Ever Research
+            Object model</a> [[!RO]]
+            defines a model for aggregating the resources that contribute to a
+            scientific work, including domain-specific annotations and
+            provenance traces. The unit that collects these resources is called
+            a <em>Research Object</em> (<abbr title="Research Object">RO</abbr>)
+            and is described in an RDF-based manifest
+            according to the <abbr title="Workflow forever">Wf4Ever</abbr> OWL
+            ontologies.  The RO model has been formed in particular for the purpose of
+            preservation of scientific workflows, but is applicable also in a
+            general sense for capturing resources that are related to 
+            and together form a whole.
+            The <a href="">Research Object primer</a>[[ROPrimer]] provides
+            further details and examples of using the RO model.
+        </p>
+        <p>
+        The <a href="http://purl.org/wf4ever/model">specification for the RO
+        model</a> does not mandate any particular form for the representation
+        of Research Objects.  The Wf4Ever [[ROSRS]] API defines how research objects
+        can be accessed and maintained on the web through a RESTful web
+        service. Practical use of the RO model has however shown that
+        it is also benefitial to represent a research object as a single
+        ZIP archive or as file system folders for the purposes of
+        downloading and editing a research object. 
+        </p>
+        For instance a scientific workflow system can export a workflow
+        run by saving the workflow, runtime provenance trace and
+        generated results to a set of files. A research object that
+        represents the workflow run can aggregate and relate these
+        resources. However, at the time of running the workflow (e.g. on a
+        desktop computer it is not known where or if the user would
+        choose to publish the RO; thus the direct use of a ROSRS service
+        or minting public URIs is problematic in this situation.
+        </p>
+        <p>
+        A <strong>Research Object Bundle</strong>, as specified by this
+document, provides a way to collect the resources that are aggregated in a
+research object, represented as files in a ZIP archive, in addition to their
+metadata and annotations. The ZIP archive thus becomes a single representation
+of a research object and which can be exported, archived, published and
+transferred like a regular file or resource.
+
+           
+
+        </p>
+    </section>
+
+    <section id="conformance"></section>
+
+    <!--<a href="#general-structure" class="sectionRef"></a> -->
+    <section class='appendix'>
+      <h2>Acknowledgements</h2>
+      <p>
+        Many thanks to Robin Berjon for making our lives so much easier with his cool tool.
+      </p>
+    </section>
+  </body>
+</html>
