@@ -1,5 +1,5 @@
 {
-  "@context": "http://wf4ever.github.com/ro/bundle/context.json",
+  "@context": "http://wf4ever.github.com/ro/bundle/context.jsonld",
   "@base": "../",
   "@id": "./",
   "dct:created": "2013-02-12T19:37:32.939Z",
