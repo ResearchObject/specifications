@@ -25,6 +25,11 @@
 "RO": "Stian Soiland-Reyes, Sean Bechhofer, et al.: <cite><a href='http://purl.org/wf4ever/model'>Wf4Ever Research Object Model</a></cite>. 30 November 2012. URL: <a href='http://purl.org/wf4ever/model'>http://purl.org/wf4ever/model</a>",         
 "ROPrimer": "Jun Zhao, et al: <cite><a href='http://purl.org/wf4ever/ro-primer'>Wf4Ever Research Object Ontologies and Vocabularies Primer</a></cite>. 13 April 2012. URL: <a href='http://purl.org/wf4ever/primer'>http://purl.org/wf4ever/primer</a> accessed 2013-02-27",         
 "ROSRS": "Piotr Holubowicz, Graham Klyne, et al.: <cite><a href='http://www.wf4ever-project.org/wiki/display/docs/RO+SRS+interface+6'>RO SRS interface 6</a></cite>. 21 December 2012. URL: <a href='http://www.wf4ever-project.org/wiki/display/docs/RO+SRS+interface+6'>http://www.wf4ever-project.org/wiki/display/docs/RO+SRS+interface+6</a>",
+"UCF": "Adobe: <cite><a href='https://learn.adobe.com/wiki/display/PDFNAV/Universal+Container+Format'>Universal Container Format</a></cite>. URL: <a href='https://learn.adobe.com/wiki/display/PDFNAV/Universal+Container+Format'>https://learn.adobe.com/wiki/display/PDFNAV/Universal+Container+Format</a> accessed 2013-02-28.",
+"OCF": "James Pritchett, Markus Gylling: <cite><a href='http://idpf.org/epub/30/spec/epub30-ocf-20111011.html'>EPUB Open Container Format (OCF) 3.0</a></cit>. Recommended Specification 11 October 2011. International Digital Publishing Forum (IDPF). URL: <a href='http://idpf.org/epub/30/spec/epub30-ocf-20111011.html'>http://idpf.org/epub/30/spec/epub30-ocf-20111011.html</a>",
+"ORE":"<cite><a href=\"http://www.openarchives.org/ore/1.0/toc.html\">Open Archives Initiative Object Reuse and Exchange</a></cite>. <em>ORE Specifications and User Guides.</em> URL: <a href=\"http://www.openarchives.org/ore/1.0/toc.html\">http://www.openarchives.org/ore/1.0/toc.html</a>",
+"ORE-RDF":"Carl Lagoze and Herbert van de Sompel <cite><a href=\"http://www.openarchives.org/ore/1.0/rdfxml\">ORE User Guide - Resource Map Implementation in RDF/XML</a></cite>.",
+"ZIP": "PKWare Inc: <cite><a href='http://www.pkware.com/support/zip-app-note'></a>.ZIP File Format Specification</a></cite> version 6.3.3 (2012-09-01). URL: <a href='http://www.pkware.com/documents/casestudies/APPNOTE.TXT'>http://www.pkware.com/documents/casestudies/APPNOTE.TXT</a>"
 
          }; 
 
@@ -171,11 +176,117 @@ research object, represented as files in a ZIP archive, in addition to their
 metadata and annotations. The ZIP archive thus becomes a single representation
 of a research object and which can be exported, archived, published and
 transferred like a regular file or resource.
-
-           
-
         </p>
     </section>
+    <section>
+        <h2>Container</h2>
+        <p>
+        A Research Object Bundle is a structured [[ZIP]] archive, specializing
+        the <a href="https://learn.adobe.com/wiki/display/PDFNAV/UCF+overview">Adobe Universal Container Format</a> [[!UCF]]. UCF is
+        based on the EPUB [[OCF]] format, but generalized to be any kind of
+        container. The following section gives an informal introduction to the 
+        UCF format. For the complete details, see the [[!UCF]] specification.
+        </p>
+        <section id="ucf" class="informative">
+            <h3>Universal Container Format (UCF)</h3>
+            <p>
+            An UCF container is based on the ZIP compression file format [[ZIP]], enforcing <a href='https://learn.adobe.com/wiki/display/PDFNAV/Zip+container'>additional restrictions</a>. The most important restrictions are:
+            <ul>
+                <li>Reserved filenames in the root directory: <code>mimetype</code> <code>META-INF</code></li>
+                <li>Filenames must be encoded in UTF-8</li>
+                <li>Compression must be Uncompressed or Flate</li>
+                <li>MAY use Zip64 extensions, but SHOULD only do so when required.</li>
+                <li>The first file MUST be the uncompressed <code>mimetype</code> and without any extra attributes</li>
+            </ul>
+            </p>
+            <blockquote cite="https://learn.adobe.com/wiki/display/PDFNAV/Zip+container">
+            The first file in the Zip container MUST be a file with the ASCII
+            name of <code>mimetype</code>, which holds the MIME type for the Zip
+            container (<del>application/epub+zip</del> as an ASCII string; no
+            padding, white-space, or case change). 
+            </blockquote>
+            <p>
+            The actual media type to include in <code>mimetype</code> depends
+            on the specific container type (the above quote assumes ePub). For
+            RO bundles, the mimetype SHOULD be
+            <code>application/vnd.wf4ever.ro-bundle+zip</code>
+            unless specified otherwise.
+            <div class="practice">
+                <p><span class="practicelab" id="mimetype-zip">Use zip -0 -X</span></p>
+                </p>
+                <p class="practicedesc">
+                To add the <code>mimetype</code> file correctly on a UNIX/Linux
+installation with <a href='http://www.infonn-zip.org/'>InfoZip</a>, use
+<code>echo -n</code> and <code>zip -0 -X</code>. Below is an example which adds
+<code>mimetype</code> correctly as the first, uncompressed file, then the remaining files (excluding <code>mimetype</code>) with the default compression (deflate): </p>
+            </div>
+                <pre class="example">
+stain@ahtissuntu:~/test$ echo -n application/vnd.wf4ever.robundle+zip &gt; mimetype 
+
+stain@ahtissuntu:~/test$ zip -0 -X ../example.robundle mimetype
+  adding: mimetype (stored 0%)
+
+stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
+  adding: META-INF/ (stored 0%)
+  adding: META-INF/container.xml (stored 0%)
+  adding: .ro/ (stored 0%)
+  adding: .ro/manifest.json (stored 0%)
+  adding: helloworld.txt (stored 0%)
+                </pre>
+        </section>
+        <section>
+        <h3>RO bundle container</h3>
+        <div class="todo">
+        TODO: container.xml, .ro/ and our media type. Default and custom media type of resources.
+        </div>
+    </section>
+    </section>
+    <h2>Manifest</h2>
+    <p>
+    The [[ORE]] manifest for the research object MUST be represented in [[!JSON-LD]] format under the name <code>.ro/manifest.json</code>, but MAY also be represented in other
+formats like [[RDFXML]] and [[Turtle]] as long as they at least contain the equivalent information as <code>.ro/manifest.json</code>. All of the ORE manifests MUST be listed in the <code>META-INF/container.xml</code> as <code>&lt;rootfile&gt;</code>.
+    </p>
+    <p class="todo">TODO: About JSON-LD context</p>
+    <p>
+    An example of a manifest in JSON-LD format is included below:
+    </p>
+    <pre class="example" data-include="example/.ro/manifest.json">
+{
+  "@context": [ "http://purl.org/wf4ever/ro-bundle/context.json",
+                {"root": "../" } 
+              ],
+  "@id": "root:",
+  "dct:created": "2013-02-12T19:37:32.939Z",
+  "dct:creator": "http://wf4ever-test.myopenid.com/",
+  "manifest": ["manifest.json", "manifest.rdf"],
+  "history": "evo_info.ttl",
+  "rootFolder": "root:",
+  "aggregates": [
+     "root:fred.txt",
+     "root:soup.jpeg",
+     "http://example.com/external.txt"
+  ],
+  "proxies": [
+    { "@id": "proxies/afedfefefef",
+      "ore:proxyFor": "root:fred.txt",
+      "ore:proxyIn": "root:" },
+    { "@id": "proxies/fedfefefefa",
+      "ore:proxyFor": "root/sopup.jpeg",
+      "ore:proxyIn": "root:" },
+    {   "@id": "proxies/fefefef",
+        "path": "root:fred.txt" }
+  ],
+  "annotations": [
+    { "annotates": "root:soup.jpeg",
+      "annotation": "annotations/about-soup.ttl" },
+    { "annotates": "root:soup.jpeg",
+      "annotations": "http://example.com/blog/soup" }
+  ]
+}
+  
+
+</pre>
+    
 
     <section id="conformance"></section>
 
