@@ -18,9 +18,7 @@
       "ore:proxyIn": "./" },
     { "@id": "proxies/fedfefefefa",
       "ore:proxyFor": "root/sopup.jpeg",
-      "ore:proxyIn": "./" }
-  ],
-  "proxies": [
+      "ore:proxyIn": "./" },
     {   "@id": "proxies/fefefef",
         "path": "fred.txt" }
   ],
