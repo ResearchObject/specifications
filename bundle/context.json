@@ -39,6 +39,12 @@
     "dct:creator": {
         "@type": "@id"
     },
+    "ore:proxyIn": {
+        "@type": "@id"
+    },
+    "ore:proxyFor": {
+        "@type": "@id"
+    },
     "annotation": {
         "@id": "oa:hasBody",
        "@type": "@id"
