@@ -1,5 +1,7 @@
 {
-  "@context": "http://purl.org/wf4ever/ro-bundle/context.json",
+  "@context": [ "http://purl.org/wf4ever/ro-bundle/context.json",
+                {"@base": "../" } 
+              ],
   "@id": "./",
   "dct:created": "2013-02-12T19:37:32.939Z",
   "dct:creator": "http://wf4ever-test.myopenid.com/",
