@@ -14,6 +14,18 @@
       "@id": "ore:aggregates",
       "@type": "@id"
     },
+    "path": {
+      "@id": "ore:proxyFor",
+      "@type": "@id"
+    },
+    "proxies": {
+      "@id": "ro:hasProxy",
+      "@type": "@id"
+    },
+    "annotations": {
+      "@id": "ro:hasAnnotation",
+      "@type": "@id"
+    },
     "manifest": {
         "@id": "ore:isDescribedBy",
         "@type": "@id"
