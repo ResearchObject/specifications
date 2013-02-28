@@ -1,0 +1,34 @@
+{
+  "@context": "http://wf4ever.github.com/ro/bundle/context.json",
+  "@id": "./",
+  "dct:created": "2013-02-12T19:37:32.939Z",
+  "dct:creator": "http://wf4ever-test.myopenid.com/",
+  "manifest": [".ro/manifest.json", ".ro/manifest.rdf"],
+  "history": ".ro/evo_info.ttl",
+  "rootFolder": "root/",
+  "aggregates": [
+     "fred.txt",
+     "root/soup.jpeg",
+     "http://example.com/external.txt"
+  ],
+  "proxies": [
+    { "@id": "proxies/afedfefefef",
+      "ore:proxyFor": "fred.txt",
+      "ore:proxyIn": "./" },
+    { "@id": "proxies/fedfefefefa",
+      "ore:proxyFor": "root/sopup.jpeg",
+      "ore:proxyIn": "./" }
+  ],
+  "proxies": [
+    {   "@id": "proxies/fefefef",
+        "path": "fred.txt" }
+  ],
+  "annotations": [
+    { "annotates": "root/soup.jpeg",
+      "annotation": "annotations/about-soup.ttl" },
+    { "annotates": "root/soup.jpeg",
+      "annotations": "http://example.com/blog/soup" }
+  ]
+}
+  
+
