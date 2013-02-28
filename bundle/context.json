@@ -1,6 +1,5 @@
 {
   "@context": {
-    "@base": "../fred/",
     "ao": "http://purl.org/ao/",
     "oa": "http://www.w3.org/ns/oa#",
     "dct": "http://purl.org/dc/terms/",

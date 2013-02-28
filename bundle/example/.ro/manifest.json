@@ -1,32 +1,32 @@
 {
   "@context": [ "http://purl.org/wf4ever/ro-bundle/context.json",
-                {"@base": "../" } 
+                {"root": "../" } 
               ],
-  "@id": "./",
+  "@id": "root:",
   "dct:created": "2013-02-12T19:37:32.939Z",
   "dct:creator": "http://wf4ever-test.myopenid.com/",
-  "manifest": [".ro/manifest.json", ".ro/manifest.rdf"],
-  "history": ".ro/evo_info.ttl",
-  "rootFolder": "root/",
+  "manifest": ["manifest.json", "manifest.rdf"],
+  "history": "evo_info.ttl",
+  "rootFolder": "root:",
   "aggregates": [
-     "fred.txt",
-     "root/soup.jpeg",
+     "root:fred.txt",
+     "root:soup.jpeg",
      "http://example.com/external.txt"
   ],
   "proxies": [
     { "@id": "proxies/afedfefefef",
-      "ore:proxyFor": "fred.txt",
-      "ore:proxyIn": "./" },
+      "ore:proxyFor": "root:fred.txt",
+      "ore:proxyIn": "root:" },
     { "@id": "proxies/fedfefefefa",
       "ore:proxyFor": "root/sopup.jpeg",
-      "ore:proxyIn": "./" },
+      "ore:proxyIn": "root:" },
     {   "@id": "proxies/fefefef",
-        "path": "fred.txt" }
+        "path": "root:fred.txt" }
   ],
   "annotations": [
-    { "annotates": "root/soup.jpeg",
+    { "annotates": "root:soup.jpeg",
       "annotation": "annotations/about-soup.ttl" },
-    { "annotates": "root/soup.jpeg",
+    { "annotates": "root:soup.jpeg",
       "annotations": "http://example.com/blog/soup" }
   ]
 }
