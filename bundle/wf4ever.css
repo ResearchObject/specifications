@@ -1,6 +1,68 @@
+@import url(http://fonts.googleapis.com/css?family=Tauri);
+
 body.wf4ever {
-    background-image: url("../logo/wf4ever.png");
-    background-size: 200px Auto;
-    background-position: 4em 0;
+    /* Disable 'Unofficial Draft' */
+    background-image: none;
 }
 
+.logo {
+}
+.logo img {
+    position: absolute;
+    left: 4em;
+    top: 0;
+    height: 5em;
+}
+.status {
+    position: fixed;
+    left: 0em;
+    top: 0em;
+    text-align: right;
+    vertical-align: middle;
+    /* Square version of the inside span. Slightly larger */
+    width: 24em;
+    height: 24em;
+    /* Enable for debugging 
+    background: #abc;
+     */
+    
+    /** From http://stackoverflow.com/questions/1080792/how-to-draw-vertical-text-with-css-cross-browser */
+
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    /* also accepts left, right, top, bottom coordinates; not
+    * required, but a good idea for styling */
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+
+    /* Should be unset in IE9+ I think. */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+/* The actual status box */
+ .status div {   
+    opacity: 0.9;
+    display: block;
+    background: #d33;
+    color: white;
+    width: 23em;
+    padding-top: 0.3em;
+    padding-left: 0em;
+    padding-right: 5em;
+    padding-bottom: 0.3em;
+    /* Enable for debugging 
+    border: red thin solid;
+     */
+} 
+
+/* And text inside, don't confuse fonts as it breaks em above */
+.status div span {
+    font-family: "Tauri";
+    font-size: larger;
+}
