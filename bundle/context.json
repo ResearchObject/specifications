@@ -1,0 +1,61 @@
+{
+  "@context": {
+    "ao": "http://purl.org/ao/",
+    "oa": "http://www.w3.org/ns/oa#",
+    "dct": "http://purl.org/dc/terms/",
+    "ore": "http://www.openarchives.org/ore/terms/",
+    "ro": "http://purl.org/wf4ever/ro#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "pav": "http://purl.org/pav/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "aggregates": {
+      "@id": "ore:aggregates",
+      "@type": "@id"
+    },
+    "path": {
+      "@id": "ore:proxyFor",
+      "@type": "@id"
+    },
+    "proxies": {
+      "@id": "ro:hasProxy",
+      "@type": "@id"
+    },
+    "annotations": {
+      "@id": "ro:hasAnnotation",
+      "@type": "@id"
+    },
+    "manifest": {
+        "@id": "ore:isDescribedBy",
+        "@type": "@id"
+    },
+    "rootFolder": {
+      "@id": "ro:rootFolder",
+      "@type": "@id"
+    },
+    "dct:created": {
+        "@type": "xsd:dateTime"
+    },
+    "dct:creator": {
+        "@type": "@id"
+    },
+    "ore:proxyIn": {
+        "@type": "@id"
+    },
+    "ore:proxyFor": {
+        "@type": "@id"
+    },
+    "annotation": {
+        "@id": "oa:hasBody",
+       "@type": "@id"
+    },
+    "annotates": {
+       "@id": "oa:hasTarget",
+       "@type": "@id" 
+    },
+    "history": {
+        "@id": "prov:has_provenance",
+        "@type": "@id"
+    }
+  }
+}
