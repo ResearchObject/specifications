@@ -13,6 +13,9 @@ body.wf4ever {
     top: 0;
     height: 5em;
 }
+blockquote {
+    font-style: italic;
+}
 .status {
     position: fixed;
     left: 0em;

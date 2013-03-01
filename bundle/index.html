@@ -29,7 +29,8 @@
 "OCF": "James Pritchett, Markus Gylling: <cite><a href='http://idpf.org/epub/30/spec/epub30-ocf-20111011.html'>EPUB Open Container Format (OCF) 3.0</a></cit>. Recommended Specification 11 October 2011. International Digital Publishing Forum (IDPF). URL: <a href='http://idpf.org/epub/30/spec/epub30-ocf-20111011.html'>http://idpf.org/epub/30/spec/epub30-ocf-20111011.html</a>",
 "ORE":"<cite><a href=\"http://www.openarchives.org/ore/1.0/toc.html\">Open Archives Initiative Object Reuse and Exchange</a></cite>. <em>ORE Specifications and User Guides.</em> URL: <a href=\"http://www.openarchives.org/ore/1.0/toc.html\">http://www.openarchives.org/ore/1.0/toc.html</a>",
 "ORE-RDF":"Carl Lagoze and Herbert van de Sompel <cite><a href=\"http://www.openarchives.org/ore/1.0/rdfxml\">ORE User Guide - Resource Map Implementation in RDF/XML</a></cite>.",
-"ZIP": "PKWare Inc: <cite><a href='http://www.pkware.com/support/zip-app-note'></a>.ZIP File Format Specification</a></cite> version 6.3.3 (2012-09-01). URL: <a href='http://www.pkware.com/documents/casestudies/APPNOTE.TXT'>http://www.pkware.com/documents/casestudies/APPNOTE.TXT</a>"
+"ZIP": "PKWare Inc: <cite><a href='http://www.pkware.com/support/zip-app-note'></a>.ZIP File Format Specification</a></cite> version 6.3.3 (2012-09-01). URL: <a href='http://www.pkware.com/documents/casestudies/APPNOTE.TXT'>http://www.pkware.com/documents/casestudies/APPNOTE.TXT</a>",
+"ODF": "Rob Weir, Michael Brauer, Patrick Durusau, Dennis Hamilton: Open Document Format for Office Applications (OpenDocument) Version 1.3, Part 3: Packages. OASIS Standard. 29 September 2011. URL: <a href=''>http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2-part3.html",
 
          }; 
 
@@ -112,7 +113,7 @@
   </head>
   <body class="wf4ever">
     <div class="logo"><img src="../logo/wf4ever.png" height="100" /></div>
-    <div class="status"><div><span>Wf4Ever Editors' Draft</div></span></div>
+    <div class="status"><div><span>Wf4Ever&nbsp;Editors'&nbsp;Draft</div></span></div>
     <section id='abstract'>
     <p>
         This specification defines a file format for storage and 
@@ -149,13 +150,16 @@
             preservation of scientific workflows, but is applicable also in a
             general sense for capturing resources that are related to 
             and together form a whole.
-            The <a href="">Research Object primer</a>[[ROPrimer]] provides
+            The <a href="">Research Object primer</a> [[ROPrimer]] provides
             further details and examples of using the RO model.
         </p>
         <p>
         The <a href="http://purl.org/wf4ever/model">specification for the RO
         model</a> does not mandate any particular form for the representation
-        of Research Objects.  The Wf4Ever [[ROSRS]] API defines how research objects
+        of Research Objects.  The Wf4Ever <a
+        href='http://www.wf4ever-project.org/wiki/display/docs/RO+SRS+interface+6'>RO
+        Storage and Retrieval Service API</a> [[ROSRS]] defines how
+        research objects
         can be accessed and maintained on the web through a RESTful web
         service. Practical use of the RO model has however shown that
         it is also benefitial to represent a research object as a single
@@ -187,19 +191,22 @@ transferred like a regular file or resource.
         the <a href="https://learn.adobe.com/wiki/display/PDFNAV/UCF+overview">Adobe Universal Container Format</a> [[!UCF]]. UCF is
         based on the EPUB [[OCF]] format, but generalized to be any kind of
         container. The following section gives an informal introduction to the 
-        UCF format. For the complete details, see the [[!UCF]] specification.
+        UCF format. For the complete, normative details, see the [[!UCF]] specification.
         </p>
         <section id="ucf" class="informative">
             <h3>Universal Container Format (UCF)</h3>
             <p>
             An UCF container is based on the ZIP compression file format [[ZIP]], enforcing <a href='https://learn.adobe.com/wiki/display/PDFNAV/Zip+container'>additional restrictions</a>. The most important restrictions are:
             <ul>
-                <li>Reserved filenames in the root directory: <code>mimetype</code> <code>META-INF</code></li>
+                <li>Reserved filenames in the root directory:
+                    <code>mimetype</code> and <code>META-INF</code></li>
                 <li>Filenames must be encoded in UTF-8</li>
                 <li>Compression must be Uncompressed or Flate</li>
-                <li>MAY use Zip64 extensions, but SHOULD only do so when required.</li>
+                <li>MAY use Zip64 extensions, but SHOULD only do so when required</li>
                 <li>The first file MUST be the uncompressed <code>mimetype</code> and without any extra attributes</li>
             </ul>
+            </p>
+            <p>UCF says about <code>mimetype</code>:
             </p>
             <blockquote cite="https://learn.adobe.com/wiki/display/PDFNAV/Zip+container">
             The first file in the Zip container MUST be a file with the ASCII
@@ -209,10 +216,10 @@ transferred like a regular file or resource.
             </blockquote>
             <p>
             The actual media type to include in <code>mimetype</code> depends
-            on the specific container type (the above quote assumes ePub). For
-            RO bundles, the mimetype SHOULD be
-            <code>application/vnd.wf4ever.ro-bundle+zip</code>
-            unless specified otherwise.
+            on the specific container type (the above quote uses ePub as
+            an example). 
+            See <a href='#ro-bundle-container' class="sectionRef"></a>.
+            </p>
             <div class="practice">
                 <p><span class="practicelab" id="mimetype-zip">Use zip -0 -X</span></p>
                 </p>
@@ -222,7 +229,7 @@ installation with <a href='http://www.infonn-zip.org/'>InfoZip</a>, use
 <code>echo -n</code> and <code>zip -0 -X</code>. Below is an example which adds
 <code>mimetype</code> correctly as the first, uncompressed file, then the remaining files (excluding <code>mimetype</code>) with the default compression (deflate): </p>
             </div>
-                <pre class="example">
+            <pre class="example">
 stain@ahtissuntu:~/test$ echo -n application/vnd.wf4ever.robundle+zip &gt; mimetype 
 
 stain@ahtissuntu:~/test$ zip -0 -X ../example.robundle mimetype
@@ -234,19 +241,122 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
   adding: .ro/ (stored 0%)
   adding: .ro/manifest.json (stored 0%)
   adding: helloworld.txt (stored 0%)
-                </pre>
+            </pre>
+            <p>UCF says about <a
+            href="https://learn.adobe.com/wiki/display/PDFNAV/UCF+container+contents#UCFcontainercontents-ContainerMETA-INFcontainerxmlOptional"><code>META-INF/container.xml</code></a>
+            and rootfiles:
+            </p>
+            <blockquote cite="https://learn.adobe.com/wiki/display/PDFNAV/UCF+container+contents#UCFcontainercontents-ContainerMETA-INFcontainerxmlOptional">
+                A UCF Container MAY include a file named
+                <code>container.xml</code> in the <code>META-INF</code>
+                directory at the root level of the container file system. If
+                present, the <code>container.xml</code> file MAY identify
+                the MIME type of, and path to, the root file for the
+                container and any OPTIONAL alternative renditions included
+                in the container.  
+            </blockquote>
+            <p>
+            An example of <code>META-INF/container.xml</code> which
+            defines the <em>rootfile</em> as <code>.ro/manifest.json</code>:
+            </p>
+            <pre class="example" data-include="example/META-INF/container.xml">
+&lt;?xml version="1.0"?&gt;
+&lt;container version="1.0"
+    xmlns="urn:oasis:names:tc:opendocument:xmlns:container"&gt;
+    &lt;rootfiles&gt;
+        &lt;rootfile full-path=".ro/manifest.json" media-type="application/ld+json" /&gt;
+    &lt;/rootfiles&gt;
+&lt;/container&gt;
+            </pre>
+
         </section>
         <section>
         <h3>RO bundle container</h3>
-        <div class="todo">
-        TODO: container.xml, .ro/ and our media type. Default and custom media type of resources.
-        </div>
+        The RO Bundle container is a specialization of a [[!UCF]] container, with
+        the following additions:
+        <ul>
+            <li>Additional reserved filename in the root directory: <code>.ro</code></li>
+            <li>The <code>mimetype</code> SHOULD be
+              <code>application/vnd.wf4ever.robundle+zip</code> (see
+              below)</li>
+            <li>The <code>META-INF/container.xml</code>, if present,
+                MUST contain at least one <code>&lt;rootfile&gt;</code> entry
+                for a recognized RDF serialization of the <a
+                    href=#manifest#>ORE
+                manifest</a></li>
+            <li>The <code>META-INF/container.xml</code>, if present,
+                SHOULD contain a <code>&lt;rootfile&gt;</code> entry for
+                <code>.ro/manifest.json</code> containing the <a
+                href='#manifest'>ORE
+                manifest</a>.
+                </li> 
+            </ul>
+        <p>
+            Applications who specialize RO Bundles MAY use a different
+            <code>mimetype</code>, for instance because the research object
+            bundle is used to contain application-specific data. It is
+            RECOMMENDED for such extensions that the media type to end
+            with <code>+zip</code> if the content of the bundle could be
+            considered meaningful for a user to browse as a folder
+            structure.
+        </p>
+        <p>
+          For the purposes of this specification, the [[JSON-LD]] format
+          is considered a "recognized RDF serialization", however the
+          JSON-LD specification is at time of writing at a draft stage 
+          and is subject to change.
+        </p>
+        <p>
+          Beyond rootfiles, the UCF specification does not specify how
+          to find the media-type for individual resources. If an
+          application needs a media-type for a resource in the RO
+          bundle, it MAY use the defaults below based on
+          case-insensitive comparison of the file extension. 
+          In the absence of a resolved media type, the media type
+          <code>application/octet-stream</code> SHOULD be assumed.
+          </p>
+          <table>
+            <tr><th>Extension</th> <th>Media type</th></tr>
+            <tr>
+               <td><code>.txt</code></td>
+               <td><code>text/plain; charset="utf-8"</code></td>
+            </tr><tr>
+               <td><code>.ttl</code></td>
+               <td><code>text/turtle; charset="utf-8"</code></td>
+            </tr><tr>
+               <td><code>.rdf</code></td>
+               <td><code>application/rdf+xml</code></td>
+            </tr><tr>
+            </tr><tr>
+               <td><code>.json</code></td>
+               <td><code>application/json</code></td>
+            </tr><tr>
+            </tr><tr>
+               <td><code>.xml</code></td>
+               <td><code>application/xml</code></td>
+            </tr>
+          </table>
+          <p>           The file <code>META-INF/manifest.xml</code> MAY be used
+          according with the  
+          <a href='http://docs.oasis-open.org/office/v1.2/os/OpenDocument-v1.2-os-part3.html#__RefHeading__752807_826425813'>ODF Package specification [[ODF]]</a> to
+          list the contained resources and specify their individual
+          media types. If present, this manifest MUST include
+          <strong>all</strong> resources in the RO bundle, including
+          the folder <code>.ro</code>, but excluding the folder
+          <code>META-INF</code> and <code>mimetype</code>.
+          To avoid confusion with the somewhat overlapping 
+          <a href='#manifest'>RO manifest</a> it is NOT RECOMMENDED to include 
+          <code>META-INF/manifest.xml</code> in RO Bundles. 
+        </p>
+        <p>
+
+        </p>
     </section>
     </section>
-    <h2>Manifest</h2>
+    <h2 id="manifest">Manifest</h2>
     <p>
-    The [[ORE]] manifest for the research object MUST be represented in [[!JSON-LD]] format under the name <code>.ro/manifest.json</code>, but MAY also be represented in other
-formats like [[RDFXML]] and [[Turtle]] as long as they at least contain the equivalent information as <code>.ro/manifest.json</code>. All of the ORE manifests MUST be listed in the <code>META-INF/container.xml</code> as <code>&lt;rootfile&gt;</code>.
+    The [[ORE]] manifest for the research object SHOULD be represented in [[!JSON-LD]] format under the name <code>.ro/manifest.json</code>, but MAY also be represented in other
+formats like RDF/XML [[RDF-SYNTAX-GRAMMAR]] and [[TURTLE]] as long as they at least contain the equivalent information as <code>.ro/manifest.json</code>. All of the ORE manifests MUST be listed in the <code>META-INF/container.xml</code> as <code>&lt;rootfile&gt;</code>.
     </p>
     <p class="todo">TODO: About JSON-LD context</p>
     <p>
