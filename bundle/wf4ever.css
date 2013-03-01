@@ -47,7 +47,6 @@ body.wf4ever {
 
 /* The actual status box */
  .status div {   
-    opacity: 0.9;
     display: block;
     background: #d33;
     color: white;
