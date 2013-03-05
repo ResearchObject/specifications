@@ -376,18 +376,21 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     <section id="manifest">
     <h2>Manifest</h2>
     <p>
-    The [[ORE]] manifest for the research object SHOULD be represented
-    in [[!JSON-LD]] format under the name <code>.ro/manifest.json</code>
-    as specified 
+    The research object SHOULD be described 
+    in the file <code>.ro/manifest.json</code> as specified 
     below.
 
     <section id="manifest-json">
     <h3>.ro/manifest.json</h3>
     <p>
+    The file <code>.ro/manifest.json</code>, if present, MUST contain
+    the [[!ORE]] manifest for the research object according to this section.
+    The file MUST be in <a href="http://json.org/">JSON format</a>
+    [[!RFC4627]], and SHOULD be valid [[JSON-LD]].
+
     </p>
-    <p class="TODO">Describe JSON-LD context</p>
     <p>
-    An example of a manifest in JSON-LD format is included below:
+    An example of a manifest which is valid JSON-LD is included below:
     </p>
     <pre class="example" data-include="example/.ro/manifest.json">
 {
@@ -425,6 +428,10 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
   
 
 </pre>
+
+    <section id="json-ld">
+    <p class="TODO">Describe JSON-LD context</p>
+    </section>
 
         </section>
 
