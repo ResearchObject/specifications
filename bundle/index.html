@@ -392,40 +392,41 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     <p>
     An example of a manifest which is valid JSON-LD is included below:
     </p>
-    <pre class="example" data-include="example/.ro/manifest.json">
+<pre class="example" data-include="example/.ro/manifest.json">
 {
-  "@context": [ "http://purl.org/wf4ever/ro-bundle/context.json",
-                {"root": "../" } 
-              ],
-  "@id": "root:",
-  "dct:created": "2013-02-12T19:37:32.939Z",
-  "dct:creator": "http://wf4ever-test.myopenid.com/",
-  "manifest": ["manifest.json", "manifest.rdf"],
-  "history": "evo_info.ttl",
-  "rootFolder": "root:",
+  "@context": "http://purl.org/wf4ever/ro-bundle/context.json",
+  "id": "bundle:",
+  "manifest": "manifest.json",
+  "createdOn": "2013-03-05T17:29:03Z",
+  "createdBy": "http://example.com/foaf#alice",
+  "history": "evolution.ttl",
   "aggregates": [
-     "root:fred.txt",
-     "root:soup.jpeg",
-     "http://example.com/external.txt"
+     "bundle:folder/soup.jpeg",
+     "http://example.com/blog/",
+     { "file": "bundle:README.txt",
+       "createdOn": "2013-02-12T19:37:32.939Z",
+       "createdBy": "http://example.com/foaf#bob",
+       "dc:format": "text/plain" },
+     { "uri": "http://example.com/external.txt",
+       "folder": "bundle:folder/" }
   ],
   "proxies": [
-    { "@id": "proxies/afedfefefef",
-      "ore:proxyFor": "root:fred.txt",
-      "ore:proxyIn": "root:" },
-    { "@id": "proxies/fedfefefefa",
-      "ore:proxyFor": "root/sopup.jpeg",
-      "ore:proxyIn": "root:" },
-    {   "@id": "proxies/fefefef",
-        "path": "root:fred.txt" }
+    { "proxy": "proxies/soup",
+      "for": "bundle:folder/soup.jpeg"},
+    { "proxy": "proxies/external",
+      "for": "http://example.com/external.txt"}
   ],
   "annotations": [
-    { "annotates": "root:soup.jpeg",
+    { "annotates": "bundle:folder/soup.jpeg",
       "annotation": "annotations/about-soup.ttl" },
-    { "annotates": "root:soup.jpeg",
-      "annotations": "http://example.com/blog/soup" }
+    { "annotates": "proxies/soup",
+      "annotation": "http://example.com/blog/why-did-they-aggregate-soup" },
+    { "annotates": "proxies/external"
+      "annotation": "annotations/why-we-included-external.txt" }
   ]
 }
   
+
 
 </pre>
 
