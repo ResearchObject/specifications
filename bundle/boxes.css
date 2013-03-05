@@ -1,0 +1,91 @@
+/** 
+ * TODO and issue boxes.
+ *
+ * Adapted from https://dvcs.w3.org/hg/prov/raw-file/b49c1f2d80d1/paq/css/prov-aq.css
+ *
+ * Copyright © 2013 W3C® (MIT, ERCIM, Keio, Beihang)
+ *
+ * All Rights Reserved. This work is distributed under the W3C® Software
+ * License in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231
+ *
+ */
+
+
+.issue {
+    padding:    1em;
+    margin: 1em 0em 0em;
+    border: 1px solid #f00;
+    background: #ffc;
+}
+
+.issue:before {
+    content:    "Issue";
+    display:    block;
+    width:  150px;
+    margin: -1.5em 0 0.5em 0;
+    font-weight:    bold;
+    border: 1px solid #f00;
+    background: #fff;
+    padding:    3px 1em;
+}
+
+
+.pending {
+    padding:    1em;
+    margin: 1em 0em 0em;
+    border: 1px solid #f00;
+    background: #BFEFFF;
+}
+
+.pending:before {
+    content:    "Pending Review";
+    display:    block;
+    width:  150px;
+    margin: -1.5em 0 0.5em 0;
+    font-weight:    bold;
+    border: 1px solid #f00;
+    background: #fff;
+    padding:    3px 1em;
+}
+
+
+.resolved {
+    padding:    1em;
+    margin: 1em 0em 0em;
+    border: 1px solid #f00;
+    background: #9BCD9B;
+}
+
+.resolved:before {
+    content:    "Resolved";
+    display:    block;
+    width:  150px;
+    margin: -1.5em 0 0.5em 0;
+    font-weight:    bold;
+    border: 1px solid #f00;
+    background: #fff;
+    padding:    3px 1em;
+}
+
+
+.TODO {
+    padding:    1em;
+    margin: 1em 0em 0em;
+    border: 1px solid #f00;
+    background: #ffc;
+}
+
+.TODO:before {
+    content:    "TODO";
+    display:    block;
+    width:  150px;
+    margin: -1.5em 0 0.5em 0;
+    font-weight:    bold;
+    border: 1px solid #f00;
+    background: #fff;
+    padding:    3px 1em;
+}
