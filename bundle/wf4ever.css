@@ -1,4 +1,9 @@
+/**
+ * Wf4Ever-styling of specification - overrides styling from ReSpec.js
+ */
+
 @import url(http://fonts.googleapis.com/css?family=Tauri);
+@import url(boxes.css);
 
 body.wf4ever {
     /* Disable 'Unofficial Draft' */
@@ -68,3 +73,5 @@ blockquote {
     font-family: "Tauri";
     font-size: larger;
 }
+
+
