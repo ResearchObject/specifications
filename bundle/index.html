@@ -57,7 +57,7 @@
           // and its maturity status
           previousPublishDate:  "1977-03-15",
           previousMaturity:  "WD",
-          prevRecURI: "http://example.com/previous",
+          prevRecURI: "http://purl.org/wf4ever/ro-bundle",
           latestVersion: "http://purl.org/wf4ever/ro-bundle",
           prevVersion: "http://example.com/otherPrevious",
           thisVersion: "http://purl.org/wf4ever/ro-bundle/2013-xx-xx",
@@ -227,7 +227,7 @@ transferred like a regular file or resource.
                 To add the <code>mimetype</code> file correctly on a UNIX/Linux
 installation with <a href='http://www.infonn-zip.org/'>InfoZip</a>, use
 <code>echo -n</code> and <code>zip -0 -X</code>. Below is an example which adds
-<code>mimetype</code> correctly as the first, uncompressed file, then the remaining files (excluding <code>mimetype</code>) with the default compression (deflate): </p>
+<code>mimetype</code> correctly as the first, uncompressed file, then the remaining files (excluding <code>mimetype</code>) with the default compression: </p>
             </div>
             <pre class="example">
 stain@ahtissuntu:~/test$ echo -n application/vnd.wf4ever.robundle+zip &gt; mimetype 
@@ -268,7 +268,6 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     &lt;/rootfiles&gt;
 &lt;/container&gt;
             </pre>
-
         </section>
         <section>
         <h3>RO bundle container</h3>
@@ -298,6 +297,8 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             not considered meaningful for a user to treat such bundles
             as a general ZIP archive.
         </p>
+        <section id="media-types">
+        <h4>Resource media type</h4>
         <p>
           Beyond rootfiles, the UCF specification does not specify how
           to find the media-type when resolving individual resources in
@@ -330,31 +331,58 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
           </table>
           <p>Applications MAY use the file
           <code>META-INF/manifest.xml</code>, if present, to resolve
-          media types for resources in the RO bundle accoording to 
+          media types for resources in the RO bundle accoording to
+          the <code>manifest:media-type</code> of the corresponding
+          <code>manifest:file-entry</code> according to
           <a
           href='http://docs.oasis-open.org/office/v1.2/os/OpenDocument-v1.2-os-part3.html#__RefHeading__752807_826425813'>ODF
-          Package specification [[ODF]]</a>. 
-          If present, this manifest MUST list
-          <strong>all</strong> resources in the RO bundle, including
-          the folder <code>.ro</code> and its content, but excluding the folder
-          <code>META-INF</code> and <code>mimetype</code>.
+          Package specification</a> [[ODF]], see however warnings in <a
+          href='#manifest-xml' class="sectionRef"></a> below.
+          </p>
+          </section>
+          <section id="manifest-xml">
+          <h4>META-INF/manifest.xml</h4>
+          <p>
           To avoid confusion with the somewhat overlapping 
-          <a href='#manifest'>RO manifest</a> it is however NOT
+          <a href='#manifest'>RO manifest</a> it is NOT
           RECOMMENDED to include <code>META-INF/manifest.xml</code> in
-          RO Bundles. Specializations of this specification MAY
-          however recommend or require the presence of
-          <code>META-INF/manifest.xml</code>.
+          RO Bundles. Applications and specializations of this specification MAY
+          however include 
+          <code>META-INF/manifest.xml</code>, for instance to provide
+          media types as specified in 
+          <a href='#media-types' class="sectionRef"></a>. 
+          </p>
+          <p>If
+          <code>META-INF/manifest.xml</code> is present, it MUST 
+          follow the specifications of
+          <a
+          href='http://docs.oasis-open.org/office/v1.2/os/OpenDocument-v1.2-os-part3.html#__RefHeading__752807_826425813'>ODF
+          Package specification</a> [[ODF]]
+          . That means that 
+          if present, the <code>META-INF/manifest.xml</code> file
+          MUST list <strong>all</strong> resources in the RO bundle, including
+          the folder <code>.ro</code> and its content, but excluding
+          <code>mimetype</code> and
+          <code>META-INF</code> its content.
         </p>
+        </section>
+
         <p>
 
         </p>
+      </section>
     </section>
-    </section>
-    <h2 id="manifest">Manifest</h2>
+
+    <section id="manifest">
+    <h2>Manifest</h2>
     <p>
-    The [[ORE]] manifest for the research object SHOULD be represented in [[!JSON-LD]] format under the name <code>.ro/manifest.json</code>, but MAY also be represented in other
-formats like RDF/XML [[RDF-SYNTAX-GRAMMAR]] and [[TURTLE]] as long as they at least contain the equivalent information as <code>.ro/manifest.json</code>. All of the ORE manifests MUST be listed in the <code>META-INF/container.xml</code> as <code>&lt;rootfile&gt;</code>.
-    </p>
+    The [[ORE]] manifest for the research object SHOULD be represented
+    in [[!JSON-LD]] format under the name <code>.ro/manifest.json</code>
+    as specified 
+    below.
+
+    <section id="manifest-json">
+    <h3>.ro/manifest.json</h3>
     <p class="todo">TODO: About JSON-LD context</p>
     <p>
     An example of a manifest in JSON-LD format is included below:
@@ -395,6 +423,45 @@ formats like RDF/XML [[RDF-SYNTAX-GRAMMAR]] and [[TURTLE]] as long as they at le
   
 
 </pre>
+
+        </section>
+
+        <section>
+        <h3>Alternative manifest representations</h3>
+        <p>In addition to the <code>.ro/manifest.json</code> representation
+        specified in <a href="#manifest-json" class="sectionRef"></a>, a
+        Research Object Bundle MAY include the ORE manifest in
+        alternative RDF representations like RDF/XML
+        [[RDF-SYNTAX-GRAMMAR]] and Turtle [[TURTLE]] for informational
+        purposes.
+        </p>
+        <ul>
+          <li>
+            Alternative manifests SHOULD have a path starting with
+            <code>.ro/manifest</code>, for instance
+            <code>.ro/manifest.ttl</code> for a Turtle representation. 
+          </li><li>
+            When multiple
+            manifests are present, applications SHOULD consider
+            <code>.ro/manifest.json</code> as the authorative representation of
+            the research object.
+          </li><li>
+            Alternative manifests SHOULD
+            represent the equivalent RDF graph of
+            <code>.ro/manifest.json</code>
+          </li><li>
+            Alternative manifests SHOULD be listed in the
+            <code>META-INF/container.xml</code> as
+            <code>&lt;rootfile&gt;</code> entries with corresponding
+            <code>media-type</code> attributes.
+          </li><li>
+            Any alternative manifest listed as a <em>rootfile</em> MUST
+            minimally represent the same conceptual information as
+            <code>.ro/manifest.json</code> 
+          </li>
+    </ul>
+      </section>
+    </section>
     
 
     <section id="conformance"></section>
@@ -403,7 +470,16 @@ formats like RDF/XML [[RDF-SYNTAX-GRAMMAR]] and [[TURTLE]] as long as they at le
     <section class='appendix'>
       <h2>Acknowledgements</h2>
       <p>
-        Many thanks to Robin Berjon for making our lives so much easier with his cool tool.
+        Thanks to Graham Klyne and Piotr Hołubowicz for reviewing this
+        specification. The underlying work 
+        has been funded as part of the
+        <a href="http://www.wf4ever-project.org/">Wf4Ever project</a>,
+        funded by the <a href="http://cordis.europa.eu/fp7/">European
+            Commisson's FP7 programme</a> (FP7-ICT-2007-6 270192).
+        
+        Many thanks to Robin Berjon for making <a
+            href="http://dev.w3.org/2009/dap/ReSpec.js/documentation.html">ReSpec.js</a>
+        which generated this page.
       </p>
     </section>
   </body>
