@@ -280,40 +280,32 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
               <code>application/vnd.wf4ever.robundle+zip</code> (see
               below)</li>
             <li>The <code>META-INF/container.xml</code>, if present,
-                MUST contain at least one <code>&lt;rootfile&gt;</code> entry
-                for a recognized RDF serialization of the <a
-                    href=#manifest#>ORE
-                manifest</a></li>
-            <li>The <code>META-INF/container.xml</code>, if present,
-                SHOULD contain a <code>&lt;rootfile&gt;</code> entry for
-                <code>.ro/manifest.json</code> containing the <a
-                href='#manifest'>ORE
-                manifest</a>.
-                </li> 
-            </ul>
+                SHOULD contain a rootfile entry equivalent to:<br />
+                <code>&lt;rootfile full-path=".ro/manifest.json"
+                media-type="application/ld+json" /&gt;</code>
+            </li> 
+            <li>The file <code>.ro/manifest.json</code> SHOULD be
+            present, and MUST describe the RO according to <a
+            href='#manifest' class="sectionRef"></a>.
+            </li>
+        </ul>
         <p>
-            Applications who specialize RO Bundles MAY use a different
-            <code>mimetype</code>, for instance because the research object
-            bundle is used to contain application-specific data. It is
-            RECOMMENDED for such extensions that the media type to end
-            with <code>+zip</code> if the content of the bundle could be
-            considered meaningful for a user to browse as a folder
-            structure.
-        </p>
-        <p>
-          For the purposes of this specification, the [[JSON-LD]] format
-          is considered a "recognized RDF serialization", however the
-          JSON-LD specification is at time of writing at a draft stage 
-          and is subject to change.
+            Applications who specialize RO Bundles MAY specify a different
+            <code>mimetype</code>, for instance because the 
+            bundle is used to distribute application-specific data. It is
+            RECOMMENDED for such extensions that their media type end
+            with <code>+zip</code> unless it is 
+            not considered meaningful for a user to treat such bundles
+            as a general ZIP archive.
         </p>
         <p>
           Beyond rootfiles, the UCF specification does not specify how
-          to find the media-type for individual resources. If an
-          application needs a media-type for a resource in the RO
-          bundle, it MAY use the defaults below based on
+          to find the media-type when resolving individual resources in
+          a bundle. If an application requrires a media-type for a resource
+          in the RO bundle, it MAY use the defaults below based on
           case-insensitive comparison of the file extension. 
           In the absence of a resolved media type, the media type
-          <code>application/octet-stream</code> SHOULD be assumed.
+          <code>application/octet-stream</code> MAY be assumed.
           </p>
           <table>
             <tr><th>Extension</th> <th>Media type</th></tr>
@@ -336,17 +328,22 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                <td><code>application/xml</code></td>
             </tr>
           </table>
-          <p>           The file <code>META-INF/manifest.xml</code> MAY be used
-          according with the  
-          <a href='http://docs.oasis-open.org/office/v1.2/os/OpenDocument-v1.2-os-part3.html#__RefHeading__752807_826425813'>ODF Package specification [[ODF]]</a> to
-          list the contained resources and specify their individual
-          media types. If present, this manifest MUST include
+          <p>Applications MAY use the file
+          <code>META-INF/manifest.xml</code>, if present, to resolve
+          media types for resources in the RO bundle accoording to 
+          <a
+          href='http://docs.oasis-open.org/office/v1.2/os/OpenDocument-v1.2-os-part3.html#__RefHeading__752807_826425813'>ODF
+          Package specification [[ODF]]</a>. 
+          If present, this manifest MUST list
           <strong>all</strong> resources in the RO bundle, including
-          the folder <code>.ro</code>, but excluding the folder
+          the folder <code>.ro</code> and its content, but excluding the folder
           <code>META-INF</code> and <code>mimetype</code>.
           To avoid confusion with the somewhat overlapping 
-          <a href='#manifest'>RO manifest</a> it is NOT RECOMMENDED to include 
-          <code>META-INF/manifest.xml</code> in RO Bundles. 
+          <a href='#manifest'>RO manifest</a> it is however NOT
+          RECOMMENDED to include <code>META-INF/manifest.xml</code> in
+          RO Bundles. Specializations of this specification MAY
+          however recommend or require the presence of
+          <code>META-INF/manifest.xml</code>.
         </p>
         <p>
 
