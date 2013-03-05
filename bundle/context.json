@@ -2,47 +2,51 @@
   "@context": {
     "ao": "http://purl.org/ao/",
     "oa": "http://www.w3.org/ns/oa#",
+    "dc": "http://purl.org/dc/elements/1.1/",
     "dct": "http://purl.org/dc/terms/",
     "ore": "http://www.openarchives.org/ore/terms/",
     "ro": "http://purl.org/wf4ever/ro#",
+    "robundle": "http://purl.org/wf4ever/robundle#"
     "prov": "http://www.w3.org/ns/prov#",
     "pav": "http://purl.org/pav/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "bundle": "../",
+    "id": "@id",
+    "proxy": "@id",
+    "file": "@id",
+    "uri": "@id",
 
     "aggregates": {
       "@id": "ore:aggregates",
       "@type": "@id"
     },
-    "path": {
+    "for": {
       "@id": "ore:proxyFor",
       "@type": "@id"
     },
     "proxies": {
-      "@id": "ro:hasProxy",
+      "@id": "robundle:hasProxy",
       "@type": "@id"
     },
     "annotations": {
-      "@id": "ro:hasAnnotation",
+      "@id": "robundle:hasAnnotation",
       "@type": "@id"
     },
     "manifest": {
         "@id": "ore:isDescribedBy",
         "@type": "@id"
     },
-    "rootFolder": {
-      "@id": "ro:rootFolder",
+    "folder": {
+      "@id": "robundle:inFolder",
       "@type": "@id"
     },
-    "dct:created": {
+    "createdOn": {
+        "@id": "pav:createdOn",
         "@type": "xsd:dateTime"
     },
-    "dct:creator": {
-        "@type": "@id"
-    },
-    "ore:proxyIn": {
-        "@type": "@id"
-    },
-    "ore:proxyFor": {
+    "createdBy": {
+        "@id": "pav:createdBy",
         "@type": "@id"
     },
     "annotation": {
