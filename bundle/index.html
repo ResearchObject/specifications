@@ -128,7 +128,7 @@
     This document is an Editors Draft published by the 
     <a href="http://www.wf4ever-project.org/">Wf4Ever project<a>.
 
-    This document is a work in progress and should not yet be used as a
+    This document is currently work in progress and should not be used as a
     basis for implementations. Questions, feedback and comments are
     kindly requested to be sent to the <a href="">wf4ever-public</a>
     mailing list/forum.
@@ -146,10 +146,11 @@
             a <em>Research Object</em> (<abbr title="Research Object">RO</abbr>)
             and is described in an RDF-based manifest
             according to the <abbr title="Workflow forever">Wf4Ever</abbr> OWL
-            ontologies.  The RO model has been formed in particular for the purpose of
-            preservation of scientific workflows, but is applicable also in a
-            general sense for capturing resources that are related to 
-            and together form a whole.
+            ontologies.  The RO model has been formed in particular for
+            the purpose of preservation of scientific workflows, but is
+            applicable also in a
+            general sense for capturing resources that are related to
+            eacher, and which together form a trackable whole.
             The <a href="">Research Object primer</a> [[ROPrimer]] provides
             further details and examples of using the RO model.
         </p>
@@ -161,17 +162,18 @@
         Storage and Retrieval Service API</a> [[ROSRS]] defines how
         research objects
         can be accessed and maintained on the web through a RESTful web
-        service. Practical use of the RO model has however shown that
-        it is also benefitial to represent a research object as a single
+        service exposing RDF/XML and Turtle representations. Practical
+        use of the RO model has however shown that it is also benefitial
+        to represent a research object as a single
         ZIP archive or as file system folders for the purposes of
-        downloading and editing a research object. 
+        downloading, editing and archiving a research object. 
         </p>
         For instance a scientific workflow system can export a workflow
-        run by saving the workflow, runtime provenance trace and
+        run by saving the workflow definition, runtime provenance trace and
         generated results to a set of files. A research object that
         represents the workflow run can aggregate and relate these
         resources. However, at the time of running the workflow (e.g. on a
-        desktop computer it is not known where or if the user would
+        desktop computer) it is often not known where or if the user would
         choose to publish the RO; thus the direct use of a ROSRS service
         or minting public URIs is problematic in this situation.
         </p>
@@ -387,9 +389,69 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     the [[!ORE]] manifest for the research object according to this section.
     The file MUST be in <a href="http://json.org/">JSON format</a>
     [[!RFC4627]], and SHOULD be valid [[JSON-LD]].
-
     </p>
-    <p>
+    <p>The structure of the JSON manifest is:
+    </p>
+    <dl>
+        <dt><code>@context</code></dt> <dd>JSON-LD context. MUST be
+        present. SHOULD have value
+        <code>"http://purl.org/wf4ever/ro-bundle/context.json"</code>,
+        or a list that has this value as the last item.  </dd>
+        <dt><code>id</code></dt> <dd>RO identifier. SHOULD be present, in which case it
+        SHOULD have the value <code>"bundle:"</code> indicating the
+        relative top-level folder as the identifier</dd>
+        <dt><code>manifest</code> <dd>ORE manifests. SHOULD be value
+        <code>"manifest.json"</code>,
+            but MAY be a list, in which case the list MUST contain
+            <code>"manifest.json"</code></dd>
+        <dt><code>createdOn</code></dt> <dd>The time the RO was
+        serialized as this RO bundle. SHOULD be present, in which case it MUST be a 
+        xsd:dateTime formatted timestamp (ISO 8601)</dd>    
+        <dt><code>createdBy</code></dt> <dd>SHOULD be the URI identifying the
+        creator (a prov:Agent) of the RO bundle. This may be different
+        from the creator of the RO. 
+        <div class="issue">Should this instead require a dict with the
+        foaf:name RECOMMENDED? For instance:
+        <pre>
+        "createdBy": {
+            "uri": "http://soiland-reyes.com/stian/#me",
+            "foaf:name", "Stian Soiland-Reyes"
+        }
+        </pre>
+         </div>
+        </dd>
+        <dt><code>history</code></dt> <dd>The resource that contains the provenance
+            trace of the life of this RO, relative to the
+            <code>.ro/</code> folder. This property MAY be present, in
+            which case it SHOULD be <code>"evolution.ttl"</code>,
+            indicating that the file <code>.ro/evolution.ttl</code>
+            contains the provenance trace. The file
+            <code>.ro/evolution.ttl</code> if present and listed here,
+            SHOULD include a provenance trace according to the <a
+            href="http://purl.org/wf4ever/roevo#" />roevo</a> ontology.
+            This value MAY be a URI. The property MAY give a list if
+            several provenance traces are known, in which case the list
+            SHOULD include <code>"evolution.ttl"</code>.</dd>
+       <dt><code>aggregates</code></dt> <dd>This property SHOULD be present, in which
+       case it MUST be a list of the resources aggregated by this RO.
+       The values in a list MUST be of types:
+       <ul>
+        <li>A path relative to the root of the bundle, prefixed with
+        <code>bundle:</code></li>
+        <li>An absolute URI</li>
+        <li>A dictionary containing at least th ekey "file" or "uri"
+        with values corresponding to the above</li>
+       </ul>
+       <div class="TODO">Describe "folder" and metadata</div>
+       </dd>
+      <dt><code>proxies</code></dt> <dd><div class="TODO">Describe
+      proxies</div></dd> 
+      <dt><code>annotations</code></dt> <dd><div class="TODO">Describe
+      annotations</div</dd> 
+
+            
+
+    </dl>
     An example of a manifest which is valid JSON-LD is included below:
     </p>
 <pre class="example" data-include="example/.ro/manifest.json">
@@ -418,20 +480,146 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
   ],
   "annotations": [
     { "annotates": "bundle:folder/soup.jpeg",
-      "annotation": "annotations/about-soup.ttl" },
+      "annotation": "annotations/about-soup" },
     { "annotates": "proxies/soup",
       "annotation": "http://example.com/blog/why-did-they-aggregate-soup" },
     { "annotates": "proxies/external"
       "annotation": "annotations/why-we-included-external.txt" }
   ]
 }
-  
-
-
 </pre>
 
     <section id="json-ld">
+    <h3>JSON-LD and mapping to RO model</h3>
+    <p>
+    Manifests following the JSON structure defined in 
+    <a href='#manifest-json' class="sectionRef"></a> with a
+    <code>"@context":
+        "http://purl.org/wf4ever/ro-bundle/context.json"</code>
+    is intended to be valid [[JSON-LD]]. Mapping the manifest to the RO
+    model in RDF is covered by converting <code>.ro/manifest.json</code>
+    with an JSON-LD processor.
+    </p>
     <p class="TODO">Describe JSON-LD context</p>
+    <pre class="example" data-include="context.json">
+{
+  "@context": {
+    "ao": "http://purl.org/ao/",
+    "oa": "http://www.w3.org/ns/oa#",
+    "dc": "http://purl.org/dc/elements/1.1/",
+    "dct": "http://purl.org/dc/terms/",
+    "ore": "http://www.openarchives.org/ore/terms/",
+    "ro": "http://purl.org/wf4ever/ro#",
+    "robundle": "http://purl.org/wf4ever/robundle#"
+    "prov": "http://www.w3.org/ns/prov#",
+    "pav": "http://purl.org/pav/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "bundle": "../",
+    "id": "@id",
+    "proxy": "@id",
+    "file": "@id",
+    "uri": "@id",
+
+    "aggregates": {
+      "@id": "ore:aggregates",
+      "@type": "@id"
+    },
+    "for": {
+      "@id": "ore:proxyFor",
+      "@type": "@id"
+    },
+    "proxies": {
+      "@id": "robundle:hasProxy",
+      "@type": "@id"
+    },
+    "annotations": {
+      "@id": "robundle:hasAnnotation",
+      "@type": "@id"
+    },
+    "manifest": {
+        "@id": "ore:isDescribedBy",
+        "@type": "@id"
+    },
+    "folder": {
+      "@id": "robundle:inFolder",
+      "@type": "@id"
+    },
+    "createdOn": {
+        "@id": "pav:createdOn",
+        "@type": "xsd:dateTime"
+    },
+    "createdBy": {
+        "@id": "pav:createdBy",
+        "@type": "@id"
+    },
+    "annotation": {
+        "@id": "oa:hasBody",
+       "@type": "@id"
+    },
+    "annotates": {
+       "@id": "oa:hasTarget",
+       "@type": "@id" 
+    },
+    "history": {
+        "@id": "prov:has_provenance",
+        "@type": "@id"
+    }
+  }
+}
+    </pre>
+    <p>
+    As an example of this processing, below is a Turtle
+    representation after processing the <code>.ro/manifest.json</code>
+    shown as an example in 
+    <a href='#manifest-json' class="sectionRef"></a>.
+    </p>
+
+    <pre class="example"></pre>
+    <p class="TODO">Generate example</p>
+    <section>
+    <h4>Additional JSON-LD</h4>
+    <p>
+    Applications who support JSON-LD (rather than JSON)
+    MAY choose to parse and generate additional statements 
+    in <code>.ro/manifest.json</code>
+    according to the [[!JSON-LD]] specifications. 
+    Such additional statements SHOULD be made within 
+    <code>@graph</code> elements according to 
+    <a
+        href="http://json-ld.org/spec/latest/json-ld-syntax/#named-graphs">JSON-LD
+    Named Graphs</a> syntax. For example:
+    </p>
+    <pre>
+{
+  "@context": "http://purl.org/wf4ever/ro-bundle/context.json",
+  "id": "bundle:",
+  "manifest": "manifest.json",
+  "aggregates": [
+     "http://example.com/blog/2012",
+     "http://example.com/blog/2013"
+  ],
+  "@graph": [
+    { "@id": "http://example.com/blog/2013",
+      "dcterms:replaces": "http://example.com/blog/2012" },
+    { "@id": "http://example.com/blog/2013",
+      "dcterms:isReplacedBy": "http://example.com/blog/2013" }
+  ]
+}
+    </pre>
+    <p>
+    Note that rather than using the above extension mechanism, 
+    it is generally RECOMMENDED 
+    to instead store such additional statements in 
+    an <a href="http://wf4ever.github.com/ro/#annotations-example-sec">annotation body</a>
+    for purposes of provenance and separation of concern. Although
+    technically valid, it is NOT RECOMMENDED to include
+    <code>@graph</code> to embed semantic annotation bodies 
+    in <code>annotations</code> nodes, as it would duplicate the
+    content of the annotation body in the bundle and may lead to 
+    inconsistencies.
+    </p>
+    </section>
     </section>
 
         </section>
