@@ -49,6 +49,30 @@
         "@id": "pav:createdBy",
         "@type": "@id"
     },
+    "authoredOn": {
+        "@id": "pav:authoredOn",
+        "@type": "xsd:dateTime"
+    },
+    "authoredBy": {
+        "@id": "pav:authoredBy",
+        "@type": "@id"
+    },
+    "curatedOn": {
+        "@id": "pav:curatedOn",
+        "@type": "xsd:dateTime"
+    },
+    "curatedBy": {
+        "@id": "pav:curatedBy",
+        "@type": "@id"
+    },
+    "contributedOn": {
+        "@id": "pav:contributedOn",
+        "@type": "xsd:dateTime"
+    },
+    "contributedBy": {
+        "@id": "pav:contributedBy",
+        "@type": "@id"
+    },
     "annotation": {
         "@id": "oa:hasBody",
        "@type": "@id"
@@ -60,6 +84,11 @@
     "history": {
         "@id": "prov:has_provenance",
         "@type": "@id"
+    },
+    "mediatype" {
+        "@id": "dc:format",
+        "@type": ""
     }
+
   }
 }
