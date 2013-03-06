@@ -26,7 +26,7 @@
       "annotation": "annotations/about-soup.ttl" },
     { "annotates": "proxies/soup",
       "annotation": "http://example.com/blog/why-did-they-aggregate-soup" },
-    { "annotates": "proxies/external"
+    { "annotates": "proxies/external",
       "annotation": "annotations/why-we-included-external.txt" }
   ]
 }
