@@ -113,7 +113,7 @@
   </head>
   <body class="wf4ever">
     <div class="logo"><img src="../logo/wf4ever.png" height="100" /></div>
-    <div class="status"><div><span>Wf4Ever&nbsp;Editors'&nbsp;Draft</div></span></div>
+    <div class="status"><div><span>Wf4Ever Editors' Draft</div></span></div>
     <section id='abstract'>
     <p>
         This specification defines a file format for storage and 
@@ -125,7 +125,7 @@
         archiving, publishing and transferring research objects. </p>
     </section>
     <section id="sotd">
-    This document is an Editors Draft published by the 
+    This document is an Editors' Draft published by the 
     <a href="http://www.wf4ever-project.org/">Wf4Ever project<a>.
 
     This document is currently work in progress and should not be used as a
@@ -396,14 +396,14 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     <ol>
       <li>Meta-resources, path relative to <code>.ro/</code> folder,
           which SHOULD NOT contain the <code>:</code> character.  For
-          instance <code>manifest.json</code>  or <code>annotations/ann1</code>.
+          instance <code>manifest.json</code>  or <code>annotations/ann2</code>.
           Depending on how meta-resources are used, the ZIP might or might not include 
           a corresponding entry for the given path.
       </li>
       <li>Bundled resources 
           The path SHOULD starts with <code>bundle:</code> to indicate the root of the
           bundle, for instance <code>bundle:hello.txt</code> or
-          <code>bundle:folder1/</code>. Folders SHOULD have a path
+          <code>bundle:folder2/</code>. Folders SHOULD have a path
           terminating with <code>/</code>.
           The resource identified by the path SHOULD be included as a
           corresponding file or folder in the ZIP file.  
@@ -414,7 +414,8 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
       </li>
       
     </ol>
-    <p>The structure of the JSON manifest is:
+    <p>The structure of the JSON manifest is given by an JSON Object
+    with the keys:
     </p>
     <dl>
         <dt><code>@context</code></dt> <dd>JSON-LD context. MUST be
@@ -422,7 +423,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         <code>"http://purl.org/wf4ever/ro-bundle/context.json"</code>,
         but MAY be a list, which SHOULD have this value as the last item.  </dd>
         <dt><code>id</code></dt> <dd>RO identifier. SHOULD be present, in which case it
-        SHOULD have the value <code>"bundle:"</code> indicating the
+        SHOULD have the fixed value <code>"bundle:"</code> indicating the
         relative top-level folder as the identifier.
         Note that this means the absolute URI identifying the research
         object depends on the base URI this Research Object Bundle is
@@ -438,49 +439,82 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
 
         <dt><code>createdOn</code></dt> <dd>The time the RO was
         serialized as this RO bundle. SHOULD be present, in which case it MUST be a 
-        xsd:dateTime formatted timestamp (ISO 8601)</dd>    
+        <a
+        href="http://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime
+        formatted</a> timestamp (ISO 8601).</dd>    
 
         <dt><code>createdBy</code></dt> <dd>The creator of the RO
-        bundle.SHOULD be the URI identifying the
-        prov:Agent. This MAY be different from the person forming the
+        bundle. This MAY be different from the person forming the
         research object, which SHOULD be indicated with
-        <code>authoredBy</code>.
-        <div class="issue">Should such agent references instead
-        require an object with <code>uri</code> and 
-        <code>foaf:name</code> RECOMMENDED? For instance:
-        <pre>
-        "createdBy": {
-            "uri": "http://soiland-reyes.com/stian/#me",
-            "foaf:name", "Stian Soiland-Reyes"
-        }
-        </pre>
-         </div>
+        <code>authoredBy</code>. The creator SHOULD be an object
+        with the following keys:
+        <dl>
+            <dt><code>uri</code></dt>
+            <dd>An URI identifying the agent. The URI SHOULD be present,
+            and SHOULD be a 
+            valid <a href="http://www.w3.org/wiki/WebID">WebID</a>, 
+            for instance <code>http://example.com/fred#fred</code>
+            </dd>
+            <dt><code>orcid</code></dt>
+            <dd>An <a href="http://orcid.org/">ORCID</a> identifier (as
+            an URI). For instance,
+            <code>http://orcid.org/0000-0001-9842-9718</code>. An ORCID
+             MAY be present if known.
+            </dd>
+            <dt><code>name</code></dt>
+            <dd>The full <a href="http://xmlns.com/foaf/spec/#term_name">name</a> 
+            of the agent. The name SHOULD be present, for instance
+            <code>"John Doe"</code> or <code>"University of Manchester"</code></dd>
+        </dl>
+        Additional <a href="http://xmlns.com/foaf/0.1/">foaf:</a>
+        properties MAY be added to the top-level <code>@graph</code> 
+        according to <a href="#custom-json-ld" class="sectionRef"></a>
+        by
+        using a <code>@id</code> equal to the creator <code>uri</code>.
         </dd>
         <dt><code>authoredOn</code></dt> <dd>The time the Research
         Object
         was conceptually formed. SHOULD be present if different from
         createdOn. The value MUST be a 
-        xsd:dateTime formatted timestamp (ISO 8601)</dd> 
+        <a
+        href="http://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime
+        formatted</a> timestamp (ISO 8601)</dd> 
 
-        <dt><code>authoredBy</code></dt> <dd>The author of the Research
-            Object, the agent that conceptually formed the RO.
-            SHOULD be a URI identifying the
-            prov:Agent. This MAY be different from the person 
-            serializing the research object, which instead SHOULD be
-            indicated with <code>createdBy</code>.</dd>
+        <dt><code>authoredBy</code></dt> 
+        <dd>The author of the Research
+            Object, the agent(s) that conceptually formed the RO. SHOULD be
+            present if different from <code>createdBy</code>.
+            SHOULD be an object with the same keys and requirements as
+            for <code>createdBy</code>, but MAY be a list to indicate
+            multiple authors. 
+            <p>
+            Additional authorship information (curation, contribution,
+            etc) MAY be added using the 
+            <a href="http://purl.org/pav/">pav:</a> namespace 
+            within the top-level <code>@graph</code>
+            key according to <a href="#custom-json-ld" class="sectionRef"></a>
+            by using an <code>@id</code> value equal to the bundle
+            <code>id</code>, e.g. <code>"bundle:"</code>.
+            </p>
+            </dd>
 
         <dt><code>history</code></dt> <dd>Provenance
             trace of the life of this RO, relative to the
             <code>.ro/</code> folder. This property MAY be present, in
             which case it SHOULD be <code>"evolution.ttl"</code>,
             indicating that the file <code>.ro/evolution.ttl</code>
-            contains the provenance trace. The file
-            <code>.ro/evolution.ttl</code> if present and listed here,
-            SHOULD include a provenance trace according to the <a
-            href="http://purl.org/wf4ever/roevo#" />roevo</a> ontology.
+            contains the provenance trace. 
             This value MAY be a URI. The property MAY give a list if
             several provenance traces are known, in which case the list
-            SHOULD include <code>"evolution.ttl"</code>.</dd>
+            SHOULD include <code>"evolution.ttl"</code>.
+            <p>
+            The file
+            <code>.ro/evolution.ttl</code>, if present,
+            SHOULD include a provenance trace 
+            of this research object 
+            according to the <a
+            href="http://purl.org/wf4ever/roevo#" />roevo</a> ontology.
+            </dd>
        <dt><code>aggregates</code></dt> <dd>This property SHOULD be present, in which
        case it MUST be a list of the resources aggregated by this RO.
        The values in a list MUST be either:
@@ -518,6 +552,8 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                 File creation date and creator, as specified above.
                 </dd>
         </dl>
+        Additional metadata about a resource, if present, SHOULD be 
+        added as an annotation (see below).
         </li>
        </ul>
        <p>
@@ -531,53 +567,105 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
       <dd>
         A list of <a
         href="http://www.openarchives.org/ore/1.0/datamodel#Proxies">ORE
-        proxies</a> [[ORE]] for the aggregated resources, as a list of
-        objects. This key is OPTIONAL, and is typically included
-        for the purposes of making proxies like "resource X as
+        proxies</a> [[ORE]] for the resources aggregated by this RO, as
+        a list of objects. Proxies are OPTIONAL, and are typically
+        included for the purposes of making proxies like "resource X as
         aggregated in research object Y". 
         Applications MAY provide a proxy
         for every aggregated resource, but MUST NOT provide multiple
-        proxies for the same resource. Proxies are defined as an object,
-        which SHOULD have members:
+        proxies for the same resource. 
+        <p>
+        A proxy is defined as an object, which SHOULD have members:
         <dl>
             <dt><code>proxy</code></dt>
-            <dd>An identifier for the proxy, relative to
-            <code>.ro/</code>. The identifier SHOULD 
-            start with <code>proxies/</code> and terminate with 
+            <dd>An identifier for the proxy. The identifier SHOULD 
+            consist of the prefix <code>proxy:</code> and 
             a lowercased UUID string [[RFC4122]]. For example:
-            <pre class="example">
-            "proxy": "proxies/d4f09040-272e-467f-9250-59593bd4ac8f"
-            </pre>
-            <div class="TODO">
-            should we recommend that proxies for <code>bundle:</code>
-            resources SHOULD instead match the path? For instance:
-            <pre>
-                { "proxy": "proxies/folder/soup.jpeg",
-                  "for": "bundle:folder/soup.jpeg"
-                }
-            </pre>
-            This makes more predictable and human-readable proxy URIs,
-            but at the cost of folder renames voiding any (external)
-            annotations. The UUID on the other hand can in theory
-            stay the same throughout the life of a resource being
-            renamed and moved around.
-            </div>
+            <code>proxy:d4f09040-272e-467f-9250-59593bd4ac8f</code>
             </dd>
             <dt><code>for</code></dt>
             <dd>The aggregated resource this is a proxy for.
                 The value SHOULD either start with <code>bundle:</code> 
                 to indicate a bundled resource, or be an absolute URI.
                 The identified resource MUST be aggregated by the
-                research object, and thus SHOULD be
-                listed under <code>aggregates</code>.
-            </dd>
+                research object, and thus MUST be
+                listed under <code>aggregates</code> if that key is
+                present.  </dd>
         </dl>
-
-        
       </dd>
 
-      <dt><code>annotations</code></dt> <dd><div class="TODO">Describe
-      annotations</div</dd> 
+      <dt><code>annotations</code></dt> 
+      
+      <dd>
+        Annotations, MAY be present, in which case it MUST be a list. An 
+        <a
+        href="http://www.openannotation.org/spec/core/">annotation</a>
+        provides additional metadata or descriptions which are somewhat
+        about or related to the research object or some of its
+        aggregated resources. 
+        <p>
+        An annotation is specified as an object, which have the
+        following members:
+        </p>
+        <dl>
+            <dt><code>@id</code></dt>
+            <dd>
+            The identifier for this annotation. The identifier SHOULD be
+            present, and SHOULD
+            consist of the prefix <code>annotation:</code> and 
+            a lowercased UUID string [[RFC4122]]. For example:
+            <code>annotation:1a876f9e-4ffe-4c99-a05d-cd9d0cbd4cbb</code>
+            <div class="issue">
+            Should this key have a name like
+            <code>annotation</code> (assuming rename below), to
+            match how proxies are defined, or should they all use @id?
+            </div>
+            </dd>
+            <dt><code>annotates</code></dt>
+            <dd>The identifier for the annotated resource, MUST be
+            present. This is considered the
+            <a href="http://www.openannotation.org/spec/core/20130208/core.html#BodyTarget">target</a> of the annotation.
+                The resource(s) SHOULD be aggregated by this RO or be
+                the RO itself, in which case the resource identifier should be equal
+                to the value of the research object <code>id</code>, e.g.
+                <code>"bundle:"</code>. 
+                The value MAY be a list if multiple resources are the
+                targets of the same annotation (for instance to relate them). 
+            </dd>
+            <dt><code>annotation</code></dt>
+            <dd>
+            The identifier for a resource that contains the 
+            <a
+            href="http://www.openannotation.org/spec/core/20130208/core.html#BodyTarget">body</a>
+            of the annotation, SHOULD be present. The body identifier SHOULD be one of these
+            types:
+            <ul>
+                <li>A bundled resource, starting with
+                <code>bundle:</code>, which SHOULD be listed under
+                    <code>aggregates</code> if that key is present</li>
+                <li>A proxy for an aggregated resource, starting with
+                    <code>proxy:</code>, which MUST be defined under
+                    <code>proxies</code> </li>
+                <li>Another annotation, starting with
+                    <code>annotation:</code>, which MUST be defined under
+                    <code>annotations</code> </li>
+                <li>An absolute URI, which may or may not be aggregated by the RO</li>    
+            </ul>
+            <div class="issue">
+            Should <code>annotation</code> be renamed to avoid confusion
+            with the <code>@id</code> concept of the annotation
+            above? If so, to what, <code>body</code> might be too alien..
+            <code>annotationBody</code>?
+            </div>
+            </dd>
+        </dl>
+            Additional properties describing the annotation using the
+            <a href="http://www.w3.org/ns/oa#">oa:</a> namespace 
+            MAY be added to the top-level <code>@graph</code> 
+            according to <a href="#custom-json-ld" class="sectionRef"></a>
+            by using a matching <code>@id</code>.
+      </dd>
+
       <dt><code>@graph</code></dt> <dd>A list of additional [[JSON-LD]]
       statements according to 
       <a href='#custom-json-ld' class="sectionRef"></a>.
@@ -588,6 +676,11 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     </dl>
     An example of a manifest which is valid JSON-LD is included below:
     </p>
+    <div class="issue">
+    This example has not yet been updated to match the definitions of
+    <code>createdOn</code>, <code>proxies</code> and
+    <code>annotations</code> above.
+    </div>
 <pre class="example" data-include="example/.ro/manifest.json">
 {
   "@context": "http://purl.org/wf4ever/ro-bundle/context.json",
@@ -637,6 +730,12 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     from JSON to RDF</a>, as specified in the JSON-LD API [[!JSON-LD]].  
     </p>
     <p class="TODO">Describe JSON-LD context</p>
+    <div class="issue">
+    This context has not yet been updated to match the definitions of
+    <code>createdOn</code>, <code>proxies</code> and
+    <code>annotations</code> above, for instance it does not include
+    the prefixes <code>proxy:</code> or <code>annotation:</code>.
+    </div>
     <pre class="example" data-include="context.json">
 {
   "@context": {
