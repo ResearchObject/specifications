@@ -30,6 +30,10 @@ blockquote {
     /* Square version of the inside span. Slightly larger */
     width: 24em;
     height: 24em;
+    /* Don't steal focus! */
+    z-index: -1;
+    /* For mobile browsers who overlap */
+    opacity: 0.6;
     /* Enable for debugging 
     background: #abc;
      */
@@ -56,7 +60,7 @@ blockquote {
 /* The actual status box */
  .status div {   
     display: block;
-    background: #d33;
+    background: red;
     color: white;
     width: 23em;
     padding-top: 0.3em;
