@@ -9,7 +9,10 @@ body.wf4ever {
     /* Disable 'Unofficial Draft' */
     background-image: none;
 }
-
+/* not so red! */
+body.wf4ever code {
+    color: #a55;
+}
 .logo {
 }
 .logo img {
