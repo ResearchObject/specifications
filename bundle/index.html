@@ -22,15 +22,16 @@
          };
 
      var extraReferences = {
-"RO": "Stian Soiland-Reyes, Sean Bechhofer, et al.: <cite><a href='http://purl.org/wf4ever/model'>Wf4Ever Research Object Model</a></cite>. 30 November 2012. URL: <a href='http://purl.org/wf4ever/model'>http://purl.org/wf4ever/model</a>",         
-"ROPrimer": "Jun Zhao, et al: <cite><a href='http://purl.org/wf4ever/ro-primer'>Wf4Ever Research Object Ontologies and Vocabularies Primer</a></cite>. 13 April 2012. URL: <a href='http://purl.org/wf4ever/primer'>http://purl.org/wf4ever/primer</a> accessed 2013-02-27",         
-"ROSRS": "Piotr Holubowicz, Graham Klyne, et al.: <cite><a href='http://www.wf4ever-project.org/wiki/display/docs/RO+SRS+interface+6'>RO SRS interface 6</a></cite>. 21 December 2012. URL: <a href='http://www.wf4ever-project.org/wiki/display/docs/RO+SRS+interface+6'>http://www.wf4ever-project.org/wiki/display/docs/RO+SRS+interface+6</a>",
+"RO": "Stian Soiland-Reyes; Sean Bechhofer et al.: <cite><a href='http://purl.org/wf4ever/model'>Wf4Ever Research Object Model</a></cite>. 30 November 2012. URL: <a href='http://purl.org/wf4ever/model'>http://purl.org/wf4ever/model</a>",         
+"ROPrimer": "Jun Zhao et al: <cite><a href='http://purl.org/wf4ever/ro-primer'>Wf4Ever Research Object Ontologies and Vocabularies Primer</a></cite>. 13 April 2012. URL: <a href='http://purl.org/wf4ever/primer'>http://purl.org/wf4ever/primer</a> accessed 2013-02-27",         
+"ROSRS": "Piotr Holubowicz; Graham Klyne et al.: <cite><a href='http://www.wf4ever-project.org/wiki/display/docs/RO+SRS+interface+6'>RO SRS interface 6</a></cite>. 21 December 2012. URL: <a href='http://www.wf4ever-project.org/wiki/display/docs/RO+SRS+interface+6'>http://www.wf4ever-project.org/wiki/display/docs/RO+SRS+interface+6</a>",
 "UCF": "Adobe: <cite><a href='https://learn.adobe.com/wiki/display/PDFNAV/Universal+Container+Format'>Universal Container Format</a></cite>. URL: <a href='https://learn.adobe.com/wiki/display/PDFNAV/Universal+Container+Format'>https://learn.adobe.com/wiki/display/PDFNAV/Universal+Container+Format</a> accessed 2013-02-28.",
-"OCF": "James Pritchett, Markus Gylling: <cite><a href='http://idpf.org/epub/30/spec/epub30-ocf-20111011.html'>EPUB Open Container Format (OCF) 3.0</a></cit>. Recommended Specification 11 October 2011. International Digital Publishing Forum (IDPF). URL: <a href='http://idpf.org/epub/30/spec/epub30-ocf-20111011.html'>http://idpf.org/epub/30/spec/epub30-ocf-20111011.html</a>",
+"OCF": "James Pritchett; Markus Gylling: <cite><a href='http://idpf.org/epub/30/spec/epub30-ocf-20111011.html'>EPUB Open Container Format (OCF) 3.0</a></cit>. Recommended Specification 11 October 2011. International Digital Publishing Forum (IDPF). URL: <a href='http://idpf.org/epub/30/spec/epub30-ocf-20111011.html'>http://idpf.org/epub/30/spec/epub30-ocf-20111011.html</a>",
 "ORE":"<cite><a href=\"http://www.openarchives.org/ore/1.0/toc.html\">Open Archives Initiative Object Reuse and Exchange</a></cite>. <em>ORE Specifications and User Guides.</em> URL: <a href=\"http://www.openarchives.org/ore/1.0/toc.html\">http://www.openarchives.org/ore/1.0/toc.html</a>",
 "ORE-RDF":"Carl Lagoze and Herbert van de Sompel <cite><a href=\"http://www.openarchives.org/ore/1.0/rdfxml\">ORE User Guide - Resource Map Implementation in RDF/XML</a></cite>.",
 "ZIP": "PKWare Inc: <cite><a href='http://www.pkware.com/support/zip-app-note'></a>.ZIP File Format Specification</a></cite> version 6.3.3 (2012-09-01). URL: <a href='http://www.pkware.com/documents/casestudies/APPNOTE.TXT'>http://www.pkware.com/documents/casestudies/APPNOTE.TXT</a>",
-"ODF": "Rob Weir, Michael Brauer, Patrick Durusau, Dennis Hamilton: Open Document Format for Office Applications (OpenDocument) Version 1.3, Part 3: Packages. OASIS Standard. 29 September 2011. URL: <a href=''>http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2-part3.html",
+"ODF": "Rob Weir; Michael Brauer; Patrick Durusau; Dennis Hamilton: Open Document Format for Office Applications (OpenDocument) Version 1.3, Part 3: Packages. OASIS Standard. 29 September 2011. URL: <a href=''>http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2-part3.html",
+"RFC6839": "T. Hansen; A. Melnikov: <cite><a href='http://tools.ietf.org/html/rfc6839'>Additional Media Type Structured Syntax Suffixes</a></cite> January 2013. RFC 6839. URL: <a href='http://tools.ietf.org/html/rfc6839'>http://tools.ietf.org/html/rfc6839</a>",
 
          }; 
 
@@ -295,8 +296,10 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             <code>mimetype</code>, for instance because the 
             bundle is used to distribute application-specific data. It is
             RECOMMENDED for such extensions that their media type end
-            with <code>+zip</code> unless it is 
-            not considered meaningful for a user to treat such bundles
+            with <a
+            href="http://tools.ietf.org/html/rfc6839#section-3.6">+zip</a>
+            according to [[RFC6839]] unless it is not considered
+            meaningful for a user to treat such bundles
             as a general ZIP archive.
         </p>
         <section id="media-types">
@@ -828,7 +831,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     <code>http://purl.org/wf4ever/bundle/context.json</code>
     as the last item in the list to indicate to JSON parsers that 
     the manifest can be parsed as plain JSON according to 
-    <a href='manifest-json' class="sectionRef"></a>.
+    <a href='#manifest-json' class="sectionRef"></a>.
     Applications SHOULD NOT use <code>@context</code> at deeper nexting
     levels, except within the top level <code>@graph</code>.
     </p>
@@ -900,7 +903,8 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
           </li><li>
             Alternative manifests SHOULD
             represent the equivalent RDF graph of
-            <code>.ro/manifest.json</code>
+            <code>.ro/manifest.json</code> 
+            (see <a href="#json-ld" class="sectionRef"></a>)
           </li><li>
             Alternative manifests SHOULD be listed in the
             <code>META-INF/container.xml</code> as
@@ -912,24 +916,46 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             <code>.ro/manifest.json</code> 
           </li>
     </ul>
-    <p>Representing the same conceptual information as 
-    </p>
       </section>
     </section>
     
-    <section id="identifiers" class ="informative">
+    <section id="identifiers" class="informative">
         <h2>Identifiers</h2>
+        <p>
+        Objects in a research object bundle are identified within the
+        JSON manifest using different JSON-LD prefixes, which could
+        be thought of as local URI schemes.
+        </p>
+        <table>
+            <tr><th>Prefix</th> <th>Relative URI reference</th>
+                <tr><td><em>(no prefix)</em></td> <td><code>.ro/</code></td> </tr>
+                <tr><td><code>bundle:</em></td> <td><code>./</code></td> </tr>
+                <tr><td><code>proxy:</em></td> <td><code>.ro/proxies/</code></td> </tr>
+                <tr><td><code>annotation:</em></td> <td><code>.ro/annotations/</code></td> </tr>
+                <tr><td><em>other URIs</em></td> <td><em>Absolute URI</em></td> </tr>
+            </tr>
+        </table>
         <p>
         Due to their nature as ZIP files, Research Object Bundles might
         be downloaded, copied, moved and republished. In order to avoid 
         ambiguity about RO identity and evolution, each Research Object Bundle 
         serialization is considered to represent unique Research Objects.
-        Thus the <code>id</code> key in <a
-            href="#manifest-json">.ro/manifest.json</code></a> should be
-        set to <code>bundle:</code> to indicate that the relative
-        top-level folder of the ZIP archive identifies the Research
-        Object. Resources included in the bundled are likewise referred
-        to using the <code>bundle:</code> prefix.
+        Thus any of the prefixes above describing resources within the 
+        bundle are relative to the root of the ZIP file, and the
+        <code>id</code> identifying the Research Object is set to
+        <code>bundle:</code>, meaning the root represents the RO itself.
+        </p>
+        <p>
+        <section id="absolute-uris">
+            <h3>Absolute URIs for bundle resources</h3>
+            <p>
+            There is no agreed URI scheme for 
+
+            Applications which require an absolute URI for identifying a
+            resource within a Research Object Bundle may choose to use
+            one of the approaches presented in this section.
+            </p>
+        </section>
         </p>
         <p class="TODO">
         Describe how an absolute URI can be constructed given a bundle:
@@ -937,9 +963,11 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         bundle, RO, RO resource and RO proxy:
         <pre>
         http://example.com/example1.robundle
-        http://example.com/example1.robundle#
+        http://example.com/example1.robundle/
         http://example.com/example1.robundle#folder/helloworld.txt
-        http://example.com/example1.robundle#.ro/proxies/folder/helloworld.txt
+        jar:http://example.com/example1.robundle!/folder/helloworld.txt
+        http://example.com/example1.robundle/folder/helloworld.txt
+        http://example.com/example1.robundle/.ro/proxies/folder/helloworld.txt
         </pre>
     </section>
 
