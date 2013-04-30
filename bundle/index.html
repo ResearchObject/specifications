@@ -1020,30 +1020,35 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             <ul>
                 <li>Relative URI references within the RO bundle
                 can be interpreted by using the calculated base URI.</li>
-                <li>Relative URI references between resources remain
-                valid (for instance <code>img/picture.jpeg</code> linked
-                from <code>document.html</code>)</li>
-                <li>Web server could handle request and serve
-                individual resources</li>
+                <li>Relative URI references between resources resolve
+                consistently (for instance <code>img/picture.jpeg</code> linked
+                from
+                <code>http://example.com/example1.robundle/document.html</code>
+                resolves to
+                <code>http://example.com/example1.robundle/img/picture1.jpeg</code>)</li>
+                <li>Web server could optionally handle request and
+                expose nested resources (or at least redirect to the ZIP
+                file)</li>
                 <li>Fragment identifiers within resources are still
                 valid</li>
-                <li>Malicious or malformed URI references within RO
-                bundles might be resolved to expose local resources,
-                specially within the <code>file</code> scheme. 
-                For instance the reference <code>../../etc/passwd</code> from
-                <code>file:///tmp/example1.robundle/evil.html</code>
-                could be resolved to <code>file:///etc/passwd</code>
             </ul>
             <p>Disadvantages</p>
             <ul>
-                <li>Resolving the nested URIs would typically give a
+                <li>Resolving the nested URIs would generally give a
                 misleading 404 Not Found</li>
-                <li>Can encourage minting of URIs in namespaces 
+                <li>Could encourage minting of URIs in namespaces 
                 manage by others</li>
                 <li>Given such a URI, to find the RO bundle, one might
                 have to assume that everything after
                 <code>.robundle</code>
                 should be removed. (URL hacking).
+                <li>Malicious or malformed URI references within RO
+                bundles might be resolved to expose local resources,
+                specially within the <code>file</code> scheme. 
+                For instance the reference <code>../../etc/passwd</code> from
+                <code>file:///tmp/example1.robundle/evil.html</code>
+                could be resolved to
+                <code>file:///etc/passwd</code></li>
             </ul>
             <p>
             This technique SHOULD NOT be used if:
@@ -1053,7 +1058,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                 hierarchical scheme (e.g.
                 <code>urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6</code>)
                 <li>The URI for the RO bundle contains a query or
-                fragment identifier, for instance
+                fragment identifier, e.g,
                 <code>http://example.com/ro?id=13</code></li>
                 <li>The web server is not under the control of the
                 minter of the URIs</li>
@@ -1077,7 +1082,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             For instance, if:
             <pre>http://example.com/example1.robundle</pre>
             contains the file <code>folder/helloworld.txt</code>
-            (<code>:bundle:folder/helloworld.txt</code> in the
+            (<code>bundle:folder/helloworld.txt</code> in the
             manifest.json), then we can refer to the Research Object as
             <pre>http://example.com/example1.robundle#</pre>
             and can refer to the file as:
@@ -1225,6 +1230,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             </ul>
             </section>
         </section>
+        
         </p>
     </section>
     <section id="conformance"></section>
