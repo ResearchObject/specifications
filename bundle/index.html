@@ -538,7 +538,8 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                 <dd>A folder this resource (typically identified by
                 <code>uri</code>) belongs to, relative to the
                 root of the bundle. The path SHOULD be prefixed with
-                <code>bundle:</code> and SHOULD end with <code>/</code></dd>
+                <code>bundle:</code> and SHOULD end with <code>/</code>,
+                for instance <code>bundle:folder2/</code>.</dd>
             <dt><code>mediatype</code></dt>
                 <dd>The <a
                 href="http://www.iana.org/assignments/media-types">IANA
@@ -559,11 +560,12 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         The identifier for an <a
         href="http://www.openarchives.org/ore/1.0/datamodel#Proxies">ORE
         proxy</a> [[ORE]] for the resources as aggregated by this RO.
-        This property MAY be included for the purposes of 
+        This property is intended the purposes of 
         referring to "resource X as aggregated in research object Y"
         within annotations and in external documents. This property 
         SHOULD be given for external resources aggregated by "uri"
-        references, as they could be aggregated in multiple ROs.
+        references, as they could be aggregated in multiple ROs, and MAY
+        be given for other resources.
         <p>
         The proxy identifier SHOULD consist of the prefix <code>proxy:</code> and 
             a lowercased UUID string [[RFC4122]]. For example:
@@ -604,6 +606,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             a lowercased UUID string [[RFC4122]]. For example:
             <code>annotation:1a876f9e-4ffe-4c99-a05d-cd9d0cbd4cbb</code>
             </dd>
+
             <dt><code>about</code></dt>
             <dd>The identifier for the annotated resource, MUST be
             present. This is considered the
@@ -653,7 +656,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             MAY be added to the top-level <code>@graph</code> 
             according to <a href="#custom-json-ld" class="sectionRef"></a>
             by using a <code>@id</code> matching the
-            <code>annotation</code> identifier..
+            <code>annotation</code> identifier.
       </dd>
 
       <dt><code>@graph</code></dt> <dd>A list of additional [[JSON-LD]]
