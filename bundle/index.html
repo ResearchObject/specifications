@@ -947,9 +947,10 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         <p>
         Objects in a research object bundle are identified within the
         JSON manifest using different JSON-LD prefixes, which could
-        be thought of as local URI schemes.
+        be thought of as local URI schemes, which resolves to relative
+        URI references based at the root of the ZIP archive.
         </p>
-        <table>
+        <table id="prefix">
             <tr><th>Prefix</th> <th>Relative URI reference</th>
                 <tr><td><em>(no prefix)</em></td> <td><code>.ro/</code></td> </tr>
                 <tr><td><code>bundle:</em></td> <td><code>./</code></td> </tr>
@@ -972,28 +973,260 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         <section id="absolute-uris">
             <h3>Absolute URIs for bundle resources</h3>
             <p>
-            There is no agreed URI scheme for 
-
             Applications which require an absolute URI for identifying a
             resource within a Research Object Bundle may choose to use
-            one of the approaches presented in this section.
+            one of the approaches presented in this section in
+            combination with resolving against the <a href="#prefix">prefix
+            table</a> above. 
             </p>
+            <div class="TODO">No decission has been made on which of these
+                methods - if any - should be recommended; meanwhile these
+                subsections contain a list of advantages and
+                disadvantages to guide the reader.
+            kept</div>
+            <section id="path-uris">
+            <h4>Nested paths</h4>
+            If an RO bundle is published at a HTTP (or HTTPS) server,
+            then URIs to the bundled resources can be minted by
+            assuming a base URI of the RO Bundle URI with <code>/</code>
+            appended. 
+            For instance, if:
+            <pre>http://example.com/example1.robundle</pre>
+            contains the file <code>folder/helloworld.txt</code>
+            (<code:bundle:folder/helloworld.txt</code> in the
+            manifest.json), then we can assume the base URI
+            <pre>http://example.com/example1.robundle/</pre>
+            and can refer to the file as:
+            <pre>http://example.com/example1.robundle/folder/helloworld.txt</pre>
+            <p>
+            A web server that exposes RO bundles MAY support resolving
+            such nested URIs by internally extracting the resources from
+            the ZIP archive or redirecting to an existing resource, 
+            for instance because it is implementing the [[ROSRS]] API.
+            </p>
+            <p>
+            Semantically, the distinction between the URI with or
+            without the trailing <code>/</code> is that say
+            <code>example1.robundle</code> identifies the RO Bundle,
+            e.g. the ZIP archive, which has attributes such as size in
+            bytes, checksum, etc, while <code>example1.robundle/</code>
+            identifies the slightly more abstract concept of the
+            Research Object (the aggregation) that is serialized as a RO
+            bundle. 
+            </p>
+            <p>
+            Advantages:
+            </p>
+            <ul>
+                <li>Relative URI references within the RO bundle
+                can be interpreted by using the calculated base URI.</li>
+                <li>Relative URI references between resources remain
+                valid (for instance <code>img/picture.jpeg</code> linked
+                from <code>document.html</code>)</li>
+                <li>Web server could handle request and serve
+                individual resources</li>
+                <li>Fragment identifiers within resources are still
+                valid</li>
+                <li>Malicious or malformed URI references within RO
+                bundles might be resolved to expose local resources,
+                specially within the <code>file</code> scheme. 
+                For instance the reference <code>../../etc/passwd</code> from
+                <code>file:///tmp/example1.robundle/evil.html</code>
+                could be resolved to <code>file:///etc/passwd</code>
+            </ul>
+            <p>Disadvantages</p>
+            <ul>
+                <li>Resolving the nested URIs would typically give a
+                misleading 404 Not Found</li>
+                <li>Can encourage minting of URIs in namespaces 
+                manage by others</li>
+                <li>Given such a URI, to find the RO bundle, one might
+                have to assume that everything after
+                <code>.robundle</code>
+                should be removed. (URL hacking).
+            </ul>
+            <p>
+            This technique SHOULD NOT be used if:
+            </p>
+            <ul>
+                <li>The URI for the RO bundle is not using a
+                hierarchical scheme (e.g.
+                <code>urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6</code>)
+                <li>The URI for the RO bundle contains a query or
+                fragment identifier, for instance
+                <code>http://example.com/ro?id=13</li>
+                <li>The web server is not under the control of the
+                minter of the URIs</li>
+            </ul>
+            </section>
+            <section id="hash-uris">
+            <h4>Fragment identifiers</h4>
+                <p>
+                The IANA media type registration for <a
+                    href="http://www.iana.org/assignments/media-types/application/zip">application/zip</a>
+                and the <a
+                    href="http://tools.ietf.org/html/rfc6839#section-3.6">+zip
+                    suffix</a> of [RFC6839] does not define fragment
+                identifiers for ZIP archives. However, RO bundles
+                identified with the recommended media type of
+                <code>application/vnd.wf4ever.robundle+zip</a>
+                MAY be interpreted to have a fragment identifier
+                that is resolvable as the path within the ZIP archive.
+                </p>
+                <p>
+            For instance, if:
+            <pre>http://example.com/example1.robundle</pre>
+            contains the file <code>folder/helloworld.txt</code>
+            (<code>:bundle:folder/helloworld.txt</code> in the
+            manifest.json), then we can refer to the Research Object as
+            <pre>http://example.com/example1.robundle#</pre>
+            and can refer to the file as:
+            <pre>http://example.com/example1.robundle#folder/helloworld.txt</pre>
+            <p>
+            Advantages:
+            </p>
+            <ul>
+                <li>URIs always resolve (to the ZIP file)</li>
+                <li>Simple to understand</li>
+            </ul>
+            <p>Disadvantages</p>
+            <ul>
+                <li>Not formally defined by application/zip</li>
+                <li>Fragment identifiers are bound by the media type and
+                might not work for other content types.
+                (e.g. an RO bundle was returned due to content
+                negotiation in a server implenting the [[ROSRS]] API)</li>
+                <li>Relative URI references in resources more complicated to
+                resolve as they would easily seem to refer to siblings
+                of the RO bundle, a URI reference <code>img.jpg</code>
+                from
+                <code>http://exaxmple.com/example1.robundle#document.html</code>
+                would seem to refer to <code>http://exaxmple.com/img.jpg</code></li>
+                <li>Existing fragment identifiers within resources more
+                complicated to resolve - <code>#para2</code> in
+                <code>document.html</code> becomes
+                <code>http://example.com/example1.robundle#document.html#para2</code>
+            </ul>
+            </section>
+            <section id="jar">
+            <h4>jar: scheme</h4>
+            The <a/
+                href="http://www.iana.org/assignments/uri-schemes/prov/jar">jar:</a>
+            scheme is used by Java to refer to resources within JAR
+            files. It is specified as part of the documentation for <a
+                href="http://docs.oracle.com/javase/7/docs/api/java/net/JarURLConnection.html">JarURLConnection</a>.
+            In short, a JAR URI is formed by combining
+            <code>jar:</code>, the original URI of the JAR file,
+            the separator <code>!/</code>, and the path within the JAR
+            file.  For all practical purposes, an RO bundle, being a ZIP
+            archive, can be interpreted as a <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/jar/jar.html">JAR file</a>.  For instance, if:
+            <pre>http://example.com/example1.robundle</pre>
+            contains the file <code>folder/helloworld.txt</code>
+            (<code:bundle:folder/helloworld.txt</code> in the
+            manifest.json), then we can assume the base URI
+            <pre>jar:http://example.com/example1.robundle!/</pre>
+            and can refer to the file as:
+            <pre>jar:http://example.com/example1.robundle!/folder/helloworld.txt</pre>
+            <p>
+            Advantages:
+            </p>
+            <ul>
+                <li>Somewhat resolvable (within Java)</li>
+                <li>Somewhat formally defined</li>
+                <li>Fragment identifiers within resources still valid<li>
+            </ul>
+
+            <p>
+            Disadvantages:
+            </p>
+            <ul>
+                <li>The <code>jar:</code> scheme is not hierarchical (it
+                does not use <code>//</code>, and so relative URI
+                references within RO bundle resources are
+                not correctly resolved (not even by java.net.URI). 
+                <li>
+                <li>Misleading and potentially confusing: JAR files have
+                their own <a
+                    href="http://docs.oracle.com/javase/7/docs/technotes/guides/jar/jar.html#JAR_Manifest">manifest</a>
+                in <code>META-INF/MANIFEST.MF</code>.</li>
+                <li>Gives impression that RO Bundle is executable with JAva</li>
+            </ul>
+            </section>
+            <section id="widget">
+            <h4>Widget URI scheme</h4>
+            <p>
+            The <a href="http://www.w3.org/TR/widgets-uri/">Widget URI
+                scheme</a> defines how a URI can be formed for the
+            purposes of accessing resources within a ZIP file as if it
+            was a HTTP server. While this is intended for sandboxing <a
+            href="http://www.w3.org/TR/widgets/">Packaged web
+            apps</a>, it is equally applicable to Research Object
+        bundles for the purposes of sandboxing.
+            </p>
+            <p>
+            The Widget URI scheme recommends
+            generating a [[UUID]] for minting the <em>authority</em>,
+            forming the base URI for the RO bundle. 
+            For instance, if:
+            <pre>http://example.com/example1.robundle</pre>
+            contains the file <code>folder/helloworld.txt</code>
+            (<code>:bundle:folder/helloworld.txt</code> in the
+            manifest.json), then we generate a new UUID 
+            <code>8191dee8-0b8e-452d-8d64-7706a140185e</code> and 
+            refer to the Research Object as
+            <pre>widget://8191dee8-0b8e-452d-8d64-7706a140185e/</pre>
+            and can refer to the file as:
+            <pre>widget://8191dee8-0b8e-452d-8d64-7706a140185e/folder/helloworld.txt</pre>
+            </p>
+            <p>
+            For purposes of security/sandboxing when interpreting RO
+            bundles, the authority should be a <a
+                href="http://tools.ietf.org/html/rfc4122#section-4.4">v4
+                UUID
+            from random numbers</a>. For purposes of describing the
+        content of an RO bundle at a given URI, the authority should be 
+        <a href="http://tools.ietf.org/html/rfc4122#section-4.3">Name
+            based UUID</a> using v5 (SHA-1 hashing). For purposes of
+            describing the content of an RO bundle as a bytestream
+            independent of its location (for instance on a USB stick),
+            then the authority should be the hexadecimal SHA-256
+            checksum of the ZIP archive.
+            </p>
+            <p>Example widget base URIs</p>
+            <ul>
+                <li><code>widget://15259726-dcbb-42ff-8fc6-36282c98d4e6/</code> 
+                    <em>UUID v4 using pseduo-random number</em>
+                <li><code>widget://7878e885-327c-5ad4-9868-7338f1f13b3b/</code>
+                    <em>UUID v5 of the URL
+                    <code>http://example.com/bundle1.robundle</code></li>
+                <li><code>widget://587cff3ae37d58af6886d656623bd91237759a42d8fe1575a9744898c01d97d7/</code>
+                    <em>SHA-256 of an empty RO bundle</em>
+            </ul>
+            <div class="TODO">
+            Can we recommend just ONE of these? 
+            </div>
+            </p>
+
+
+            <p>Advantages:</p>
+            <ul>
+                <li>Relative URIs and fragments are valid without
+                modifications<li>
+                <li>Sandboxed by RO bundle</li>
+                <li>Defined (HTTP-like) resolution mechanism</li>
+                <li>Predictable base URIs (UUIDv5 based on URL or
+                    SHA-256 based on bytes)
+            </ul>
+            <p>Disadvantages:</p>
+            <ul>
+                <li>Can't be dereferenced</li>
+                <li>Status is W3C WG Note, was abandoned as W3C
+                Specification (Check: meaning what?)</li>
+            </ul>
+            </section>
         </section>
         </p>
-        <p class="TODO">
-        Describe how an absolute URI can be constructed given a bundle:
-        identifier and a URL identifying the RO. For instance, a RO
-        bundle, RO, RO resource and RO proxy:
-        <pre>
-        http://example.com/example1.robundle
-        http://example.com/example1.robundle/
-        http://example.com/example1.robundle#folder/helloworld.txt
-        jar:http://example.com/example1.robundle!/folder/helloworld.txt
-        http://example.com/example1.robundle/folder/helloworld.txt
-        http://example.com/example1.robundle/.ro/proxies/folder/helloworld.txt
-        </pre>
     </section>
-
     <section id="conformance"></section>
 
     <!--<a href="#general-structure" class="sectionRef"></a> -->
