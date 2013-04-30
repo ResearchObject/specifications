@@ -554,6 +554,21 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                 <dd>
                 File creation date and creator, as specified above.
                 </dd>
+            <dt><code>proxy</code></dt> 
+            <dd>
+        The identifier for an <a
+        href="http://www.openarchives.org/ore/1.0/datamodel#Proxies">ORE
+        proxy</a> [[ORE]] for the resources as aggregated by this RO.
+        This property MAY be included for the purposes of 
+        referring to "resource X as aggregated in research object Y"
+        within annotations and in external documents. This property 
+        SHOULD be given for external resources aggregated by "uri"
+        references, as they could be aggregated in multiple ROs.
+        <p>
+        The proxy identifier SHOULD consist of the prefix <code>proxy:</code> and 
+            a lowercased UUID string [[RFC4122]]. For example:
+            <code>proxy:d4f09040-272e-467f-9250-59593bd4ac8f</code>
+            </dd>
         </dl>
         Additional metadata about a resource, if present, SHOULD be 
         added as an annotation (see below).
@@ -565,36 +580,6 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
        duplicate by comparing literal values and members
        <code>file</code> and <code>uri</code> uniformly as URIs [[URI]].
        </p>
-       </dd>
-      <dt><code>proxies</code></dt> 
-      <dd>
-        A list of <a
-        href="http://www.openarchives.org/ore/1.0/datamodel#Proxies">ORE
-        proxies</a> [[ORE]] for the resources aggregated by this RO, as
-        a list of objects. Proxies are OPTIONAL, and are typically
-        included for the purposes of making proxies like "resource X as
-        aggregated in research object Y". 
-        Applications MAY provide a proxy
-        for every aggregated resource, but MUST NOT provide multiple
-        proxies for the same resource. 
-        <p>
-        A proxy is defined as an object, which SHOULD have members:
-        <dl>
-            <dt><code>proxy</code></dt>
-            <dd>An identifier for the proxy. The identifier SHOULD 
-            consist of the prefix <code>proxy:</code> and 
-            a lowercased UUID string [[RFC4122]]. For example:
-            <code>proxy:d4f09040-272e-467f-9250-59593bd4ac8f</code>
-            </dd>
-            <dt><code>for</code></dt>
-            <dd>The aggregated resource this is a proxy for.
-                The value SHOULD either start with <code>bundle:</code> 
-                to indicate a bundled resource, or be an absolute URI.
-                The identified resource MUST be aggregated by the
-                research object, and thus MUST be
-                listed under <code>aggregates</code> if that key is
-                present.  </dd>
-        </dl>
       </dd>
 
       <dt><code>annotations</code></dt> 
@@ -611,62 +596,64 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         following members:
         </p>
         <dl>
-            <dt><code>@id</code></dt>
+            <dt><code>annotation</code></dt>
             <dd>
             The identifier for this annotation. The identifier SHOULD be
             present, and SHOULD
             consist of the prefix <code>annotation:</code> and 
             a lowercased UUID string [[RFC4122]]. For example:
             <code>annotation:1a876f9e-4ffe-4c99-a05d-cd9d0cbd4cbb</code>
-            <div class="issue">
-            Should this key have a name like
-            <code>annotation</code> (assuming rename below), to
-            match how proxies are defined, or should they all use @id?
-            </div>
             </dd>
-            <dt><code>annotates</code></dt>
+            <dt><code>about</code></dt>
             <dd>The identifier for the annotated resource, MUST be
             present. This is considered the
-            <a href="http://www.openannotation.org/spec/core/20130208/core.html#BodyTarget">target</a> of the annotation.
-                The resource(s) SHOULD be aggregated by this RO or be
-                the RO itself, in which case the resource identifier should be equal
-                to the value of the research object <code>id</code>, e.g.
-                <code>"bundle:"</code>. 
-                The value MAY be a list if multiple resources are the
-                targets of the same annotation (for instance to relate them). 
-            </dd>
-            <dt><code>annotation</code></dt>
-            <dd>
-            The identifier for a resource that contains the 
             <a
-            href="http://www.openannotation.org/spec/core/20130208/core.html#BodyTarget">body</a>
-            of the annotation, SHOULD be present. The body identifier SHOULD be one of these
-            types:
+            href="http://www.openannotation.org/spec/core/20130208/core.html#BodyTarget">target</a>
+            of the annotation, that is the resource the annotation
+            content is "somewhat about".
+            The "about" identifier SHOULD be one of these types:
             <ul>
+                <li>The research object itself, which SHOULD match the
+                value of its <code>id</code>, e.g.
+                <code>bundle:</code></li>
                 <li>A bundled resource, starting with
                 <code>bundle:</code>, which SHOULD be listed under
                     <code>aggregates</code> if that key is present</li>
                 <li>A proxy for an aggregated resource, starting with
                     <code>proxy:</code>, which MUST be defined under
-                    <code>proxies</code> </li>
+                    <code>aggregates</code> with a matching
+                    value for <code>proxy</code></li>
                 <li>Another annotation, starting with
                     <code>annotation:</code>, which MUST be defined under
                     <code>annotations</code> </li>
                 <li>An absolute URI, which may or may not be aggregated by the RO</li>    
+                <li>A list, containing any of the above. This indicates
+                that the annotation is about each of the listed
+                resources, for instance because the annotation content is
+                describing their relationships</li>
             </ul>
-            <div class="issue">
-            Should <code>annotation</code> be renamed to avoid confusion
-            with the <code>@id</code> concept of the annotation
-            above? If so, to what, <code>body</code> might be too alien..
-            <code>annotationBody</code>?
-            </div>
+            </dd>
+            <dt><code>content</code></dt>
+            <dd>
+            The identifier for a resource that contains the 
+            <a
+            href="http://www.openannotation.org/spec/core/20130208/core.html#BodyTarget">body</a>
+            of the annotation, SHOULD be present. The content identifier SHOULD be one of these
+            types:
+            <ul>
+                <li>A bundled resource, starting with
+                <code>bundle:</code>, which SHOULD be listed under
+                    <code>aggregates</code> if that key is present</li>
+                <li>An absolute URI, which may or may not be aggregated by the RO</li>    
+            </ul>
             </dd>
         </dl>
             Additional properties describing the annotation using the
             <a href="http://www.w3.org/ns/oa#">oa:</a> namespace 
             MAY be added to the top-level <code>@graph</code> 
             according to <a href="#custom-json-ld" class="sectionRef"></a>
-            by using a matching <code>@id</code>.
+            by using a <code>@id</code> matching the
+            <code>annotation</code> identifier..
       </dd>
 
       <dt><code>@graph</code></dt> <dd>A list of additional [[JSON-LD]]
@@ -977,8 +964,8 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     <section class='appendix'>
       <h2>Acknowledgements</h2>
       <p>
-        Thanks to Graham Klyne and Piotr Hołubowicz for reviewing this
-        specification. The underlying work 
+        Thanks to Khalid Belhajjame, Graham Klyne and Piotr Hołubowicz
+        for reviewing this specification. The underlying work 
         has been funded as part of the
         <a href="http://www.wf4ever-project.org/">Wf4Ever project</a>,
         funded by the <a href="http://cordis.europa.eu/fp7/">European
