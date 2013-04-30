@@ -669,42 +669,43 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     </dl>
     An example of a manifest which is valid JSON-LD is included below:
     </p>
-    <div class="issue">
-    This example has not yet been updated to match the definitions of
-    <code>createdOn</code>, <code>proxies</code> and
-    <code>annotations</code> above.
-    </div>
 <pre class="example" data-include="example/.ro/manifest.json">
 {
-  "@context": "http://purl.org/wf4ever/ro-bundle/context.json",
-  "id": "bundle:",
-  "manifest": "manifest.json",
+  "@context":  "http://purl.org/wf4ever/ro-bundle/context.json",
+  "id":        "bundle:",
+  "manifest":  "manifest.json",
   "createdOn": "2013-03-05T17:29:03Z",
-  "createdBy": "http://example.com/foaf#alice",
-  "history": "evolution.ttl",
+  "createdBy": {
+      "uri":     "http://example.com/foaf#alice",
+      "orcid":   "http://orcid.org/0000-0002-1825-0097",
+      "name":    "Alice W. Land" },
+  "history":   "evolution.ttl",
   "aggregates": [
      "bundle:folder/soup.jpeg",
+
      "http://example.com/blog/",
-     { "file": "bundle:README.txt",
-       "createdOn": "2013-02-12T19:37:32.939Z",
-       "createdBy": "http://example.com/foaf#bob",
-       "dc:format": "text/plain" },
-     { "uri": "http://example.com/external.txt",
-       "folder": "bundle:folder/" }
-  ],
-  "proxies": [
-    { "proxy": "proxies/soup",
-      "for": "bundle:folder/soup.jpeg"},
-    { "proxy": "proxies/external",
-      "for": "http://example.com/external.txt"}
+
+     { "file":      "bundle:README.txt",
+       "mediatype": "text/plain",
+       "createdBy": {
+           "uri":     "http://example.com/foaf#bob",
+           "name":    "Bob Builder" },
+       "createdOn": "2013-02-12T19:37:32.939Z" },
+
+     { "uri":    "http://example.com/external.txt",
+       "folder": "bundle:folder/",
+       "proxy":  "proxy:a0cf8616-bee4-4a71-b21e-c60e6499a644" }
   ],
   "annotations": [
-    { "annotates": "bundle:folder/soup.jpeg",
-      "annotation": "annotations/about-soup" },
-    { "annotates": "proxies/soup",
-      "annotation": "http://example.com/blog/why-did-they-aggregate-soup" },
-    { "annotates": "proxies/external"
-      "annotation": "annotations/why-we-included-external.txt" }
+    { "annotation": "annotation:d67466b4-3aeb-4855-8203-90febe71abdf",
+      "about":      "bundle:folder/soup.jpeg",
+      "content":    "annotations/soup-properties.ttl" },
+
+    { "about":   "proxy:a0cf8616-bee4-4a71-b21e-c60e6499a644",
+      "content": "http://example.com/blog/they-aggregated-our-file" },
+
+    { "about":   [ "bundle:", "annotation:d67466b4-3aeb-4855-8203-90febe71abdf" ],
+      "content": "annotations/a-meta-annotation-in-this-ro.txt" }
   ]
 }
 </pre>
@@ -723,12 +724,6 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     from JSON to RDF</a>, as specified in the JSON-LD API [[!JSON-LD]].  
     </p>
     <p class="TODO">Describe JSON-LD context</p>
-    <div class="issue">
-    This context has not yet been updated to match the definitions of
-    <code>createdOn</code>, <code>proxies</code> and
-    <code>annotations</code> above, for instance it does not include
-    the prefixes <code>proxy:</code> or <code>annotation:</code>.
-    </div>
     <pre class="example" data-include="context.json">
 {
   "@context": {
@@ -744,35 +739,19 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     "xsd": "http://www.w3.org/2001/XMLSchema#",
 
     "bundle": "../",
+    "annotation:": "annotations/",
+    "proxy:": "proxies/",
+
     "id": "@id",
-    "proxy": "@id",
     "file": "@id",
     "uri": "@id",
+    "annotation": "@id",
 
-    "aggregates": {
-      "@id": "ore:aggregates",
-      "@type": "@id"
-    },
-    "for": {
-      "@id": "ore:proxyFor",
-      "@type": "@id"
-    },
-    "proxies": {
-      "@id": "robundle:hasProxy",
-      "@type": "@id"
-    },
-    "annotations": {
-      "@id": "robundle:hasAnnotation",
-      "@type": "@id"
-    },
     "manifest": {
         "@id": "ore:isDescribedBy",
         "@type": "@id"
     },
-    "folder": {
-      "@id": "robundle:inFolder",
-      "@type": "@id"
-    },
+
     "createdOn": {
         "@id": "pav:createdOn",
         "@type": "xsd:dateTime"
@@ -781,18 +760,72 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         "@id": "pav:createdBy",
         "@type": "@id"
     },
-    "annotation": {
-        "@id": "oa:hasBody",
-       "@type": "@id"
+    "authoredOn": {
+        "@id": "pav:authoredOn",
+        "@type": "xsd:dateTime"
     },
-    "annotates": {
-       "@id": "oa:hasTarget",
-       "@type": "@id" 
+    "authoredBy": {
+        "@id": "pav:authoredBy",
+        "@type": "@id"
     },
+    "curatedOn": {
+        "@id": "pav:curatedOn",
+        "@type": "xsd:dateTime"
+    },
+    "curatedBy": {
+        "@id": "pav:curatedBy",
+        "@type": "@id"
+    },
+    "contributedOn": {
+        "@id": "pav:contributedOn",
+        "@type": "xsd:dateTime"
+    },
+    "contributedBy": {
+        "@id": "pav:contributedBy",
+        "@type": "@id"
+    },
+    "name": {
+        "@id": "foaf:name",
+    },
+    "orcid": {
+        "@id": "roterms:orcid",
+        "@type": "@id",
+    },
+
     "history": {
         "@id": "prov:has_provenance",
         "@type": "@id"
-    }
+    },
+    "aggregates": {
+      "@id": "ore:aggregates",
+      "@type": "@id"
+    },
+    "mediatype" {
+        "@id": "dc:format",
+        "@type": ""
+    },
+    "folder": {
+      "@id": "robundle:inFolder",
+      "@type": "@id"
+    },
+    "proxy": {
+      "@id": "robundle:hasProxy",
+      "@type": "@id"
+    },
+
+    "annotations": {
+      "@id": "robundle:hasAnnotation",
+      "@type": "@id"
+    },
+    "content": {
+       "@id": "oa:hasBody",
+       "@type": "@id"
+    },
+    "about": {
+       "@id": "oa:hasTarget",
+       "@type": "@id" 
+    },
+
   }
 }
     </pre>
