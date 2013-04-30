@@ -12,35 +12,19 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
 
     "bundle": "../",
+    "annotation:": "annotations/",
+    "proxy:": "proxies/",
+
     "id": "@id",
-    "proxy": "@id",
     "file": "@id",
     "uri": "@id",
+    "annotation": "@id",
 
-    "aggregates": {
-      "@id": "ore:aggregates",
-      "@type": "@id"
-    },
-    "for": {
-      "@id": "ore:proxyFor",
-      "@type": "@id"
-    },
-    "proxies": {
-      "@id": "robundle:hasProxy",
-      "@type": "@id"
-    },
-    "annotations": {
-      "@id": "robundle:hasAnnotation",
-      "@type": "@id"
-    },
     "manifest": {
         "@id": "ore:isDescribedBy",
         "@type": "@id"
     },
-    "folder": {
-      "@id": "robundle:inFolder",
-      "@type": "@id"
-    },
+
     "createdOn": {
         "@id": "pav:createdOn",
         "@type": "xsd:dateTime"
@@ -73,22 +57,47 @@
         "@id": "pav:contributedBy",
         "@type": "@id"
     },
-    "annotation": {
-        "@id": "oa:hasBody",
-       "@type": "@id"
+    "name": {
+        "@id": "foaf:name",
     },
-    "annotates": {
-       "@id": "oa:hasTarget",
-       "@type": "@id" 
+    "orcid": {
+        "@id": "roterms:orcid",
+        "@type": "@id",
     },
+
     "history": {
         "@id": "prov:has_provenance",
         "@type": "@id"
     },
+    "aggregates": {
+      "@id": "ore:aggregates",
+      "@type": "@id"
+    },
     "mediatype" {
         "@id": "dc:format",
         "@type": ""
-    }
+    },
+    "folder": {
+      "@id": "robundle:inFolder",
+      "@type": "@id"
+    },
+    "proxy": {
+      "@id": "robundle:hasProxy",
+      "@type": "@id"
+    },
+
+    "annotations": {
+      "@id": "robundle:hasAnnotation",
+      "@type": "@id"
+    },
+    "content": {
+       "@id": "oa:hasBody",
+       "@type": "@id"
+    },
+    "about": {
+       "@id": "oa:hasTarget",
+       "@type": "@id" 
+    },
 
   }
 }

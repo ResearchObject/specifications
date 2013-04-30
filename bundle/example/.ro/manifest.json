@@ -1,34 +1,38 @@
 {
-  "@context": "http://purl.org/wf4ever/ro-bundle/context.json",
-  "id": "bundle:",
-  "manifest": "manifest.json",
+  "@context":  "http://purl.org/wf4ever/ro-bundle/context.json",
+  "id":        "bundle:",
+  "manifest":  "manifest.json",
   "createdOn": "2013-03-05T17:29:03Z",
-  "createdBy": "http://example.com/foaf#alice",
-  "history": "evolution.ttl",
+  "createdBy": {
+      "uri":     "http://example.com/foaf#alice",
+      "orcid":   "http://orcid.org/0000-0002-1825-0097",
+      "name":    "Alice W. Land" },
+  "history":   "evolution.ttl",
   "aggregates": [
      "bundle:folder/soup.jpeg",
+
      "http://example.com/blog/",
-     { "file": "bundle:README.txt",
-       "createdOn": "2013-02-12T19:37:32.939Z",
-       "createdBy": "http://example.com/foaf#bob",
-       "dc:format": "text/plain" },
-     { "uri": "http://example.com/external.txt",
-       "folder": "bundle:folder/" }
-  ],
-  "proxies": [
-    { "proxy": "proxies/soup",
-      "for": "bundle:folder/soup.jpeg"},
-    { "proxy": "proxies/external",
-      "for": "http://example.com/external.txt"}
+
+     { "file":      "bundle:README.txt",
+       "mediatype": "text/plain",
+       "createdBy": {
+           "uri":     "http://example.com/foaf#bob",
+           "name":    "Bob Builder" },
+       "createdOn": "2013-02-12T19:37:32.939Z" },
+
+     { "uri":    "http://example.com/external.txt",
+       "folder": "bundle:folder/",
+       "proxy":  "proxy:a0cf8616-bee4-4a71-b21e-c60e6499a644" }
   ],
   "annotations": [
-    { "annotates": "bundle:folder/soup.jpeg",
-      "annotation": "annotations/about-soup.ttl" },
-    { "annotates": "proxies/soup",
-      "annotation": "http://example.com/blog/why-did-they-aggregate-soup" },
-    { "annotates": "proxies/external",
-      "annotation": "annotations/why-we-included-external.txt" }
+    { "annotation": "annotation:d67466b4-3aeb-4855-8203-90febe71abdf",
+      "about":      "bundle:folder/soup.jpeg",
+      "content":    "annotations/soup-properties.ttl" },
+
+    { "about":   "proxy:a0cf8616-bee4-4a71-b21e-c60e6499a644",
+      "content": "http://example.com/blog/they-aggregated-our-file" },
+
+    { "about":   [ "bundle:", "annotation:d67466b4-3aeb-4855-8203-90febe71abdf" ],
+      "content": "annotations/a-meta-annotation-in-this-ro.txt" }
   ]
 }
-  
-
