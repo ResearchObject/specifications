@@ -1,16 +1,15 @@
 {
   "@context":  [
+    { "bundle": "widget://150fda3e-ae6b-4eac-9661-fe79aa956e98/" },
     "http://purl.org/wf4ever/ro-bundle/context.json",
-    { "@base": "../" }
   ],
-  "id":        "./",
   "manifest":  "manifest.json",
   "createdOn": "2013-03-05T17:29:03Z",
   "createdBy": {
       "uri":     "http://example.com/foaf#alice",
       "orcid":   "http://orcid.org/0000-0002-1825-0097",
       "name":    "Alice W. Land" },
-  "history":   "evolution.ttl",
+  "history":   "test:evolution.ttl",
   "aggregates": [
      "folder/soup.jpeg",
 
