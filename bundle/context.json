@@ -19,8 +19,7 @@
     "uri": "@id",
     "annotation": "@id",
 
-    "@base": "bundle:./",
-    "test": "bundle:.ro/test/",
+    "test": ".ro/test/",
 
     "manifest": {
         "@id": "ore:isDescribedBy",

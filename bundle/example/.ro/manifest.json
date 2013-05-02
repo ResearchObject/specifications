@@ -1,8 +1,9 @@
 {
   "@context":  [
-    { "bundle": "widget://150fda3e-ae6b-4eac-9661-fe79aa956e98/" },
-    "http://purl.org/wf4ever/ro-bundle/context.json",
+    { "@base": "widget://fred/" },
+    "http://purl.org/wf4ever/ro-bundle/context.json"
   ],
+  "id": "",
   "manifest":  "manifest.json",
   "createdOn": "2013-03-05T17:29:03Z",
   "createdBy": {
