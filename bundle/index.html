@@ -14,9 +14,16 @@
     <script src='http://darobin.github.com/respec/builds/respec-w3c-common.js' async class='remove'></script>
 
     <script class='remove'>
-
+    // Not sure why doc._esc disapppeared from respec.js
+    _esc:    function (s) {
+        s = s.replace(/&/g,'&amp;');
+        s = s.replace(/>/g,'&gt;');
+        s = s.replace(/"/g,'&quot;');
+        s = s.replace(/</g,'&lt;');
+        return s;
+    }
     function escapeXML(doc, content) {
-        return doc._esc(content);
+        return _esc(content);
     }
 
         
@@ -263,11 +270,9 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             An example of <code>META-INF/container.xml</code> which
             defines the <em>rootfile</em> as <code>.ro/manifest.json</code>:
             </p>
-            <!-- data-include disabled as respec.js from github
-            does not have _esc() method?? -->
             <pre class="example"
-            data-brokeninclude="example/META-INF/container.xml"
-            data-brokenoninclude="escapeXML">
+            data-include="example/META-INF/container.xml"
+            data-oninclude="escapeXML">
 &lt;?xml version="1.0"?&gt;
 &lt;container version="1.0"
     xmlns="urn:oasis:names:tc:opendocument:xmlns:container"&gt;
