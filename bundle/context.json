@@ -14,10 +14,10 @@
     "foaf": "http://xmlns.com/foaf/0.1/",
     "uuid": "urn:uuid:",
 
-    "id": "@id",
     "file": "@id",
     "uri": "@id",
     "annotation": "@id",
+    "test": "bundle:.ro/test/",
 
     "manifest": {
         "@id": "ore:isDescribedBy",
