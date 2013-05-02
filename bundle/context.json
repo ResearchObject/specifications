@@ -11,8 +11,7 @@
     "pav": "http://purl.org/pav/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
 
-    "proxy": "urn:uuid:",
-    "ann": "urn:uuid:",
+    "uuid": "urn:uuid:",
 
     "id": "@id",
     "file": "@id",
