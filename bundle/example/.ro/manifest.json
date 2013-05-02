@@ -1,6 +1,6 @@
 {
   "@context":  [
-    { "@base": "widget://fred/" },
+    { "@base": "widget://129b8efe-a692-48a0-85d4-ebc6c0a9b057/" },
     "http://purl.org/wf4ever/ro-bundle/context.json"
   ],
   "id": "",
@@ -10,10 +10,9 @@
       "uri":     "http://example.com/foaf#alice",
       "orcid":   "http://orcid.org/0000-0002-1825-0097",
       "name":    "Alice W. Land" },
-  "history":   "test:evolution.ttl",
+  "history":   ".ro/evolution.ttl",
   "aggregates": [
      "folder/soup.jpeg",
-
      "http://example.com/blog/",
 
      { "file":      "README.txt",
@@ -30,12 +29,12 @@
   "annotations": [
     { "annotation": "uuid:d67466b4-3aeb-4855-8203-90febe71abdf",
       "about":      "folder/soup.jpeg",
-      "content":    "annotations/soup-properties.ttl" },
+      "content":    ".ro/annotations/soup-properties.ttl" },
 
     { "about":   "uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644",
       "content": "http://example.com/blog/they-aggregated-our-file" },
 
     { "about":   [ "", "uuid:d67466b4-3aeb-4855-8203-90febe71abdf" ],
-      "content": "annotations/a-meta-annotation-in-this-ro.txt" }
+      "content": ".ro/annotations/a-meta-annotation-in-this-ro.txt" }
   ]
 }

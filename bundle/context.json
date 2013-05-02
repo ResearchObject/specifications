@@ -19,8 +19,6 @@
     "uri": "@id",
     "annotation": "@id",
 
-    "test": ".ro/test/",
-
     "manifest": {
         "@id": "ore:isDescribedBy",
         "@type": "@id"
