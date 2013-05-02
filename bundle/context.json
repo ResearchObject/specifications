@@ -19,8 +19,7 @@
     "uri": "@id",
     "annotation": "@id",
 
-    "@base": "bundle:",
-    "@id": "bundle:",
+    "@base": "bundle:./",
     "test": "bundle:.ro/test/",
 
     "manifest": {
