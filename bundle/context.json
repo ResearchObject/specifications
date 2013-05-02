@@ -11,9 +11,8 @@
     "pav": "http://purl.org/pav/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
 
-    "bundle": "../",
-    "annotation": "annotations/",
-    "proxy": "proxies/",
+    "proxy": "urn:uuid:",
+    "ann": "urn:uuid:",
 
     "id": "@id",
     "file": "@id",
@@ -73,9 +72,8 @@
       "@id": "ore:aggregates",
       "@type": "@id"
     },
-    "mediatype" {
-        "@id": "dc:format",
-        "@type": ""
+    "mediatype": {
+        "@id": "dc:format"
     },
     "folder": {
       "@id": "robundle:inFolder",
