@@ -20,6 +20,7 @@
     "annotation": "@id",
 
     "@base": "bundle:",
+    "@id": "bundle:",
     "test": "bundle:.ro/test/",
 
     "manifest": {
