@@ -113,8 +113,8 @@
     <link rel="stylesheet" href="http://www.w3.org/StyleSheets/TR/w3c-unofficial" type="text/css" />
   </head>
   <body class="wf4ever">
-    <div class="logo"><img src="../logo/wf4ever.png" height="100" /></div>
-    <div class="status"><div><span>Wf4Ever Editors' Draft</div></span></div>
+    <div class="logo"><img src="../logo/wf4ever.png" height="100" alt="Wf4Ever" /></div>
+    <div class="status"><div><span>Wf4Ever Editors' Draft</span></div></div>
     <section id='abstract'>
     <p>
         This specification defines a file format for storage and 
@@ -127,11 +127,11 @@
     </section>
     <section id="sotd">
     This document is an Editors' Draft published by the 
-    <a href="http://www.wf4ever-project.org/">Wf4Ever project<a>.
+    <a href="http://www.wf4ever-project.org/">Wf4Ever project</a>.
 
     This document is currently work in progress and should not be used as a
     basis for implementations. Questions, feedback and comments are
-    kindly requested to be sent to the <a href="">wf4ever-public</a>
+    kindly requested to be sent to the <a href="https://groups.google.com/forum/#!forum/wf4ever-public">wf4ever-public</a>
     mailing list/forum.
     </section>
 
@@ -168,7 +168,7 @@
         to represent a research object as a single
         ZIP archive or as file system folders for the purposes of
         downloading, editing and archiving a research object. 
-        </p>
+        </p><p>
         For instance a scientific workflow system can export a workflow
         run by saving the workflow definition, runtime provenance trace and
         generated results to a set of files. A research object that
@@ -177,8 +177,7 @@
         desktop computer) it is often not known where or if the user would
         choose to publish the RO; thus the direct use of a ROSRS service
         or minting public URIs is problematic in this situation.
-        </p>
-        <p>
+        </p><p>
         A <strong>Research Object Bundle</strong>, as specified by this
 document, provides a way to collect the resources that are aggregated in a
 research object, represented as files in a ZIP archive, in addition to their
@@ -208,7 +207,6 @@ transferred like a regular file or resource.
                 <li>MAY use Zip64 extensions, but SHOULD only do so when required</li>
                 <li>The first file MUST be the uncompressed <code>mimetype</code> and without any extra attributes</li>
             </ul>
-            </p>
             <p>UCF says about <code>mimetype</code>:
             </p>
             <blockquote cite="https://learn.adobe.com/wiki/display/PDFNAV/Zip+container">
@@ -225,7 +223,6 @@ transferred like a regular file or resource.
             </p>
             <div class="practice">
                 <p><span class="practicelab" id="mimetype-zip">Use zip -0 -X</span></p>
-                </p>
                 <p class="practicedesc">
                 To add the <code>mimetype</code> file correctly on a UNIX/Linux
 installation with <a href='http://www.infonn-zip.org/'>InfoZip</a>, use
@@ -262,7 +259,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             An example of <code>META-INF/container.xml</code> which
             defines the <em>rootfile</em> as <code>.ro/manifest.json</code>:
             </p>
-            <pre class="example" daxxta-include="example/META-INF/container.xml">
+            <pre class="example" data-include="example/META-INF/container.xml">
 &lt;?xml version="1.0"?&gt;
 &lt;container version="1.0"
     xmlns="urn:oasis:names:tc:opendocument:xmlns:container"&gt;
@@ -325,10 +322,8 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                <td><code>.rdf</code></td>
                <td><code>application/rdf+xml</code></td>
             </tr><tr>
-            </tr><tr>
                <td><code>.json</code></td>
                <td><code>application/json</code></td>
-            </tr><tr>
             </tr><tr>
                <td><code>.xml</code></td>
                <td><code>application/xml</code></td>
@@ -516,7 +511,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             SHOULD include a provenance trace 
             of this research object 
             according to the <a
-            href="http://purl.org/wf4ever/roevo#" />roevo</a> ontology.
+            href="http://purl.org/wf4ever/roevo#">roevo</a> ontology.
             </dd>
        <dt><code>aggregates</code></dt> <dd>This property SHOULD be present, in which
        case it MUST be a list of the resources aggregated by this RO.
@@ -667,6 +662,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             
 
     </dl>
+    <p>
     An example of a manifest which is valid JSON-LD is included below:
     </p>
 <pre class="example" data-include="example/.ro/manifest.json">
@@ -952,12 +948,11 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         </p>
         <table id="prefix">
             <tr><th>Prefix</th> <th>Relative URI reference</th>
-                <tr><td><em>(no prefix)</em></td> <td><code>.ro/</code></td> </tr>
-                <tr><td><code>bundle:</em></td> <td><code>./</code></td> </tr>
-                <tr><td><code>proxy:</em></td> <td><code>.ro/proxies/</code></td> </tr>
-                <tr><td><code>annotation:</em></td> <td><code>.ro/annotations/</code></td> </tr>
-                <tr><td><em>(other)</em></td> <td><em>Absolute URI</em></td> </tr>
-            </tr>
+            <tr><td><em>(no prefix)</em></td> <td><code>.ro/</code></td> </tr>
+            <tr><td><code>bundle:</code></td> <td><code>./</code></td> </tr>
+            <tr><td><code>proxy:</code></td> <td><code>.ro/proxies/</code></td> </tr>
+            <tr><td><code>annotation:</code></td> <td><code>.ro/annotations/</code></td> </tr>
+            <tr><td><em>(other)</em></td> <td><em>Absolute URI</em></td> </tr>
         </table>
         <p>
         Due to their nature as ZIP files, Research Object Bundles might
@@ -993,7 +988,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             For instance, if:
             <pre>http://example.com/example1.robundle</pre>
             contains the file <code>folder/helloworld.txt</code>
-            (<code:bundle:folder/helloworld.txt</code> in the
+            (<code>bundle:folder/helloworld.txt</code> in the
             manifest.json), then we can assume the base URI:
             <pre>http://example.com/example1.robundle/</pre>
             and can refer to the file as:
@@ -1066,7 +1061,6 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             </section>
             <section id="hash-uris">
             <h4>Fragment identifiers</h4>
-                <p>
                 The IANA media type registration for <a
                     href="http://www.iana.org/assignments/media-types/application/zip">application/zip</a>
                 and the <a
@@ -1077,46 +1071,42 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                 <code>application/vnd.wf4ever.robundle+zip</code>
                 MAY be interpreted to have a fragment identifier
                 that is resolvable as the path within the ZIP archive.
-                </p>
                 <p>
-            For instance, if:
-            <pre>http://example.com/example1.robundle</pre>
-            contains the file <code>folder/helloworld.txt</code>
-            (<code>bundle:folder/helloworld.txt</code> in the
-            manifest.json), then we can refer to the Research Object as
-            <pre>http://example.com/example1.robundle#</pre>
-            and can refer to the file as:
-            <pre>http://example.com/example1.robundle#folder/helloworld.txt</pre>
-            <p>
-            Advantages:
-            </p>
-            <ul>
-                <li>URIs always resolve (to the ZIP file)</li>
-                <li>Simple to understand</li>
-            </ul>
-            <p>Disadvantages</p>
-            <ul>
-                <li>Not formally defined by application/zip</li>
-                <li>Fragment identifiers are bound by the media type and
-                might not work for other content types.
-                (e.g. an RO bundle was returned due to content
-                negotiation in a server implenting the [[ROSRS]] API)</li>
-                <li>Relative URI references in resources more complicated to
-                resolve as they would easily seem to refer to siblings
-                of the RO bundle, a URI reference <code>img.jpg</code>
-                from
-                <code>http://exaxmple.com/example1.robundle#document.html</code>
-                would seem to refer to <code>http://exaxmple.com/img.jpg</code></li>
-                <li>Existing fragment identifiers within resources more
-                complicated to resolve - <code>#para2</code> in
-                <code>document.html</code> becomes
-                <code>http://example.com/example1.robundle#document.html#para2</code>
-            </ul>
+                    For instance, if:
+                <pre>http://example.com/example1.robundle</pre>
+                contains the file <code>folder/helloworld.txt</code>
+                (<code>bundle:folder/helloworld.txt</code> in the
+                manifest.json), then we can refer to the Research Object as
+                <pre>http://example.com/example1.robundle#</pre>
+                and can refer to the file as:
+                <pre>http://example.com/example1.robundle#folder/helloworld.txt</pre>
+                Advantages:
+                <ul>
+                    <li>URIs always resolve (to the ZIP file)</li>
+                    <li>Simple to understand</li>
+                </ul>
+                Disadvantages:
+                <ul>
+                    <li>Not formally defined by application/zip</li>
+                    <li>Fragment identifiers are bound by the media type and
+                    might not work for other content types.
+                    (e.g. an RO bundle was returned due to content
+                    negotiation in a server implenting the [[ROSRS]] API)</li>
+                    <li>Relative URI references in resources more complicated to
+                    resolve as they would easily seem to refer to siblings
+                    of the RO bundle, a URI reference <code>img.jpg</code>
+                    from
+                    <code>http://exaxmple.com/example1.robundle#document.html</code>
+                    would seem to refer to <code>http://exaxmple.com/img.jpg</code></li>
+                    <li>Existing fragment identifiers within resources more
+                    complicated to resolve - <code>#para2</code> in
+                    <code>document.html</code> becomes
+                    <code>http://example.com/example1.robundle#document.html#para2</code>
+                </ul>
             </section>
             <section id="jar">
             <h4>jar: scheme</h4>
-            The <a/
-                href="http://www.iana.org/assignments/uri-schemes/prov/jar">jar:</a>
+            The <a href="http://www.iana.org/assignments/uri-schemes/prov/jar">jar:</a>
             scheme is used by Java to refer to resources within JAR
             files. It is specified as part of the documentation for <a
                 href="http://docs.oracle.com/javase/7/docs/api/java/net/JarURLConnection.html">JarURLConnection</a>.
@@ -1127,23 +1117,20 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             archive, can be interpreted as a <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/jar/jar.html">JAR file</a>.  For instance, if:
             <pre>http://example.com/example1.robundle</pre>
             contains the file <code>folder/helloworld.txt</code>
-            (<code:bundle:folder/helloworld.txt</code> in the
+            (<code>bundle:folder/helloworld.txt</code> in the
             manifest.json), then we can assume the base URI
             <pre>jar:http://example.com/example1.robundle!/</pre>
             and can refer to the file as:
             <pre>jar:http://example.com/example1.robundle!/folder/helloworld.txt</pre>
             <p>
             Advantages:
-            </p>
             <ul>
                 <li>Somewhat resolvable (within Java)</li>
                 <li>Somewhat formally defined</li>
                 <li>Fragment identifiers within resources still valid<li>
             </ul>
-
             <p>
             Disadvantages:
-            </p>
             <ul>
                 <li>The <code>jar:</code> scheme is not hierarchical (it
                 does not use <code>//</code>, and so relative URI
@@ -1167,7 +1154,6 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             href="http://www.w3.org/TR/widgets/">Packaged web
             apps</a>, it is equally applicable to Research Object
         bundles for the purposes of sandboxing.
-            </p>
             <p>
             The Widget URI scheme recommends
             generating a UUID string [[RFC4122]] for minting the <em>authority</em>,
@@ -1182,7 +1168,6 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             <pre>widget://8191dee8-0b8e-452d-8d64-7706a140185e/</pre>
             and can refer to the file as:
             <pre>widget://8191dee8-0b8e-452d-8d64-7706a140185e/folder/helloworld.txt</pre>
-            </p>
             <p>
             For purposes of security/sandboxing when interpreting RO
             bundles, the authority should be a <a
@@ -1200,18 +1185,16 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             <p>Example widget base URIs</p>
             <ul>
                 <li><code>widget://15259726-dcbb-42ff-8fc6-36282c98d4e6/</code> 
-                    <em>UUID v4 using pseduo-random number</em>
+                <em>UUID v4 using pseduo-random number</em></li>
                 <li><code>widget://7878e885-327c-5ad4-9868-7338f1f13b3b/</code>
                     <em>UUID v5 of the URL
-                    <code>http://example.com/bundle1.robundle</code></li>
+                        <code>http://example.com/bundle1.robundle</code></em></li>
                 <li><code>widget://587cff3ae37d58af6886d656623bd91237759a42d8fe1575a9744898c01d97d7/</code>
-                    <em>SHA-256 of an empty RO bundle</em>
+                    <em>SHA-256 of an empty RO bundle</em></li>
             </ul>
             <div class="TODO">
-            Can we recommend just ONE of these? 
+            Recommend just ONE of these? Which?
             </div>
-            </p>
-
 
             <p>Advantages:</p>
             <ul>
@@ -1230,8 +1213,6 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             </ul>
             </section>
         </section>
-        
-        </p>
     </section>
     <section id="conformance"></section>
 
