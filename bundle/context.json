@@ -58,11 +58,11 @@
         "@type": "@id"
     },
     "name": {
-        "@id": "foaf:name",
+        "@id": "foaf:name"
     },
     "orcid": {
         "@id": "roterms:orcid",
-        "@type": "@id",
+        "@type": "@id"
     },
 
     "history": {
