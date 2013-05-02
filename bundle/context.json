@@ -14,9 +14,12 @@
     "foaf": "http://xmlns.com/foaf/0.1/",
     "uuid": "urn:uuid:",
 
+    "id": "@id",
     "file": "@id",
     "uri": "@id",
     "annotation": "@id",
+
+    "@base": "bundle:",
     "test": "bundle:.ro/test/",
 
     "manifest": {
