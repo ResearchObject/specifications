@@ -9,29 +9,26 @@
       out in the same tree and use relative links so that they'll work offline,
      -->
     <!--
-    <script src='http://darobin.github.io/respec/builds/respec-w3c-common.js' async class='remove'></script>
-    -->
     <script src='http://dev.w3.org/2009/dap/ReSpec.js/js/respec.js' class='remove'></script> 
-
-    <script class='remove'>
+    -->
+    <script
+    src='http://darobin.github.io/respec/builds/respec-w3c-common-3.1.55.js' async class='remove'></script>
+    <script class="remove">
     // Not sure why doc._esc disapppeared from respec.js
-    _esc:    function (s) {
+    var _esc = function (s) {
         s = s.replace(/&/g,'&amp;');
         s = s.replace(/>/g,'&gt;');
         s = s.replace(/"/g,'&quot;');
         s = s.replace(/</g,'&lt;');
         return s;
-    }
+    };
     function escapeXML(doc, content) {
         return _esc(content);
-    }
-
-        
+    };
     var addExtraReferences = function() {
          for (var k in extraReferences)
              berjon.biblio[k] = extraReferences[k];
          };
-
      var extraReferences = {
 "RO": "Stian Soiland-Reyes; Sean Bechhofer et al.: <cite><a href='http://purl.org/wf4ever/model'>Wf4Ever Research Object Model</a></cite>. 30 November 2012. URL: <a href='http://purl.org/wf4ever/model'>http://purl.org/wf4ever/model</a>",         
 "ROPrimer": "Jun Zhao et al: <cite><a href='http://purl.org/wf4ever/ro-primer'>Wf4Ever Research Object Ontologies and Vocabularies Primer</a></cite>. 13 April 2012. URL: <a href='http://purl.org/wf4ever/primer'>http://purl.org/wf4ever/primer</a> accessed 2013-02-27",         
@@ -45,7 +42,6 @@
 "RFC6839": "T. Hansen; A. Melnikov: <cite><a href='http://tools.ietf.org/html/rfc6839'>Additional Media Type Structured Syntax Suffixes</a></cite> January 2013. RFC 6839. URL: <a href='http://tools.ietf.org/html/rfc6839'>http://tools.ietf.org/html/rfc6839</a>",
 
          }; 
-
 
       var respecConfig = {
           // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
