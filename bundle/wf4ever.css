@@ -63,7 +63,7 @@ blockquote {
 /* The actual status box */
  .status div {   
     display: block;
-    background: red;
+    background: green;
     color: white;
     width: 23em;
     padding-top: 0.3em;
