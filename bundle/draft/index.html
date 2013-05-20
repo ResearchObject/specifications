@@ -334,6 +334,9 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                <td><code>.json</code></td>
                <td><code>application/json</code></td>
             </tr><tr>
+               <td><code>.jsonld</code></td>
+               <td><code>application/ld+json</code></td>
+            </tr><tr>
                <td><code>.xml</code></td>
                <td><code>application/xml</code></td>
             </tr>
@@ -356,7 +359,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
           <a href='#manifest'>RO manifest</a> it is NOT
           RECOMMENDED to include <code>META-INF/manifest.xml</code> in
           RO Bundles. Applications and specializations of this specification MAY
-          however include 
+          in some cases however still include 
           <code>META-INF/manifest.xml</code>, for instance to provide
           media types as specified in 
           <a href='#media-types' class="sectionRef"></a>. 
@@ -402,15 +405,15 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     </p>
     <ol>
       <li>Meta-resources, path relative to <code>.ro/</code> folder,
-          which SHOULD NOT contain the <code>:</code> character.  For
+          which MUST NOT contain the <code>:</code> character.  For
           instance <code>manifest.json</code>  or <code>annotations/ann2</code>.
           Depending on how meta-resources are used, the ZIP might or might not include 
           a corresponding entry for the given path.
       </li>
       <li>Bundled resources 
-          The path SHOULD starts with <code>bundle:</code> to indicate the root of the
-          bundle, for instance <code>bundle:hello.txt</code> or
-          <code>bundle:folder2/</code>. Folders SHOULD have a path
+          The path SHOULD starts with <code>/</code> to indicate the root of the
+          bundle, for instance <code>/hello.txt</code> or
+          <code>/folder2/</code>. Folders SHOULD have a path
           terminating with <code>/</code>.
           The resource identified by the path SHOULD be included as a
           corresponding file or folder in the ZIP file.  
@@ -425,18 +428,31 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     with the keys:
     </p>
     <dl>
-        <dt><code>@context</code></dt> <dd>JSON-LD context. MUST be
-        present. SHOULD have value
-        <code>"http://purl.org/wf4ever/ro-bundle/context.json"</code>,
-        but MAY be a list, which SHOULD have this value as the last item.  </dd>
-        <dt><code>id</code></dt> <dd>RO identifier. SHOULD be present, in which case it
-        SHOULD have the fixed value <code>"bundle:"</code> indicating the
+        <dt><code>@context</code></dt> <dd>JSON-LD context. SHOULD be
+        present, in which case it MUST be valid according to the <a
+        href="http://www.w3.org/TR/json-ld/#the-context">JSON-LD
+        @context keyword</a>. The RO bundle context SHOULD be a list,
+        which values SHOULD include:
+        <ol>
+           <li>An object with key:
+             <dl><dt><code>@base</code></dt>
+                 <dd>An URI to identify the meta-folder of this unique
+                 research object. This SHOULD be
+                 a <code>widget:</code> URI, as specified in the <a
+                 href="#widget">widget section</a>, and SHOULD have a
+                 path of <code>/.ro/</code>. e.g.
+                 <code>"widget://129b8efe-a692-48a0-85d4-ebc6c0a9b057/.ro/"</code></dd>
+             </dl>
+           </li>
+           <li>The value <code>"http://purl.org/wf4ever/ro-bundle/context.json"</code>,
+           which SHOULD be the last value of the list.</dd>
+        </ol>
+
+        <dt><code>id</code></dt> <dd>RO identifier. SHOULD be present,
+        in which case it
+        SHOULD have the fixed value <code>/</code> indicating the
         relative top-level folder as the identifier.
-        Note that this means the absolute URI identifying the research
-        object depends on the base URI this Research Object Bundle is
-        considered to be accessed at, for instance
-        <code>file:///Users/alice/ro13.robundle/</code> (See
-                <a href='#identifiers' class="sectionRef"></a>.)</dd>
+        (See <a href='#identifiers' class="sectionRef"></a>.)</dd>
 
         <dt><code>manifest</code> <dd>ORE manifests describing this RO,
         relative to the <code>.ro/</code> folder. SHOULD be literal
@@ -501,7 +517,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             within the top-level <code>@graph</code>
             key according to <a href="#custom-json-ld" class="sectionRef"></a>
             by using an <code>@id</code> value equal to the bundle
-            <code>id</code>, e.g. <code>"bundle:"</code>.
+            <code>id</code>, e.g. <code>"/"</code>.
             </p>
             </dd>
 
@@ -527,14 +543,14 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
        The values in a list MUST be either:
        <ul>
         <li>A path relative to the root of the bundle, prefixed with
-        <code>bundle:</code></li>
+        <code>/</code></li>
         <li>An absolute URI</li>
         <li>An object, which SHOULD be uniquely identified by either
             <code>file</code> or <code>uri</code>. Its members are:
         <dl>
             <dt><code>file</code></dt> 
-                <dd>A path relative to the root of the bundle. The path
-                SHOULD be prefixed with <code>bundle:</code></dd>
+                <dd>A path within the bundle. The path
+                SHOULD be prefixed with <code>/<code></dd>
             <dt><code>uri</code></dt>
                 <dd>An absolute URI. The key <code>uri</code> MUST NOT be provided at the
                 same time as <code>file</code>.</dd>
@@ -542,8 +558,8 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                 <dd>A folder this resource (typically identified by
                 <code>uri</code>) belongs to, relative to the
                 root of the bundle. The path SHOULD be prefixed with
-                <code>bundle:</code> and SHOULD end with <code>/</code>,
-                for instance <code>bundle:folder2/</code>.</dd>
+                <code>/</code> and SHOULD end with <code>/</code>,
+                for instance <code>/folder2/</code>.</dd>
             <dt><code>mediatype</code></dt>
                 <dd>The <a
                 href="http://www.iana.org/assignments/media-types">IANA
@@ -622,9 +638,9 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             <ul>
                 <li>The research object itself, which SHOULD match the
                 value of its <code>id</code>, e.g.
-                <code>bundle:</code></li>
+                <code>/</code></li>
                 <li>A bundled resource, starting with
-                <code>bundle:</code>, which SHOULD be listed under
+                <code>/</code>, which SHOULD be listed under
                     <code>aggregates</code> if that key is present</li>
                 <li>A proxy for an aggregated resource, starting with
                     <code>proxy:</code>, which MUST be defined under
@@ -649,7 +665,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             types:
             <ul>
                 <li>A bundled resource, starting with
-                <code>bundle:</code>, which SHOULD be listed under
+                <code>/</code>, which SHOULD be listed under
                     <code>aggregates</code> if that key is present</li>
                 <li>An absolute URI, which may or may not be aggregated by the RO</li>    
             </ul>
@@ -675,9 +691,13 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     An example of a manifest which is valid JSON-LD is included below:
     </p>
 <pre class="example" data-include="example/.ro/manifest.json">
+
 {
-  "@context":  "http://purl.org/wf4ever/ro-bundle/context.json",
-  "id":        "bundle:",
+  "@context":  [
+    { "@base": "widget://129b8efe-a692-48a0-85d4-ebc6c0a9b057/.ro/" },
+    "http://purl.org/wf4ever/ro-bundle/context.json"
+  ],
+  "id": "/",
   "manifest":  "manifest.json",
   "createdOn": "2013-03-05T17:29:03Z",
   "createdBy": {
@@ -686,30 +706,30 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
       "name":    "Alice W. Land" },
   "history":   "evolution.ttl",
   "aggregates": [
-     "bundle:folder/soup.jpeg",
-
+     "/folder/soup.jpeg",
      "http://example.com/blog/",
 
-     { "file":      "bundle:README.txt",
+     { "file":      "/README.txt",
        "mediatype": "text/plain",
        "createdBy": {
            "uri":     "http://example.com/foaf#bob",
            "name":    "Bob Builder" },
        "createdOn": "2013-02-12T19:37:32.939Z" },
 
-     { "uri":    "http://example.com/external.txt",
-       "folder": "bundle:folder/",
-       "proxy":  "proxy:a0cf8616-bee4-4a71-b21e-c60e6499a644" }
+     { "uri":    "http://example.com/comments.txt",
+       "folder": "/folder/",
+       "filename": "external.txt",
+       "proxy":  "uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644" }
   ],
   "annotations": [
-    { "annotation": "annotation:d67466b4-3aeb-4855-8203-90febe71abdf",
-      "about":      "bundle:folder/soup.jpeg",
+    { "annotation": "uuid:d67466b4-3aeb-4855-8203-90febe71abdf",
+      "about":      "/folder/soup.jpeg",
       "content":    "annotations/soup-properties.ttl" },
 
-    { "about":   "proxy:a0cf8616-bee4-4a71-b21e-c60e6499a644",
+    { "about":   "uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644",
       "content": "http://example.com/blog/they-aggregated-our-file" },
 
-    { "about":   [ "bundle:", "annotation:d67466b4-3aeb-4855-8203-90febe71abdf" ],
+    { "about":   [ "/", "uuid:d67466b4-3aeb-4855-8203-90febe71abdf" ],
       "content": "annotations/a-meta-annotation-in-this-ro.txt" }
   ]
 }

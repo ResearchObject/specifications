@@ -22,8 +22,9 @@
            "name":    "Bob Builder" },
        "createdOn": "2013-02-12T19:37:32.939Z" },
 
-     { "uri":    "http://example.com/external.txt",
+     { "uri":    "http://example.com/comments.txt",
        "folder": "/folder/",
+       "filename": "external.txt",
        "proxy":  "uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644" }
   ],
   "annotations": [
