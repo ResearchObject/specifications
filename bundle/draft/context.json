@@ -80,7 +80,7 @@
     },
     "filename": { 
         "@id": "ro:entryName"
-    }
+    },
     "proxy": {
       "@id": "bundle:hasProxy",
       "@type": "@id"
