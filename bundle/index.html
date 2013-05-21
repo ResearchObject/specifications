@@ -191,18 +191,24 @@ table.simple {
   </p>
   <h1 class="title p-name" id="title"><abbr title="Workflow forever">Wf4Ever</abbr> Research Object Bundle</h1>
   
-  <h2 id="unofficial-draft-10-may-2013">Working Draft <time class="dt-published" datetime="2013-05-10">10 May 2013</time></h2>
+  <h2>Working Draft <time class="dt-published" datetime="2013-05-21">21 May 2013</time></h2>
   <dl>
-    
+     
       <dt>This version:</dt>
+      <dd><a href="http://purl.org/wf4ever/ro-bundle/2013-05-21/">http://purl.org/wf4ever/ro-bundle/2013-05-21/</a></dd>
+    
+  
+      <dt>Previous version:</dt>
       <dd><a href="http://purl.org/wf4ever/ro-bundle/2013-05-10/">http://purl.org/wf4ever/ro-bundle/2013-05-10/</a></dd>
+    
+ 
+    
+      <dt>Latest editor's draft:</dt>
+      <dd><a href="http://wf4ever.github.io/ro/bundle/draft/">http://wf4ever.github.io/ro/bundle/draft/</a></dd>
+    
     
       <dt>Latest recommendation:</dt>
       <dd><a href="http://purl.org/wf4ever/ro-bundle/">http://purl.org/wf4ever/ro-bundle/</a></dd>
-    
-      <dt>Latest editor's draft:</dt>
-      <dd><a href="http://purl.org/wf4ever/ro-bundle/draft/">http://purl.org/wf4ever/ro-bundle/draft/</a></dd>
-    
     
     <dt>Editor:</dt>
     <dd class="p-author h-card vcard"><a class="u-url url p-name fn" href="http://soiland-reyes.com/stian/work/">Stian Soiland-Reyes</a>, University of Manchester</dd>
@@ -245,7 +251,7 @@ table.simple {
       standards organisation.
     </p>
     
-    This document is an Working Draft published by the 
+    This document is a Working Draft published by the 
     <a href="http://www.wf4ever-project.org/"><abbr title="Workflow forever">Wf4Ever</abbr> project</a>.
 
     This document is currently work in progress and should not be used as a
@@ -254,7 +260,7 @@ table.simple {
     mailing list/forum.
     
   
-</section><section id="toc"><h2 class="introductory">Table of Contents</h2><ul class="toc"><li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>Introduction</a></li><li class="tocline"><a href="#container" class="tocxref"><span class="secno">2. </span>Container</a><ul class="toc"><li class="tocline"><a href="#ucf" class="tocxref"><span class="secno">2.1 </span>Universal Container Format (UCF)</a></li><li class="tocline"><a href="#ro-bundle-container" class="tocxref"><span class="secno">2.2 </span><abbr title="Research Object">RO</abbr> bundle container</a><ul class="toc"><li class="tocline"><a href="#media-types" class="tocxref"><span class="secno">2.2.1 </span>Resource media type</a></li><li class="tocline"><a href="#manifest-xml" class="tocxref"><span class="secno">2.2.2 </span>META-INF/manifest.xml</a></li></ul></li></ul></li><li class="tocline"><a href="#manifest" class="tocxref"><span class="secno">3. </span>Manifest</a><ul class="toc"><li class="tocline"><a href="#manifest-json" class="tocxref"><span class="secno">3.1 </span>.ro/manifest.json</a><ul class="toc"><li class="tocline"><a href="#json-ld" class="tocxref"><span class="secno">3.1.1 </span>JSON-LD and mapping to <abbr title="Research Object">RO</abbr> model</a></li><li class="tocline"><a href="#custom-json-ld" class="tocxref"><span class="secno">3.1.2 </span>Custom JSON-LD</a></li></ul></li><li class="tocline"><a href="#alternative-manifest-representations" class="tocxref"><span class="secno">3.2 </span>Alternative manifest representations</a></li></ul></li><li class="tocline"><a href="#identifiers" class="tocxref"><span class="secno">4. </span>Identifiers</a><ul class="toc"><li class="tocline"><a href="#absolute-uris" class="tocxref"><span class="secno">4.1 </span>Absolute URIs for bundle resources</a><ul class="toc"><li class="tocline"><a href="#path-uris" class="tocxref"><span class="secno">4.1.1 </span>Nested paths</a></li><li class="tocline"><a href="#hash-uris" class="tocxref"><span class="secno">4.1.2 </span>Fragment identifiers</a></li><li class="tocline"><a href="#jar" class="tocxref"><span class="secno">4.1.3 </span>jar: scheme</a></li><li class="tocline"><a href="#widget" class="tocxref"><span class="secno">4.1.4 </span>Widget URI scheme</a></li></ul></li></ul></li><li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">5. </span>Conformance</a></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">A. </span>Acknowledgements</a></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a><ul class="toc"><li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">B.1 </span>Normative references</a></li><li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">B.2 </span>Informative references</a></li></ul></li></ul></section>
+</section><section id="toc"><h2 class="introductory">Table of Contents</h2><ul class="toc"><li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>Introduction</a></li><li class="tocline"><a href="#container" class="tocxref"><span class="secno">2. </span>Container</a><ul class="toc"><li class="tocline"><a href="#ucf" class="tocxref"><span class="secno">2.1 </span>Universal Container Format (UCF)</a><ul class="toc"><li class="tocline"><a href="#rootfile" class="tocxref"><span class="secno">2.1.1 </span>Rootfile</a></li></ul></li><li class="tocline"><a href="#ro-bundle-container" class="tocxref"><span class="secno">2.2 </span><abbr title="Research Object">RO</abbr> bundle container</a><ul class="toc"><li class="tocline"><a href="#media-types" class="tocxref"><span class="secno">2.2.1 </span>Resource media type</a></li><li class="tocline"><a href="#manifest-xml" class="tocxref"><span class="secno">2.2.2 </span>META-INF/manifest.xml</a></li></ul></li></ul></li><li class="tocline"><a href="#manifest" class="tocxref"><span class="secno">3. </span>Manifest</a><ul class="toc"><li class="tocline"><a href="#manifest-json" class="tocxref"><span class="secno">3.1 </span>.ro/manifest.json</a><ul class="toc"><li class="tocline"><a href="#json-ld" class="tocxref"><span class="secno">3.1.1 </span>JSON-LD and mapping to <abbr title="Research Object">RO</abbr> model</a></li><li class="tocline"><a href="#custom-json-ld" class="tocxref"><span class="secno">3.1.2 </span>Custom JSON-LD</a></li></ul></li><li class="tocline"><a href="#alternative-manifests" class="tocxref"><span class="secno">3.2 </span>Alternative manifest representations</a></li></ul></li><li class="tocline"><a href="#identifiers" class="tocxref"><span class="secno">4. </span>Identifiers</a><ul class="toc"><li class="tocline"><a href="#absolute-uris" class="tocxref"><span class="secno">4.1 </span>Absolute URIs for bundle resources</a></li></ul></li><li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">5. </span>Conformance</a></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">A. </span>Acknowledgements</a></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a><ul class="toc"><li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">B.1 </span>Normative references</a></li><li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">B.2 </span>Informative references</a></li></ul></li></ul></section>
     
 
     
@@ -319,7 +325,7 @@ transferred like a regular file or resource.
         <section id="ucf" class="informative">
             <h3><span class="secno">2.1 </span>Universal Container Format (UCF)</h3><p><em>This section is non-normative.</em></p>
             <p>
-            An UCF container is based on the ZIP compression file format [<cite><a class="bibref" href="#bib-ZIP">ZIP</a></cite>], enforcing <a href="https://learn.adobe.com/wiki/display/PDFNAV/Zip+container">additional restrictions</a>. The most important restrictions are:
+            A UCF container is based on the ZIP compression file format [<cite><a class="bibref" href="#bib-ZIP">ZIP</a></cite>], enforcing <a href="https://learn.adobe.com/wiki/display/PDFNAV/Zip+container">additional restrictions</a>. The most important restrictions are:
             </p><ul>
                 <li>Reserved filenames in the root directory:
                     <code>mimetype</code> and <code>META-INF</code></li>
@@ -361,6 +367,12 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
   adding: .ro/ (stored 0%)
   adding: .ro/manifest.json (stored 0%)
   adding: helloworld.txt (stored 0%)</pre></div>
+            <section id="rootfile">
+            <h4><span class="secno">2.1.1 </span>Rootfile</h4><p><em>This section is non-normative.</em></p>
+            <p>
+            A <em>root file</em> is the entry-point for a UCF container,
+            playing a similar role to <code>index.html</code> on web servers.
+            </p>
             <p>UCF says about <a href="https://learn.adobe.com/wiki/display/PDFNAV/UCF+container+contents#UCFcontainercontents-ContainerMETA-INFcontainerxmlOptional"><code>META-INF/container.xml</code></a>
             and rootfiles:
             </p>
@@ -384,21 +396,26 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         &lt;rootfile full-path=".ro/manifest.json" media-type="application/ld+json" /&gt;
     &lt;/rootfiles&gt;
 &lt;/container&gt;</pre></div>
+            </section>
         </section>
         <section id="ro-bundle-container">
         <h3><span class="secno">2.2 </span><abbr title="Research Object">RO</abbr> bundle container</h3>
         The <abbr title="Research Object">RO</abbr> Bundle container is a specialization of a [<cite><a class="bibref" href="#bib-UCF">UCF</a></cite>] container, with
         the following additions:
         <ul>
-            <li>Additional reserved filename in the root directory: <code>.ro</code></li>
+            <li>Additional reserved filename in the root directory:
+            <code>.ro</code>. If present, <code>.ro</code> <em class="rfc2119" title="MUST">MUST</em> be a
+            directory.</li>
             <li>The <code>mimetype</code> <em class="rfc2119" title="SHOULD">SHOULD</em> be
               <code>application/vnd.wf4ever.robundle+zip</code> (see
               below)</li>
             <li>The <code>META-INF/container.xml</code>, if present,
                 <em class="rfc2119" title="SHOULD">SHOULD</em> contain a rootfile entry equivalent to:<br>
                 <code>&lt;rootfile full-path=".ro/manifest.json"
-                media-type="application/ld+json" /&gt;</code>
-            </li> 
+                media-type="application/ld+json" /&gt;</code><br>
+                If the
+                container file is missing, the above rootfile entry <em class="rfc2119" title="SHOULD">SHOULD</em> be
+                assumed.  </li> 
             <li>The file <code>.ro/manifest.json</code> <em class="rfc2119" title="SHOULD">SHOULD</em> be
             present, and <em class="rfc2119" title="MUST">MUST</em> describe the <abbr title="Research Object">RO</abbr> according to <a href="#manifest" class="sectionRef sec-ref">section 3. Manifest</a>.
             </li>
@@ -416,14 +433,36 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         <section id="media-types">
         <h4><span class="secno">2.2.1 </span>Resource media type</h4>
         <p>
-          Beyond rootfiles, the UCF specification does not specify how
-          to find the media-type when resolving individual resources in
-          a bundle. If an application requrires a media-type for a resource
-          in the <abbr title="Research Object">RO</abbr> bundle, it <em class="rfc2119" title="MAY">MAY</em> use the defaults below based on
-          case-insensitive comparison of the file extension. 
-          In the absence of a resolved media type, the media type
-          <code>application/octet-stream</code> <em class="rfc2119" title="MAY">MAY</em> be assumed.
-          </p>
+          If an application requires a media-type for a resource, for
+          instance because it is exposing the <abbr title="Research Object">RO</abbr> bundle over HTTP, 
+          it <em class="rfc2119" title="SHOULD">SHOULD</em> resolve the media type of the resource according to
+          this section. 
+        </p>
+        <p>
+          In order of preference:
+        </p><ol>
+        <li>
+          A resource which is a <a href="#rootfile">root file</a> is
+          assumed to have the media type given by the
+          <code>mimetype</code> of the corresponding
+          (or implied)
+          <code>&lt;rootfile&gt;</code> entry.
+        </li>
+          <li>
+          If a resource is an external reference (e.g. referenced
+          with an absolute <code>http://</code> URI), then its media
+          type is given by the HTTP <code>Content-Type</code>,
+          which may involve <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec12.html">content
+          negotiation</a>.
+          </li>
+          <li>If the resource is a aggregated in the
+          <a href="#manifest">manifest</a>, applications <em class="rfc2119" title="SHOULD">SHOULD</em> use
+          the <code>mediatype</code> (<code>dc:format</code>
+          in RDF manifests), if present.
+          </li>
+          <li>
+          Failing the above, the media type of a resource <em class="rfc2119" title="MAY">MAY</em> be resolved according to the following table
+          by case-insensitive matching of its extension (suffix):
           <table>
             <tbody><tr><th>Extension</th> <th>Media type</th></tr>
             <tr>
@@ -439,18 +478,19 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                <td><code>.json</code></td>
                <td><code>application/json</code></td>
             </tr><tr>
+               <td><code>.jsonld</code></td>
+               <td><code>application/ld+json</code></td>
+            </tr><tr>
                <td><code>.xml</code></td>
                <td><code>application/xml</code></td>
             </tr>
           </tbody></table>
-          <p>Applications <em class="rfc2119" title="MAY">MAY</em> use the file
-          <code>META-INF/manifest.xml</code>, if present, to resolve
-          media types for resources in the <abbr title="Research Object">RO</abbr> bundle accoording to
-          the <code>manifest:media-type</code> of the corresponding
-          <code>manifest:file-entry</code> according to
-          <a href="http://docs.oasis-open.org/office/v1.2/os/OpenDocument-v1.2-os-part3.html#__RefHeading__752807_826425813">ODF
-          Package specification</a> [<cite><a class="bibref" href="#bib-ODF">ODF</a></cite>], see however warnings in <a href="#manifest-xml" class="sectionRef sec-ref">section 2.2.2 META-INF/manifest.xml</a> below.
-          </p>
+          </li>
+          <li>
+          In the absence of a resolved media type, the media type
+          <code>application/octet-stream</code> <em class="rfc2119" title="MAY">MAY</em> be assumed.
+          </li>
+          </ol>
           </section>
           <section id="manifest-xml">
           <h4><span class="secno">2.2.2 </span>META-INF/manifest.xml</h4>
@@ -458,24 +498,10 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
           To avoid confusion with the somewhat overlapping 
           <a href="#manifest"><abbr title="Research Object">RO</abbr> manifest</a> it is <em class="rfc2119" title="NOT
           RECOMMENDED">NOT
-          RECOMMENDED</em> to include <code>META-INF/manifest.xml</code> in
-          <abbr title="Research Object">RO</abbr> Bundles. Applications and specializations of this specification <em class="rfc2119" title="MAY">MAY</em>
-          however include 
-          <code>META-INF/manifest.xml</code>, for instance to provide
-          media types as specified in 
-          <a href="#media-types" class="sectionRef sec-ref">section 2.2.1 Resource media type</a>. 
-          </p>
-          <p>If
-          <code>META-INF/manifest.xml</code> is present, it <em class="rfc2119" title="MUST">MUST</em> 
-          follow the specifications of
+          RECOMMENDED</em> to include the 
           <a href="http://docs.oasis-open.org/office/v1.2/os/OpenDocument-v1.2-os-part3.html#__RefHeading__752807_826425813">ODF
-          Package specification</a> [<cite><a class="bibref" href="#bib-ODF">ODF</a></cite>]
-          . That means that 
-          if present, the <code>META-INF/manifest.xml</code> file
-          <em class="rfc2119" title="MUST">MUST</em> list <strong>all</strong> resources in the <abbr title="Research Object">RO</abbr> bundle, including
-          the folder <code>.ro</code> and its content, but excluding
-          <code>mimetype</code> and
-          <code>META-INF</code> its content.
+          manifest</a> (<code>META-INF/manifest.xml</code>) in
+          <abbr title="Research Object">RO</abbr> Bundles or to use the ODF manifest for resolving media types.
         </p>
         </section>
 
@@ -490,7 +516,8 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     <p>
     The research object <em class="rfc2119" title="SHOULD">SHOULD</em> be described 
     in the file <code>.ro/manifest.json</code> as specified 
-    below.
+    below. <a href="alternative-manifest">Alternative manifests</a> <em class="rfc2119" title="MAY">MAY</em>
+    also be present.
 
     </p><section id="manifest-json">
     <h3><span class="secno">3.1 </span>.ro/manifest.json</h3>
@@ -504,19 +531,19 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     Identifiers used below are either:
     </p>
     <ol>
-      <li>Meta-resources, path relative to <code>.ro/</code> folder,
-          which <em class="rfc2119" title="SHOULD NOT">SHOULD NOT</em> contain the <code>:</code> character.  For
+      <li>Meta-resources, path relative to <code>.ro/</code> directory,
+          which <em class="rfc2119" title="MUST NOT">MUST NOT</em> contain the <code>:</code> character.  For
           instance <code>manifest.json</code>  or <code>annotations/ann2</code>.
           Depending on how meta-resources are used, the ZIP might or might not include 
           a corresponding entry for the given path.
       </li>
       <li>Bundled resources 
-          The path <em class="rfc2119" title="SHOULD">SHOULD</em> starts with <code>bundle:</code> to indicate the root of the
-          bundle, for instance <code>bundle:hello.txt</code> or
-          <code>bundle:folder2/</code>. Folders <em class="rfc2119" title="SHOULD">SHOULD</em> have a path
+          The path <em class="rfc2119" title="SHOULD">SHOULD</em> starts with <code>/</code> to indicate the root of the
+          bundle, for instance <code>/hello.txt</code> or
+          <code>/folder2/</code>. Folders <em class="rfc2119" title="SHOULD">SHOULD</em> have a path
           terminating with <code>/</code>.
           The resource identified by the path <em class="rfc2119" title="SHOULD">SHOULD</em> be included as a
-          corresponding file or folder in the ZIP file.  
+          corresponding file or directory in the ZIP file.  
       </li>
       <li>
           Absolute URIs (contains <code>:</code>), external to the bundle. For instance
@@ -528,21 +555,22 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     with the keys:
     </p>
     <dl>
-        <dt><code>@context</code></dt> <dd>JSON-LD context. <em class="rfc2119" title="MUST">MUST</em> be
-        present. <em class="rfc2119" title="SHOULD">SHOULD</em> have value
-        <code>"http://purl.org/wf4ever/ro-bundle/context.json"</code>,
-        but <em class="rfc2119" title="MAY">MAY</em> be a list, which <em class="rfc2119" title="SHOULD">SHOULD</em> have this value as the last item.  </dd>
-        <dt><code>id</code></dt> <dd><abbr title="Research Object">RO</abbr> identifier. <em class="rfc2119" title="SHOULD">SHOULD</em> be present, in which case it
-        <em class="rfc2119" title="SHOULD">SHOULD</em> have the fixed value <code>"bundle:"</code> indicating the
+        <dt><code>@context</code></dt> <dd>JSON-LD context. <em class="rfc2119" title="SHOULD">SHOULD</em> be
+        present, in which case it <em class="rfc2119" title="MUST">MUST</em> be valid according to the <a href="http://www.w3.org/TR/json-ld/#the-context">JSON-LD
+        @context keyword</a>. The <abbr title="Research Object">RO</abbr> bundle context <em class="rfc2119" title="SHOULD">SHOULD</em> be a list,
+        and <em class="rfc2119" title="SHOULD">SHOULD</em> include
+
+        the value <code>"https://w3id.org/bundle/context"</code>.
+        This value <em class="rfc2119" title="SHOULD">SHOULD</em> be the last item of the list.</dd>
+
+        <dt><code>id</code></dt> <dd><abbr title="Research Object">RO</abbr> identifier. <em class="rfc2119" title="SHOULD">SHOULD</em> be present,
+        in which case it
+        <em class="rfc2119" title="SHOULD">SHOULD</em> have the fixed value <code>/</code> indicating the
         relative top-level folder as the identifier.
-        Note that this means the absolute URI identifying the research
-        object depends on the base URI this Research Object Bundle is
-        considered to be accessed at, for instance
-        <code>file:///Users/alice/ro13.robundle/</code> (See
-                <a href="#identifiers" class="sectionRef sec-ref">section 4. Identifiers</a>.)</dd>
+        (See <a href="#identifiers" class="sectionRef sec-ref">section 4. Identifiers</a>.)</dd>
 
         <dt><code>manifest</code> </dt><dd>ORE manifests describing this <abbr title="Research Object">RO</abbr>,
-        relative to the <code>.ro/</code> folder. <em class="rfc2119" title="SHOULD">SHOULD</em> be literal
+        relative to the <code>.ro/</code> directory. <em class="rfc2119" title="SHOULD">SHOULD</em> be literal
         <code>"manifest.json"</code>,
             but <em class="rfc2119" title="MAY">MAY</em> be a list, in which case the list <em class="rfc2119" title="MUST">MUST</em> contain
             <code>"manifest.json"</code></dd>
@@ -550,7 +578,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         <dt><code>createdOn</code></dt> <dd>The time the <abbr title="Research Object">RO</abbr> was
         serialized as this <abbr title="Research Object">RO</abbr> bundle. <em class="rfc2119" title="SHOULD">SHOULD</em> be present, in which case it <em class="rfc2119" title="MUST">MUST</em> be a 
         <a href="http://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime
-        formatted</a> timestamp (ISO 8601).</dd>    
+        formatted</a> timestamp (ISO 8601), and <em class="rfc2119" title="SHOULD">SHOULD</em> include the time zone.</dd>    
 
         <dt><code>createdBy</code></dt> <dd>The creator of the <abbr title="Research Object">RO</abbr>
         bundle. This <em class="rfc2119" title="MAY">MAY</em> be different from the person forming the
@@ -559,38 +587,40 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         with the following keys:
         <dl>
             <dt><code>uri</code></dt>
-            <dd>An URI identifying the agent. The URI <em class="rfc2119" title="SHOULD">SHOULD</em> be present,
+            <dd>A URI identifying the agent. The URI <em class="rfc2119" title="SHOULD">SHOULD</em> be present,
             and <em class="rfc2119" title="SHOULD">SHOULD</em> be a 
             valid <a href="http://www.w3.org/wiki/WebID">WebID</a>, 
             for instance <code>http://example.com/fred#fred</code>
             </dd>
             <dt><code>orcid</code></dt>
-            <dd>An <a href="http://orcid.org/">ORCID</a> identifier (as
-            an URI). For instance,
+            <dd>An <a href="http://orcid.org/">ORCID</a> identifier 
+            for this agent. For instance,
             <code>http://orcid.org/0000-0001-9842-9718</code>. An ORCID
-             <em class="rfc2119" title="MAY">MAY</em> be present if known.
+             <em class="rfc2119" title="MAY">MAY</em> be present if known, and <em class="rfc2119" title="MUST">MUST</em> be a URI.
             </dd>
             <dt><code>name</code></dt>
             <dd>The full <a href="http://xmlns.com/foaf/spec/#term_name">name</a> 
-            of the agent. The name <em class="rfc2119" title="SHOULD">SHOULD</em> be present, for instance
+            of the agent. The name <em class="rfc2119" title="SHOULD">SHOULD</em> be present. Examples:
             <code>"John Doe"</code> or <code>"University of Manchester"</code></dd>
         </dl>
         Additional <a href="http://xmlns.com/foaf/0.1/">foaf:</a>
-        properties <em class="rfc2119" title="MAY">MAY</em> be added to the top-level <code>@graph</code> 
-        according to <a href="#custom-json-ld" class="sectionRef sec-ref">section 3.1.2 Custom JSON-LD</a>
+        properties (such as <code>foaf:homepage</code>) <em class="rfc2119" title="MAY">MAY</em> be added to
+        the top-level <code>@graph</code> according to <a href="#custom-json-ld" class="sectionRef sec-ref">section 3.1.2 Custom JSON-LD</a>
         by
         using a <code>@id</code> equal to the creator <code>uri</code>.
         </dd>
         <dt><code>authoredOn</code></dt> <dd>The time the Research
         Object
-        was conceptually formed. <em class="rfc2119" title="SHOULD">SHOULD</em> be present if different from
+        was conceptually formed. The author time <em class="rfc2119" title="SHOULD">SHOULD</em> be present if different from
         createdOn. The value <em class="rfc2119" title="MUST">MUST</em> be a 
         <a href="http://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime
-        formatted</a> timestamp (ISO 8601)</dd> 
+        formatted</a> timestamp (ISO 8601), and <em class="rfc2119" title="SHOULD">SHOULD</em> include the time zone</dd> 
 
         <dt><code>authoredBy</code></dt> 
         <dd>The author of the Research
-            Object, the agent(s) that conceptually formed the <abbr title="Research Object">RO</abbr>. <em class="rfc2119" title="SHOULD">SHOULD</em> be
+            Object, the agent(s) that conceptually formed the <abbr title="Research Object">RO</abbr>. 
+            The
+            author <em class="rfc2119" title="SHOULD">SHOULD</em> be
             present if different from <code>createdBy</code>.
             <em class="rfc2119" title="SHOULD">SHOULD</em> be an object with the same keys and requirements as
             for <code>createdBy</code>, but <em class="rfc2119" title="MAY">MAY</em> be a list to indicate
@@ -602,13 +632,13 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             within the top-level <code>@graph</code>
             key according to <a href="#custom-json-ld" class="sectionRef sec-ref">section 3.1.2 Custom JSON-LD</a>
             by using an <code>@id</code> value equal to the bundle
-            <code>id</code>, e.g. <code>"bundle:"</code>.
+            <code>id</code>, e.g. <code>"/"</code>.
             </p>
             </dd>
 
         <dt><code>history</code></dt> <dd>Provenance
             trace of the life of this <abbr title="Research Object">RO</abbr>, relative to the
-            <code>.ro/</code> folder. This property <em class="rfc2119" title="MAY">MAY</em> be present, in
+            <code>.ro/</code> directory. This property <em class="rfc2119" title="MAY">MAY</em> be present, in
             which case it <em class="rfc2119" title="SHOULD">SHOULD</em> be <code>"evolution.ttl"</code>,
             indicating that the file <code>.ro/evolution.ttl</code>
             contains the provenance trace. 
@@ -627,23 +657,18 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
        The values in a list <em class="rfc2119" title="MUST">MUST</em> be either:
        <ul>
         <li>A path relative to the root of the bundle, prefixed with
-        <code>bundle:</code></li>
+        <code>/</code></li>
         <li>An absolute URI</li>
         <li>An object, which <em class="rfc2119" title="SHOULD">SHOULD</em> be uniquely identified by either
             <code>file</code> or <code>uri</code>. Its members are:
         <dl>
             <dt><code>file</code></dt> 
-                <dd>A path relative to the root of the bundle. The path
-                <em class="rfc2119" title="SHOULD">SHOULD</em> be prefixed with <code>bundle:</code></dd>
+                <dd>A path within the bundle. The path
+                <em class="rfc2119" title="SHOULD">SHOULD</em> be prefixed with <code>/</code></dd>
             <dt><code>uri</code></dt>
                 <dd>An absolute URI. The key <code>uri</code> <em class="rfc2119" title="MUST NOT">MUST NOT</em> be provided at the
                 same time as <code>file</code>.</dd>
-            <dt><code>folder</code></dt>
-                <dd>A folder this resource (typically identified by
-                <code>uri</code>) belongs to, relative to the
-                root of the bundle. The path <em class="rfc2119" title="SHOULD">SHOULD</em> be prefixed with
-                <code>bundle:</code> and <em class="rfc2119" title="SHOULD">SHOULD</em> end with <code>/</code>,
-                for instance <code>bundle:folder2/</code>.</dd>
+
             <dt><code>mediatype</code></dt>
                 <dd>The <a href="http://www.iana.org/assignments/media-types">IANA
                 media type</a> of the (typically identified by
@@ -656,35 +681,80 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             <dt><code>createdOn</code></dt>
             <dt><code>createdBy</code></dt>
                 <dd>
-                File creation date and creator, as specified above.
+                File creation date and creator, as specified above for
+                the research object.
                 </dd>
-            <dt><code>proxy</code></dt> 
-            <dd>
-        The identifier for an <a href="http://www.openarchives.org/ore/1.0/datamodel#Proxies">ORE
-        proxy</a> [<cite><a class="bibref" href="#bib-ORE">ORE</a></cite>] for the resources as aggregated by this <abbr title="Research Object">RO</abbr>.
-        This property is intended the purposes of 
-        referring to "resource X as aggregated in research object Y"
-        within annotations and in external documents. This property 
-        <em class="rfc2119" title="SHOULD">SHOULD</em> be given for external resources aggregated by "uri"
-        references, as they could be aggregated in multiple ROs, and <em class="rfc2119" title="MAY">MAY</em>
-        be given for other resources.
-        <p>
-        The proxy identifier <em class="rfc2119" title="SHOULD">SHOULD</em> consist of the prefix <code>proxy:</code> and 
-            a lowercased UUID string [<cite><a class="bibref" href="#bib-RFC4122">RFC4122</a></cite>]. For example:
-            <code>proxy:d4f09040-272e-467f-9250-59593bd4ac8f</code>
-            </p></dd>
+            <dt><code>bundledAs</code> 
+            </dt><dd>Details of how this resource has been bundled. This
+            object <em class="rfc2119" title="SHOULD">SHOULD</em> be present for resources aggregated with
+            <code>uri</code>, and <em class="rfc2119" title="MAY">MAY</em> be present for other resources. 
+            Its members are:
+            <dl>
+                <dt><code>proxy</code></dt> 
+                <dd>
+            The identifier for an <a href="http://www.openarchives.org/ore/1.0/datamodel#Proxies">ORE
+            proxy</a> [<cite><a class="bibref" href="#bib-ORE">ORE</a></cite>] for the resources as aggregated by this <abbr title="Research Object">RO</abbr>.
+            This property is intended the purposes of 
+            referring to "resource X as aggregated in research object Y"
+            within annotations and in external documents. This property 
+            <em class="rfc2119" title="SHOULD">SHOULD</em> be given for external resources aggregated by
+            <code>uri</code>
+            references, as they could be aggregated in multiple ROs, and <em class="rfc2119" title="MAY">MAY</em>
+            be given for other resources.
+            <p>
+            The proxy identifier <em class="rfc2119" title="SHOULD">SHOULD</em> consist of the prefix <code>urn:uuid:</code> and 
+                a lowercased UUID string [<cite><a class="bibref" href="#bib-RFC4122">RFC4122</a></cite>]. For example:
+                <code>urn:uuid:d4f09040-272e-467f-9250-59593bd4ac8f</code>
+                </p></dd>
+                <dt><code>folder</code></dt>
+                    <dd>A folder this resource (typically identified by
+                    <code>uri</code>) belongs to, relative to the
+                    root of the bundle. The path <em class="rfc2119" title="SHOULD">SHOULD</em> be prefixed with
+                    <code>/</code> and <em class="rfc2119" title="SHOULD">SHOULD</em> end with <code>/</code>,
+                    for instance <code>/folder2/</code>. The folder <em class="rfc2119" title="SHOULD">SHOULD</em>
+                    be a directory in the zip archive.</dd>
+                <dt><code>filename</code></dt>
+                    <dd>The filename the resource (typically identified by
+                    <code>uri</code>) is given within the given folder. The
+                    key <code>filename</code> <em class="rfc2119" title="SHOULD">SHOULD</em> be present if
+                    <code>folder</code> is given. If <code>filename</code>
+                    is given, the <code>folder</code> <em class="rfc2119" title="MUST">MUST</em> be present.
+                    The filename should not contain the characters
+                    <code>/</code>, <code>:</code> or <code>\</code>, but
+                    <em class="rfc2119" title="MAY">MAY</em> contain spaces and international characters. 
+                </dd>
+                <dt><code>aggregatedBy</code></dt>
+                <dd>
+                    <em class="rfc2119" title="OPTIONAL">OPTIONAL</em> property, the agent that aggregated this
+                    resource to this research object, specially when
+                    different from the <code>createdBy</code> of the research object. 
+                    <em class="rfc2119" title="SHOULD">SHOULD</em> be an object with the same keys and requirements as
+                    for <code>createdBy</code> above, but <em class="rfc2119" title="MAY">MAY</em> be a list to indicate
+                    multiple aggregators.
+                </dd>
+                <dt><code>aggregatedOn</code></dt>
+                    <dd>
+                    <em class="rfc2119" title="OPTIONAL">OPTIONAL</em> property, when this resource was
+                    aggregated, specially when different from the
+                    <code>createdBy</code> for the research object. 
+                    The value, if present, <em class="rfc2119" title="MUST">MUST</em> be <a href="http://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime
+                    formatted</a> timestamp (ISO 8601), and <em class="rfc2119" title="SHOULD">SHOULD</em>
+                    include the time zone.</dd>    
+                    </dl></dd>
+            </dl>
+            </li></ul></dd>
         </dl>
         Additional metadata about a resource, if present, <em class="rfc2119" title="SHOULD">SHOULD</em> be 
         added as an annotation (see below).
-        </li>
-       </ul>
+        
+       
        <p>
        The order of the values in the <code>aggregates</code> list is insignificant, however
        the list <em class="rfc2119" title="MUST NOT">MUST NOT</em> contain duplicate entries. An entry is considered
        duplicate by comparing literal values and members
        <code>file</code> and <code>uri</code> uniformly as URIs [<cite><a class="bibref" href="#bib-URI">URI</a></cite>].
        </p>
-      </dd>
+      
 
       <dt><code>annotations</code></dt> 
       
@@ -703,9 +773,9 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             <dd>
             The identifier for this annotation. The identifier <em class="rfc2119" title="SHOULD">SHOULD</em> be
             present, and <em class="rfc2119" title="SHOULD">SHOULD</em>
-            consist of the prefix <code>annotation:</code> and 
+            consist of the prefix <code>urn:uuid:</code> and 
             a lowercased UUID string [<cite><a class="bibref" href="#bib-RFC4122">RFC4122</a></cite>]. For example:
-            <code>annotation:1a876f9e-4ffe-4c99-a05d-cd9d0cbd4cbb</code>
+            <code>urn:uuid:1a876f9e-4ffe-4c99-a05d-cd9d0cbd4cbb</code>
             </dd>
 
             <dt><code>about</code></dt>
@@ -718,22 +788,22 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             <ul>
                 <li>The research object itself, which <em class="rfc2119" title="SHOULD">SHOULD</em> match the
                 value of its <code>id</code>, e.g.
-                <code>bundle:</code></li>
+                <code>"/"</code></li>
                 <li>A bundled resource, starting with
-                <code>bundle:</code>, which <em class="rfc2119" title="SHOULD">SHOULD</em> be listed under
+                <code>/</code>, which <em class="rfc2119" title="SHOULD">SHOULD</em> be listed under
                     <code>aggregates</code> if that key is present</li>
                 <li>A proxy for an aggregated resource, starting with
-                    <code>proxy:</code>, which <em class="rfc2119" title="MUST">MUST</em> be defined under
+                    <code>urn:uuid:</code>, which <em class="rfc2119" title="MUST">MUST</em> be defined under
                     <code>aggregates</code> with a matching
                     value for <code>proxy</code></li>
                 <li>Another annotation, starting with
-                    <code>annotation:</code>, which <em class="rfc2119" title="MUST">MUST</em> be defined under
+                    <code>urn:uuid:</code>, which <em class="rfc2119" title="MUST">MUST</em> be defined under
                     <code>annotations</code> </li>
                 <li>An absolute URI, which may or may not be aggregated by the <abbr title="Research Object">RO</abbr></li>    
-                <li>A list, containing any of the above. This indicates
+                <li>A JSON list, containing any of the above. This indicates
                 that the annotation is about each of the listed
                 resources, for instance because the annotation content is
-                describing their relationships</li>
+                describing their relationship.</li>
             </ul>
             </dd>
             <dt><code>content</code></dt>
@@ -743,9 +813,14 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             of the annotation, <em class="rfc2119" title="SHOULD">SHOULD</em> be present. The content identifier <em class="rfc2119" title="SHOULD">SHOULD</em> be one of these
             types:
             <ul>
-                <li>A bundled resource, starting with
-                <code>bundle:</code>, which <em class="rfc2119" title="SHOULD">SHOULD</em> be listed under
-                    <code>aggregates</code> if that key is present</li>
+                <li>A (non-aggregated) meta-resource (typically an RDF
+                    graph), starting with <code>annotations/</code>, which
+                    <em class="rfc2119" title="SHOULD">SHOULD</em> exist in the <code>.ro/annotations/</code>
+                    directory</li>
+                <li>An aggregated bundled resource, starting with
+                <code>/</code>, which <em class="rfc2119" title="SHOULD">SHOULD</em> be listed under
+                    <code>aggregates</code> and <em class="rfc2119" title="MUST">MUST</em> be included in the
+                    ZIP archive</li>
                 <li>An absolute URI, which may or may not be aggregated by the <abbr title="Research Object">RO</abbr></li>    
             </ul>
             </dd>
@@ -765,65 +840,72 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
 
             
 
-    </dl>
+    
     <p>
     An example of a manifest which is valid JSON-LD is included below:
     </p>
 <div class="example"><div class="example-title"><span>Example 3</span></div><pre class="example">{
-  "@context":  [
-    { "@base": "widget://129b8efe-a692-48a0-85d4-ebc6c0a9b057/.ro/" },
-    "http://purl.org/wf4ever/ro-bundle/context.json"
-  ],
-  "id": "/",
-  "manifest":  "manifest.json",
-  "createdOn": "2013-03-05T17:29:03Z",
-  "createdBy": {
-      "uri":     "http://example.com/foaf#alice",
-      "orcid":   "http://orcid.org/0000-0002-1825-0097",
-      "name":    "Alice W. Land" },
-  "history":   "evolution.ttl",
-  "aggregates": [
-     "/folder/soup.jpeg",
-     "http://example.com/blog/",
-
-     { "file":      "/README.txt",
-       "mediatype": "text/plain",
-       "createdBy": {
-           "uri":     "http://example.com/foaf#bob",
-           "name":    "Bob Builder" },
-       "createdOn": "2013-02-12T19:37:32.939Z" },
-
-     { "uri":    "http://example.com/external.txt",
-       "folder": "/folder/",
-       "proxy":  "uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644" }
-  ],
-  "annotations": [
-    { "annotation": "uuid:d67466b4-3aeb-4855-8203-90febe71abdf",
-      "about":      "/folder/soup.jpeg",
-      "content":    "annotations/soup-properties.ttl" },
-
-    { "about":   "uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644",
-      "content": "http://example.com/blog/they-aggregated-our-file" },
-
-    { "about":   [ "/", "uuid:d67466b4-3aeb-4855-8203-90febe71abdf" ],
-      "content": "annotations/a-meta-annotation-in-this-ro.txt" }
-  ]
+    "@context":  [
+        "https://w3id.org/bundle/context"
+    ],
+    "id": "/",
+    "manifest":  "manifest.json",
+    "createdOn": "2013-03-05T17:29:03Z",
+    "createdBy": {
+        "uri":     "http://example.com/foaf#alice",
+        "orcid":   "http://orcid.org/0000-0002-1825-0097",
+        "name":    "Alice W. Land" },
+    "history":   "evolution.ttl",
+    "aggregates": [
+       "/folder/soup.jpeg",
+       "http://example.com/blog/",
+       { "file":      "/README.txt",
+         "mediatype": "text/plain",
+         "createdBy": {
+             "uri":     "http://example.com/foaf#bob",
+             "name":    "Bob Builder" },
+         "createdOn": "2013-02-12T19:37:32.939Z" },
+       { "uri":    "http://example.com/comments.txt",
+         "bundledAs": { 
+            "proxy":    "urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644",
+            "folder":   "/folder/",
+            "filename": "external.txt" }
+       }
+    ],
+    "annotations": [
+      { "annotation": "urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf",
+        "about":      "/folder/soup.jpeg",
+        "content":    "annotations/soup-properties.ttl" },
+  
+      { "about":   "urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644",
+        "content": "http://example.com/blog/they-aggregated-our-file" },
+  
+      { "about":   [ "/", "urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf" ],
+        "content": "annotations/a-meta-annotation-in-this-ro.txt" }
+    ]
 }</pre></div>
 
-    <section id="json-ld">
-    <h4><span class="secno">3.1.1 </span>JSON-LD and mapping to <abbr title="Research Object">RO</abbr> model</h4>
-    <p>
-    Manifests following the JSON structure defined in 
-    <a href="#manifest-json" class="sectionRef sec-ref">section 3.1 .ro/manifest.json</a> with a
-    <code>"@context":
-        "http://purl.org/wf4ever/ro-bundle/context.json"</code>
+        <section id="json-ld">
+        <h4><span class="secno">3.1.1 </span>JSON-LD and mapping to <abbr title="Research Object">RO</abbr> model</h4>
+        <p>
+        Manifests following the JSON structure defined in 
+        <a href="#manifest-json" class="sectionRef sec-ref">section 3.1 .ro/manifest.json</a> with a
+        <code>"@context": [
+        "https://w3id.org/bundle/context" 
+    ]</code>
     is intended to be valid [<cite><a class="bibref" href="#bib-JSON-LD">JSON-LD</a></cite>] without any additional
     modifications.  Mapping <code>.ro/manifest.json</code> to the
     ORE and [<cite><a class="bibref" href="#bib-RO">RO</a></cite>] models in RDF <em class="rfc2119" title="SHOULD">SHOULD</em> be performed according to the
-    algorithm for <a href="http://json-ld.org/spec/latest/json-ld-api/#convert-to-rdf-algorithm">conversion
+    algorithm for <a href="http://www.w3.org/TR/json-ld-api/#convert-to-rdf-algorithm">conversion
     from JSON to RDF</a>, as specified in the JSON-LD API [<cite><a class="bibref" href="#bib-JSON-LD">JSON-LD</a></cite>].  
     </p>
-    <p class="TODO">Describe JSON-LD context</p>
+    <p>
+    In order to generate the RDF implied by the manifest, a base URI
+    <em class="rfc2119" title="SHOULD">SHOULD</em> be assumed according to <a href="#absolute-uris" class="sectionRef sec-ref">section 4.1 Absolute URIs for bundle resources</a> with a path of <code>/.ro/</code> -- e.g.
+    relative to <code>.ro/manifest.json</code>, in order to ensure that
+    paths starting with <code>/</code> don't "climb out" of the 
+    bundle root. 
+    </p>
     <div class="example"><div class="example-title"><span>Example 4</span></div><pre class="example">{
   "@context": {
     "ao": "http://purl.org/ao/",
@@ -833,12 +915,11 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     "ore": "http://www.openarchives.org/ore/terms/",
     "ro": "http://purl.org/wf4ever/ro#",
     "roterms": "http://purl.org/wf4ever/roterms#",
-    "robundle": "http://purl.org/wf4ever/robundle#",
+    "bundle": "http://purl.org/wf4ever/bundle#",
     "prov": "http://www.w3.org/ns/prov#",
     "pav": "http://purl.org/pav/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "foaf": "http://xmlns.com/foaf/0.1/",
-    "uuid": "urn:uuid:",
 
     "id": "@id",
     "file": "@id",
@@ -902,16 +983,19 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         "@id": "dc:format"
     },
     "folder": {
-      "@id": "robundle:inFolder",
+      "@id": "ore:proxyIn",
       "@type": "@id"
     },
+    "filename": { 
+        "@id": "ro:entryName"
+    },
     "proxy": {
-      "@id": "robundle:hasProxy",
+      "@id": "bundle:hasProxy",
       "@type": "@id"
     },
 
     "annotations": {
-      "@id": "robundle:hasAnnotation",
+      "@id": "bundle:hasAnnotation",
       "@type": "@id"
     },
     "content": {
@@ -929,30 +1013,73 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     As an example of this processing, below is a Turtle
     representation after processing the <code>.ro/manifest.json</code>
     shown as an example in 
-    <a href="#manifest-json" class="sectionRef sec-ref">section 3.1 .ro/manifest.json</a>:
+    <a href="#manifest-json" class="sectionRef sec-ref">section 3.1 .ro/manifest.json</a>
+    assuming a base URI of
+    <code>app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/</code>
     </p>
 
-    <div class="example"><div class="example-title"><span>Example 5</span></div><pre class="example"></pre></div>
-    <p class="TODO">Generate example</p>
+    <div class="example"><div class="example-title"><span>Example 5</span></div><pre class="example">@base &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+@prefix prov: &lt;http://www.w3.org/ns/prov#&gt; .
+@prefix pav: &lt;http://purl.org/pav/&gt; .
+@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .
+@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .
+@prefix oa: &lt;http://www.w3.org/ns/oa#&gt; .
+@prefix ore: &lt;http://www.openarchives.org/ore/terms/&gt; .
+@prefix ro: &lt;http://purl.org/wf4ever/ro#&gt; .
+@prefix bundle: &lt;http://purl.org/wf4ever/bundle#&gt; .
+
+&lt;/&gt; pav:createdBy &lt;http://example.com/foaf#alice&gt; ;
+    pav:createdOn "2013-03-05T17:29:03Z"^^xsd:dateTime ;
+    ore:aggregates 
+        &lt;/README.txt&gt;,
+        &lt;/folder/soup.jpeg&gt;,
+        &lt;http://example.com/blog/&gt;,
+        &lt;http://example.com/comments.txt&gt; ;
+    ore:isDescribedBy &lt;manifest.json&gt; ;
+    prov:has_provenance &lt;/evolution.ttl&gt; ;
+    bundle:hasAnnotation
+        &lt;urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf&gt;,
+        [ oa:hasBody &lt;/annotations/a-meta-annotation-in-this-ro.txt&gt; ;
+          oa:hasTarget &lt;/&gt;, &lt;urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf&gt; ],
+        [ oa:hasBody &lt;http://example.com/blog/they-aggregated-our-file&gt; ;
+          oa:hasTarget &lt;urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644&gt; ] ;
+
+&lt;/README.txt&gt;
+    dc:format "text/plain";
+    pav:createdBy &lt;http://example.com/foaf#bob&gt; ;
+    pav:createdOn "2013-02-12T19:37:32.939Z"^^xsd:dateTime .
+
+&lt;http://example.com/foaf#alice&gt;
+    roterms:orcid &lt;http://orcid.org/0000-0002-1825-0097&gt; ;
+    foaf:name "Alice W. Land" .
+
+&lt;http://example.com/foaf#bob&gt; foaf:name "Bob Builder" .
+
+&lt;urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf&gt; oa:hasBody &lt;/annotations/soup-properties.ttl&gt; ;
+    oa:hasTarget &lt;/folder/soup.jpeg&gt; .</pre></div>
     </section>
 
     <section id="custom-json-ld">
     <h4><span class="secno">3.1.2 </span>Custom JSON-LD</h4>
     <p>
     Applications who support JSON-LD (rather than just JSON)
-    <em class="rfc2119" title="MAY">MAY</em> choose to parse and generate additional statements 
+    <em class="rfc2119" title="MAY">MAY</em> choose to parse and generate statements 
     in <code>.ro/manifest.json</code>
     according to the [<cite><a class="bibref" href="#bib-JSON-LD">JSON-LD</a></cite>] specifications. 
     </p>
     <p>
-    Applications generating JSON-LD <em class="rfc2119" title="MAY">MAY</em> use a <code>@context</code>
-    list, but <em class="rfc2119" title="SHOULD">SHOULD</em> include 
-    <code>http://purl.org/wf4ever/bundle/context.json</code>
-    as the last item in the list to indicate to JSON parsers that 
+    Applications generating JSON-LD <em class="rfc2119" title="MAY">MAY</em> provide additional items in the
+    <code>@context</code> list, but <em class="rfc2119" title="SHOULD">SHOULD</em> include 
+    <code>https://w3id.org/bundle/context</code>
+    as the last item, to indicate to JSON parsers that 
     the manifest can be parsed as plain JSON according to 
     <a href="#manifest-json" class="sectionRef sec-ref">section 3.1 .ro/manifest.json</a>.
     Applications <em class="rfc2119" title="SHOULD NOT">SHOULD NOT</em> use <code>@context</code> at deeper nexting
-    levels, except within the top level <code>@graph</code>.
+    levels.
     </p>
     <p>
     Applications <em class="rfc2119" title="SHOULD NOT">SHOULD NOT</em> write additional properties directly
@@ -960,25 +1087,27 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     <a href="#manifest-json" class="sectionRef sec-ref">section 3.1 .ro/manifest.json</a>.
     Instead, additional statements <em class="rfc2119" title="SHOULD">SHOULD</em> be made within an
     additional <code>@graph</code> node according to 
-    <a href="http://json-ld.org/spec/latest/json-ld-syntax/#named-graphs">JSON-LD
+    <a href="http://www.w3.org/TR/json-ld/#named-graphs">JSON-LD
         Named Graphs</a>. <code>@graph</code> <em class="rfc2119" title="SHOULD">SHOULD</em> only be
     added to the top-level object.
     For example:
     </p>
     <pre>{
-  "@context": "http://purl.org/wf4ever/ro-bundle/context.json",
-  "id": "bundle:",
-  "manifest": "manifest.json",
-  "aggregates": [
-     "http://example.com/blog/2012",
-     "http://example.com/blog/2013"
-  ],
-  "@graph": [
-    { "@id": "http://example.com/blog/2013",
-      "dcterms:replaces": "http://example.com/blog/2012" },
-    { "@id": "http://example.com/blog/2013",
-      "dcterms:isReplacedBy": "http://example.com/blog/2013" }
-  ]
+    "@context":  [
+        "https://w3id.org/bundle/context"
+    ],
+    "id": "/
+    "manifest": "manifest.json",
+    "aggregates": [
+       "http://example.com/blog/2012",
+       "http://example.com/blog/2013"
+    ],
+    "@graph": [
+      { "@id": "http://example.com/blog/2013",
+        "dcterms:replaces": "http://example.com/blog/2012" },
+      { "@id": "http://example.com/blog/2012",
+        "dcterms:isReplacedBy": "http://example.com/blog/2013" }
+    ]
 }
     </pre>
     <p>
@@ -996,14 +1125,14 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         </section>
     </section>
 
-    <section id="alternative-manifest-representations">
+    <section id="alternative-manifests">
         <h3><span class="secno">3.2 </span>Alternative manifest representations</h3>
         <p>In addition to the <code>.ro/manifest.json</code> representation
         specified in <a href="#manifest-json" class="sectionRef sec-ref">section 3.1 .ro/manifest.json</a>, a
         Research Object Bundle <em class="rfc2119" title="MAY">MAY</em> include the ORE manifest in
         alternative representations like RDF/XML
         [<cite><a class="bibref" href="#bib-RDF-SYNTAX-GRAMMAR">RDF-SYNTAX-GRAMMAR</a></cite>] and Turtle [<cite><a class="bibref" href="#bib-TURTLE">TURTLE</a></cite>], for instance by
-        generating them using the <a href="http://json-ld.org/spec/latest/json-ld-api/#convert-to-rdf-algorithm">conversion
+        generating them using the <a href="http://www.w3.org/TR/json-ld-api/#convert-to-rdf-algorithm">conversion
        from JSON to RDF</a> algorithm in JSON-LD API [<cite><a class="bibref" href="#bib-JSON-LD">JSON-LD</a></cite>].
         </p>
         <ul>
@@ -1018,7 +1147,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             the research object.
           </li><li>
             Alternative manifests <em class="rfc2119" title="SHOULD">SHOULD</em>
-            represent the equivalent RDF graph of
+            represent (at least) the equivalent RDF graph of
             <code>.ro/manifest.json</code> 
             (see <a href="#json-ld" class="sectionRef sec-ref">section 3.1.1 JSON-LD and mapping to RO model</a>)
           </li><li>
@@ -1032,6 +1161,13 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             <code>.ro/manifest.json</code> 
           </li>
     </ul>
+    <p>
+    If an application is modifying a research object bundle which
+    contains manifests it can't handle (and thus can't update), the
+    application <em class="rfc2119" title="SHOULD">SHOULD</em> remove the <code>rootfile</code> entry for those
+    unsupported manifests, and <em class="rfc2119" title="MAY">MAY</em> delete those manifests from the
+    archive.
+    </p>
       </section>
     </section>
     
@@ -1039,17 +1175,15 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         <!--OddPage--><h2><span class="secno">4. </span>Identifiers</h2><p><em>This section is non-normative.</em></p>
         <p>
         Objects in a research object bundle are identified within the
-        JSON manifest using different JSON-LD prefixes, which could
-        be thought of as local URI schemes, which resolves to relative
-        URI references based at the root of the ZIP archive.
+        JSON manifest relative to <code>.ro/manifest.json</code>,
+        with <code>/</code> resolving to the root of the ZIP archive.
         </p>
         <table id="prefix">
-            <tbody><tr><th>Prefix</th> <th>Relative URI reference</th>
-            </tr><tr><td><em>(no prefix)</em></td> <td><code>.ro/</code></td> </tr>
-            <tr><td><code>bundle:</code></td> <td><code>./</code></td> </tr>
-            <tr><td><code>proxy:</code></td> <td><code>.ro/proxies/</code></td> </tr>
-            <tr><td><code>annotation:</code></td> <td><code>.ro/annotations/</code></td> </tr>
-            <tr><td><em>(other)</em></td> <td><em>Absolute URI</em></td> </tr>
+            <tbody><tr><th>Prefix</th> <th>Interpretation</th>
+            </tr><tr><td><code>/</code></td> <td>Path relative to root of ZIP archive</td> </tr>
+            <tr><td><code>urn:uuid:</code></td> <td>UUID according to [<cite><a class="bibref" href="#bib-RFC4122">RFC4122</a></cite>]
+            </td></tr><tr><td><em>(containing <code>:</code>)</em></td> <td>Absolute URI</td> </tr>
+            <tr><td><em>(no prefix)</em></td> <td>Path relative to <code>.ro/</code></td> </tr>
         </tbody></table>
         <p>
         Due to their nature as ZIP files, Research Object Bundles might
@@ -1059,7 +1193,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         Thus any of the prefixes above describing resources within the 
         bundle are relative to the root of the ZIP file, and the
         <code>id</code> identifying the Research Object is set to
-        <code>bundle:</code>, meaning the root represents the <abbr title="Research Object">RO</abbr> itself.
+        <code>"/"</code>, meaning the root represents the <abbr title="Research Object">RO</abbr> itself.
         </p>
         <p>
         </p><section id="absolute-uris">
@@ -1067,244 +1201,108 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             <p>
             Applications which require an absolute URI for identifying a
             resource within a Research Object Bundle may choose to use
-            one of the approaches presented in this section in
+            the approach presented in this section in
             combination with resolving against the <a href="#prefix">prefix
             table</a> above. 
             </p>
-            <div class="TODO">No decission has been made on which of these
-                methods - if any - should be recommended; meanwhile these
-                subsections contain a list of advantages and
-                disadvantages to guide the reader.
-            kept</div>
-            <section id="path-uris">
-            <h4><span class="secno">4.1.1 </span>Nested paths</h4><p><em>This section is non-normative.</em></p>
-            If an <abbr title="Research Object">RO</abbr> bundle is published at a HTTP (or HTTPS) server,
-            then URIs to the bundled resources can be minted by
-            assuming a base URI of the <abbr title="Research Object">RO</abbr> Bundle URI with <code>/</code>
-            appended. 
-            For instance, if:
-            <pre>http://example.com/example1.robundle</pre>
-            contains the file <code>folder/helloworld.txt</code>
-            (<code>bundle:folder/helloworld.txt</code> in the
-            manifest.json), then we can assume the base URI:
-            <pre>http://example.com/example1.robundle/</pre>
-            and can refer to the file as:
-            <pre>http://example.com/example1.robundle/folder/helloworld.txt</pre>
             <p>
-            A web server that exposes <abbr title="Research Object">RO</abbr> bundles <em class="rfc2119" title="MAY">MAY</em> support resolving
-            such nested URIs by internally extracting the resources from
-            the ZIP archive or redirecting to an existing resource, 
-            for instance because it is implementing the [<cite><a class="bibref" href="#bib-ROSRS">ROSRS</a></cite>] API.
-            </p>
-            <p>
-            Semantically, the distinction between the URI with or
-            without the trailing <code>/</code> is that say
-            <code>example1.robundle</code> identifies the <abbr title="Research Object">RO</abbr> Bundle,
-            e.g. the ZIP archive, which has attributes such as size in
-            bytes, checksum, etc, while <code>example1.robundle/</code>
-            identifies the slightly more abstract concept of the
-            Research Object (the aggregation) that is serialized as a <abbr title="Research Object">RO</abbr>
-            bundle. 
-            </p>
-            <p>
-            Advantages:
-            </p>
-            <ul>
-                <li>Relative URI references within the <abbr title="Research Object">RO</abbr> bundle
-                can be interpreted by using the calculated base URI.</li>
-                <li>Relative URI references between resources resolve
-                consistently (for instance <code>img/picture.jpeg</code> linked
-                from
-                <code>http://example.com/example1.robundle/document.html</code>
-                resolves to
-                <code>http://example.com/example1.robundle/img/picture1.jpeg</code>)</li>
-                <li>Web server could optionally handle request and
-                expose nested resources (or at least redirect to the ZIP
-                file)</li>
-                <li>Fragment identifiers within resources are still
-                valid</li>
-            </ul>
-            <p>Disadvantages</p>
-            <ul>
-                <li>Resolving the nested URIs would generally give a
-                misleading 404 Not Found</li>
-                <li>Could encourage minting of URIs in namespaces 
-                manage by others</li>
-                <li>Given such a URI, to find the <abbr title="Research Object">RO</abbr> bundle, one might
-                have to assume that everything after
-                <code>.robundle</code>
-                should be removed. (URL hacking).
-                </li><li>Malicious or malformed URI references within <abbr title="Research Object">RO</abbr>
-                bundles might be resolved to expose local resources,
-                specially within the <code>file</code> scheme. 
-                For instance the reference <code>../../etc/passwd</code> from
-                <code>file:///tmp/example1.robundle/evil.html</code>
-                could be resolved to
-                <code>file:///etc/passwd</code></li>
-            </ul>
-            <p>
-            This technique <em class="rfc2119" title="SHOULD NOT">SHOULD NOT</em> be used if:
-            </p>
-            <ul>
-                <li>The URI for the <abbr title="Research Object">RO</abbr> bundle is not using a
-                hierarchical scheme (e.g.
-                <code>urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6</code>)
-                </li><li>The URI for the <abbr title="Research Object">RO</abbr> bundle contains a query or
-                fragment identifier, e.g,
-                <code>http://example.com/ro?id=13</code></li>
-                <li>The web server is not under the control of the
-                minter of the URIs</li>
-            </ul>
-            </section>
-            <section id="hash-uris">
-            <h4><span class="secno">4.1.2 </span>Fragment identifiers</h4>
-                The IANA media type registration for <a href="http://www.iana.org/assignments/media-types/application/zip">application/zip</a>
-                and the <a href="http://tools.ietf.org/html/rfc6839#section-3.6">+zip
-                    suffix</a> of [RFC6839] does not define fragment
-                identifiers for ZIP archives. However, <abbr title="Research Object">RO</abbr> bundles
-                identified with the recommended media type of
-                <code>application/vnd.wf4ever.robundle+zip</code>
-                <em class="rfc2119" title="MAY">MAY</em> be interpreted to have a fragment identifier
-                that is resolvable as the path within the ZIP archive.
-                <p>
-                    For instance, if:
-                </p><pre>http://example.com/example1.robundle</pre>
-                contains the file <code>folder/helloworld.txt</code>
-                (<code>bundle:folder/helloworld.txt</code> in the
-                manifest.json), then we can refer to the Research Object as
-                <pre>http://example.com/example1.robundle#</pre>
-                and can refer to the file as:
-                <pre>http://example.com/example1.robundle#folder/helloworld.txt</pre>
-                Advantages:
-                <ul>
-                    <li>URIs always resolve (to the ZIP file)</li>
-                    <li>Simple to understand</li>
-                </ul>
-                Disadvantages:
-                <ul>
-                    <li>Not formally defined by application/zip</li>
-                    <li>Fragment identifiers are bound by the media type and
-                    might not work for other content types.
-                    (e.g. an <abbr title="Research Object">RO</abbr> bundle was returned due to content
-                    negotiation in a server implenting the [<cite><a class="bibref" href="#bib-ROSRS">ROSRS</a></cite>] API)</li>
-                    <li>Relative URI references in resources more complicated to
-                    resolve as they would easily seem to refer to siblings
-                    of the <abbr title="Research Object">RO</abbr> bundle, a URI reference <code>img.jpg</code>
-                    from
-                    <code>http://exaxmple.com/example1.robundle#document.html</code>
-                    would seem to refer to <code>http://exaxmple.com/img.jpg</code></li>
-                    <li>Existing fragment identifiers within resources more
-                    complicated to resolve - <code>#para2</code> in
-                    <code>document.html</code> becomes
-                    <code>http://example.com/example1.robundle#document.html#para2</code>
-                </li></ul>
-            </section>
-            <section id="jar">
-            <h4><span class="secno">4.1.3 </span>jar: scheme</h4>
-            The <a href="http://www.iana.org/assignments/uri-schemes/prov/jar">jar:</a>
-            scheme is used by Java to refer to resources within JAR
-            files. It is specified as part of the documentation for <a href="http://docs.oracle.com/javase/7/docs/api/java/net/JarURLConnection.html">JarURLConnection</a>.
-            In short, a JAR URI is formed by combining
-            <code>jar:</code>, the original URI of the JAR file,
-            the separator <code>!/</code>, and the path within the JAR
-            file.  For all practical purposes, an <abbr title="Research Object">RO</abbr> bundle, being a ZIP
-            archive, can be interpreted as a <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/jar/jar.html">JAR file</a>.  For instance, if:
-            <pre>http://example.com/example1.robundle</pre>
-            contains the file <code>folder/helloworld.txt</code>
-            (<code>bundle:folder/helloworld.txt</code> in the
-            manifest.json), then we can assume the base URI
-            <pre>jar:http://example.com/example1.robundle!/</pre>
-            and can refer to the file as:
-            <pre>jar:http://example.com/example1.robundle!/folder/helloworld.txt</pre>
-            <p>
-            Advantages:
-            </p><ul>
-                <li>Somewhat resolvable (within Java)</li>
-                <li>Somewhat formally defined</li>
-                <li>Fragment identifiers within resources still valid</li><li>
-            </li></ul>
-            <p>
-            Disadvantages:
-            </p><ul>
-                <li>The <code>jar:</code> scheme is not hierarchical (it
-                does not use <code>//</code>, and so relative URI
-                references within <abbr title="Research Object">RO</abbr> bundle resources are
-                not correctly resolved (not even by java.net.URI). 
-                </li><li>
-                </li><li>Misleading and potentially confusing: JAR files have
-                their own <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/jar/jar.html#JAR_Manifest">manifest</a>
-                in <code>META-INF/MANIFEST.MF</code>.</li>
-                <li>Gives impression that <abbr title="Research Object">RO</abbr> Bundle is executable with JAva</li>
-            </ul>
-            </section>
-            <section id="widget">
-            <h4><span class="secno">4.1.4 </span>Widget URI scheme</h4>
-            <p>
-            The <a href="http://www.w3.org/TR/widgets-uri/">Widget URI
-                scheme</a> defines how a URI can be formed for the
-            purposes of accessing resources within a ZIP file as if it
-            was a HTTP server. While this is intended for sandboxing <a href="http://www.w3.org/TR/widgets/">Packaged web
-            apps</a>, it is equally applicable to Research Object
-        bundles for the purposes of sandboxing.
+            The <a href="http://www.w3.org/TR/app-uri/">app: URI
+                scheme</a> [<cite><a class="bibref" href="#bib-APP-URI">APP-URI</a></cite>] proposes how a URI can be formed for the
+            purposes of accessing resources within a ZIP file as if the
+            resources were retrieved from a HTTP server. While this is
+            primary intended for sandboxing <a href="http://www.w3.org/TR/runtime/">HTML
+                applications</a>,
+            it is equally applicable to Research Object
+            bundles for the purposes of sandboxing and for generating a
+            URI independent of the location of the ZIP archive.
             </p><p>
-            The Widget URI scheme recommends
+            The app: URI scheme recommends
             generating a UUID string [<cite><a class="bibref" href="#bib-RFC4122">RFC4122</a></cite>] for minting the <em>authority</em>,
             forming the base URI for the <abbr title="Research Object">RO</abbr> bundle. 
             For instance, if:
             </p><pre>http://example.com/example1.robundle</pre>
-            contains the file <code>folder/helloworld.txt</code>
-            (<code>:bundle:folder/helloworld.txt</code> in the
-            manifest.json), then we generate a new UUID 
+            contains the file <code>/folder/helloworld.txt</code>, then
+            we generate a new UUID
             <code>8191dee8-0b8e-452d-8d64-7706a140185e</code> and 
-            refer to the Research Object as
-            <pre>widget://8191dee8-0b8e-452d-8d64-7706a140185e/</pre>
-            and can refer to the file as:
-            <pre>widget://8191dee8-0b8e-452d-8d64-7706a140185e/folder/helloworld.txt</pre>
+            refer to the Research Object as <pre>app://8191dee8-0b8e-452d-8d64-7706a140185e/</pre>
+            and can refer to its bundled file <code>/folder/helloworld.txt</code> as:
+            <pre>app://8191dee8-0b8e-452d-8d64-7706a140185e/folder/helloworld.txt</pre>
             <p>
-            For purposes of security/sandboxing when interpreting <abbr title="Research Object">RO</abbr>
-            bundles, the authority should be a <a href="http://tools.ietf.org/html/rfc4122#section-4.4">v4
-                UUID
-            from random numbers</a>. For purposes of describing the
-        content of an <abbr title="Research Object">RO</abbr> bundle at a given URI, the authority should be 
-        <a href="http://tools.ietf.org/html/rfc4122#section-4.3">Name
-            based UUID</a> using v5 (SHA-1 hashing). For purposes of
-            describing the content of an <abbr title="Research Object">RO</abbr> bundle as a bytestream
-            independent of its location (for instance on a USB stick),
-            then the authority should be the hexadecimal SHA-256
-            checksum of the ZIP archive.
-            </p>
-            <p>Example widget base URIs</p>
+            The type of authority to generate depends on what is the purpose of the
+            absolute URI: 
+            </p><ol>
+                <li>
+                    For security/sandboxing when interpreting <abbr title="Research Object">RO</abbr>
+                    bundles, the authority should be a <a href="http://tools.ietf.org/html/rfc4122#section-4.4">v4
+                        UUID
+                        from random numbers</a>.  Thus the URI is guaranteed to
+                    be unique for each interpretation, and can't (reasonably) be
+                    pre-guessed. 
+                    <br>Applications exposing such URIs might
+                    want to record the equivalent provenance of a <a href="http://purl.org/pav/html#http://purl.org/pav/retrievedFrom">pav:retrievedFrom</a>
+                    relation to indicate where the bundle was retrieved
+                    from. For instance (in Turtle):
+                    <div id="retrievedFromExample">
+                    <div class="example"><div class="example-title"><span>Example 6</span></div><pre class="example">@prefix pav: &lt;http://purl.org/pav/&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+&lt;app://15259726-dcbb-42ff-8fc6-36282c98d4e6/&gt;
+    pav:retrievedFrom &lt;http://example.com/example1.robundle&gt; ;
+    pav:retrievedOn "2013-05-21T14:24:19Z"^^xsd:dateTime .</pre></div>
+                    </div>
+                </li>
+                <li>
+                    For describing/referencing 
+                content of an <abbr title="Research Object">RO</abbr> bundle accessed at a given URL, the authority should be
+                generated as a <a href="http://tools.ietf.org/html/rfc4122#section-4.3">name
+                    based UUID</a> using v5 (SHA-1 hashing) concatination of the 
+                    URL namespace
+                    <code>6ba7b811-9dad-11d1-80b4-00c04fd430c8</code> (as
+                    UUID bytes) and the ASCII-escaped version of the
+                    URL. This approach gives 
+                    a predictable UUID for a particular URL, even if the
+                    content at the URL might later change. <br>
+                    Applications using this approach might want to declare the equivalent of
+                    a <code>owl:sameAs</code> relation between the accessed
+                    URI and the generated <code>app:</code> URI in order
+                    to record the original URI. For instance:
+                    <div class="example"><div class="example-title"><span>Example 7</span></div><pre class="example">@prefix owl: <http: www.w3.org="" 2002="" 07="" owl#=""> .
+&lt;app://7878e885-327c-5ad4-9868-7338f1f13b3b/&gt; owl:sameAs  
+        &lt;http://example.com/example1.robundle&gt; .
+                    </http:></pre></div>
+                </li>
+                <li>
+                    For purposes of
+                    describing the content of an <abbr title="Research Object">RO</abbr> bundle as a bytestream
+                    independent of its location (for instance on a USB stick),
+                    then the authority should be the hexadecimal SHA-256
+                    checksum of the ZIP archive (not a UUID). This
+                    ensures a predictable UUID for the same physical
+                    representation, where any change to the bundle
+                    generates a new identifier.
+                    <br>
+                    Applications exposing such URIs might
+                    want to record the equivalent provenance of a 
+                    <a href="http://purl.org/pav/html#http://purl.org/pav/retrievedFrom">pav:retrievedFrom</a>
+                    relation to indicate where the bundle was retrieved
+                    from, including the time of retrieval using the
+                    equivalent of <a href="http://purl.org/pav/html#http://purl.org/pav/retrievedOn">pav:retrievedOn</a>.
+                    (See <a href="#retrievedFromExample">example
+                        above</a>).
+                </li>
+            </ol>
+            <p>Example app base URIs:</p>
             <ul>
-                <li><code>widget://15259726-dcbb-42ff-8fc6-36282c98d4e6/</code> 
+                <li><code>app://15259726-dcbb-42ff-8fc6-36282c98d4e6/</code> 
                 <em>UUID v4 using pseduo-random number</em></li>
-                <li><code>widget://7878e885-327c-5ad4-9868-7338f1f13b3b/</code>
+                <li><code>app://7878e885-327c-5ad4-9868-7338f1f13b3b/</code>
                     <em>UUID v5 of the URL
                         <code>http://example.com/bundle1.robundle</code></em></li>
-                <li><code>widget://587cff3ae37d58af6886d656623bd91237759a42d8fe1575a9744898c01d97d7/</code>
+                <li><code>app://587cff3ae37d58af6886d656623bd91237759a42d8fe1575a9744898c01d97d7/</code>
                     <em>SHA-256 of an empty <abbr title="Research Object">RO</abbr> bundle</em></li>
-            </ul>
-            <div class="TODO">
-            Recommend just ONE of these? Which?
-            </div>
-
-            <p>Advantages:</p>
-            <ul>
-                <li>Relative URIs and fragments are valid without
-                modifications</li><li>
-                </li><li>Sandboxed by <abbr title="Research Object">RO</abbr> bundle</li>
-                <li>Defined (HTTP-like) resolution mechanism</li>
-                <li>Predictable base URIs (UUIDv5 based on URL or
-                    SHA-256 based on bytes)
-            </li></ul>
-            <p>Disadvantages:</p>
-            <ul>
-                <li>Can't be dereferenced</li>
-                <li>Status is W3C WG Note, was abandoned as W3C
-                Specification (Check: meaning what?)</li>
             </ul>
             </section>
         </section>
-    </section>
+    
     <section id="conformance"><!--OddPage--><h2><span class="secno">5. </span>Conformance</h2>
 <p>
   As well as sections marked as non-normative, all authoring guidelines, diagrams, examples,
@@ -1321,7 +1319,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     <section class="appendix" id="acknowledgements">
       <!--OddPage--><h2><span class="secno">A. </span>Acknowledgements</h2>
       <p>
-        Thanks to Khalid Belhajjame, Graham Klyne and Piotr Holubowicz
+        Thanks to Khalid Belhajjame, Graham Klyne and Piotr Hołubowicz
         for reviewing this specification. The underlying work 
         has been funded as part of the
         <a href="http://www.wf4ever-project.org/"><abbr title="Workflow forever">Wf4Ever</abbr> project</a>,
@@ -1340,9 +1338,9 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
 </dd><dt id="bib-RFC4627">[RFC4627]</dt><dd>D. Crockford. <a href="http://www.ietf.org/rfc/rfc4627.txt"><cite>The application/json Media Type for JavaScript Object Notation (JSON) (RFC 4627)</cite></a>. July 2006. RFC. URL: <a href="http://www.ietf.org/rfc/rfc4627.txt">http://www.ietf.org/rfc/rfc4627.txt</a>
 </dd><dt id="bib-RO">[RO]</dt><dd>Stian Soiland-Reyes; Sean Bechhofer et al.: <cite><a href="http://purl.org/wf4ever/model">Wf4Ever Research Object Model</a></cite>. 30 November 2012. URL: <a href="http://purl.org/wf4ever/model">http://purl.org/wf4ever/model</a>
 </dd><dt id="bib-UCF">[UCF]</dt><dd>Adobe: <cite><a href="https://learn.adobe.com/wiki/display/PDFNAV/Universal+Container+Format">Universal Container Format</a></cite>. URL: <a href="https://learn.adobe.com/wiki/display/PDFNAV/Universal+Container+Format">https://learn.adobe.com/wiki/display/PDFNAV/Universal+Container+Format</a> accessed 2013-02-28.
-</dd></dl></section><section id="informative-references"><h3><span class="secno">B.2 </span>Informative references</h3><dl class="bibliography"><dt id="bib-OCF">[OCF]</dt><dd>James Pritchett; Markus Gylling: <cite><a href="http://idpf.org/epub/30/spec/epub30-ocf-20111011.html">EPUB Open Container Format (OCF) 3.0</a>. Recommended Specification 11 October 2011. International Digital Publishing Forum (IDPF). URL: <a href="http://idpf.org/epub/30/spec/epub30-ocf-20111011.html">http://idpf.org/epub/30/spec/epub30-ocf-20111011.html</a>
-</cite></dd><dt id="bib-ODF">[ODF]</dt><dd>Rob Weir; Michael Brauer; Patrick Durusau; Dennis Hamilton: Open Document Format for Office Applications (OpenDocument) Version 1.3, Part 3: Packages. OASIS Standard. 29 September 2011. URL: <a href="">http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2-part3.html
-</a></dd><dt id="bib-RDF-SYNTAX-GRAMMAR">[RDF-SYNTAX-GRAMMAR]</dt><dd>Dave Beckett. <a href="http://www.w3.org/TR/2004/REC-rdf-syntax-grammar-20040210"><cite>RDF/XML Syntax Specification (Revised)</cite></a>. 10 February 2004. W3C Recommendation. URL: <a href="http://www.w3.org/TR/2004/REC-rdf-syntax-grammar-20040210">http://www.w3.org/TR/2004/REC-rdf-syntax-grammar-20040210</a>
+</dd></dl></section><section id="informative-references"><h3><span class="secno">B.2 </span>Informative references</h3><dl class="bibliography"><dt id="bib-APP-URI">[APP-URI]</dt><dd>Marcos Cáceres: <cite><a href="http://www.w3.org/TR/app-uri/">The app: URI scheme</a>. W3C First Public Working Draft 16 May 2013. URL: <a href="http://www.w3.org/TR/2013/WD-app-uri-20130516/">http://www.w3.org/TR/2013/WD-app-uri-20130516/</a>
+</cite></dd><dt id="bib-OCF">[OCF]</dt><dd>James Pritchett; Markus Gylling: <cite><a href="http://idpf.org/epub/30/spec/epub30-ocf-20111011.html">EPUB Open Container Format (OCF) 3.0</a>. Recommended Specification 11 October 2011. International Digital Publishing Forum (IDPF). URL: <a href="http://idpf.org/epub/30/spec/epub30-ocf-20111011.html">http://idpf.org/epub/30/spec/epub30-ocf-20111011.html</a>
+</cite></dd><dt id="bib-RDF-SYNTAX-GRAMMAR">[RDF-SYNTAX-GRAMMAR]</dt><dd>Dave Beckett. <a href="http://www.w3.org/TR/2004/REC-rdf-syntax-grammar-20040210"><cite>RDF/XML Syntax Specification (Revised)</cite></a>. 10 February 2004. W3C Recommendation. URL: <a href="http://www.w3.org/TR/2004/REC-rdf-syntax-grammar-20040210">http://www.w3.org/TR/2004/REC-rdf-syntax-grammar-20040210</a>
 </dd><dt id="bib-RFC4122">[RFC4122]</dt><dd>P. Leach; M. Mealling; R. Salz. <a href="http://www.ietf.org/rfc/rfc4122.txt"><cite>A Universally Unique IDentifier (UUID) URN Namespace (RFC 4122)</cite></a>. July 2005. RFC. URL: <a href="http://www.ietf.org/rfc/rfc4122.txt">http://www.ietf.org/rfc/rfc4122.txt</a>
 </dd><dt id="bib-RFC6839">[RFC6839]</dt><dd>T. Hansen; A. Melnikov: <cite><a href="http://tools.ietf.org/html/rfc6839">Additional Media Type Structured Syntax Suffixes</a></cite> January 2013. RFC 6839. URL: <a href="http://tools.ietf.org/html/rfc6839">http://tools.ietf.org/html/rfc6839</a>
 </dd><dt id="bib-ROPrimer">[ROPrimer]</dt><dd>Jun Zhao et al: <cite><a href="http://purl.org/wf4ever/ro-primer">Wf4Ever Research Object Ontologies and Vocabularies Primer</a></cite>. 13 April 2012. URL: <a href="http://purl.org/wf4ever/primer">http://purl.org/wf4ever/primer</a> accessed 2013-02-27
@@ -1351,4 +1349,3 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
 </dd><dt id="bib-URI">[URI]</dt><dd>T. Berners-Lee; R. Fielding; L. Masinter. <a href="http://www.ietf.org/rfc/rfc3986.txt"><cite>Uniform Resource Identifiers (URI): generic syntax</cite></a>. January 2005. RFC 3986. URL: <a href="http://www.ietf.org/rfc/rfc3986.txt">http://www.ietf.org/rfc/rfc3986.txt</a>
 </dd><dt id="bib-ZIP">[ZIP]</dt><dd>PKWare Inc: <cite><a href="http://www.pkware.com/support/zip-app-note"></a>.ZIP File Format Specification</cite> version 6.3.3 (2012-09-01). URL: <a href="http://www.pkware.com/documents/casestudies/APPNOTE.TXT">http://www.pkware.com/documents/casestudies/APPNOTE.TXT</a>
 </dd></dl></section></section></body></html>
-
