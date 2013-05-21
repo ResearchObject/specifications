@@ -1,40 +1,44 @@
-@base <widget://129b8efe-a692-48a0-85d4-ebc6c0a9b057/.ro/> .
+@base <app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix pav: <http://purl.org/pav/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix oa: <http://www.w3.org/ns/oa#> .
 @prefix ore: <http://www.openarchives.org/ore/terms/> .
-@prefix pav: <http://purl.org/pav/> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix ro: <http://purl.org/wf4ever/ro#> .
-@prefix robundle: <http://purl.org/wf4ever/robundle#> .
-@prefix roterms: <http://purl.org/wf4ever/roterms#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix bundle: <http://purl.org/wf4ever/bundle#> .
 
-</>  pav:createdBy <http://example.com/foaf#alice>;
-     pav:createdOn "2013-03-05T17:29:03Z"^^xsd:dateTime;
-     robundle:hasAnnotation <urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf>,
-             [ oa:hasBody <http://example.com/blog/they-aggregated-our-file>;
-               oa:hasTarget <urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644> ],
-             [ oa:hasBody <annotations/a-meta-annotation-in-this-ro.txt>;
-               oa:hasTarget <urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf>, </> ];
-     ore:aggregates <http://example.com/blog/>,
-            <http://example.com/external.txt>,
-            </README.txt>,
-            </folder/soup.jpeg>;
-     ore:isDescribedBy <manifest.json>;
-     prov:has_provenance <evolution.ttl> .
+</> pav:createdBy <http://example.com/foaf#alice> ;
+    pav:createdOn "2013-03-05T17:29:03Z"^^xsd:dateTime ;
+    ore:aggregates 
+        </README.txt>,
+        </folder/soup.jpeg>,
+        <http://example.com/blog/>,
+        <http://example.com/comments.txt> ;
+    ore:isDescribedBy <manifest.json> ;
+    prov:has_provenance </evolution.ttl> ;
+    bundle:hasAnnotation
+        <urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf>,
+        [ oa:hasBody </annotations/a-meta-annotation-in-this-ro.txt> ;
+          oa:hasTarget </>, <urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf> ],
+        [ oa:hasBody <http://example.com/blog/they-aggregated-our-file> ;
+          oa:hasTarget <urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644> ] ;
 
-<urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf>     oa:hasBody <annotations/soup-properties.ttl>;
-     oa:hasTarget </folder/soup.jpeg> .
+</README.txt>
+    dc:format "text/plain";
+    pav:createdBy <http://example.com/foaf#bob> ;
+    pav:createdOn "2013-02-12T19:37:32.939Z"^^xsd:dateTime .
 
-</README.txt>     <http://purl.org/dc/elements/1.1/format> "text/plain";
-     pav:createdBy <http://example.com/foaf#bob>;
-     pav:createdOn "2013-02-12T19:37:32.939Z"^^xsd:dateTime .
+<http://example.com/foaf#alice>
+    roterms:orcid <http://orcid.org/0000-0002-1825-0097> ;
+    foaf:name "Alice W. Land" .
 
-<http://example.com/external.txt>     robundle:hasProxy <urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644>;
-     robundle:inFolder </folder/> .
+<http://example.com/foaf#bob> foaf:name "Bob Builder" .
 
-<http://example.com/foaf#alice>     roterms:orcid <http://orcid.org/0000-0002-1825-0097>;
-     foaf:name "Alice W. Land" .
-
-<http://example.com/foaf#bob>     foaf:name "Bob Builder" .
+<urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf> oa:hasBody </annotations/soup-properties.ttl> ;
+    oa:hasTarget </folder/soup.jpeg> .
 

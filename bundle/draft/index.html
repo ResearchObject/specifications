@@ -471,7 +471,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         serialized as this RO bundle. SHOULD be present, in which case it MUST be a 
         <a
         href="http://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime
-        formatted</a> timestamp (ISO 8601), including time zone.</dd>    
+        formatted</a> timestamp (ISO 8601), and SHOULD include the time zone.</dd>    
 
         <dt><code>createdBy</code></dt> <dd>The creator of the RO
         bundle. This MAY be different from the person forming the
@@ -509,11 +509,12 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         createdOn. The value MUST be a 
         <a
         href="http://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime
-        formatted</a> timestamp (ISO 8601), including time zone</dd> 
+        formatted</a> timestamp (ISO 8601), and SHOULD include the time zone</dd> 
 
         <dt><code>authoredBy</code></dt> 
         <dd>The author of the Research
-            Object, the agent(s) that conceptually formed the RO. The
+            Object, the agent(s) that conceptually formed the RO. 
+            The
             author SHOULD be
             present if different from <code>createdBy</code>.
             SHOULD be an object with the same keys and requirements as
@@ -563,23 +564,6 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             <dt><code>uri</code></dt>
                 <dd>An absolute URI. The key <code>uri</code> MUST NOT be provided at the
                 same time as <code>file</code>.</dd>
-            <dt><code>folder</code></dt>
-                <dd>A folder this resource (typically identified by
-                <code>uri</code>) belongs to, relative to the
-                root of the bundle. The path SHOULD be prefixed with
-                <code>/</code> and SHOULD end with <code>/</code>,
-                for instance <code>/folder2/</code>. The folder SHOULD
-                be a directory in the zip archive.</dd>
-            <dt><code>filename</code></dt>
-                <dd>The filename this resource (typically identified by
-                <code>uri</code>) is given within the given folder. The
-                key <code>filename</code> SHOULD be present if
-                <code>folder</code> is given. If <code>filename</code>
-                is given, the <code>folder</code> MUST be present.
-                The filename should not contain the characters
-                <code>/</code>, <code>:</code> or <code>\</code>, but
-                MAY contain spaces and international characters.
-            </dd>
 
             <dt><code>mediatype</code></dt>
                 <dd>The <a
@@ -594,23 +578,69 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             <dt><code>createdOn</code></dt>
             <dt><code>createdBy</code></dt>
                 <dd>
-                File creation date and creator, as specified above.
+                File creation date and creator, as specified above for
+                the research object.
                 </dd>
-            <dt><code>proxy</code></dt> 
-            <dd>
-        The identifier for an <a
-        href="http://www.openarchives.org/ore/1.0/datamodel#Proxies">ORE
-        proxy</a> [[ORE]] for the resources as aggregated by this RO.
-        This property is intended the purposes of 
-        referring to "resource X as aggregated in research object Y"
-        within annotations and in external documents. This property 
-        SHOULD be given for external resources aggregated by "uri"
-        references, as they could be aggregated in multiple ROs, and MAY
-        be given for other resources.
-        <p>
-        The proxy identifier SHOULD consist of the prefix <code>uuid:</code> and 
-            a lowercased UUID string [[RFC4122]]. For example:
-            <code>uuid:d4f09040-272e-467f-9250-59593bd4ac8f</code>
+            <dt><code>bundledAs</code> 
+            <dd>Details of how this resource has been bundled. This
+            object SHOULD be present for resources aggregated with
+            <code>uri</code>, and MAY be present for other resources. 
+            Its members are:
+            <dl>
+                <dt><code>proxy</code></dt> 
+                <dd>
+            The identifier for an <a
+            href="http://www.openarchives.org/ore/1.0/datamodel#Proxies">ORE
+            proxy</a> [[ORE]] for the resources as aggregated by this RO.
+            This property is intended the purposes of 
+            referring to "resource X as aggregated in research object Y"
+            within annotations and in external documents. This property 
+            SHOULD be given for external resources aggregated by
+            <code>uri</code>
+            references, as they could be aggregated in multiple ROs, and MAY
+            be given for other resources.
+            <p>
+            The proxy identifier SHOULD consist of the prefix <code>urn:uuid:</code> and 
+                a lowercased UUID string [[RFC4122]]. For example:
+                <code>urn:uuid:d4f09040-272e-467f-9250-59593bd4ac8f</code>
+                </dd>
+                <dt><code>folder</code></dt>
+                    <dd>A folder this resource (typically identified by
+                    <code>uri</code>) belongs to, relative to the
+                    root of the bundle. The path SHOULD be prefixed with
+                    <code>/</code> and SHOULD end with <code>/</code>,
+                    for instance <code>/folder2/</code>. The folder SHOULD
+                    be a directory in the zip archive.</dd>
+                <dt><code>filename</code></dt>
+                    <dd>The filename the resource (typically identified by
+                    <code>uri</code>) is given within the given folder. The
+                    key <code>filename</code> SHOULD be present if
+                    <code>folder</code> is given. If <code>filename</code>
+                    is given, the <code>folder</code> MUST be present.
+                    The filename should not contain the characters
+                    <code>/</code>, <code>:</code> or <code>\</code>, but
+                    MAY contain spaces and international characters. 
+                </dd>
+                <dt><code>aggregatedBy</code></dt>
+                <dd>
+                    OPTIONAL property, the agent that aggregated this
+                    resource to this research object, specially when
+                    different from the <code>createdBy</code> of the research object. 
+                    SHOULD be an object with the same keys and requirements as
+                    for <code>createdBy</code> above, but MAY be a list to indicate
+                    multiple aggregators.
+                </dd>
+                <dt><code>aggregatedOn</code></dt>
+                    <dd>
+                    OPTIONAL property, when this resource was
+                    aggregated, specially when different from the
+                    <code>createdBy</code> for the research object. 
+                    The value, if present, MUST be <a
+                    href="http://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime
+                    formatted</a> timestamp (ISO 8601), and SHOULD
+                    include the time zone.</dd>    
+                    </dd>
+            </dl>
             </dd>
         </dl>
         Additional metadata about a resource, if present, SHOULD be 
@@ -643,9 +673,9 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             <dd>
             The identifier for this annotation. The identifier SHOULD be
             present, and SHOULD
-            consist of the prefix <code>uuid:</code> and 
+            consist of the prefix <code>urn:uuid:</code> and 
             a lowercased UUID string [[RFC4122]]. For example:
-            <code>uuid:1a876f9e-4ffe-4c99-a05d-cd9d0cbd4cbb</code>
+            <code>urn:uuid:1a876f9e-4ffe-4c99-a05d-cd9d0cbd4cbb</code>
             </dd>
 
             <dt><code>about</code></dt>
@@ -664,11 +694,11 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                 <code>/</code>, which SHOULD be listed under
                     <code>aggregates</code> if that key is present</li>
                 <li>A proxy for an aggregated resource, starting with
-                    <code>uuid:</code>, which MUST be defined under
+                    <code>urn:uuid:</code>, which MUST be defined under
                     <code>aggregates</code> with a matching
                     value for <code>proxy</code></li>
                 <li>Another annotation, starting with
-                    <code>uuid:</code>, which MUST be defined under
+                    <code>urn:uuid:</code>, which MUST be defined under
                     <code>annotations</code> </li>
                 <li>An absolute URI, which may or may not be aggregated by the RO</li>    
                 <li>A JSON list, containing any of the above. This indicates
@@ -725,46 +755,46 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     "manifest":  "manifest.json",
     "createdOn": "2013-03-05T17:29:03Z",
     "createdBy": {
-        "uri":     "http://example.com/foaf#alice",
+        "uri":     "http://example.com/foaf#alice"
         "orcid":   "http://orcid.org/0000-0002-1825-0097",
         "name":    "Alice W. Land" },
     "history":   "evolution.ttl",
     "aggregates": [
        "/folder/soup.jpeg",
        "http://example.com/blog/",
-  
        { "file":      "/README.txt",
          "mediatype": "text/plain",
          "createdBy": {
              "uri":     "http://example.com/foaf#bob",
              "name":    "Bob Builder" },
          "createdOn": "2013-02-12T19:37:32.939Z" },
-  
        { "uri":    "http://example.com/comments.txt",
-         "folder": "/folder/",
-         "filename": "external.txt",
-         "proxy":  "uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644" }
+         "bundledAs": { 
+            "proxy":    "urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644",
+            "folder":   "/folder/",
+            "filename": "external.txt" }
+       }
     ],
     "annotations": [
-      { "annotation": "uuid:d67466b4-3aeb-4855-8203-90febe71abdf",
+      { "annotation": "urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf",
         "about":      "/folder/soup.jpeg",
         "content":    "annotations/soup-properties.ttl" },
   
-      { "about":   "uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644",
+      { "about":   "urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644",
         "content": "http://example.com/blog/they-aggregated-our-file" },
   
-      { "about":   [ "/", "uuid:d67466b4-3aeb-4855-8203-90febe71abdf" ],
+      { "about":   [ "/", "urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf" ],
         "content": "annotations/a-meta-annotation-in-this-ro.txt" }
     ]
 }
 </pre>
 
-    <section id="json-ld">
-    <h4>JSON-LD and mapping to RO model</h4>
-    <p>
-    Manifests following the JSON structure defined in 
-    <a href='#manifest-json' class="sectionRef"></a> with a
-    <code>"@context": [
+        <section id="json-ld">
+        <h4>JSON-LD and mapping to RO model</h4>
+        <p>
+        Manifests following the JSON structure defined in 
+        <a href='#manifest-json' class="sectionRef"></a> with a
+        <code>"@context": [
         "https://w3id.org/bundle/context" 
     ]</code>
     is intended to be valid [[JSON-LD]] without any additional
@@ -773,7 +803,14 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     algorithm for <a href="http://www.w3.org/TR/json-ld-api/#convert-to-rdf-algorithm">conversion
     from JSON to RDF</a>, as specified in the JSON-LD API [[!JSON-LD]].  
     </p>
-    <p class="TODO">Describe JSON-LD context</p>
+    <p>
+    In order to generate the RDF implied by the manifest, a base URI
+    SHOULD be assumed according to <a href="#absolute-uris"
+    class="sectionRef"></a> with a path of <code>/.ro/</code> -- e.g.
+    relative to <code>.ro/manifest.json</code>, in order to ensure that
+    paths starting with <code>/</code> don't "climb out" of the 
+    bundle root. 
+    </p>
     <pre class="example" data-include="context.json">
 {
   "@context": {
@@ -789,7 +826,6 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     "pav": "http://purl.org/pav/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "foaf": "http://xmlns.com/foaf/0.1/",
-    "uuid": "urn:uuid:",
 
     "id": "@id",
     "file": "@id",
@@ -881,11 +917,56 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     As an example of this processing, below is a Turtle
     representation after processing the <code>.ro/manifest.json</code>
     shown as an example in 
-    <a href='#manifest-json' class="sectionRef"></a>:
+    <a href='#manifest-json' class="sectionRef"></a>
+    assuming a base URI of
+    <code>app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/</code>
     </p>
 
-    <pre class="example"></pre>
-    <p class="TODO">Generate example</p>
+    <pre class="example" data-include="example/.ro/manifest.ttl">
+@base &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+@prefix prov: &lt;http://www.w3.org/ns/prov#&gt; .
+@prefix pav: &lt;http://purl.org/pav/&gt; .
+@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .
+@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .
+@prefix oa: &lt;http://www.w3.org/ns/oa#&gt; .
+@prefix ore: &lt;http://www.openarchives.org/ore/terms/&gt; .
+@prefix ro: &lt;http://purl.org/wf4ever/ro#&gt; .
+@prefix bundle: &lt;http://purl.org/wf4ever/bundle#&gt; .
+
+&lt;/&gt; pav:createdBy &lt;http://example.com/foaf#alice&gt; ;
+    pav:createdOn "2013-03-05T17:29:03Z"^^xsd:dateTime ;
+    ore:aggregates 
+        &lt;/README.txt&gt;,
+        &lt;/folder/soup.jpeg&gt;,
+        &lt;http://example.com/blog/&gt;,
+        &lt;http://example.com/comments.txt&gt; ;
+    ore:isDescribedBy &lt;manifest.json&gt; ;
+    prov:has_provenance &lt;/evolution.ttl&gt; ;
+    bundle:hasAnnotation
+        &lt;urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf&gt;,
+        [ oa:hasBody &lt;/annotations/a-meta-annotation-in-this-ro.txt&gt; ;
+          oa:hasTarget &lt;/&gt;, &lt;urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf&gt; ],
+        [ oa:hasBody &lt;http://example.com/blog/they-aggregated-our-file&gt; ;
+          oa:hasTarget &lt;urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644&gt; ] ;
+
+&lt;/README.txt&gt;
+    dc:format "text/plain";
+    pav:createdBy &lt;http://example.com/foaf#bob&gt; ;
+    pav:createdOn "2013-02-12T19:37:32.939Z"^^xsd:dateTime .
+
+&lt;http://example.com/foaf#alice&gt;
+    roterms:orcid &lt;http://orcid.org/0000-0002-1825-0097&gt; ;
+    foaf:name "Alice W. Land" .
+
+&lt;http://example.com/foaf#bob&gt; foaf:name "Bob Builder" .
+
+&lt;urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf&gt; oa:hasBody &lt;/annotations/soup-properties.ttl&gt; ;
+    oa:hasTarget &lt;/folder/soup.jpeg&gt; .
+    </pre>
     </section>
 
     <section id="custom-json-ld">
@@ -1009,8 +1090,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         <table id="prefix">
             <tr><th>Prefix</th> <th>Interpretation</th>
             <tr><td><code>/</code></td> <td>Path relative to root of ZIP archive</td> </tr>
-            <tr><td><code>uuid:</code></td> <td><code>urn:uuid:</code>
-                    according to [[RFC4122]]
+            <tr><td><code>urn:uuid:</code></td> <td>UUID according to [[RFC4122]]
             <tr><td><em>(containing <code>:</code>)</em></td> <td>Absolute URI</td> </tr>
             <tr><td><em>(no prefix)</em></td> <td>Path relative to <code>.ro/</code></td> </tr>
         </table>
