@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<container version="1.0"
+    xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
+    <rootfiles>
+        <rootfile full-path=".ro/manifest.json" media-type="application/ld+json" />
+    </rootfiles>
+</container>
