@@ -1,7 +1,4 @@
-
-<!-- Processed by Id: cwm.py,v 1.197 2007/12/13 15:38:39 syosi Exp -->
-<!--     using base file:///home/stain/stuff/src/wf4ever/ro/wfdesc.owl-->
-
+<?xml version="1.0"?>
 
 <rdf:RDF xmlns="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
@@ -16,7 +13,8 @@ A wfdesc:Workflow contains several wfdesc:Process instances, associated using th
 Thus this ontology allows the description a direct acyclic graph, or a dataflow. 
 
 This ontology is meant as an upper ontology for more specific workflow definitions, and as a way to express abstract workflows. The wfprov ontology shows how to link these descriptions to a provenance trace of a workflow execution.</comment>
-        <owl:versionIRI rdf:resource="https://raw.github.com/wf4ever/ro/0.1/wfdesc.owl"/>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.1.1</owl:versionInfo>
+        <owl:versionIRI rdf:resource="https://raw.github.com/wf4ever/ro/0.1.1/wfdesc.owl"/>
     </owl:Ontology>
 
     <owl:Class rdf:about="http://purl.org/wf4ever/wfdesc#Artifact">

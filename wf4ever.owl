@@ -26,7 +26,8 @@
         <imports rdf:resource="http://purl.org/wf4ever/ro"/>
         <imports rdf:resource="http://purl.org/wf4ever/wfdesc"/>
         <imports rdf:resource="http://purl.org/wf4ever/wfprov"/>
-        <versionIRI rdf:resource="https://raw.github.com/wf4ever/ro/0.1/wf4ever.owl"/>
+        <versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.1.1</versionInfo>
+        <versionIRI rdf:resource="https://raw.github.com/wf4ever/ro/0.1.1/wf4ever.owl"/>
     </Ontology>
     
 
@@ -114,7 +115,7 @@
                     <rdf:Description rdf:about="&ro;ResearchObject"/>
                     <Restriction>
                         <onProperty rdf:resource="&terms;aggregates"/>
-                        <someValuesFrom rdf:resource="&wfdesc;WorkflowTemplate"/>
+                        <someValuesFrom rdf:resource="&wfdesc;Workflow"/>
                     </Restriction>
                 </intersectionOf>
             </Class>
