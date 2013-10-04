@@ -1193,9 +1193,10 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                     For purposes of
                     describing the content of an RO bundle as a bytestream
                     independent of its location (for instance on a USB stick),
-                    then the authority should be the hexadecimal SHA-256
+                    then the authority should be the hexadecimal <a
+                        href="http://csrc.nist.gov/groups/STM/cavp/documents/shs/sha256-384-512.pdf">SHA-256</a>
                     checksum of the ZIP archive (not a UUID). This
-                    ensures a predictable UUID for the same physical
+                    ensures a predictable URI for the same physical
                     representation, where any change to the bundle
                     generates a new identifier.
                     <br />
