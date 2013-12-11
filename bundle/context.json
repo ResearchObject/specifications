@@ -62,7 +62,6 @@
         "@id": "roterms:orcid",
         "@type": "@id"
     },
-
     "history": {
         "@id": "prov:has_provenance",
         "@type": "@id"
@@ -85,7 +84,10 @@
       "@id": "bundle:hasProxy",
       "@type": "@id"
     },
-
+    "conformsTo": { 
+        "@id": "dct:conformsTo",
+        "@type": "@id"
+    },
     "annotations": {
       "@id": "bundle:hasAnnotation",
       "@type": "@id"
