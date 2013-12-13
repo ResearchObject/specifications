@@ -74,18 +74,15 @@
         "@id": "dc:format"
     },
     "folder": {
-      "@id": "ore:isAggregatedBy",
+      "@id": "bundle:inFolder",
       "@type": "@id"
     },
-    "filename": { 
-        "@id": "ro:entryName"
-    },
     "proxy": {
-      "@reverse": "ore:proxyFor",
+      "@id": "bundle:hasProxy",
       "@type": "@id"
     },
     "bundledAs": { 
-        "@reverse": "ore:proxyFor",
+        "@id": "bundle:name",
         "@type": "@id"
     },
     "conformsTo": { 
