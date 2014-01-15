@@ -10,7 +10,6 @@
     <!ENTITY roevo "http://purl.org/wf4ever/roevo#" >
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
-    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY terms "http://www.openarchives.org/ore/terms/" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
@@ -23,40 +22,17 @@
      xmlns:prov="http://www.w3.org/ns/prov#"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
      xmlns:terms="http://www.openarchives.org/ore/terms/"
-     xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:dcterms="http://purl.org/dc/terms/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:ao="http://purl.org/ao/"
      xmlns:roevo="http://purl.org/wf4ever/roevo#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <owl:Ontology rdf:about="http://purl.org/wf4ever/roevo">
         <rdfs:comment xml:lang="en">The Research Object evolution ontology (roevo) extends the ro ontology to capture the lifecycle and versioning of research objects. roevo follows a modular approach, enabling the creation of extensions for modeling detailed taxonomies of changes for particular resources, e.g., workflows. roevo v0.4 has been aligned with PROV Ontology.</rdfs:comment>
-        <owl:versionIRI rdf:resource="http://purl.org/wf4ever/roevo/0.4"/>
+        <owl:versionIRI rdf:resource="http://purl.org/wf4ever/roevo/0.6.1"/>
     </owl:Ontology>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Annotation properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Datatypes
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
     
 
 
@@ -80,8 +56,11 @@
     <!-- http://purl.org/wf4ever/roevo#fromVersion -->
 
     <owl:ObjectProperty rdf:about="&roevo;fromVersion">
+        <rdfs:label>fromVersion</rdfs:label>
+        <rdfs:comment>Associates the set of changes (roevo:ChangeSpecification) that were used (applied) by the pointed version of the resource (roevo:VersionableResource)</rdfs:comment>
         <rdfs:domain rdf:resource="&roevo;ChangeSpecification"/>
         <rdfs:range rdf:resource="&roevo;VersionableResource"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;used"/>
     </owl:ObjectProperty>
     
 
@@ -89,6 +68,8 @@
     <!-- http://purl.org/wf4ever/roevo#hasArchive -->
 
     <owl:ObjectProperty rdf:about="&roevo;hasArchive">
+        <rdfs:label>hasArchive</rdfs:label>
+        <rdfs:comment>Link a roevo:LiveRO with its archived version (roevo:ArchivedRO)</rdfs:comment>
         <rdfs:range rdf:resource="&roevo;ArchivedRO"/>
         <rdfs:domain rdf:resource="&roevo;LiveRO"/>
         <owl:inverseOf rdf:resource="&roevo;isArchiveOf"/>
@@ -99,6 +80,8 @@
     <!-- http://purl.org/wf4ever/roevo#hasChange -->
 
     <owl:ObjectProperty rdf:about="&roevo;hasChange">
+        <rdfs:label>hasChange</rdfs:label>
+        <rdfs:comment>Associates a roevo:Change to the roevo:ChangeSpecification including this change (in the set of changes generating a version of a resource)</rdfs:comment>
         <rdfs:range rdf:resource="&roevo;Change"/>
         <rdfs:domain rdf:resource="&roevo;ChangeSpecification"/>
     </owl:ObjectProperty>
@@ -108,6 +91,8 @@
     <!-- http://purl.org/wf4ever/roevo#hasPreviousChange -->
 
     <owl:ObjectProperty rdf:about="&roevo;hasPreviousChange">
+        <rdfs:label>hasPreviousChange</rdfs:label>
+        <rdfs:comment>Associates two roevo:Changes that occurred one after the other</rdfs:comment>
         <rdfs:range rdf:resource="&roevo;Change"/>
         <rdfs:domain rdf:resource="&roevo;Change"/>
     </owl:ObjectProperty>
@@ -116,13 +101,19 @@
 
     <!-- http://purl.org/wf4ever/roevo#hasRevision -->
 
-    <owl:ObjectProperty rdf:about="&roevo;hasRevision"/>
+    <owl:ObjectProperty rdf:about="&roevo;hasRevision">
+        <rdfs:label>hasRevision</rdfs:label>
+        <rdfs:comment>Inverse of prov:wasRevisionOf, where a revision is a derivation for which the resulting entity is a revised version of some original. Hence, it associates an entity with another entity derived from the former.</rdfs:comment>
+        <owl:inverseOf rdf:resource="&prov;wasRevisionOf"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/wf4ever/roevo#hasSnapshot -->
 
     <owl:ObjectProperty rdf:about="&roevo;hasSnapshot">
+        <rdfs:label>hasSnapshot</rdfs:label>
+        <rdfs:comment>Link a roevo:LiveRO with its different snapshots (roevo:SnapshotRO)</rdfs:comment>
         <rdfs:domain rdf:resource="&roevo;LiveRO"/>
         <rdfs:range rdf:resource="&roevo;SnapshotRO"/>
         <owl:inverseOf rdf:resource="&roevo;isSnapshotOf"/>
@@ -132,19 +123,27 @@
 
     <!-- http://purl.org/wf4ever/roevo#isArchiveOf -->
 
-    <owl:ObjectProperty rdf:about="&roevo;isArchiveOf"/>
+    <owl:ObjectProperty rdf:about="&roevo;isArchiveOf">
+        <rdfs:label>isArchiveOf</rdfs:label>
+        <rdfs:comment>Inverse of roevo:hasArchive. It associates an roevo:ArchivedRO with the roevo:LiveRO from which it was created</rdfs:comment>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/wf4ever/roevo#isSnapshotOf -->
 
-    <owl:ObjectProperty rdf:about="&roevo;isSnapshotOf"/>
+    <owl:ObjectProperty rdf:about="&roevo;isSnapshotOf">
+        <rdfs:label>isSnapshotOf</rdfs:label>
+        <rdfs:comment>Inverse of roevo:hasSnapshot. It associates an roevo:SnapshotRO with the roevo:LiveRO from which it was created</rdfs:comment>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/wf4ever/roevo#relatedResource -->
 
     <owl:ObjectProperty rdf:about="&roevo;relatedResource">
+        <rdfs:label>relatedResource</rdfs:label>
+        <rdfs:comment>Associates a change (roevo:Change) to the resource (roevo:VersionableResource) affected by this change</rdfs:comment>
         <rdfs:domain rdf:resource="&roevo;Change"/>
         <rdfs:range rdf:resource="&roevo;VersionableResource"/>
         <rdfs:subPropertyOf rdf:resource="&prov;used"/>
@@ -155,8 +154,11 @@
     <!-- http://purl.org/wf4ever/roevo#toVersion -->
 
     <owl:ObjectProperty rdf:about="&roevo;toVersion">
+        <rdfs:label>toVersion</rdfs:label>
+        <rdfs:comment>Associates the set of changes (roevo:ChangeSpecification) that generated the pointed version of the resource (roevo:VersionableResource)</rdfs:comment>
         <rdfs:domain rdf:resource="&roevo;ChangeSpecification"/>
         <rdfs:range rdf:resource="&roevo;VersionableResource"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;generated"/>
     </owl:ObjectProperty>
     
 
@@ -164,6 +166,8 @@
     <!-- http://purl.org/wf4ever/roevo#wasArchivedBy -->
 
     <owl:ObjectProperty rdf:about="&roevo;wasArchivedBy">
+        <rdfs:label>wasArchivedBy</rdfs:label>
+        <rdfs:comment>Indicates the prov:Agent responsible for creating the associated roevo:ArchivedRO</rdfs:comment>
         <rdfs:domain rdf:resource="&roevo;ArchivedRO"/>
         <rdfs:range rdf:resource="&prov;Agent"/>
         <rdfs:subPropertyOf rdf:resource="&prov;wasAttributedTo"/>
@@ -174,6 +178,8 @@
     <!-- http://purl.org/wf4ever/roevo#wasChangedBy -->
 
     <owl:ObjectProperty rdf:about="&roevo;wasChangedBy">
+        <rdfs:label>wasChangedBy</rdfs:label>
+        <rdfs:comment>Associates a version of the resource (roevo:VersionableResource) to the set of changes (roevo:ChangeSpecification) that generated it</rdfs:comment>
         <rdfs:range rdf:resource="&roevo;ChangeSpecification"/>
         <rdfs:domain rdf:resource="&roevo;VersionableResource"/>
         <rdfs:subPropertyOf rdf:resource="&prov;wasGeneratedBy"/>
@@ -184,10 +190,18 @@
     <!-- http://purl.org/wf4ever/roevo#wasSnapshotedBy -->
 
     <owl:ObjectProperty rdf:about="&roevo;wasSnapshotedBy">
+        <rdfs:label>wasSnapshotedBy</rdfs:label>
+        <rdfs:comment>Indicates the prov:Agent responsible for creating the associated roevo:SnapshotRO</rdfs:comment>
         <rdfs:domain rdf:resource="&roevo;SnapshotRO"/>
         <rdfs:range rdf:resource="&prov;Agent"/>
         <rdfs:subPropertyOf rdf:resource="&prov;wasAttributedTo"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#generated -->
+
+    <owl:ObjectProperty rdf:about="&prov;generated"/>
     
 
 
@@ -214,8 +228,8 @@
         <rdfs:range rdf:resource="&prov;Agent"/>
     </owl:ObjectProperty>
     
-
-
+    
+    
     <!-- http://www.w3.org/ns/prov#wasAttributedTo -->
 
     <owl:ObjectProperty rdf:about="&prov;wasAttributedTo"/>
@@ -252,7 +266,6 @@
     <!-- http://www.w3.org/ns/prov#wasRevisionOf -->
 
     <owl:ObjectProperty rdf:about="&prov;wasRevisionOf">
-        <owl:inverseOf rdf:resource="&roevo;hasRevision"/>
         <rdfs:range rdf:resource="&prov;Entity"/>
         <rdfs:domain rdf:resource="&prov;Entity"/>
         <rdfs:subPropertyOf rdf:resource="&prov;wasDerivedFrom"/>
@@ -280,6 +293,8 @@
     <!-- http://purl.org/wf4ever/roevo#archivedAtTime -->
 
     <owl:DatatypeProperty rdf:about="&roevo;archivedAtTime">
+        <rdfs:label>archivedAtTime</rdfs:label>
+        <rdfs:comment>The time at which an roevo:ArchiveRO was completely created and is available for use</rdfs:comment>
         <rdfs:domain rdf:resource="&roevo;ArchivedRO"/>
         <rdfs:range rdf:resource="&xsd;dateTime"/>
         <rdfs:subPropertyOf rdf:resource="&prov;generatedAtTime"/>
@@ -290,6 +305,8 @@
     <!-- http://purl.org/wf4ever/roevo#snapshotedAtTime -->
 
     <owl:DatatypeProperty rdf:about="&roevo;snapshotedAtTime">
+        <rdfs:label>snapshotedAtTime</rdfs:label>
+        <rdfs:comment>The time at which an roevo:SnapshotRO was completely created and is available for use</rdfs:comment>
         <rdfs:domain rdf:resource="&roevo;SnapshotRO"/>
         <rdfs:range rdf:resource="&xsd;dateTime"/>
         <rdfs:subPropertyOf rdf:resource="&prov;generatedAtTime"/>
@@ -370,7 +387,9 @@
     <!-- http://purl.org/wf4ever/roevo#Addition -->
 
     <owl:Class rdf:about="&roevo;Addition">
+        <rdfs:label>Addition</rdfs:label>
         <rdfs:subClassOf rdf:resource="&roevo;Change"/>
+        <rdfs:comment>A type of roevo:Change that changes the aggregation, content and/or structure of the Research Object by adding a resources or an annotation</rdfs:comment>
     </owl:Class>
     
 
@@ -378,8 +397,12 @@
     <!-- http://purl.org/wf4ever/roevo#ArchivedRO -->
 
     <owl:Class rdf:about="&roevo;ArchivedRO">
+        <rdfs:label>ArchivedRO</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ro;ResearchObject"/>
         <rdfs:subClassOf rdf:resource="&prov;Entity"/>
+        <rdfs:comment>A subclass of ro:ResearchObject representing a type of Research Object in archival state. It is also a subclass of prov:Entity as this is a type of artifact with fixed aspects and for which we want to provide provenance. 
+
+Archived ROs represent the final stage of a RO (release) where it has either reached a version that the author prescribes to be stable and meaningful and is appropriate for publication and long-term preservation, or it has been deprecated. They are therefore immutable, with no further changes or versions allowed</rdfs:comment>
     </owl:Class>
     
 
@@ -387,7 +410,9 @@
     <!-- http://purl.org/wf4ever/roevo#Change -->
 
     <owl:Class rdf:about="&roevo;Change">
+        <rdfs:label>Change</rdfs:label>
         <rdfs:subClassOf rdf:resource="&prov;Activity"/>
+        <rdfs:comment>A prov:Activity that changes the Research Object (RO) aggregation, content, structure, or the annotations about the RO or its aggregated resources.</rdfs:comment>
     </owl:Class>
     
 
@@ -395,7 +420,9 @@
     <!-- http://purl.org/wf4ever/roevo#ChangeSpecification -->
 
     <owl:Class rdf:about="&roevo;ChangeSpecification">
+        <rdfs:label>ChangeSpecification</rdfs:label>
         <rdfs:subClassOf rdf:resource="&prov;Activity"/>
+        <rdfs:comment>A collection of roevo:Changes activities representing the set of changes in a Research Object between two different versions</rdfs:comment>
     </owl:Class>
     
 
@@ -403,8 +430,12 @@
     <!-- http://purl.org/wf4ever/roevo#LiveRO -->
 
     <owl:Class rdf:about="&roevo;LiveRO">
+        <rdfs:label>LiveRO</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ro;ResearchObject"/>
         <rdfs:subClassOf rdf:resource="&prov;Entity"/>
+        <rdfs:comment>A subclass of ro:ResearchObject representing a type of Research Object in live state. It is also a subclass of prov:Entity as this is a type of artifact with fixed aspects and for which we want to provide provenance. 
+
+Live ROs  represent a work in progress. They are thus mutable as the content or state of their resources may change.</rdfs:comment>
     </owl:Class>
     
 
@@ -412,7 +443,9 @@
     <!-- http://purl.org/wf4ever/roevo#Modification -->
 
     <owl:Class rdf:about="&roevo;Modification">
+        <rdfs:label>Modification</rdfs:label>
         <rdfs:subClassOf rdf:resource="&roevo;Change"/>
+        <rdfs:comment>A type of roevo:Change that modifies the aggregation, content and/or structure of the Research Object by updating an aggregated resource content or an existing annotation</rdfs:comment>
     </owl:Class>
     
 
@@ -420,7 +453,9 @@
     <!-- http://purl.org/wf4ever/roevo#Removal -->
 
     <owl:Class rdf:about="&roevo;Removal">
+        <rdfs:label>Removal</rdfs:label>
         <rdfs:subClassOf rdf:resource="&roevo;Change"/>
+        <rdfs:comment>A type of roevo:Change that changes the aggregation, content and/or structure of the Research Object by removing a resources or an annotation</rdfs:comment>
     </owl:Class>
     
 
@@ -428,8 +463,12 @@
     <!-- http://purl.org/wf4ever/roevo#SnapshotRO -->
 
     <owl:Class rdf:about="&roevo;SnapshotRO">
+        <rdfs:label>SnapshotRO</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ro;ResearchObject"/>
         <rdfs:subClassOf rdf:resource="&prov;Entity"/>
+        <rdfs:comment>A subclass of ro:ResearchObject representing a type of Research Object in snapshot state. It is also a subclass of prov:Entity as this is a type of artifact with fixed aspects and for which we want to provide provenance. 
+
+Snapshot ROs are intended as a record of past activity, ready to be disseminated as a whole. They are immutable, and reflect the state of the Live RO at a certain time. </rdfs:comment>
     </owl:Class>
     
 
@@ -437,6 +476,7 @@
     <!-- http://purl.org/wf4ever/roevo#VersionableResource -->
 
     <owl:Class rdf:about="&roevo;VersionableResource">
+        <rdfs:label>VersionableResource</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -454,6 +494,7 @@
                 <owl:someValuesFrom rdf:resource="&rdfs;Literal"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:comment>A prov:Entity representing a type of artifact that may be versioned and for which we want to track its different versions. This class is equivalent to the union of roevo:SnapshotRO, roevo:ArchivedRO, ro:Resource and ro:AggregatedAnnotation that are the artifacts for which we want to track their versions.</rdfs:comment>
     </owl:Class>
     
 
@@ -477,5 +518,5 @@
 
 
 
-<!-- Generated by the OWL API (version 3.2.5.1928) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
 
