@@ -13,11 +13,13 @@
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY terms "http://www.openarchives.org/ore/terms/" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
 ]>
 
 
 <rdf:RDF xmlns="http://www.semanticweb.org/owl/owlapi/turtle#"
      xml:base="http://www.semanticweb.org/owl/owlapi/turtle"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:ro="http://purl.org/wf4ever/ro#"
      xmlns:prov="http://www.w3.org/ns/prov#"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
@@ -30,8 +32,23 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <owl:Ontology rdf:about="http://purl.org/wf4ever/roevo">
-        <rdfs:comment xml:lang="en">The Research Object evolution ontology (roevo) extends the ro ontology to capture the lifecycle and versioning of research objects. roevo follows a modular approach, enabling the creation of extensions for modeling detailed taxonomies of changes for particular resources, e.g., workflows. roevo v0.4 has been aligned with PROV Ontology.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The Research Object Evolution Ontology (roevo) extends the ro ontology to capture the lifecycle and versioning of research objects. ro ontology and other extensions are described at http://wf4ever.github.io/ro/.
+        roevo is also an extension of PROV ontology for describing Research Object evolution provenance. PROV ontology is described at http://www.w3.org/TR/prov-o/.</rdfs:comment>
         <owl:versionIRI rdf:resource="http://purl.org/wf4ever/roevo/0.6.1"/>
+        <owl:versionInfo rdf:datatype="&xsd;string">0.6.1</owl:versionInfo>
+        <dc:date rdf:datatype="&xsd;string">2014-01-15</dc:date>
+        <dc:creator rdf:datatype="&xsd;string">Raul Palma</dc:creator>
+        <dc:title rdf:datatype="&xsd;string">Research Object Evolution Ontology</dc:title>
+        <dc:description rdf:datatype="&xsd;string">The Research Object Evolution Ontology (roevo) extends the ro ontology to capture the lifecycle and versioning of research objects (ROs). roevo is also an extension of PROV ontology for describing Research Object evolution provenance.
+        roevo enables the representation of the different stages of the ROs lifecycle, their dependencies, as well as the corresponding versions of ROs and their aggregated resources, with the associated changes in these resources. 
+        roevo follows a modular approach, enabling the creation of extensions for modeling detailed taxonomies of changes for particular resources, e.g., workflows.
+        Additional information about roevo and background information is available at http://www.wf4ever-project.org/wiki/display/docs/RO+evolution</dc:description>
+        <dc:description rdf:resource="http://www.wf4ever-project.org/wiki/download/attachments/2065027/ROevo_v0.4%2823%29.png"/>
+        <dc:contributor rdf:datatype="&xsd;string">Jun Zhao</dc:contributor>
+        <dc:contributor rdf:datatype="&xsd;string">Khalid Belhajjame</dc:contributor>
+        <dc:contributor rdf:datatype="&xsd;string">Stian Soiland-Reyes</dc:contributor>
+        <dc:contributor rdf:datatype="&xsd;string">Oscar Corcho</dc:contributor>
+        <dc:rights rdf:datatype="&xsd;string">This ontology is distributed under Creative Commons Attribution 3.0 License - http://creativecommons.org/licenses/by/3.0</dc:rights>
     </owl:Ontology>
     
 
