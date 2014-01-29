@@ -2,10 +2,11 @@
 <html lang="en" dir="ltr">
 <head>
 <title>Wf4Ever Research Object Model</title>
-<link href="css/owl.css" rel="stylesheet" type="text/css">
-<link href="css/Primer.css" rel="stylesheet" type="text/css">
-<link href="css/rec.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/wf4ever.css" type="text/css">
+<link rel="stylesheet" href="http://www.w3.org/StyleSheets/TR/w3c-unofficial"
+type="text/css">
 <link href="css/extra.css" rel="stylesheet" type="text/css">
+
 <base href="http://wf4ever.github.com/ro/">
 
 <style type="text/css">
@@ -473,18 +474,40 @@ pre.sh_sourceCode .sh_section { color: black; font-weight: bold; }
 pre.sh_sourceCode .sh_paren { color: red; }
 pre.sh_sourceCode .sh_attribute { color: #006400; }
 
-</style><link href="./css/extra.css" rel="stylesheet" type="text/css" charset="utf-8"><link href="http://www.w3.org/StyleSheets/TR/w3c-unofficial" rel="stylesheet" type="text/css" charset="utf-8"></head>
-<body style="display: inherit;"><div class="head"><p></p><h1 class="title" id="title">Wf4Ever Research Object Model</h1><h2 id="unofficial-draft-20-august-2013">Unofficial Draft 20 August 2013</h2><dl><dt>Editors:</dt><dd><a href="http://soiland-reyes.com/stian/">Stian Soiland-Reyes</a>, University of Manchester</dd>
+</style>
+
+</head> 
+
+<body style="display: inherit;" class="wf4ever"><div class="head"><p></p><h1
+  class="title" id="title">Wf4Ever Research Object Model 1.0</h1><h2
+  id="unofficial-draft-20-august-2013">Wf4Ever Specification 30 November
+  2013</h2><dl>
+    <dt>Latest version:</dt>
+      <dd><a href="https://w3id.org/ro/">https://w3id.org/ro/</a></dd>
+    <dt>This version:</dt>
+      <dd><a href="https://w3id.org/ro/2013-11-30/">https://w3id.org/ro/2013-11-30/</a></dd>
+      <dt>Previous version:</dt>
+      <dd><a href="https://w3id.org/ro/2013-08-20/">https://w3id.org/ro/2013-08-20/</a></dd>
+    <dt>Editors:</dt><dd><a href="http://orcid.org/0000-0001-9842-9718">Stian Soiland-Reyes</a>, University of Manchester</dd>
 <dd><a href="http://www.cs.manchester.ac.uk/~seanb/">Sean Bechhofer</a>, University of Manchester</dd>
-<dt>Authors:</dt><dd><a href="http://semanticweb.org/wiki/Khalid_Belhajjame">Khalid Belhajjame</a>, University of Manchester</dd>
+<dt>Authors:</dt><dd><a href="http://orcid.org/0000-0001-6938-0820">Khalid Belhajjame</a>, University of Manchester</dd>
 <dd><span>Graham Klyne</span>, University of Oxford</dd>
-<dd><a href="http://mayor2.dia.fi.upm.es/oeg-upm/index.php/es/phdstudents/28-dgarijo">Daniel Garijo</a>, UPM</dd>
-<dd><a href="http://mayor2.dia.fi.upm.es/oeg-upm/index.php/es/teachers/11-ocorcho">Oscar Corcho</a>, UPM</dd>
-<dd><span>Esteban García Cuesta</span>, iSOCO</dd>
+<dd><a href="http://orcid.org/0000-0003-0454-7145">Daniel Garijo</a>, UPM</dd>
+<dd><a href="http://orcid.org/0000-0002-9260-0753">Oscar Corcho</a>, UPM</dd>
+<dd><span>Esteban Garc&iacute;a Cuesta</span>, iSOCO</dd>
 <dd><span>Raul Palma</span>, PSNC</dd>
 </dl><p class="copyright">This document is licensed under a <a class="subfoot" href="http://creativecommons.org/licenses/by/3.0/" rel="license">Creative Commons Attribution 3.0 License</a>.</p><hr></div>
 
-<div id="abstract" class="introductory section"><h2>Abstract</h2><p></p></div><div id="sotd" class="introductory section"><h2>Status of This Document</h2><p>This document is merely a public working draft of a potential specification. It has no official standing of any kind and does not represent the support or consensus of any standards organisation.</p></div><div id="toc" class="section"><h2 class="introductory">Table of Contents</h2><ul class="toc"><li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>Introduction</a><ul class="toc"><li class="tocline"><a href="#scope" class="tocxref"><span class="secno">1.1 </span>Scope of Wf4Ever Research Objects</a></li><li class="tocline"><a href="#scope-doc" class="tocxref"><span class="secno">1.2 </span>Scope of this document</a></li><li class="tocline"><a href="#tech-soc" class="tocxref"><span class="secno">1.3 </span>Technical and Social Objects</a></li><li class="tocline"><a href="#organisation" class="tocxref"><span class="secno">1.4 </span>Overall Model Organisation</a></li></ul></li><li class="tocline"><a href="#at-glance" class="tocxref"><span class="secno">2. </span>Research Object Vocabularies</a><ul class="toc"><li class="tocline"><a href="#ro" class="tocxref"><span class="secno">2.1 </span>Research object (ro)</a></li><li class="tocline"><a href="#wfdesc" class="tocxref"><span class="secno">2.2 </span>Workflow definition (wfdesc)</a></li><li class="tocline"><a href="#wfprov" class="tocxref"><span class="secno">2.3 </span>Workflow execution provenance (wfprov)</a></li><li class="tocline"><a href="#wf4ever" class="tocxref"><span class="secno">2.4 </span>Wf4Ever-specific extensions (wf4ever)</a></li><li class="tocline"><a href="#roevo" class="tocxref"><span class="secno">2.5 </span>Research object evolution (roevo)</a></li></ul></li><li class="tocline"><a href="#examples" class="tocxref"><span class="secno">3. </span>Examples</a><ul class="toc"><li class="tocline"><a href="#annotations-example-sec" class="tocxref"><span class="secno">3.1 </span>Annotations and manifests</a></li><li class="tocline"><a href="#astro-example-sec" class="tocxref"><span class="secno">3.2 </span>Astronomy RO Example</a></li></ul></li><li class="tocline"><a href="#ontologies" class="tocxref"><span class="secno">4. </span>OWL versions</a></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">A. </span>References</a><ul class="toc"><li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">A.1 </span>Normative references</a></li><li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">A.2 </span>Informative references</a></li></ul></li></ul></div><!-- abstract --><div id="introduction" class="section"><!--OddPage--><h2><span class="secno">1. </span>Introduction</h2>
+<div class="logo"><img src="/ro/logo/wf4ever.png" height="100" alt="Wf4Ever"></div>
+<div class="status"><div><span><abbr title="Workflow forever">Wf4Ever</abbr> Specification</span></div></div>
+
+<div id="abstract" class="introductory
+  section"><h2>Abstract</h2><p>The Wf4Ever Research Object Model
+  provides a vocabulary for the description of workflow-centric
+  Research Objects: aggregations of resources relating to scientific workflows.</p></div><div id="sotd"
+    class="introductory section"><h2>Status of This
+    Document</h2><p>This document is a specification from the <a href="wf4ever-project.org">wf4ever</a>
+  project. It does not represent the support or consensus of any standards organisation.</p></div><div id="toc" class="section"><h2 class="introductory">Table of Contents</h2><ul class="toc"><li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>Introduction</a><ul class="toc"><li class="tocline"><a href="#scope" class="tocxref"><span class="secno">1.1 </span>Scope of Wf4Ever Research Objects</a></li><li class="tocline"><a href="#scope-doc" class="tocxref"><span class="secno">1.2 </span>Scope of this document</a></li><li class="tocline"><a href="#tech-soc" class="tocxref"><span class="secno">1.3 </span>Technical and Social Objects</a></li><li class="tocline"><a href="#organisation" class="tocxref"><span class="secno">1.4 </span>Overall Model Organisation</a></li></ul></li><li class="tocline"><a href="#at-glance" class="tocxref"><span class="secno">2. </span>Research Object Vocabularies</a><ul class="toc"><li class="tocline"><a href="#ro" class="tocxref"><span class="secno">2.1 </span>Research object (ro)</a></li><li class="tocline"><a href="#wfdesc" class="tocxref"><span class="secno">2.2 </span>Workflow definition (wfdesc)</a></li><li class="tocline"><a href="#wfprov" class="tocxref"><span class="secno">2.3 </span>Workflow execution provenance (wfprov)</a></li><li class="tocline"><a href="#wf4ever" class="tocxref"><span class="secno">2.4 </span>Wf4Ever-specific extensions (wf4ever)</a></li><li class="tocline"><a href="#roevo" class="tocxref"><span class="secno">2.5 </span>Research object evolution (roevo)</a></li></ul></li><li class="tocline"><a href="#examples" class="tocxref"><span class="secno">3. </span>Examples</a><ul class="toc"><li class="tocline"><a href="#annotations-example-sec" class="tocxref"><span class="secno">3.1 </span>Annotations and manifests</a></li><li class="tocline"><a href="#astro-example-sec" class="tocxref"><span class="secno">3.2 </span>Astronomy RO Example</a></li></ul></li><li class="tocline"><a href="#ontologies" class="tocxref"><span class="secno">4. </span>OWL versions</a></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">A. </span>References</a><ul class="toc"><li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">A.1 </span>Normative references</a></li><li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">A.2 </span>Informative references</a></li></ul></li></ul></div><!-- abstract --><div id="introduction" class="section"><!--OddPage--><h2><span class="secno">1. </span>Introduction</h2>
 
 <p>Scientific workflows are used to describe series of structured activities and computations that arise in scientific problem-solving, providing scientists from virtually any discipline with a means to specify and enact their experiments. From a computational perspective, such experiments (workflows) can be defined as directed acyclic graphs where the nodes correspond to analysis operations, which can be supplied locally or by third party web services, and where the edges specify the flow of data between those operations.</p>
 
@@ -545,9 +568,6 @@ A vocabulary for the description of workflows. This provides an abstraction that
 
 <p><b>wfprov</b>:<br>
 A vocabulary for the description of provenance information. This provides an abstraction that can be mapped to different provenance vocabularies.</p>
-
-<p><b>roevo</b>:<br>
-A vocabulary for the description of the lifecycle and versioning of research objects. It is an extension of PROV ontology for describing Research Object evolution provenance</p>
 
 <p>The RO Model uses two existing vocabularies to provide aggregation and annotation functionality. Object Reuse and Exchange [<cite><a class="bibref" rel="biblioentry" href="#bib-ORE">ORE</a></cite>] is used for specifying aggregation of resources and the Annotation Ontology [<cite><a class="bibref" rel="biblioentry" href="#bib-AO">AO</a></cite>] is used to represent annotations.</p>
 
@@ -1634,6 +1654,7 @@ ontology</a> under the namespace
 </dl>
 </div>
 </div>
+
 <div id="roevo" class="section"><h3><span class="secno">2.4 </span>Research object evolution (roevo)</h3>
 	<dd><a href="./roevoHTML/Research Object Evolution Ontology.html">Follow this link</a></dd>
 </div>
