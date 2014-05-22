@@ -1,0 +1,739 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>wfprov: The Workflow Execution Provenance Ontology</title>
+<link href="../css/owl.css" rel="stylesheet" type="text/css">
+<link href="../css/Primer.css" rel="stylesheet" type="text/css">
+<link href="../css/rec.css" rel="stylesheet" type="text/css">
+<link href="../css/extra.css" rel="stylesheet" type="text/css">
+<script src="http://dev.w3.org/2009/dap/ReSpec.js/js/respec.js" class="remove"></script>
+<script class="remove">
+
+  var addExtraReferences = function() {
+         for (var k in extraReferences)
+             berjon.biblio[k] = extraReferences[k];
+         };
+
+ var extraReferences = {
+"EXEC":"Executable Papers Grand Challenge. URL: <a href=\"http://www.executablepapers.com/\">http://www.executablepapers.com/</a>",
+
+"BECHHOFER11":"Sean Bechhofer et. al.<cite>Linked Data is Not Enough for Scientists</cite>, Future Generation Computer Systems, DOI: <a href=\"http://dx.doi.org/10.1016/j.future.2011.08.004\">201110.1016/j.future.2011.08.004</a>",
+
+"FORCE11": "Phil Bourne, Tim Clark et. al. <cite><a href=\"http://force11.org/white_paper\">Improving Future Research Communication and e-Scholarship</a>.</cite> FORCE11 Manifesto. URL: <a href=\"http://force11.org/white_paper\">http://force11.org/white_paper</a>",
+
+"ORE":"<cite><a href=\"http://www.openarchives.org/ore/1.0/toc.html\">Open Archives Initiative Object Reuse and Exchange</a></cite>. <em>ORE Specifications and User Guides.</em> URL: <a href=\"http://www.openarchives.org/ore/1.0/toc.html\">http://www.openarchives.org/ore/1.0/toc.html</a>",
+
+"ORE-RDF":"Carl Lagoze and Herbert van de Sompel <cite><a href=\"http://www.openarchives.org/ore/1.0/rdfxml\">ORE User Guide - Resource Map Implementation in RDF/XML</a></cite>.",
+
+"AO":"Paolo Ciccarese. <cite><a href=\"http://code.google.com/p/annotation-ontology/\">The Annotation Ontology</a></cite> URL: <a href=\"http://code.google.com/p/annotation-ontology/\">http://code.google.com/p/annotation-ontology</a>",
+
+"HUNTER06":"Jane Hunter <a href=\"http://www.ijdc.net/index.php/ijdc/article/view/8\"><cite>Scientific Publication Packages: A Selective Approach to the Communication and Archival of Scientific Output.</cite></a> International Journal of Digital Curation, Vol. 1, 2006 URL: <a href=\"http://www.ijdc.net/index.php/ijdc/article/view/8\">http://www.ijdc.net/index.php/ijdc/article/view/8</a>"
+         };
+
+var respecConfig = {
+          // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
+          specStatus:           "unofficial",
+
+          // the specification's short name, as in http://www.w3.org/TR/short-name/
+          shortName:            "ro",
+
+          // if your specification has a subtitle that goes below the main
+          // formal title, define it here
+          //subtitle   :  "",
+
+
+          // if you wish the publication date to be other than today, set this
+          // publishDate:  "2011-10-18",
+
+          // if the specification's copyright date is a range of years, specify
+          // the start date here:
+          copyrightStart: "2010",
+
+          // if there is a previously published draft, uncomment this and set its YYYY-MM-DD date
+          // and its maturity status
+          //previousPublishDate:  "2012-02-02",
+          //previousMaturity:  "WD",
+
+          // if there a publicly available Editor's Draft, this is the link
+          //edDraftURI:           "http://dvcs.w3.org/hg/prov/raw-file/default/model/prov-dm.html",
+
+          // if this is a LCWD, uncomment and set the end of its review period
+          // lcEnd: "2009-08-05",
+
+          // if you want to have extra CSS, append them to this list
+          // it is recommended that the respec.css stylesheet be kept
+          extraCSS:             ["http://dev.w3.org/2009/dap/ReSpec.js/css/respec.css", "./css/extra.css"],
+
+          // editors, add as many as you like
+          // only "name" is required
+          editors:  [
+              { name: "Stian Soiland-Reyes", url: "http://soiland-reyes.com/stian/",
+                company: "University of Manchester" },
+              { name: "Sean Bechhofer", url: "http://www.cs.manchester.ac.uk/~seanb/",
+                company: "University of Manchester" },
+          ],
+
+          // authors, add as many as you like.
+          // This is optional, uncomment if you have authors as well as editors.
+          // only "name" is required. Same format as editors.
+
+          authors:  [
+              { name: "Khalid Belhajjame", url: "http://semanticweb.org/wiki/Khalid_Belhajjame",
+                company: "University of Manchester" },
+              { name: "Graham Klyne",
+                company: "University of Oxford" },
+              { name: "Daniel Garijo", url: "http://mayor2.dia.fi.upm.es/oeg-upm/index.php/es/phdstudents/28-dgarijo",
+                company: "UPM" },
+              { name: "Oscar Corcho", url: "http://mayor2.dia.fi.upm.es/oeg-upm/index.php/es/teachers/11-ocorcho",
+                company: "UPM" },
+              { name: "Esteban Garc&#237;a Cuesta",
+                company: "iSOCO" },
+              { name: "Raul Palma",
+                company: "PSNC" },
+                {name: "Matthew Gamble",
+                company: "University of Manchester"}
+         ],
+
+          // name of the WG
+          wg:           "Research Objects",
+
+          // URI of the public WG page
+          wgURI:        "http://www.researchobjects.org/",
+
+          // Add extraReferences to bibliography database
+          preProcess: [addExtraReferences],
+
+      };
+
+ </script>
+</head>
+<body>
+
+<section id="abstract"></section><!-- abstract --><section id="introduction"><h2>Introduction</h2>
+
+
+
+<p><b>wfprov</b>:<br>
+A vocabulary for the description of provenance information. This provides an abstraction that can be mapped to different provenance vocabularies.</p>
+
+
+<section id="wfprov"><h3>Workflow execution provenance (wfprov)</h3>
+
+<p>Provenance of workflow execution is described using the <a href="https://github.com/wf4ever/ro/blob/master/wfprov.owl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/wfprov.owl" aliasspecified="true">wfprov ontology</a>, under namespace <a href="http://purl.org/wf4ever/wfdesc#">http://purl.org/wf4ever/wfprov#</a>. </p>
+<p><img src="diagrams/wfprov.png" imagetext="wfprov.png|border=1,width=600" width="600" style="border: 1px solid black"></p>
+<p>The <tt>wfprov</tt> ontology describes the provenance of the workflow results. A <tt>wfprov:WorkflowRun</tt> describes the activity of running a <tt>wfdesc:WorkflowInstance</tt>. It groups the <tt>wfprov:ProcessRuns</tt> of the execution with the relationship <tt>wfprov:wasPartOfWorkflowRun</tt>.</p>
+
+<p>Each <tt>wfprov:ProcessRun</tt> represents a step of the workflow execution. It may have dependencies to different <tt>wfprov:Artifacts</tt>, which are modeled with the relationship <tt>wfprov:usedInput</tt>. Every result generated by one of the <tt>wfprov:ProcessRuns</tt> is linked by the relation <tt>wfprov:wasOutputFrom</tt></p>
+
+<p>Different <tt>wfprov:ProcessRuns</tt> may have been executed by different workflow engines. We can specify which one run each step with the <tt>wfprov:wasEnactedBy</tt> relationship.</p>
+
+<p>Finally, we can link each <tt>wfprov:Artifact</tt>, <tt>wfprov:ProcessRun</tt> and <tt>wfprov:WorkflowRun</tt> to their correspondant <tt>wfdesc</tt> description by the <tt>wfprov:describedByParameter</tt>, <tt>wfprov:describedByProcess</tt> and <tt>wfprov:describedByWorkflow</tt> respectively.</p>
+
+
+<div id="wfprov-model-documentation">
+<h3>Classes</h3>
+<h2>Classes</h2>
+<ul class="hlist">
+<li><a href="#d3e131" title="http://purl.org/wf4ever/wfprov#Artifact"><span>wfprov:Artifact</span></a></li>
+<li><a href="#d3e152" title="http://purl.org/wf4ever/wfprov#ProcessRun"><span>wfprov:ProcessRun</span></a></li>
+<li><a href="#d3e174" title="http://purl.org/wf4ever/wfprov#WorkflowEngine"><span>wfprov:WorkflowEngine</span></a></li>
+<li><a href="#d3e188" title="http://purl.org/wf4ever/wfprov#WorkflowRun"><span>wfprov:WorkflowRun</span></a></li>
+</ul>
+<div id="d3e131" class="entity">
+<a name="http://purl.org/wf4ever/wfprov#Artifact"></a><h3>
+<span class="dotted" title="http://purl.org/wf4ever/wfprov#Artifact">wfprov:Artifact</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
+</h3>
+<p><strong>IRI:</strong> http://purl.org/wf4ever/wfprov#Artifact</p>
+<div class="comment"><p>An artifact is a data value or item which wfprov:wasOutputFrom of a wfprov:ProcessRun or that the process run used as input (wfprov:usedInput).  Such an artifact might also be a ro:Resource if it has been aggregated in the ro:ResearchObject (typically if the artifact was used or generated by a wfprov:WorkflowRun) - but this might always not be the case for intermediate values from wfprov:ProcessRun.</p></div>
+<dl class="description">
+<dt>is in domain of</dt>
+<dd>
+<a href="#d3e28" title="http://purl.org/wf4ever/wfprov#describedByParameter">wfprov:describedByParameter</a><sup title="object property" class="type-op">op</sup>, <a href="#d3e91" title="http://purl.org/wf4ever/wfprov#wasOutputFrom">wfprov:wasOutputFrom</a><sup title="object property" class="type-op">op</sup>
+</dd>
+<dt>is in range of</dt>
+<dd>
+<a href="#d3e67" title="http://purl.org/wf4ever/wfprov#usedInput">wfprov:usedInput</a><sup title="object property" class="type-op">op</sup>
+</dd>
+</dl>
+</div>
+<div id="d3e152" class="entity">
+<a name="http://purl.org/wf4ever/wfprov#ProcessRun"></a><h3>
+<span class="dotted" title="http://purl.org/wf4ever/wfprov#ProcessRun">wfprov:ProcessRun</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
+</h3>
+<p><strong>IRI:</strong> http://purl.org/wf4ever/wfprov#ProcessRun</p>
+<div class="comment"><p>A process run is a particular execution of a wfdesc:Process description (wfprov:describedByProcess), which can wfprov:usedInput some wfprov:Artifact instances, and produce new artifacts (wfprov:wasOutputFrom). A wfprov:WorkflowRun is a specialisation of this class.</p></div>
+<dl class="description">
+<dt>has sub-classes</dt>
+<dd>
+<a href="#d3e188" title="http://purl.org/wf4ever/wfprov#WorkflowRun">wfprov:WorkflowRun</a><sup title="class" class="type-c">c</sup>
+</dd>
+<dt>is in domain of</dt>
+<dd>
+<a href="#d3e40" title="http://purl.org/wf4ever/wfprov#describedByProcess">wfprov:describedByProcess</a><sup title="object property" class="type-op">op</sup>, <a href="#d3e67" title="http://purl.org/wf4ever/wfprov#usedInput">wfprov:usedInput</a><sup title="object property" class="type-op">op</sup>, <a href="#d3e79" title="http://purl.org/wf4ever/wfprov#wasEnactedBy">wfprov:wasEnactedBy</a><sup title="object property" class="type-op">op</sup>, <a href="#d3e104" title="http://purl.org/wf4ever/wfprov#wasPartOfWorkflowRun">wfprov:wasPartOfWorkflowRun</a><sup title="object property" class="type-op">op</sup>
+</dd>
+<dt>is in range of</dt>
+<dd>
+<a href="#d3e91" title="http://purl.org/wf4ever/wfprov#wasOutputFrom">wfprov:wasOutputFrom</a><sup title="object property" class="type-op">op</sup>
+</dd>
+</dl>
+</div>
+<div id="d3e174" class="entity">
+<a name="http://purl.org/wf4ever/wfprov#WorkflowEngine"></a><h3>
+<span class="dotted" title="http://purl.org/wf4ever/wfprov#WorkflowEngine">wfprov:WorkflowEngine</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
+</h3>
+<p><strong>IRI:</strong> http://purl.org/wf4ever/wfprov#WorkflowEngine</p>
+<div class="comment"><p>A workflow engine is an foaf:Agent that is responsible for enacting a workflow definition (which could be described in a wfdesc:Workflow). The result of workflow enactment gives rise to a wfprov:WorkflowRun.</p></div>
+<dl class="description">
+<dt>has super-classes</dt>
+<dd><ul><li>
+<span class="dotted" title="http://xmlns.com/foaf/0.1/Agent">foaf:Agent</span><sup title="class" class="type-c">c</sup>
+</li></ul></dd>
+<dt>is in range of</dt>
+<dd>
+<a href="#d3e79" title="http://purl.org/wf4ever/wfprov#wasEnactedBy">wfprov:wasEnactedBy</a><sup title="object property" class="type-op">op</sup>
+</dd>
+</dl>
+</div>
+<div id="d3e188" class="entity">
+<a name="http://purl.org/wf4ever/wfprov#WorkflowRun"></a><h3>
+<span class="dotted" title="http://purl.org/wf4ever/wfprov#WorkflowRun">wfprov:WorkflowRun</span><sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span>
+</h3>
+<p><strong>IRI:</strong> http://purl.org/wf4ever/wfprov#WorkflowRun</p>
+<div class="comment"><p>A workflow run is a wfprov:ProcessRun which have been enacted by a wfprov:WorkflowEngine, according to a workflow definition (which could be wfdesc:describedByWorkflow a wfdesc:Workflow). Such a process typically contains several subprocesses (wfprov:wasPartOfWorkflowRun) corresponding to wfdesc:Process descriptions</p></div>
+<dl class="description">
+<dt>has super-classes</dt>
+<dd><ul><li>
+<a href="#d3e152" title="http://purl.org/wf4ever/wfprov#ProcessRun">wfprov:ProcessRun</a><sup title="class" class="type-c">c</sup>
+</li></ul></dd>
+<dt>is in domain of</dt>
+<dd>
+<a href="#d3e52" title="http://purl.org/wf4ever/wfprov#describedByWorkflow">wfprov:describedByWorkflow</a><sup title="object property" class="type-op">op</sup>
+</dd>
+<dt>is in range of</dt>
+<dd>
+<a href="#d3e104" title="http://purl.org/wf4ever/wfprov#wasPartOfWorkflowRun">wfprov:wasPartOfWorkflowRun</a><sup title="object property" class="type-op">op</sup>
+</dd>
+</dl>
+</div>
+<h3>Object Properties</h3>
+<h2>Object Properties</h2>
+<ul class="hlist">
+<li><a href="#d3e28" title="http://purl.org/wf4ever/wfprov#describedByParameter"><span>wfprov:describedByParameter</span></a></li>
+<li><a href="#d3e40" title="http://purl.org/wf4ever/wfprov#describedByProcess"><span>wfprov:describedByProcess</span></a></li>
+<li><a href="#d3e52" title="http://purl.org/wf4ever/wfprov#describedByWorkflow"><span>wfprov:describedByWorkflow</span></a></li>
+<li><a href="#d3e67" title="http://purl.org/wf4ever/wfprov#usedInput"><span>wfprov:usedInput</span></a></li>
+<li><a href="#d3e79" title="http://purl.org/wf4ever/wfprov#wasEnactedBy"><span>wfprov:wasEnactedBy</span></a></li>
+<li><a href="#d3e91" title="http://purl.org/wf4ever/wfprov#wasOutputFrom"><span>wfprov:wasOutputFrom</span></a></li>
+<li><a href="#d3e104" title="http://purl.org/wf4ever/wfprov#wasPartOfWorkflowRun"><span>wfprov:wasPartOfWorkflowRun</span></a></li>
+</ul>
+<div id="d3e28" class="entity">
+<a name="http://purl.org/wf4ever/wfprov#describedByParameter"></a><h3>
+<span class="dotted" title="http://purl.org/wf4ever/wfprov#describedByParameter">wfprov:describedByParameter</span><sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span>
+</h3>
+<p><strong>IRI:</strong> http://purl.org/wf4ever/wfprov#describedByParameter</p>
+<div class="comment"><p>This object property is used to associate a wfprov:Artifact to the wfdesc:Parameter description.</p></div>
+<div class="description"><dl>
+<dt>has domain</dt>
+<dd><ul><li>
+<a href="#d3e131" title="http://purl.org/wf4ever/wfprov#Artifact">wfprov:Artifact</a><sup title="class" class="type-c">c</sup>
+</li></ul></dd>
+<dt>has range</dt>
+<dd><ul><li>
+<span class="dotted" title="http://purl.org/wf4ever/wfdesc#Parameter">wfdesc:Parameter</span><sup title="class" class="type-c">c</sup>
+</li></ul></dd>
+</dl></div>
+</div>
+<div id="d3e40" class="entity">
+<a name="http://purl.org/wf4ever/wfprov#describedByProcess"></a><h3>
+<span class="dotted" title="http://purl.org/wf4ever/wfprov#describedByProcess">wfprov:describedByProcess</span><sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span>
+</h3>
+<p><strong>IRI:</strong> http://purl.org/wf4ever/wfprov#describedByProcess</p>
+<div class="comment"><p>This object property associate a wfprov:Processrun to its wfdesc:Process description .</p></div>
+<div class="description"><dl>
+<dt>has sub-properties</dt>
+<dd>
+<a href="#d3e52" title="http://purl.org/wf4ever/wfprov#describedByWorkflow">wfprov:describedByWorkflow</a><sup title="object property" class="type-op">op</sup>
+</dd>
+<dt>has domain</dt>
+<dd><ul><li>
+<a href="#d3e152" title="http://purl.org/wf4ever/wfprov#ProcessRun">wfprov:ProcessRun</a><sup title="class" class="type-c">c</sup>
+</li></ul></dd>
+<dt>has range</dt>
+<dd><ul><li>
+<span class="dotted" title="http://purl.org/wf4ever/wfdesc#Process">wfdesc:Process</span><sup title="class" class="type-c">c</sup>
+</li></ul></dd>
+</dl></div>
+</div>
+<div id="d3e52" class="entity">
+<a name="http://purl.org/wf4ever/wfprov#describedByWorkflow"></a><h3>
+<span class="dotted" title="http://purl.org/wf4ever/wfprov#describedByWorkflow">wfprov:describedByWorkflow</span><sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span>
+</h3>
+<p><strong>IRI:</strong> http://purl.org/wf4ever/wfprov#describedByWorkflow</p>
+<div class="comment"><p>This property associates a wfprov:WorkflowRun to its corresponding wfdesc:Workflow description.</p></div>
+<div class="description"><dl>
+<dt>has super-properties</dt>
+<dd><ul><li>
+<a href="#d3e40" title="http://purl.org/wf4ever/wfprov#describedByProcess">wfprov:describedByProcess</a><sup title="object property" class="type-op">op</sup>
+</li></ul></dd>
+<dt>has domain</dt>
+<dd><ul><li>
+<a href="#d3e188" title="http://purl.org/wf4ever/wfprov#WorkflowRun">wfprov:WorkflowRun</a><sup title="class" class="type-c">c</sup>
+</li></ul></dd>
+<dt>has range</dt>
+<dd><ul><li>
+<span class="dotted" title="http://purl.org/wf4ever/wfdesc#Workflow">wfdesc:Workflow</span><sup title="class" class="type-c">c</sup>
+</li></ul></dd>
+</dl></div>
+</div>
+<div id="d3e67" class="entity">
+<a name="http://purl.org/wf4ever/wfprov#usedInput"></a><h3>
+<span class="dotted" title="http://purl.org/wf4ever/wfprov#usedInput">wfprov:usedInput</span><sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span>
+</h3>
+<p><strong>IRI:</strong> http://purl.org/wf4ever/wfprov#usedInput</p>
+<div class="comment"><p>This property specifies that a wfprov:ProcessRun used an wfprov:Artifact as an input</p></div>
+<div class="description"><dl>
+<dt>has domain</dt>
+<dd><ul><li>
+<a href="#d3e152" title="http://purl.org/wf4ever/wfprov#ProcessRun">wfprov:ProcessRun</a><sup title="class" class="type-c">c</sup>
+</li></ul></dd>
+<dt>has range</dt>
+<dd><ul><li>
+<a href="#d3e131" title="http://purl.org/wf4ever/wfprov#Artifact">wfprov:Artifact</a><sup title="class" class="type-c">c</sup>
+</li></ul></dd>
+</dl></div>
+</div>
+<div id="d3e79" class="entity">
+<a name="http://purl.org/wf4ever/wfprov#wasEnactedBy"></a><h3>
+<span class="dotted" title="http://purl.org/wf4ever/wfprov#wasEnactedBy">wfprov:wasEnactedBy</span><sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span>
+</h3>
+<p><strong>IRI:</strong> http://purl.org/wf4ever/wfprov#wasEnactedBy</p>
+<div class="comment"><p>wfprov:wasEnactedBy associates a wfprov:ProcessRun with a wfprov:WorkflowEngine, specifying that the execution of the process was enacted by the engine.</p></div>
+<div class="description"><dl>
+<dt>has domain</dt>
+<dd><ul><li>
+<a href="#d3e152" title="http://purl.org/wf4ever/wfprov#ProcessRun">wfprov:ProcessRun</a><sup title="class" class="type-c">c</sup>
+</li></ul></dd>
+<dt>has range</dt>
+<dd><ul><li>
+<a href="#d3e174" title="http://purl.org/wf4ever/wfprov#WorkflowEngine">wfprov:WorkflowEngine</a><sup title="class" class="type-c">c</sup>
+</li></ul></dd>
+</dl></div>
+</div>
+<div id="d3e91" class="entity">
+<a name="http://purl.org/wf4ever/wfprov#wasOutputFrom"></a><h3>
+<span class="dotted" title="http://purl.org/wf4ever/wfprov#wasOutputFrom">wfprov:wasOutputFrom</span><sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span>
+</h3>
+<p><strong>IRI:</strong> http://purl.org/wf4ever/wfprov#wasOutputFrom</p>
+<div class="comment"><p>This property specifies that a wfprov:Artifact was generated as an output from a wfprov:ProcessRun</p></div>
+<div class="description"><dl>
+<dt>has domain</dt>
+<dd><ul><li>
+<a href="#d3e131" title="http://purl.org/wf4ever/wfprov#Artifact">wfprov:Artifact</a><sup title="class" class="type-c">c</sup>
+</li></ul></dd>
+<dt>has range</dt>
+<dd><ul><li>
+<a href="#d3e152" title="http://purl.org/wf4ever/wfprov#ProcessRun">wfprov:ProcessRun</a><sup title="class" class="type-c">c</sup>
+</li></ul></dd>
+</dl></div>
+</div>
+<div id="d3e104" class="entity">
+<a name="http://purl.org/wf4ever/wfprov#wasPartOfWorkflowRun"></a><h3>
+<span class="dotted" title="http://purl.org/wf4ever/wfprov#wasPartOfWorkflowRun">wfprov:wasPartOfWorkflowRun</span><sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span>
+</h3>
+<p><strong>IRI:</strong> http://purl.org/wf4ever/wfprov#wasPartOfWorkflowRun</p>
+<div class="comment"><p>This property specifies that a wfprov:ProcessRun was executed as part of a wfprov:WorkflowRun. This typically corresponds to wfdesc:hasSubProcess in the workflow description.</p></div>
+<div class="description"><dl>
+<dt>has domain</dt>
+<dd><ul><li>
+<a href="#d3e152" title="http://purl.org/wf4ever/wfprov#ProcessRun">wfprov:ProcessRun</a><sup title="class" class="type-c">c</sup>
+</li></ul></dd>
+<dt>has range</dt>
+<dd><ul><li>
+<a href="#d3e188" title="http://purl.org/wf4ever/wfprov#WorkflowRun">wfprov:WorkflowRun</a><sup title="class" class="type-c">c</sup>
+</li></ul></dd>
+</dl></div>
+</div>
+</div>
+
+<div id="wfprov-model-examples">
+<div id="examples">
+<h2>Wfprov Example</h2>
+  <p>The example below illustrates a workflow execution we1 that was composed of two processes :proc1 and :proc2. The output of :proc1 (:o1) is the input used by :proc2. Both processes are described by a wfdesc:Process</p>
+  <pre class="code-java">
+@prefix wfprov: &lt;http:<span class="code-comment">//purl.org/wf4ever/wfprov#&gt; .
+</span>
+  :wf1 a wfprov:WorkflowRun ;
+  wfprov:describedByWorkflow :wfTempl;
+  wfprov:wasEnactedBy :Taverna.
+ #Additional metadata about the workflow run could be added here: start time, end time, whether it has bees successful, etc.
+
+:proc1 a wfprov:<span class="code-object">ProcessRun</span> ;
+  wfprov:usedInput :i1 ;
+  wfprov:wasPartOfWorkflowRun :wf1;
+  wfprov:describedByProcess :templProcess1.
+
+:proc2 a wfprov:<span class="code-object">ProcessRun</span> ;
+  wfprov:usedIntput :o1 ;
+  wfprov:wasPartOfWorkflowRun :wf1;
+  wfprov:describedByProcess :templProcess2 .
+
+:i1 a wfprov:Artifact;
+    wfprov:describedByParameter :param1.
+
+:o1 a wfprov:Artifact;
+    wfprov:wasOutputFrom :proc1;
+  wfprov:describedByParameter :param2.
+
+:o2 a wfprov:Artifact;
+    wfprov:wasOutputFrom :proc2;
+  wfprov:describedByparameter :param3.
+
+#wfdesc:parameters and templates have been omitted to leave the example as simple as possible.
+</pre>
+</div>
+</div>
+
+</section><!-- wfprov -->
+
+<section id="astro-example-sec"><h3>Astronomy RO Example</h3>
+<div id="astro-examples">
+<div id="examples">
+ <p>This example comes from a use case that deals with large sets of
+  tabular data (catalogues of numbers) curated by the user. The data are calculated by means of mathematical equations based on experimental values coming from external data repositories. Updating of the external data repositories has an impact on the curation of the user dataset, it is essential to know how (in which quantity) and when these databases are updated, so that the propagation of these changes through the existing internal relation among the data can be triggered and registered.
+  </p>The scientific experiment represented by this research object pertains to the multi-wavelength study for a sample of the most isolated galaxies in the local universe. This study characterizes each galaxy of this sample through both the measurement of basic astrophysical properties:
+
+<ul>
+<li>The equatorial coordinates in J2000 epoch</li>
+<li>The velocities in km/s (v)</li>
+<li>The dust extinction coefficient (ag)</li>
+<li>The axis ratio of the isophote 25 mag/arcsec2 (logr25)</li>
+<li>The apparent total B magnitude (BT)</li>
+<li>The morphological type (t)</li>
+</ul>
+
+and the calculation of the more complex properties:
+<ul>
+<li>The distance in Mega parsecs (D)</li>
+<li>The corrected apparent B magnitude (btc)</li>
+<li>The optical luminosity in B-band (LB)</li>
+</ul>
+<p>Specifically, this research object is focused on the calculation of the intrinsic luminosity in the Johnson B-band, in order to achieve it the measurement or calculation of all those astrophysical properties is needed.</p>
+<p>
+
+</p>
+<p>This research object consists of several resources, including workflows, input and output datasets, scripts, web services and other documents. The type and role of each of these resources (by their relative name) are as follows:</p>
+
+<ul>
+<li>
+<b>Workflows</b>
+  <ul>
+<li>
+<em>Gathering (gathering_galaxy_properties_using_hyperleda_129473)</em>
+    <ul>
+<li>
+<b>Web Services</b>
+      <ul>
+<li><a href="http://leda.univ-lyon1.fr/ledacat.cgi?%7Bobject_name%7D?ob=ra" class="external-link" rel="nofollow">http://leda.univ-lyon1.fr/ledacat.cgi?{object_name}?ob=ra</a></li>
+      </ul>
+</li>
+    <li>
+<b>Datasets</b>
+    <ul>
+<li>Input
+      <ul>
+<li>NamesLEDA.txt</li>
+      </ul>
+</li>
+    <li>Output
+    <ul>
+<li>agNew,txt</li>
+      <li>btNew.txt</li>
+      <li>j2000Coords.txt</li>
+      <li>logr25New.txt</li>
+      <li>velocitiesNew.txt</li>
+    </ul>
+</li>
+</ul>
+</li>
+<li>
+<b>Scripts</b>
+<ul>
+<li>extractJ2000Coord.py</li>
+  <li>extractPropertyVal.py</li>
+  <li>Merge_String_List_To_A_String.java</li>
+  <li>Split_String_Into_String_List_By_Regular_Expression.java</li>
+  <li>Write_Text_File.java</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<em>Propagation (calculating_the_total_luminosity_of_a_galaxy_using_properties_from_text_files_608870)</em>
+<ul>
+<li>
+<b>Datasets</b>
+  <ul>
+<li>Input
+    <ul>
+<li>agNew,txt</li>
+      <li>btNew.txt</li>
+      <li>j2000Coords.txt</li>
+      <li>logr25New.txt</li>
+      <li>morphoNew.txt</li>
+      <li>velocitiesNew.txt</li>
+    </ul>
+</li>
+  <li>Output
+  <ul>
+<li>btcNew.txt</li>
+    <li>distancesNew.txt</li>
+    <li>lbNew.txt</li>
+  </ul>
+</li>
+</ul>
+</li>
+<li>
+<b>Scripts</b>
+<ul>
+<li>BTCorrectionCalculation.py</li>
+  <li>calculateDistance.py</li>
+  <li>coords2Deg.py</li>
+  <li>eq2gal.py</li>
+  <li>luminositiesCalculation.py</li>
+  <li>Merge_String_List_To_A_String.java</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<em>Comparing_update (comparison_and_update_values_475535)</em>
+<ul>
+<li>
+<b>Datasets</b>
+  <ul>
+<li>Input
+    <ul>
+<li>lbNew.txt</li>
+      <li>lbOld.txt</li>
+    </ul>
+</li>
+  <li>Output
+  <ul>
+<li>diff_lb.txt</li>
+    <li>lb.sql</li>
+  </ul>
+</li>
+</ul>
+</li>
+<li>
+<b>Scripts</b>
+<ul>
+<li>comparing.py</li>
+  <li>updating.py</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<b>Documents</b>
+<ul>
+<li>Used by the RO (Papers that have inspired the development of this RO or some of its componets)
+  <ul>
+<li>D1.2.pdf</li>
+    <li>D2.1.pdf</li>
+    <li>D3.1.pdf</li>
+    <li>D4.1.pdf</li>
+    <li>D5.1.pdf</li>
+    <li>Paturel.pdf (related with gathering Wf)</li>
+    <li>Vauglin.pdf (related with gathering Wf)</li>
+    <li>Ruiz.pdf</li>
+  </ul>
+</li>
+<li>Produced by the RO (Papers that have made use of this RO or some of its components)
+<ul>
+<li>D5.3v1_1.0.pdf</li>
+  <li>ColorsAA.pdf</li>
+</ul>
+</li>
+<li>General (documents and notes related to the whole RO)
+<ul>
+<li>CONTENT.txt</li>
+  <li>README.txt</li>
+  <li>RECIPES.txt</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4>RDF RO Representation</h4>
+
+<p>Here we provide snippets of RDF illustrating particular aspects of the RO description. These snippets are all taken from the RO <em>manifest</em>.</p>
+
+<p->Manifest description. This asserts the type of the manifest, the fact that it describes the RO in question, and also includes information about the creator of the manifest (the RODL service).
+<pre class="code-java">
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/manifest&gt;
+    dct:created "2012-02-01T09:33:56.923Z"^^&lt;http://www.w3.org/2001/XMLSchema#dateTime&gt; ;
+    dct:creator [
+        a &lt;http://xmlns.com/foaf/0.1/Agent&gt; ;
+        foaf:name "RODL"
+    ] ;
+    ore:describes &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/&gt; ;
+    a &lt;http://purl.org/wf4ever/ro#Manifest&gt; .
+</pre>
+
+<p>The following snippet captures the basic aggregation of resources within the RO.</p>
+
+<pre class="code-java">
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/&gt;
+    dct:created "2012-02-01T09:33:56.832Z"^^&lt;http://www.w3.org/2001/XMLSchema#dateTime&gt; ;
+    dct:creator &lt;https://www.google.com/accounts/o8/id?id=AItOawl7tEZAtdiQmIigvXcU4KkhGsBzgm0gfKM&gt; ;
+    ore:isDescribedBy &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/manifest&gt; ;
+    a &lt;http://purl.org/wf4ever/ro#ResearchObject&gt; ;
+
+    ore:aggregates &lt;http://leda.univ-lyon1.fr/ledacat.cgi&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/manifest#0f184259-a189-4d2c-8c04-66d7d322d1a8&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/manifest#14e42518-b337-2312-a76b-aa2b21cb3222&gt;,
+      ...
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/manifest#annGathering&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/manifest#annPropagation&gt;,
+      ...
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/CONTENT.txt&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/D1.2.pdf&gt;,
+      ...
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/GoldenTrace.txt&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/NamesLEDA.txt&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/Paturel.pdf&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/README.txt&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/RECIPES.txt&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/Ruiz.pdf&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/Vauglin.pdf&gt;,
+      ...
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/btcNew.txt&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/calculateDistance.py&gt;,
+      ...
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/comparison_and_update_values_475535.&gt;,
+      ...
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/eq2gal.py&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/extractJ2000Coord.py&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/extractPropertyVal.py&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/morphoNew.txt&gt;,
+      ..
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/updating.py&gt;,
+      &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/velocitiesNew.txt&gt; .
+</pre>
+
+<p>An annotation expressing creation metadata. Jose Enrique Luiz created resources <tt>GoldenTrace.txt</tt>.
+</p><pre class="java-code">
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/manifest#14e42518-b337-2312-a76b-aa2b21cb3222&gt;
+    ao:body &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/GoldenTrace.txt&gt; ;
+    dct:created "2012-02-01T09:37:23.662Z"^^&lt;http://www.w3.org/2001/XMLSchema#dateTime&gt; ;
+    dct:creator _:A0 ;
+    ao:annotatesResource &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/&gt; ;
+    a ao:Annotation .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/manifest#14e42518-b337-4698-a76b-aa2b21cb3222&gt;
+    ao:body &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/RECIPES.txt-8230278887054687059&gt; ;
+    dct:created "2012-02-01T09:37:23.662Z"^^&lt;http://www.w3.org/2001/XMLSchema#dateTime&gt; ;
+    dct:creator _:A0 ;
+    ao:annotatesResource &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/RECIPES.txt&gt; ;
+    a ao:Annotation .
+
+_:A0
+    a &lt;http://xmlns.com/foaf/0.1/Agent&gt; ;
+    foaf:name "Jose Enrique Ruiz" .
+
+</pre>
+
+<p>Finally, we have annotations that describe the fact that a particular workflow run made use of data sets to produce some results.</p>
+
+<pre class="java-code">
+&lt;http://leda.univ-lyon1.fr/ledacat.cgi&gt;
+    a &lt;http://purl.org/wf4ever/wf4ever#WebServiceProcessTemplate&gt; .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/annGathering#GatheringRun1&gt;
+    wfprov:describedByWorkflow &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/gathering_galaxy_properties_using_hyperleda_129473.&gt; ;
+    wfprov:usedInput &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/NamesLEDA.txt&gt; ;
+    a &lt;http://purl.org/wf4ever/wfprov#WorkflowRun&gt; .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/NamesLEDA.txt&gt;
+    a &lt;http://purl.org/wf4ever/wf4ever#Dataset&gt; .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/agNew.txt&gt;
+    wfprov:wasOutputFrom &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/annGathering#GatheringRun1&gt; ;
+    a &lt;http://purl.org/wf4ever/wf4ever#Dataset&gt; .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/btNew.txt&gt;
+    wfprov:wasOutputFrom &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/annGathering#GatheringRun1&gt; ;
+    a &lt;http://purl.org/wf4ever/wf4ever#Dataset&gt; .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/extractJ2000Coord.py&gt;
+    a &lt;http://purl.org/wf4ever/wfdesc#Process&gt; .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/extractPropertyVal.py&gt;
+    a &lt;http://purl.org/wf4ever/wfdesc#Process&gt; .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/gathering_galaxy_properties_using_hyperleda_129473.&gt;
+    wfdesc:hasSubProcess &lt;http://leda.univ-lyon1.fr/ledacat.cgi&gt;, &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/extractJ2000Coord.py&gt;, &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/extractPropertyVal.py&gt; ;
+    a &lt;http://purl.org/wf4ever/wfdesc#Workflow&gt; .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/j2000Coords.txt&gt;
+    wfprov:wasOutputFrom &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/annGathering#GatheringRun1&gt; ;
+    a &lt;http://purl.org/wf4ever/wf4ever#Dataset&gt; .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/logr25New.txt&gt;
+    wfprov:wasOutputFrom &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/annGathering#GatheringRun1&gt; ;
+    a &lt;http://purl.org/wf4ever/wf4ever#Dataset&gt; .
+
+&lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/velocitiesNew.txt&gt;
+    wfprov:wasOutputFrom &lt;http://sandbox.wf4ever-project.org/rosrs5/ROs/HyperLEDALuminosities/.ro/annGathering#GatheringRun1&gt; ;
+    a &lt;http://purl.org/wf4ever/wf4ever#Dataset&gt; .
+
+</pre>
+
+</p->
+</div>
+</div>
+</section></section><!-- examples --><section id="ontologies"><!-- OWL --><h2>OWL versions</h2>
+
+<p>The v0.1 RO ontologies can be found on <a href="https://github.com/wf4ever/ro" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://github.com/wf4ever/ro" aliasspecified="true">github</a> as OWL/Turtle format:</p>
+<ul>
+<li><a href="https://raw.github.com/wf4ever/ro/0.1/ro.owl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/0.1/ro.owl" aliasspecified="true">https://raw.github.com/wf4ever/ro/0.1/ro.owl</a></li>
+  <li><a href="https://raw.github.com/wf4ever/ro/0.1/wfdesc.owl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/0.1/wfdesc.owl" aliasspecified="true">https://raw.github.com/wf4ever/ro/0.1/wfdesc.owl</a></li>
+  <li><a href="https://raw.github.com/wf4ever/ro/0.1/wfprov.owl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/0.1/wfprov.owl" aliasspecified="true">https://raw.github.com/wf4ever/ro/0.1/wfprov.owl</a></li>
+  <li><a href="https://raw.github.com/wf4ever/ro/0.1/wf4ever.owl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/0.1/wf4ever.owl" aliasspecified="true">https://raw.github.com/wf4ever/ro/0.1/wf4ever.owl</a></li>
+
+
+
+<!--
+ <li><a href="https://raw.github.com/wf4ever/ro/master/ro.owl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/ro.owl" aliasspecified="true">https://raw.github.com/wf4ever/ro/master/ro.owl</a></li>
+  <li><a href="https://raw.github.com/wf4ever/ro/master/wfdesc.owl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/wfdesc.owl" aliasspecified="true" >https://raw.github.com/wf4ever/ro/master/wfdesc.owl</a></li>
+  <li><a href="https://raw.github.com/wf4ever/ro/master/wfprov.owl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/wfprov.owl" aliasspecified="true" >https://raw.github.com/wf4ever/ro/master/wfprov.owl</a></li>
+  <li><a href="https://raw.github.com/wf4ever/ro/master/wf4ever.owl"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="https://raw.github.com/wf4ever/ro/master/wf4ever.owl" aliasspecified="true" >https://raw.github.com/wf4ever/ro/master/wf4ever.owl</a></li>
+-->
+  <li>
+<a href="https://github.com/wf4ever/ro/blob/master/ore-owl.owl" class="external-link" rel="nofollow" linktype="raw" wikidestination="https://github.com/wf4ever/ro/blob/master/ore-owl.owl" aliasspecified="true">https://github.com/wf4ever/ro/blob/master/ore-owl.owl</a> (OWL-version of OAI-ORE vocabulary)</li>
+</ul>
+<!--
+<p>Other formats will be produced when these are published at their official namespace URIs.</p>
+
+<p>If you are viewing these in Protege, it is recommended that you:</p>
+<ul>
+  <li>Download all OWL files to the same folder (simplest is using <tt>git clone git://github.com/wf4ever/ro.git</tt> &amp;#45; this will also include <tt>catalog-v001.xml</tt> which avoids the below)</li>
+  <li>If Protege says it can't find <tt><a href="http://purl.org/wf4ever/wfdesc#"
+ class="external-link" rel="nofollow"linktype="raw" wikidestination="http://purl.org/wf4ever/wfdesc#" originalalias="http://purl.org/wf4ever/wfdesc#" >http://purl.org/wf4ever/wfdesc#</a></tt> &amp;#45; select &amp;#42;Yes&amp;#42; to choose the corresponding file locally, select <tt>wf.owl</tt> &amp;#45; and similar for the other ontologies.</li>
+  <li>In the menu, select <b>View &amp;#45;&amp;gt; Show only the active ontology</b> to avoid showing all of <tt>foaf</tt>, <tt>ao</tt>, etc.</li>
+  <li>In the menu, select <b>View &amp;#45;&amp;gt; Custom rendering..</b> and select <b>Render by qualified name</b>. This will show the prefixes, like <tt>opm:Agent</tt> and <tt>wfdesc:Workflow</tt>.</li>
+</ul>
+--><p>Note on namespaces:</p>
+<ul>
+<li>
+<tt><a href="http://purl.org/wf4ever/ro#" class="external-link" rel="nofollow" linktype="raw" wikidestination="http://purl.org/wf4ever/ro#" originalalias="http://purl.org/wf4ever/ro#">http://purl.org/wf4ever/ro#</a></tt>, etc. redirects to <tt><a href="http://wf4ever.github.com/ro/ro.owl" class="external-link" rel="nofollow" linktype="raw" wikidestination="http://wf4ever.github.com/ro/ro.owl" originalalias="http://wf4ever.github.com/ro/ro.owl">http://wf4ever.github.com/ro/ro.owl</a></tt> which is the <tt>gh-pages</tt> branch in github - this should match the latest released version.</li>
+</ul></section><!-- OWL --><section id="appendix"><section id="changelog"></section></section>
+</body>
+</html>
