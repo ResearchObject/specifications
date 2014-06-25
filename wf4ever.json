@@ -18,9 +18,6 @@
     "WorkflowResearchObject" : {
       "@id" : "http://purl.org/wf4ever/wf4ever#WorkflowResearchObject"
     },
-    "label" : {
-      "@id" : "http://www.w3.org/2000/01/rdf-schema#label"
-    },
     "File" : {
       "@id" : "http://purl.org/wf4ever/wf4ever#File"
     },
@@ -70,15 +67,9 @@
     "BeanshellScript" : {
       "@id" : "http://purl.org/wf4ever/wf4ever#BeanshellScript"
     },
-    "seeAlso" : {
-      "@id" : "http://www.w3.org/2000/01/rdf-schema#seeAlso"
-    },
     "aggregates" : {
       "@id" : "http://www.openarchives.org/ore/terms/aggregates",
       "@type" : "@id"
-    },
-    "comment" : {
-      "@id" : "http://www.w3.org/2000/01/rdf-schema#comment"
     },
     "Image" : {
       "@id" : "http://purl.org/wf4ever/wf4ever#Image"
