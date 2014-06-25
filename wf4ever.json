@@ -1,6 +1,6 @@
 {
   "@context" : [
-    "https://w3id.org/ro/wf4ever/context",
+    "https://w3id.org/ro/wfdesc/context",
       {
       "wf4ever:Image" : {
         "@id" : "http://purl.org/wf4ever/wf4ever#Image"
