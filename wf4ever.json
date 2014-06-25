@@ -91,6 +91,10 @@
     },
     "wsdlOperationName" : {
       "@id" : "http://purl.org/wf4ever/wf4ever#wsdlOperationName"
-    }
+    },
+
+    "title": "http://purl.org/dc/terms/title",
+    "description": "http://purl.org/dc/terms/description"
+
   }
 ] }
