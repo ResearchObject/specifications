@@ -1,0 +1,66 @@
+{
+  "@context" : {
+    "wfdesc:WorkflowInstance" : {
+      "@id" : "http://purl.org/wf4ever/wfdesc#WorkflowInstance"
+    },
+    "wfdesc:hasSubWorkflow" : {
+      "@id" : "http://purl.org/wf4ever/wfdesc#hasSubWorkflow",
+      "@type" : "@id"
+    },
+    "wfdesc:DataLink" : {
+      "@id" : "http://purl.org/wf4ever/wfdesc#DataLink"
+    },
+    "wfdesc:hasSink" : {
+      "@id" : "http://purl.org/wf4ever/wfdesc#hasSink",
+      "@type" : "@id"
+    },
+    "wfdesc:hasSubProcess" : {
+      "@id" : "http://purl.org/wf4ever/wfdesc#hasSubProcess",
+      "@type" : "@id"
+    },
+    "wfdesc:hasInput" : {
+      "@id" : "http://purl.org/wf4ever/wfdesc#hasInput",
+      "@type" : "@id"
+    },
+    "wfdesc:hasOutput" : {
+      "@id" : "http://purl.org/wf4ever/wfdesc#hasOutput",
+      "@type" : "@id"
+    },
+    "wfdesc:hasSource" : {
+      "@id" : "http://purl.org/wf4ever/wfdesc#hasSource",
+      "@type" : "@id"
+    },
+    "wfdesc:Artifact" : {
+      "@id" : "http://purl.org/wf4ever/wfdesc#Artifact"
+    },
+    "wfdesc:Output" : {
+      "@id" : "http://purl.org/wf4ever/wfdesc#Output"
+    },
+    "wfdesc:Input" : {
+      "@id" : "http://purl.org/wf4ever/wfdesc#Input"
+    },
+    "rdfs:label" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#label"
+    },
+    "rdfs:comment" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#comment"
+    },
+    "wfdesc:Parameter" : {
+      "@id" : "http://purl.org/wf4ever/wfdesc#Parameter"
+    },
+    "wfdesc:hasArtifact" : {
+      "@id" : "http://purl.org/wf4ever/wfdesc#hasArtifact",
+      "@type" : "@id"
+    },
+    "wfdesc:Process" : {
+      "@id" : "http://purl.org/wf4ever/wfdesc#Process"
+    },
+    "wfdesc:hasDataLink" : {
+      "@id" : "http://purl.org/wf4ever/wfdesc#hasDataLink",
+      "@type" : "@id"
+    },
+    "wfdesc:Workflow" : {
+      "@id" : "http://purl.org/wf4ever/wfdesc#Workflow"
+    }
+  }
+}

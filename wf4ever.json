@@ -1,0 +1,25 @@
+{
+  "@context" : [
+    "https://w3id.org/ro/wf4ever/context",
+      {
+      "wf4ever:Image" : {
+        "@id" : "http://purl.org/wf4ever/wf4ever#Image"
+      },
+      "wf4ever:WebServiceProcess" : {
+        "@id" : "http://purl.org/wf4ever/wf4ever#WebServiceProcess"
+      },
+      "wf4ever:WorkflowResearchObject" : {
+        "@id" : "http://purl.org/wf4ever/wf4ever#WorkflowResearchObject"
+      },
+      "wf4ever:Dataset" : {
+        "@id" : "http://purl.org/wf4ever/wf4ever#Dataset"
+      },
+      "wf4ever:File" : {
+        "@id" : "http://purl.org/wf4ever/wf4ever#File"
+      },
+      "wf4ever:Document" : {
+        "@id" : "http://purl.org/wf4ever/wf4ever#Document"
+      }
+    }
+  ]
+}
