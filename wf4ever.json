@@ -2,22 +2,22 @@
   "@context" : [
     "https://w3id.org/ro/wfdesc/context",
       {
-      "wf4ever:Image" : {
+      "Image" : {
         "@id" : "http://purl.org/wf4ever/wf4ever#Image"
       },
-      "wf4ever:WebServiceProcess" : {
+      "WebServiceProcess" : {
         "@id" : "http://purl.org/wf4ever/wf4ever#WebServiceProcess"
       },
-      "wf4ever:WorkflowResearchObject" : {
+      "WorkflowResearchObject" : {
         "@id" : "http://purl.org/wf4ever/wf4ever#WorkflowResearchObject"
       },
-      "wf4ever:Dataset" : {
+      "Dataset" : {
         "@id" : "http://purl.org/wf4ever/wf4ever#Dataset"
       },
-      "wf4ever:File" : {
+      "File" : {
         "@id" : "http://purl.org/wf4ever/wf4ever#File"
       },
-      "wf4ever:Document" : {
+      "Document" : {
         "@id" : "http://purl.org/wf4ever/wf4ever#Document"
       }
     }
