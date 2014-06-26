@@ -114,9 +114,11 @@
     },
     "chars" : {
       "@id" : "http://www.w3.org/2011/content#chars",
+      "@type" : "http://www.w3.org/2001/XMLSchema#string"
     },
      "characterEncoding" : {
       "@id" : "http://www.w3.org/2011/content#characterEncoding",
+      "@type" : "http://www.w3.org/2001/XMLSchema#string"
     }
   }
   ]
