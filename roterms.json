@@ -1,5 +1,5 @@
 {
-  "@context" : 
+  "@context" :
   [ "https://w3id.org/ro/wf4ever/context",
   {
     "Sketch" : {
@@ -98,6 +98,27 @@
     "requiresSoftware" : {
       "@id" : "http://purl.org/wf4ever/roterms#requiresSoftware",
       "@type" : "@id"
+    },
+    "ContentAsText" : {
+      "@id" : "http://www.w3.org/2011/content#ContentAsText"
+    },
+    "Content" : {
+      "@id" : "http://www.w3.org/2011/content#Content"
+    },
+    "bytes" : {
+      "@id" : "http://www.w3.org/2011/content#bytes",
+      "@type" : "http://www.w3.org/2001/XMLSchema#base64Binary"
+    },
+    "ContentAsBase64" : {
+      "@id" : "http://www.w3.org/2011/content#ContentAsBase64"
+    },
+    "chars" : {
+      "@id" : "http://www.w3.org/2011/content#chars",
+      "@type" : "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+     "characterEncoding" : {
+      "@id" : "http://www.w3.org/2011/content#characterEncoding",
+      "@type" : "http://www.w3.org/2000/01/rdf-schema#Literal"
     }
   }
   ]
