@@ -92,13 +92,13 @@
       "@id" : "http://purl.org/wf4ever/roterms#ResearchQuestion"
     },
     "requires" : {
-      "@id" : "http://purl.org/dc/terms/requires"
+      "@id" : "http://purl.org/dc/terms/requires",
       "@type" : "@id"
     },
     "requiresSoftware" : {
       "@id" : "http://purl.org/wf4ever/roterms#requiresSoftware",
       "@type" : "@id"
-    },
+    }
   }
   ]
 }
