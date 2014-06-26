@@ -114,11 +114,9 @@
     },
     "chars" : {
       "@id" : "http://www.w3.org/2011/content#chars",
-      "@type" : "http://www.w3.org/2000/01/rdf-schema#Literal"
     },
      "characterEncoding" : {
       "@id" : "http://www.w3.org/2011/content#characterEncoding",
-      "@type" : "http://www.w3.org/2000/01/rdf-schema#Literal"
     }
   }
   ]
