@@ -1,6 +1,6 @@
 {
   "@context" : 
-  [ "https://w3id.org/wf4ever/wf4ever/context",
+  [ "https://w3id.org/ro/wf4ever/context",
   {
     "Sketch" : {
       "@id" : "http://purl.org/wf4ever/roterms#Sketch"
