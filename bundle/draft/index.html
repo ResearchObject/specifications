@@ -292,7 +292,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         the following additions:
         <ul>
             <li>Additional reserved filename in the root directory:
-            <code>.ro</code>. If present, <code>.ro</code> MUST be a
+            <code>.ro</code> MUST be present and MUST be a
             directory.</li>
             <li>The <code>mimetype</code> SHOULD be
               <code>application/vnd.wf4ever.robundle+zip</code> (see
@@ -304,7 +304,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                 If the
                 container file is missing, the above rootfile entry SHOULD be
                 assumed.  </li> 
-            <li>The file <code>.ro/manifest.json</code> SHOULD be
+            <li>The file <code>.ro/manifest.json</code> MUST be
             present, and MUST describe the RO according to <a
             href='#manifest' class="sectionRef"></a>.
             </li>
