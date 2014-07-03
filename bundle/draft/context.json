@@ -17,6 +17,7 @@
     "file": "@id",
     "uri": "@id",
     "annotation": "@id",
+    "proxy": "@id",
 
     "manifest": {
         "@id": "ore:isDescribedBy",
@@ -81,11 +82,14 @@
     "filename": { 
         "@id": "ro:entryName"
     },
-    "proxy": {
-      "@id": "bundle:hasProxy",
-      "@type": "@id"
+    "bundledAs": 
+        "@id": "bundle:bundledAs",
+        "@type": "@id"
     },
-
+    "conformsTo": { 
+        "@id": "dct:conformsTo",
+        "@type": "@id"
+    },
     "annotations": {
       "@id": "bundle:hasAnnotation",
       "@type": "@id"
