@@ -935,13 +935,19 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
   }
 }
     </pre>
+  </section>
+
+  <section id="triples">
+    <h4>Example manifest as triples</h4>
     <p>
-    As an example of this processing, below is a Turtle
-    representation after processing the <code>.ro/manifest.json</code>
-    shown as an example in 
-    <a href='#manifest-json' class="sectionRef"></a>
+    As an example of this JSON-LD processing, below is a 
+    <a href="http://www.w3.org/TR/n-quads/">N-Quads</a> [[N-Quads]]
+    representation of the triples expressed by
+    <code>.ro/manifest.json</code> from
+    the example in 
+    <a href='#manifest-json' class="sectionRef"></a>,
     assuming a base URI of
-    <code>app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/</code>
+    <code>app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/manifest.json</code>
     </p>
 
     <!--<pre class="example" data-include="example/.ro/manifest.ttl"
@@ -949,49 +955,60 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         Why does it not work for ttl??
         -->
     <pre class="example">
-@base &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/&gt; .
-@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
-@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .
-@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix prov: &lt;http://www.w3.org/ns/prov#&gt; .
-@prefix pav: &lt;http://purl.org/pav/&gt; .
-@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .
-@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .
-@prefix oa: &lt;http://www.w3.org/ns/oa#&gt; .
-@prefix ore: &lt;http://www.openarchives.org/ore/terms/&gt; .
-@prefix ro: &lt;http://purl.org/wf4ever/ro#&gt; .
-@prefix bundle: &lt;http://purl.org/wf4ever/bundle#&gt; .
+# manifest
+&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://www.openarchives.org/ore/terms/isDescribedBy&gt; &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/manifest.json&gt; .
 
-&lt;/&gt; pav:createdBy &lt;http://example.com/foaf#alice&gt; ;
-    pav:createdOn "2013-03-05T17:29:03Z"^^xsd:dateTime ;
-    ore:aggregates 
-        &lt;/README.txt&gt;,
-        &lt;/folder/soup.jpeg&gt;,
-        &lt;http://example.com/blog/&gt;,
-        &lt;http://example.com/comments.txt&gt; ;
-    ore:isDescribedBy &lt;manifest.json&gt; ;
-    prov:has_provenance &lt;/evolution.ttl&gt; ;
-    bundle:hasAnnotation
-        &lt;urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf&gt;,
-        [ oa:hasBody &lt;/annotations/a-meta-annotation-in-this-ro.txt&gt; ;
-          oa:hasTarget &lt;/&gt;, &lt;urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf&gt; ],
-        [ oa:hasBody &lt;http://example.com/blog/they-aggregated-our-file&gt; ;
-          oa:hasTarget &lt;urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644&gt; ] ;
+# createdOn/createdBy
+&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://purl.org/pav/createdOn&gt; "2013-03-05T17:29:03Z"^^&lt;http://www.w3.org/2001/XMLSchema#dateTime&gt; .
+&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://purl.org/pav/createdBy&gt; &lt;http://example.com/foaf#alice&gt; .
+&lt;http://example.com/foaf#alice&gt; &lt;http://purl.org/wf4ever/roterms#orcid&gt; &lt;http://orcid.org/0000-0002-1825-0097&gt; .
+&lt;http://example.com/foaf#alice&gt; &lt;http://xmlns.com/foaf/0.1/name&gt; "Alice W. Land" .
 
-&lt;/README.txt&gt;
-    dc:format "text/plain";
-    pav:createdBy &lt;http://example.com/foaf#bob&gt; ;
-    pav:createdOn "2013-02-12T19:37:32.939Z"^^xsd:dateTime .
+# history
+&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://www.w3.org/ns/prov#has_provenance&gt; &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/evolution.ttl&gt; .
 
-&lt;http://example.com/foaf#alice&gt;
-    roterms:orcid &lt;http://orcid.org/0000-0002-1825-0097&gt; ;
-    foaf:name "Alice W. Land" .
+# aggregates /folder/soup.jpeg
+&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://www.openarchives.org/ore/terms/aggregates&gt; &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/folder/soup.jpeg&gt; .
 
-&lt;http://example.com/foaf#bob&gt; foaf:name "Bob Builder" .
+# aggregates http://example.com/blog/
+&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://www.openarchives.org/ore/terms/aggregates&gt; &lt;http://example.com/blog/&gt; .
 
-&lt;urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf&gt; oa:hasBody &lt;/annotations/soup-properties.ttl&gt; ;
-    oa:hasTarget &lt;/folder/soup.jpeg&gt; .
+# aggregates /README.txt
+&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://www.openarchives.org/ore/terms/aggregates&gt; &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/README.txt&gt; .
+## mediatype
+&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/README.txt&gt; &lt;http://purl.org/dc/elements/1.1/format&gt; "text/plain" .
+## createdBy/createdOn
+&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/README.txt&gt; &lt;http://purl.org/pav/createdBy&gt; &lt;http://example.com/foaf#bob&gt; .
+&lt;http://example.com/foaf#bob&gt; &lt;http://xmlns.com/foaf/0.1/name&gt; "Bob Builder" .
+&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/README.txt&gt; &lt;http://purl.org/pav/createdOn&gt; "2013-02-12T19:37:32.939Z"^^&lt;http://www.w3.org/2001/XMLSchema#dateTime&gt; .
+
+# aggregates /comments.txt
+&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://www.openarchives.org/ore/terms/aggregates&gt; &lt;http://example.com/comments.txt&gt; .
+## bundledAs
+&lt;http://example.com/comments.txt&gt; &lt;http://purl.org/wf4ever/bundle#bundledAs&gt; &lt;urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644&gt; .
+&lt;urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644&gt; &lt;http://purl.org/wf4ever/ro#entryName&gt; "external.txt" .
+&lt;urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644&gt; &lt;http://www.openarchives.org/ore/terms/proxyIn&gt; &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/folder/&gt; .
+
+# annotations
+&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://purl.org/wf4ever/bundle#hasAnnotation&gt; &lt;urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf&gt; .
+## about /folder/soup.jpeg
+&lt;urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf&gt; &lt;http://www.w3.org/ns/oa#hasTarget&gt; &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/folder/soup.jpeg&gt; .
+## content annotations/soup-properties.ttl
+&lt;urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf&gt; &lt;http://www.w3.org/ns/oa#hasBody&gt; &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/annotations/soup-properties.ttl&gt; .
+
+&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://purl.org/wf4ever/bundle#hasAnnotation&gt; _:b0 .
+# about urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644
+_:b0 &lt;http://www.w3.org/ns/oa#hasTarget&gt; &lt;urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644&gt; .
+# content http://example.com/blog/they-aggregated-our-file
+_:b0 &lt;http://www.w3.org/ns/oa#hasBody&gt; &lt;http://example.com/blog/they-aggregated-our-file&gt; .
+
+&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://purl.org/wf4ever/bundle#hasAnnotation&gt; _:b1 .
+# about /, urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf
+_:b1 &lt;http://www.w3.org/ns/oa#hasTarget&gt; &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; .
+_:b1 &lt;http://www.w3.org/ns/oa#hasTarget&gt; &lt;urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf&gt; .
+# content annotations/a-meta-annotation-in-this-ro.txt
+_:b1 &lt;http://www.w3.org/ns/oa#hasBody&gt; &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/annotations/a-meta-annotation-in-this-ro.txt&gt; .
+
     </pre>
     </section>
 
