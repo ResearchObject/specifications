@@ -836,7 +836,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     "ore": "http://www.openarchives.org/ore/terms/",
     "ro": "http://purl.org/wf4ever/ro#",
     "roterms": "http://purl.org/wf4ever/roterms#",
-    "robundle": "http://purl.org/wf4ever/robundle#",
+    "bundle": "http://purl.org/wf4ever/bundle#",
     "prov": "http://www.w3.org/ns/prov#",
     "pav": "http://purl.org/pav/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
@@ -846,6 +846,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     "file": "@id",
     "uri": "@id",
     "annotation": "@id",
+    "proxy": "@id",
 
     "manifest": {
         "@id": "ore:isDescribedBy",
@@ -904,16 +905,22 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         "@id": "dc:format"
     },
     "folder": {
-      "@id": "robundle:inFolder",
+      "@id": "ore:proxyIn",
       "@type": "@id"
     },
-    "proxy": {
-      "@id": "robundle:hasProxy",
-      "@type": "@id"
+    "filename": { 
+        "@id": "ro:entryName"
     },
-
+    "bundledAs": {
+        "@id": "bundle:bundledAs",
+        "@type": "@id"
+    },
+    "conformsTo": { 
+        "@id": "dct:conformsTo",
+        "@type": "@id"
+    },
     "annotations": {
-      "@id": "robundle:hasAnnotation",
+      "@id": "bundle:hasAnnotation",
       "@type": "@id"
     },
     "content": {

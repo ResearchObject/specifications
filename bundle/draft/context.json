@@ -82,7 +82,7 @@
     "filename": { 
         "@id": "ro:entryName"
     },
-    "bundledAs": 
+    "bundledAs": {
         "@id": "bundle:bundledAs",
         "@type": "@id"
     },
