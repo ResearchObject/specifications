@@ -17,7 +17,6 @@
     "file": "@id",
     "uri": "@id",
     "annotation": "@id",
-    "proxy": "@id",
 
     "manifest": {
         "@id": "ore:isDescribedBy",
@@ -76,15 +75,18 @@
         "@id": "dc:format"
     },
     "folder": {
-      "@id": "bundle:folder",
+      "@id": "bundle:inFolder",
       "@type": "@id"
     },
     "filename": { 
         "@id": "ro:entryName"
     },
+    "proxy": {
+      "@id": "bundle:hasProxy",
+      "@type": "@id"
+    }
     "bundledAs": {
-        "@reverse": "ore:proxyFor",
-        "@type": "@id"
+        "@reverse": "ore:proxyFor"
     },
     "conformsTo": { 
         "@id": "dct:conformsTo",
