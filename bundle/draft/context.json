@@ -76,14 +76,14 @@
         "@id": "dc:format"
     },
     "folder": {
-      "@id": "ore:proxyIn",
+      "@id": "bundle:folder",
       "@type": "@id"
     },
     "filename": { 
         "@id": "ro:entryName"
     },
     "bundledAs": {
-        "@id": "bundle:bundledAs",
+        "@reverse": "ore:proxyFor",
         "@type": "@id"
     },
     "conformsTo": { 
