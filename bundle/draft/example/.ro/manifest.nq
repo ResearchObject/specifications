@@ -1,54 +1,39 @@
-# manifest
 <app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://www.openarchives.org/ore/terms/isDescribedBy> <app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/manifest.json> .
 
-# createdOn/createdBy
 <app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://purl.org/pav/createdOn> "2013-03-05T17:29:03Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
 <app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://purl.org/pav/createdBy> <http://example.com/foaf#alice> .
 <http://example.com/foaf#alice> <http://purl.org/wf4ever/roterms#orcid> <http://orcid.org/0000-0002-1825-0097> .
 <http://example.com/foaf#alice> <http://xmlns.com/foaf/0.1/name> "Alice W. Land" .
 
-# history
 <app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://www.w3.org/ns/prov#has_provenance> <app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/evolution.ttl> .
 
-# aggregates /folder/soup.jpeg
 <app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://www.openarchives.org/ore/terms/aggregates> <app://2b9486f0-54d8-4274-b241-7669538b0d2f/folder/soup.jpeg> .
 
-# aggregates http://example.com/blog/
 <app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://www.openarchives.org/ore/terms/aggregates> <http://example.com/blog/> .
 
-# aggregates /README.txt
 <app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://www.openarchives.org/ore/terms/aggregates> <app://2b9486f0-54d8-4274-b241-7669538b0d2f/README.txt> .
-## mediatype
 <app://2b9486f0-54d8-4274-b241-7669538b0d2f/README.txt> <http://purl.org/dc/elements/1.1/format> "text/plain" .
-## createdBy/createdOn
 <app://2b9486f0-54d8-4274-b241-7669538b0d2f/README.txt> <http://purl.org/pav/createdBy> <http://example.com/foaf#bob> .
 <http://example.com/foaf#bob> <http://xmlns.com/foaf/0.1/name> "Bob Builder" .
 <app://2b9486f0-54d8-4274-b241-7669538b0d2f/README.txt> <http://purl.org/pav/createdOn> "2013-02-12T19:37:32.939Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
 
-# aggregates /comments.txt
 <app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://www.openarchives.org/ore/terms/aggregates> <http://example.com/comments.txt> .
-## bundledAs
-<http://example.com/comments.txt> <http://purl.org/wf4ever/bundle#bundledAs> <urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644> .
+<urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644> <http://www.openarchives.org/ore/terms/proxyFor> <http://example.com/comments.txt> .
 <urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644> <http://purl.org/wf4ever/ro#entryName> "external.txt" .
-<urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644> <http://www.openarchives.org/ore/terms/proxyIn> <app://2b9486f0-54d8-4274-b241-7669538b0d2f/folder/> .
+<urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644> <http://purl.org/wf4ever/bundle#folder> <app://2b9486f0-54d8-4274-b241-7669538b0d2f/folder/> .
 
-# annotations
 <app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://purl.org/wf4ever/bundle#hasAnnotation> <urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf> .
-## about /folder/soup.jpeg
 <urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf> <http://www.w3.org/ns/oa#hasTarget> <app://2b9486f0-54d8-4274-b241-7669538b0d2f/folder/soup.jpeg> .
-## content annotations/soup-properties.ttl
 <urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf> <http://www.w3.org/ns/oa#hasBody> <app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/annotations/soup-properties.ttl> .
 
 <app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://purl.org/wf4ever/bundle#hasAnnotation> _:b0 .
-# about urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644
 _:b0 <http://www.w3.org/ns/oa#hasTarget> <urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644> .
-# content http://example.com/blog/they-aggregated-our-file
 _:b0 <http://www.w3.org/ns/oa#hasBody> <http://example.com/blog/they-aggregated-our-file> .
 
 <app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://purl.org/wf4ever/bundle#hasAnnotation> _:b1 .
-# about /, urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf
 _:b1 <http://www.w3.org/ns/oa#hasTarget> <app://2b9486f0-54d8-4274-b241-7669538b0d2f/> .
 _:b1 <http://www.w3.org/ns/oa#hasTarget> <urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf> .
-# content annotations/a-meta-annotation-in-this-ro.txt
 _:b1 <http://www.w3.org/ns/oa#hasBody> <app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/annotations/a-meta-annotation-in-this-ro.txt> .
+
+
 
