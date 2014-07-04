@@ -92,7 +92,7 @@
     "proxy": {
       "@id": "bundle:hasProxy",
       "@type": "@id"
-    }
+    },
     "bundledAs": {
         "@reverse": "ore:proxyFor"
     },
