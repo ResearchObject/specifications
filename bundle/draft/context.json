@@ -94,7 +94,8 @@
       "@type": "@id"
     },
     "bundledAs": {
-        "@reverse": "ore:proxyFor"
+        "@id": "bundle:bundledAs",
+        "@type": "@id"
     },
     "conformsTo": { 
         "@id": "dct:conformsTo",
