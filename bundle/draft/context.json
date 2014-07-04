@@ -31,6 +31,14 @@
         "@id": "pav:createdBy",
         "@type": "@id"
     },
+    "aggregatedOn": {
+        "@id": "pav:createdOn",
+        "@type": "xsd:dateTime"
+    },
+    "aggregatedBy": {
+        "@id": "pav:createdBy",
+        "@type": "@id"
+    },
     "authoredOn": {
         "@id": "pav:authoredOn",
         "@type": "xsd:dateTime"
