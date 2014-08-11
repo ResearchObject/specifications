@@ -650,7 +650,8 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                     href="http://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime
                     formatted</a> timestamp (ISO 8601), and SHOULD
                     include the time zone.</dd>
-                    </dd>
+                  </dl>
+                </dd>
             </dl>
       <p>
         Additional metadata about a resource, if present, SHOULD be
@@ -782,17 +783,29 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     is intended to be valid [[JSON-LD]] without any additional
     modifications.  Mapping <code>.ro/manifest.json</code> to the
     ORE and [[RO]] models in RDF SHOULD be performed according to the
-    algorithm for <a href="http://www.w3.org/TR/json-ld-api/#deserialize-json-ld-to-rdf-algorithm">conversion
+    algorithm for <a href="http://www.w3.org/TR/2014/REC-json-ld-api-20140116/#deserialize-json-ld-to-rdf-algorithm">conversion
     from JSON to RDF</a>, as specified in the JSON-LD API [[!JSON-LD]].
     </p>
     <p>
-    In order to generate the RDF implied by the manifest, a base URI
+    In order to generate the RDF implied by the manifest, an absolute
+    base URI
     SHOULD be assumed according to <a href="#absolute-uris"
-    class="sectionRef"></a> with a path of <code>/.ro/</code> -- e.g.
-    relative to <code>.ro/manifest.json</code>, in order to ensure that
-    paths starting with <code>/</code> don't "climb out" of the
-    bundle root.
+    class="sectionRef"></a> with a path element of <code>/.ro/manifest.json</code>.
+    This is to ensure that paths starting with
+    <code>/</code> don't "climb out" of the
+    bundle root, and so that relative paths
+    like <code>annotations/soup-properties.ttl</code> are resolved correctly
+    within the <code>/.ro/</code> directory.
+    For example, generating a random UUID for the RO bundle
+    and assuming a base URI of
+    <code>app://9c13b6c1-d053-4889-b42d-691b4a54338e/.ro/manifest.json</code>
+    then the bundled resource <code>/folder/soup.jpeg</code> will be
+    represented in the RDF graph as
+    <code>app://9c13b6c1-d053-4889-b42d-691b4a54338e/folder/soup.jpeg</code>.
+
     </p>
+    <p>The content of <a href="https://w3id.org/bundle/context">https://w3id.org/bundle/context</a>
+    at time of writing is:</p>
     <pre data-include="context.json">
     </pre>
   </section>
@@ -1026,7 +1039,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                     URI and the generated <code>app:</code> URI in order
                     to record the original URI. For instance:
                     <pre class="example">
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .
 &lt;app://7878e885-327c-5ad4-9868-7338f1f13b3b/&gt; owl:sameAs
         &lt;http://example.com/example1.robundle&gt; .
                     </pre>
@@ -1063,9 +1076,9 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                 <li><code>app://587cff3ae37d58af6886d656623bd91237759a42d8fe1575a9744898c01d97d7/</code>
                     <em>SHA-256 of an empty RO bundle</em></li>
             </ul>
-            </section>
         </section>
     </section>
+
     <section id="conformance"></section>
 
     <!--<a href="#general-structure" class="sectionRef"></a> -->
