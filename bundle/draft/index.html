@@ -865,20 +865,21 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     "@context":  [
         "https://w3id.org/bundle/context"
     ],
-    "id": "/
+    "id": "/",
     "manifest": "manifest.json",
     "aggregates": [
        { "file":      "/README.txt",
          "createdBy": {
              "uri":     "http://example.com/foaf#bob",
-             "name":    "Bob Builder"
-             <strong>
+             "name":    "Bob Builder",
+             
              "foaf:homepage": {
                  "@id": "http://example.com/bob"
              },
              "foaf:title": "Dr"
-           </strong>
-         },
+           
+         }
+      }
     ]
 }
   </pre>
