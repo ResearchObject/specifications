@@ -940,7 +940,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             <tr><td><code>/</code></td> <td>Path relative to root of ZIP archive</td> </tr>
             <tr><td><code>urn:uuid:</code></td> <td>UUID according to [[RFC4122]]
             <tr><td><em>(containing <code>:</code>)</em></td> <td>Absolute URI</td> </tr>
-            <tr><td><em>(no prefix)</em></td> <td>Path relative to <code>.ro/</code></td> </tr>
+            <tr><td><em>(no prefix)</em></td> <td>Path relative to <code>/.ro/</code> in the ZIP archive</td> </tr>
         </table>
         <p>
         Due to their nature as ZIP files, Research Object Bundles might
@@ -974,7 +974,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             bundles for the purposes of sandboxing and for generating a
             URI independent of the location of the ZIP archive.
             <p>
-            The app: URI scheme recommends
+            The app: URI scheme suggests
             generating a UUID string [[RFC4122]] for minting the <em>authority</em>,
             forming the base URI for the RO bundle.
             For instance, if:
