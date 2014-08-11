@@ -556,14 +556,10 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             according to the <a
             href="http://purl.org/wf4ever/roevo#">roevo</a> ontology.
             </dd>
-       <dt><code>aggregates</code></dt> <dd>This property SHOULD be present, in which
-       case it MUST be a list of the resources aggregated by this RO.
-       The values in a list MUST be either:
-       <ul>
-        <li>A path relative to the root of the bundle, prefixed with
-        <code>/</code></li>
-        <li>An absolute URI</li>
-        <li>An object, which SHOULD be uniquely identified by either
+       <dt><code>aggregates</code></dt>
+       <dd>This property SHOULD be present, in which
+       case it MUST be a list of all the resources aggregated by this RO.
+       The values in a list MUST be an object, which SHOULD be uniquely identified by either
             <code>file</code> or <code>uri</code>. Its members are:
         <dl>
             <dt><code>file</code></dt>
@@ -656,12 +652,11 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                     include the time zone.</dd>
                     </dd>
             </dl>
-            </dd>
-        </dl>
+      <p>
         Additional metadata about a resource, if present, SHOULD be
         added as an annotation (see below).
-        </li>
-       </ul>
+      </p>
+
        <p>
        The order of the values in the <code>aggregates</code> list is insignificant, however
        the list MUST NOT contain duplicate entries. An entry is considered
