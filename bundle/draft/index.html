@@ -291,13 +291,6 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             <pre class="example"
             data-include="example/META-INF/container.xml"
             data-oninclude="escapeXML">
-&lt;?xml version="1.0"?&gt;
-&lt;container version="1.0"
-    xmlns="urn:oasis:names:tc:opendocument:xmlns:container"&gt;
-    &lt;rootfiles&gt;
-        &lt;rootfile full-path=".ro/manifest.json" media-type="application/ld+json" /&gt;
-    &lt;/rootfiles&gt;
-&lt;/container&gt;
             </pre>
             </section>
         </section>
@@ -769,46 +762,6 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     An example of a manifest which is valid JSON-LD is included below:
     </p>
 <pre class="example" data-include="example/.ro/manifest.json">
-{
-    "@context":  [
-        "https://w3id.org/bundle/context"
-    ],
-    "id": "/",
-    "manifest":  "manifest.json",
-    "createdOn": "2013-03-05T17:29:03Z",
-    "createdBy": {
-        "uri":     "http://example.com/foaf#alice"
-        "orcid":   "http://orcid.org/0000-0002-1825-0097",
-        "name":    "Alice W. Land" },
-    "history":   "evolution.ttl",
-    "aggregates": [
-       "/folder/soup.jpeg",
-       "http://example.com/blog/",
-       { "file":      "/README.txt",
-         "mediatype": "text/plain",
-         "createdBy": {
-             "uri":     "http://example.com/foaf#bob",
-             "name":    "Bob Builder" },
-         "createdOn": "2013-02-12T19:37:32.939Z" },
-       { "uri":    "http://example.com/comments.txt",
-         "bundledAs": {
-            "proxy":    "urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644",
-            "folder":   "/folder/",
-            "filename": "external.txt" }
-       }
-    ],
-    "annotations": [
-      { "annotation": "urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf",
-        "about":      "/folder/soup.jpeg",
-        "content":    "annotations/soup-properties.ttl" },
-
-      { "about":   "urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644",
-        "content": "http://example.com/blog/they-aggregated-our-file" },
-
-      { "about":   [ "/", "urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf" ],
-        "content": "annotations/a-meta-annotation-in-this-ro.txt" }
-    ]
-}
 </pre>
 
         <section id="json-ld">
@@ -834,123 +787,6 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     bundle root.
     </p>
     <pre data-include="context.json">
-{
-  "@context": {
-    "ao": "http://purl.org/ao/",
-    "oa": "http://www.w3.org/ns/oa#",
-    "dc": "http://purl.org/dc/elements/1.1/",
-    "dct": "http://purl.org/dc/terms/",
-    "ore": "http://www.openarchives.org/ore/terms/",
-    "ro": "http://purl.org/wf4ever/ro#",
-    "roterms": "http://purl.org/wf4ever/roterms#",
-    "bundle": "http://purl.org/wf4ever/bundle#",
-    "prov": "http://www.w3.org/ns/prov#",
-    "pav": "http://purl.org/pav/",
-    "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "foaf": "http://xmlns.com/foaf/0.1/",
-
-    "id": "@id",
-    "file": "@id",
-    "uri": "@id",
-    "annotation": "@id",
-
-    "manifest": {
-        "@id": "ore:isDescribedBy",
-        "@type": "@id"
-    },
-
-    "createdOn": {
-        "@id": "pav:createdOn",
-        "@type": "xsd:dateTime"
-    },
-    "createdBy": {
-        "@id": "pav:createdBy",
-        "@type": "@id"
-    },
-    "aggregatedOn": {
-        "@id": "pav:createdOn",
-        "@type": "xsd:dateTime"
-    },
-    "aggregatedBy": {
-        "@id": "pav:createdBy",
-        "@type": "@id"
-    },
-    "authoredOn": {
-        "@id": "pav:authoredOn",
-        "@type": "xsd:dateTime"
-    },
-    "authoredBy": {
-        "@id": "pav:authoredBy",
-        "@type": "@id"
-    },
-    "curatedOn": {
-        "@id": "pav:curatedOn",
-        "@type": "xsd:dateTime"
-    },
-    "curatedBy": {
-        "@id": "pav:curatedBy",
-        "@type": "@id"
-    },
-    "contributedOn": {
-        "@id": "pav:contributedOn",
-        "@type": "xsd:dateTime"
-    },
-    "contributedBy": {
-        "@id": "pav:contributedBy",
-        "@type": "@id"
-    },
-    "name": {
-        "@id": "foaf:name"
-    },
-    "orcid": {
-        "@id": "roterms:orcid",
-        "@type": "@id"
-    },
-
-    "history": {
-        "@id": "prov:has_provenance",
-        "@type": "@id"
-    },
-    "aggregates": {
-      "@id": "ore:aggregates",
-      "@type": "@id"
-    },
-    "mediatype": {
-        "@id": "dc:format"
-    },
-    "folder": {
-      "@id": "bundle:inFolder",
-      "@type": "@id"
-    },
-    "filename": {
-        "@id": "ro:entryName"
-    },
-    "proxy": {
-      "@id": "bundle:hasProxy",
-      "@type": "@id"
-    },
-    "bundledAs": {
-        "@reverse": "ore:proxyFor"
-    },
-    "conformsTo": {
-        "@id": "dct:conformsTo",
-        "@type": "@id"
-    },
-    "annotations": {
-      "@id": "bundle:hasAnnotation",
-      "@type": "@id"
-    },
-    "content": {
-       "@id": "oa:hasBody",
-       "@type": "@id"
-    },
-    "about": {
-       "@id": "oa:hasTarget",
-       "@type": "@id"
-    }
-
-  }
-}
     </pre>
   </section>
 
@@ -967,52 +803,9 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     <code>app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/manifest.json</code>
     </p>
 
-    <!--<pre class="example" data-include="example/.ro/manifest.nq"
+    <pre class="example" data-include="example/.ro/manifest.nq"
         data-oninclude="escapeXML">
-        Why does it not work for ttl??
-        -->
-    <pre class="example">
-&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://www.openarchives.org/ore/terms/isDescribedBy&gt; &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/manifest.json&gt; .
-
-&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://purl.org/pav/createdOn&gt; "2013-03-05T17:29:03Z"^^&lt;http://www.w3.org/2001/XMLSchema#dateTime&gt; .
-&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://purl.org/pav/createdBy&gt; &lt;http://example.com/foaf#alice&gt; .
-  &lt;http://example.com/foaf#alice&gt; &lt;http://purl.org/wf4ever/roterms#orcid&gt; &lt;http://orcid.org/0000-0002-1825-0097&gt; .
-  &lt;http://example.com/foaf#alice&gt; &lt;http://xmlns.com/foaf/0.1/name&gt; "Alice W. Land" .
-
-&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://www.w3.org/ns/prov#has_provenance&gt; &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/evolution.ttl&gt; .
-
-
-&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://www.openarchives.org/ore/terms/aggregates&gt; &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/folder/soup.jpeg&gt; .
-
-&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://www.openarchives.org/ore/terms/aggregates&gt; &lt;http://example.com/blog/&gt; .
-
-&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://www.openarchives.org/ore/terms/aggregates&gt; &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/README.txt&gt; .
-  &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/README.txt&gt; &lt;http://purl.org/dc/elements/1.1/format&gt; "text/plain" .
-  &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/README.txt&gt; &lt;http://purl.org/pav/createdOn&gt; "2013-02-12T19:37:32.939Z"^^&lt;http://www.w3.org/2001/XMLSchema#dateTime&gt; .
-  &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/README.txt&gt; &lt;http://purl.org/pav/createdBy&gt; &lt;http://example.com/foaf#bob&gt; .
-    &lt;http://example.com/foaf#bob&gt; &lt;http://xmlns.com/foaf/0.1/name&gt; "Bob Builder" .
-
-&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://www.openarchives.org/ore/terms/aggregates&gt; &lt;http://example.com/comments.txt&gt; .
-
-  _:b2 &lt;http://purl.org/wf4ever/bundle#hasProxy&gt; &lt;urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644&gt; .
-  _:b2 &lt;http://purl.org/wf4ever/bundle#inFolder&gt; &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/folder/&gt; .
-  _:b2 &lt;http://purl.org/wf4ever/ro#entryName&gt; "external.txt" .
-  _:b2 &lt;http://www.openarchives.org/ore/terms/proxyFor&gt; &lt;http://example.com/comments.txt&gt; .
-
-
-&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://purl.org/wf4ever/bundle#hasAnnotation&gt; &lt;urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf&gt; .
-  &lt;urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf&gt; &lt;http://www.w3.org/ns/oa#hasBody&gt; &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/annotations/soup-properties.ttl&gt; .
-  &lt;urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf&gt; &lt;http://www.w3.org/ns/oa#hasTarget&gt; &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/folder/soup.jpeg&gt; .
-
-&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://purl.org/wf4ever/bundle#hasAnnotation&gt; _:b0 .
-  _:b0 &lt;http://www.w3.org/ns/oa#hasBody&gt; &lt;http://example.com/blog/they-aggregated-our-file&gt; .
-  _:b0 &lt;http://www.w3.org/ns/oa#hasTarget&gt; &lt;urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644&gt; .
-
-&lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; &lt;http://purl.org/wf4ever/bundle#hasAnnotation&gt; _:b1 .
-  _:b1 &lt;http://www.w3.org/ns/oa#hasBody&gt; &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/annotations/a-meta-annotation-in-this-ro.txt&gt; .
-  _:b1 &lt;http://www.w3.org/ns/oa#hasTarget&gt; &lt;app://2b9486f0-54d8-4274-b241-7669538b0d2f/&gt; .
-  _:b1 &lt;http://www.w3.org/ns/oa#hasTarget&gt; &lt;urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf&gt; .
-    </pre>
+      </pre>
     </section>
 
     <section id="custom-json-ld">
@@ -1045,7 +838,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     added to the top-level object.
     For example:
     </p>
-    <pre>
+    <pre class="example">
 {
     "@context":  [
         "https://w3id.org/bundle/context"
