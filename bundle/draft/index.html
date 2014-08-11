@@ -419,14 +419,14 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     Identifiers used below are either:
     </p>
     <ol>
-      <li>Meta-resources, path relative to <code>.ro/</code> directory,
+      <li><em>Meta-resources</em>, path relative to <code>.ro/</code> directory,
           which MUST NOT contain the <code>:</code> character.  For
           instance <code>manifest.json</code>  or <code>annotations/ann2</code>.
           Depending on how meta-resources are used, the ZIP might or might not include
           a corresponding entry for the given path.
       </li>
-      <li>Bundled resources
-          The path SHOULD starts with <code>/</code> to indicate the root of the
+      <li><em>Bundled resources</em>, the path
+          SHOULD starts with <code>/</code> to indicate the root of the
           bundle, for instance <code>/hello.txt</code> or
           <code>/folder2/</code>. Folders SHOULD have a path
           terminating with <code>/</code>.
@@ -434,7 +434,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
           corresponding file or directory in the ZIP file.
       </li>
       <li>
-          Absolute URIs (contains <code>:</code>), external to the bundle. For instance
+          <em>Absolute URIs</em> (contains <code>:</code>), external to the bundle. For instance
           <code>http://example.com/external</code>
       </li>
 
@@ -443,7 +443,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     with the keys:
     </p>
     <dl>
-        <dt><code>@context</code></dt> <dd>JSON-LD context. SHOULD be
+        <dt id="manifest-context"><code>@context</code></dt> <dd>JSON-LD context. SHOULD be
         present, in which case it MUST be valid according to the <a
         href="http://www.w3.org/TR/json-ld/#the-context">JSON-LD
         @context keyword</a>. The RO bundle context SHOULD be a list,
@@ -452,25 +452,25 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         the value <code>"https://w3id.org/bundle/context"</code>.
         This value SHOULD be the last item of the list.</dd>
 
-        <dt><code>id</code></dt> <dd>RO identifier. SHOULD be present,
+        <dt id="manifest-id"><code>id</code></dt> <dd>RO identifier. SHOULD be present,
         in which case it
         SHOULD have the fixed value <code>/</code> indicating the
         relative top-level folder as the identifier.
         (See <a href='#identifiers' class="sectionRef"></a>.)</dd>
 
-        <dt><code>manifest</code> <dd>ORE manifests describing this RO,
+        <dt id="manifest-manifest"><code>manifest</code> <dd>ORE manifests describing this RO,
         relative to the <code>.ro/</code> directory. SHOULD be literal
         <code>"manifest.json"</code>,
             but MAY be a list, in which case the list MUST contain
             <code>"manifest.json"</code></dd>
 
-        <dt><code>createdOn</code></dt> <dd>The time the RO was
+        <dt id="manifest-createdOn"><code>createdOn</code></dt> <dd>The time the RO was
         serialized as this RO bundle. SHOULD be present, in which case it MUST be a
         <a
         href="http://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime
         formatted</a> timestamp (ISO 8601), and SHOULD include the time zone.</dd>
 
-        <dt><code>createdBy</code></dt> <dd>The creator of the RO
+        <dt id="manifest-createdBy"><code>createdBy</code></dt> <dd>The creator of the RO
         bundle. This MAY be different from the person forming the
         research object, which SHOULD be indicated with
         <code>authoredBy</code>. The creator SHOULD be an object
@@ -500,7 +500,8 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         by
         using a <code>@id</code> equal to the creator <code>uri</code>.
         </dd>
-        <dt><code>authoredOn</code></dt> <dd>The time the Research
+
+        <dt id="manifest-authoredOn"><code>authoredOn</code></dt> <dd>The time the Research
         Object
         was conceptually formed. The author time SHOULD be present if different from
         createdOn. The value MUST be a
@@ -508,7 +509,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         href="http://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime
         formatted</a> timestamp (ISO 8601), and SHOULD include the time zone</dd>
 
-        <dt><code>authoredBy</code></dt>
+        <dt id="manifest-authoredBy"><code>authoredBy</code></dt>
         <dd>The author of the Research
             Object, the agent(s) that conceptually formed the RO.
             The
@@ -528,7 +529,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             </p>
             </dd>
 
-        <dt><code>history</code></dt> <dd>Provenance
+        <dt id="manifest-history"><code>history</code></dt> <dd>Provenance
             trace of the life of this RO, relative to the
             <code>.ro/</code> directory. This property MAY be present, in
             which case it SHOULD be <code>"evolution.ttl"</code>,
@@ -545,7 +546,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             according to the <a
             href="http://purl.org/wf4ever/roevo#">roevo</a> ontology.
             </dd>
-       <dt><code>aggregates</code></dt>
+       <dt id="manifest-aggregates"><code>aggregates</code></dt>
        <dd>This property SHOULD be present, in which
        case it MUST be a list of all the resources aggregated by this RO.
        The values in a list MUST be an object, which SHOULD be uniquely identified by either
@@ -581,7 +582,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                 File creation date and creator, as specified above for
                 the research object.
                 </dd>
-            <dt><code>bundledAs</code>
+              <dt id="manifest-bundledAs"><code>bundledAs</code>
             <dd>Details of how this resource has been bundled. This
             object SHOULD be present for resources aggregated with
             <code>uri</code>, and MAY be present for other resources.
@@ -655,7 +656,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
        </p>
       </dd>
 
-      <dt><code>annotations</code></dt>
+      <dt id="manifest-annotations"><code>annotations</code></dt>
 
       <dd>
         Annotations, MAY be present, in which case it MUST be a list. An
