@@ -521,10 +521,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         </dl>
         Additional <a href="http://xmlns.com/foaf/0.1/">foaf:</a>
         properties (such as <code>foaf:homepage</code>) MAY be added to
-        the top-level <code>@graph</code> according to <a
-        href="#custom-json-ld" class="sectionRef"></a>
-        by
-        using a <code>@id</code> equal to the creator <code>uri</code>.
+        according to <a href="#custom-json-ld" class="sectionRef"></a>.
         </dd>
 
         <dt id="manifest-authoredOn"><code>authoredOn</code></dt> <dd>The time the Research
@@ -548,10 +545,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             Additional authorship information (curation, contribution,
             etc) MAY be added using the
             <a href="http://purl.org/pav/">pav:</a> namespace
-            within the top-level <code>@graph</code>
-            key according to <a href="#custom-json-ld" class="sectionRef"></a>
-            by using an <code>@id</code> value equal to the bundle
-            <code>id</code>, e.g. <code>"/"</code>.
+            according to <a href="#custom-json-ld" class="sectionRef"></a>.
             </p>
             </dd>
 
@@ -757,10 +751,8 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
           <p>
             Additional properties describing the annotation using the
             <a href="http://www.w3.org/ns/oa#">oa:</a> namespace
-            MAY be added to the top-level <code>@graph</code>
-            according to <a href="#custom-json-ld" class="sectionRef"></a>
-            by using a <code>@id</code> matching the
-            <code>annotation</code> identifier.
+            MAY be added
+            according to <a href="#custom-json-ld" class="sectionRef"></a>.
           </p>
           <p>
             The keys <code>about</code> or <code>content</code> SHOULD
@@ -863,15 +855,48 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     levels.
     </p>
     <p>
-    Applications SHOULD NOT write additional properties directly
-    to JSON-LD nodes defined from
-    <a href='#manifest-json' class="sectionRef"></a>.
-    Instead, additional statements SHOULD be made within an
-    additional <code>@graph</code> node according to
+    Applications MAY add other properties directly
+    to JSON Objects defined from
+    <a href='#manifest-json' class="sectionRef"></a>,
+    but MUST ensure they are valid JSON-LD.
+    Note that
+    the RO Bundle JSON-LD context does not specify
+    the typing of properties outside this specification,
+    so object properties need the
+    full form of <code>{"@id": "http://..."}</code>
+    rather than just <code>"http://..."</code>.
+    For example, to provide additional [[FOAF]] properties
+    for the creator of a file:
+  </p>
+  <pre class="example">
+{
+    "@context":  [
+        "https://w3id.org/bundle/context"
+    ],
+    "id": "/
+    "manifest": "manifest.json",
+    "aggregates": [
+       { "file":      "/README.txt",
+         "createdBy": {
+             "uri":     "http://example.com/foaf#bob",
+             "name":    "Bob Builder"
+             <strong>
+             "foaf:homepage": {
+                 "@id": "http://example.com/bob"
+             },
+             "foaf:title": "Dr"
+           </strong>
+         },
+    ]
+}
+  </pre>
+
+    <p>
+    Alternatively, additional statements can be made within a
+    top-level <code>@graph</code> node according to
     <a
         href="http://www.w3.org/TR/json-ld/#named-graphs">JSON-LD
-        Named Graphs</a>. <code>@graph</code> SHOULD only be
-    added to the top-level object.
+        Named Graphs</a>.
     For example:
     </p>
     <pre class="example">
