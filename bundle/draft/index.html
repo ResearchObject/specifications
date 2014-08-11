@@ -709,7 +709,8 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                     value for <code>proxy</code></li>
                 <li>Another annotation, starting with
                     <code>urn:uuid:</code>, which MUST be defined under
-                    <code>annotations</code> </li>
+                    <code>annotations</code> with a matching
+                    value for <code>annotation</code> </li>
                 <li>An absolute URI, which may or may not be aggregated by the RO</li>
                 <li>A JSON list, containing any of the above. This indicates
                 that the annotation is about each of the listed
@@ -727,22 +728,33 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             <ul>
                 <li>A (non-aggregated) meta-resource (typically an RDF
                     graph), starting with <code>annotations/</code>, which
-                    SHOULD exist in the <code>.ro/annotations/</code>
+                    MUST exist in the <code>.ro/annotations/</code>
                     directory</li>
                 <li>An aggregated bundled resource, starting with
                 <code>/</code>, which MUST be listed under
-                    <code>aggregates</code> and MUST be included in the
-                    ZIP archive</li>
+                <code>aggregates</code> if that key is present</li>
                 <li>An absolute URI, which may or may not be aggregated by the RO</li>
             </ul>
             </dd>
         </dl>
+          <p>
             Additional properties describing the annotation using the
             <a href="http://www.w3.org/ns/oa#">oa:</a> namespace
             MAY be added to the top-level <code>@graph</code>
             according to <a href="#custom-json-ld" class="sectionRef"></a>
             by using a <code>@id</code> matching the
             <code>annotation</code> identifier.
+          </p>
+          <p>
+            The keys <code>about</code> or <code>content</code> SHOULD
+            identify at least one resource that is otherwise part of the research
+            object (e.g. the research object itself, an aggregated resource,
+            a proxy or another annotation). Annotations are considered
+            implicitly aggregated by a research object, and
+            SHOULD NOT be listed under <code>aggregates</code>
+            of the same research object.
+          </p>
+
       </dd>
 
       <dt><code>@graph</code></dt> <dd>A list of additional [[JSON-LD]]
