@@ -853,11 +853,9 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     but MUST ensure they are valid JSON-LD.
     Note that
     the RO Bundle JSON-LD context does not specify
-    the typing of properties outside this specification,
-    so object properties need the
-    full form of <code>{"@id": "http://..."}</code>
-    rather than just <code>"http://..."</code>.
-    For example, to provide additional [[FOAF]] properties
+    the typing of properties outside this specification.
+    
+    As an example, to provide additional [[FOAF]] properties
     for the creator of a file:
   </p>
   <pre class="example">
@@ -872,12 +870,12 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
          "createdBy": {
              "uri":     "http://example.com/foaf#bob",
              "name":    "Bob Builder",
-             
+             <strong>
              "foaf:homepage": {
                  "@id": "http://example.com/bob"
              },
              "foaf:title": "Dr"
-           
+           </strong>
          }
       }
     ]
