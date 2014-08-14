@@ -21,7 +21,7 @@
          "createdOn": "2013-02-12T19:37:32.939Z" },
        { "uri":    "http://example.com/comments.txt",
          "bundledAs": {
-            "proxy":    "urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644",
+            "uri":    "urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644",
             "folder":   "/folder/",
             "filename": "external.txt" }
        }

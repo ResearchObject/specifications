@@ -596,11 +596,12 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                 </dd>
               <dt id="manifest-bundledAs"><code>bundledAs</code>
             <dd>Details of how this resource has been bundled. This
-            object SHOULD be present for resources aggregated with
-            <code>uri</code>, and MAY be present for other resources.
+            object SHOULD be present for aggregated resources aggregated with
+            an absolute URI, and MAY be present for other
+            aggregate dresources.
             Its members are:
             <dl>
-                <dt><code>proxy</code></dt>
+                <dt><code>uri</code></dt>
                 <dd>
             The identifier for an <a
             href="http://www.openarchives.org/ore/1.0/datamodel#Proxies">ORE
@@ -608,25 +609,22 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             This property is intended the purposes of
             referring to "resource X as aggregated in research object Y"
             within annotations and in external documents. This property
-            SHOULD be given for external resources aggregated by
-            <code>uri</code>
-            references, as they could be aggregated in multiple ROs, and MAY
-            be given for other resources.
+            MUST be provided if the <code>bundledAs</code> object exists.
             <p>
             The proxy identifier SHOULD consist of the prefix <code>urn:uuid:</code> and
                 a lowercased UUID string [[RFC4122]]. For example:
                 <code>urn:uuid:d4f09040-272e-467f-9250-59593bd4ac8f</code>
                 </dd>
                 <dt><code>folder</code></dt>
-                    <dd>A folder this resource (typically identified by
-                    <code>uri</code>) belongs to, relative to the
-                    root of the bundle. The path SHOULD be prefixed with
+                    <dd>A folder this resource
+                    belongs to, relative to the root of the bundle.
+                    The path SHOULD be prefixed with
                     <code>/</code> and SHOULD end with <code>/</code>,
                     for instance <code>/folder2/</code>. The folder SHOULD
-                    be a directory in the zip archive.</dd>
+                    be a directory in the zip archive. </dd>
                 <dt><code>filename</code></dt>
-                    <dd>The filename the resource (typically identified by
-                    <code>uri</code>) is given within the given folder. The
+                    <dd>The filename the resource
+                    is given within the given folder. The
                     key <code>filename</code> SHOULD be present if
                     <code>folder</code> is given. If <code>filename</code>
                     is given, the <code>folder</code> MUST be present.
