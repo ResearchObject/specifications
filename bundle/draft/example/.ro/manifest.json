@@ -11,9 +11,9 @@
         "name":    "Alice W. Land" },
     "history":   "evolution.ttl",
     "aggregates": [
-       { "file":  "/folder/soup.jpeg" },
-       { "uri": "http://example.com/blog/" },
-       { "file":      "/README.txt",
+       { "uri":  "/folder/soup.jpeg" },
+       { "uri":  "http://example.com/blog/" },
+       { "uri":      "/README.txt",
          "mediatype": "text/plain",
          "createdBy": {
              "uri":     "http://example.com/foaf#bob",
