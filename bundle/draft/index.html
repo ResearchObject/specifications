@@ -629,7 +629,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         following members:
         </p>
         <dl>
-            <dt><code>annotation</code></dt>
+            <dt><code>uri</code></dt>
             <dd>
             The identifier for this annotation. The identifier SHOULD be
             present, and SHOULD
@@ -638,37 +638,37 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             <code>urn:uuid:1a876f9e-4ffe-4c99-a05d-cd9d0cbd4cbb</code>
             </dd>
 
-            <dt><code>about</code></dt>
+            <dt id="annotation-about"><code>about</code></dt>
             <dd>The identifier for the annotated resource, MUST be
             present. This is considered the
             <a
             href="http://www.openannotation.org/spec/core/20130208/core.html#BodyTarget">target</a>
-            of the annotation, that is the resource the annotation
+            of the annotation, the resource the annotation
             content is "somewhat about".
             The "about" identifier SHOULD be one of these types:
             <ul>
-                <li>The research object itself, which SHOULD match the
+                <li>The research object itself, which MUST match the
                 value of its <code>id</code>, e.g.
-                <code>"/"</code></li>
-                <li>A bundled resource, starting with
-                <code>/</code>, which SHOULD be listed under
-                    <code>aggregates</code> if that member is present</li>
-                <li>A proxy for an aggregated resource, starting with
-                    <code>urn:uuid:</code>, which MUST be defined under
-                    <code>aggregates</code> with a matching
-                    value for <code>proxy</code></li>
-                <li>Another annotation, starting with
-                    <code>urn:uuid:</code>, which MUST be defined under
-                    <code>annotations</code> with a matching
-                    value for <code>annotation</code> </li>
-                <li>An absolute URI, which may or may not be aggregated by the RO</li>
+                <code>"/"</code>.</li>
+                <li>An aggregated resource, matching its <code>uri</code>
+                    under <code>aggregates</code>. </li>
+                <li>A proxy for an aggregated resource, which MUST
+                    match the <code>uri</code> of <code>bundledAs</code>
+                    on an aggregated resource.</li>
+                <li>Another annotation, which MUST match
+                    the <code>uri</code> as listed under
+                    <code>annotations</code>.</li>
+                <li>An absolute URI that is not aggregated by
+                  this research object. If the <code>about</code>
+                  resource is not aggregated, the corresponding <code>content</code>
+                  member SHOULD be an aggregated resource.</li>
                 <li>A JSON list, containing any of the above. This indicates
-                that the annotation is about each of the listed
-                resources, for instance because the annotation content is
-                describing their relationship.</li>
+                  that the annotation is about each of the listed
+                  resources, for instance because the annotation content is
+                  describing their relationship.</li>
             </ul>
             </dd>
-            <dt><code>content</code></dt>
+            <dt id="annotation-content"><code>content</code></dt>
             <dd>
             The identifier for a resource that contains the
             <a
@@ -678,12 +678,15 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             <ul>
                 <li>A (non-aggregated) meta-resource (typically an RDF
                     graph), starting with <code>annotations/</code>, which
-                    MUST exist in the <code>.ro/annotations/</code>
-                    directory</li>
-                <li>An aggregated bundled resource, starting with
-                <code>/</code>, which MUST be listed under
-                <code>aggregates</code> if that member is present</li>
-                <li>An absolute URI, which may or may not be aggregated by the RO</li>
+                    MUST exist in the <code>/.ro/annotations/</code>
+                    directory.</li>
+                <li>An aggregated resource, matching its <code>uri</code>
+                    under <code>aggregates</code>.</li>
+                <li>An absolute URI, which may or may not be aggregated by the RO.
+                If the content is not aggregated, the corresponding <code>about</code>
+                MUST NOT be an absolute URI that is not aggregated by the
+                research object.
+                </li>
             </ul>
             </dd>
         </dl>
@@ -864,7 +867,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     </p>
     <p>The content of <a href="https://w3id.org/bundle/context">https://w3id.org/bundle/context</a>
     at time of writing is:</p>
-    <pre data-include="context.json">
+    <pre data-include="context.json" class="autoscroll">
     </pre>
 
   <section id="triples">
@@ -880,7 +883,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     <code>app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/manifest.json</code>
     </p>
 
-    <pre class="example" data-include="example/.ro/manifest.nq"
+    <pre class="example autoscroll" data-include="example/.ro/manifest.nq"
         data-oninclude="escapeXML">
       </pre>
     </section>
@@ -973,7 +976,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     Note that rather than using the above extension mechanism,
     it is generally RECOMMENDED
     to instead store such additional statements in
-    an <a href="http://wf4ever.github.com/ro/#annotations-example-sec">annotation body</a>
+    an <a href="annotation-content">annotation content</a>
     for purposes of provenance and separation of concern. Although
     technically valid, it is NOT RECOMMENDED to use the member
     <code>@graph</code> to embed semantic annotation bodies
