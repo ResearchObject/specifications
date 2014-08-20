@@ -799,17 +799,18 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             The
             author SHOULD be
             present if different from <code>createdBy</code>.
-            SHOULD be an object with the same members and requirements as
+            <p>
+            The author SHOULD be a JSON object with the same members and requirements as
             for <code>createdBy</code>, but MAY be a list to indicate
             multiple authors.
-            <p>
-            Additional authorship information (curation, contribution,
-            etc) MAY be added using the
-            <a href="http://purl.org/pav/">pav:</a> namespace
-            according to <a href="#custom-json-ld" class="sectionRef"></a>.
-            </p>
             </dd>
     </dl>
+    <p>
+            Additional provenance (curation, contribution, derivation, etc.) MAY be added using the
+            <a href="http://purl.org/pav/">pav:</a> namespace
+            according to <a href="#custom-json-ld" class="sectionRef"></a>
+            or detailed in a separate <a href="#manifest-history">history</a> provenance trace.
+            </p>
 
 
 
