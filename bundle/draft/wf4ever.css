@@ -37,10 +37,10 @@ blockquote {
     z-index: -1;
     /* For mobile browsers who overlap */
     opacity: 0.6;
-    /* Enable for debugging 
+    /* Enable for debugging
     background: #abc;
      */
-    
+
     /** From http://stackoverflow.com/questions/1080792/how-to-draw-vertical-text-with-css-cross-browser */
 
     -webkit-transform: rotate(-90deg);
@@ -61,7 +61,7 @@ blockquote {
 }
 
 /* The actual status box */
- .status div {   
+ .status div {
     display: block;
     background: red;
     color: white;
@@ -70,10 +70,10 @@ blockquote {
     padding-left: 0em;
     padding-right: 5em;
     padding-bottom: 0.3em;
-    /* Enable for debugging 
+    /* Enable for debugging
     border: red thin solid;
      */
-} 
+}
 
 /* And text inside, don't confuse fonts as it breaks em above */
 .status div span {
@@ -81,4 +81,12 @@ blockquote {
     font-size: larger;
 }
 
-
+/* Scroll-bar on long <pre> */
+      @media screen {
+        pre.autoscroll {
+          max-height: 30em;
+          border: 1px solid #888;
+          overflow: auto;
+          padding: 1em;
+        }
+      }
