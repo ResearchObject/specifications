@@ -500,13 +500,18 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             of this research object
             according to the <a
             href="http://purl.org/wf4ever/roevo#">roevo</a> ontology.
+            <p>
+            The higher level
+            <a href="#provenance">provenance</a> of the research object
+            (e.g. it's creator and creation date) SHOULD be provided
+            as additional members, even if the <code>history</code> member is present.
             </dd>
 
        <dt id="manifest-aggregates"><code>aggregates</code></dt>
        <dd>This property SHOULD be present, in which
-       case it MUST be a list of all the resources aggregated by this RO.
-       The values in a list MUST be an object, which M~UST be uniquely identified by
-            <code>uri</code>. Its members are:
+       case it MUST be a list of <em>all</em> the resources aggregated by this RO.
+       The values in a list MUST be objects, which MUST be uniquely identified by
+            <code>uri</code>. The members are:
         <dl>
             <dt><code>uri</code></dt>
                 <dd>A path within the bundle, or an absolute URI.
