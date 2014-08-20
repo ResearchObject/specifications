@@ -437,7 +437,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     Identifiers used below are either:
     </p>
     <ol>
-      <li><em>Meta-resources</em>, path relative to <code>.ro/</code> directory,
+      <li><em>Meta-resources</em>, path relative to <code>/.ro/</code> directory,
           which MUST NOT contain the <code>:</code> character.  For
           instance <code>manifest.json</code>  or <code>annotations/ann2</code>.
           Depending on how meta-resources are used, the ZIP might or might not include
@@ -453,7 +453,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
       </li>
       <li>
           <em>Absolute URIs</em> (contains <code>:</code>), external to the bundle. For instance
-          <code>http://example.com/external</code>
+          <code>http://www.example.com/external</code>
       </li>
 
     </ol>
@@ -462,15 +462,13 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
       <h4>JSON structure</h4>
 
     <p>The structure of the JSON manifest is given by an JSON Object
-    with the keys:
+    with the members:
     </p>
     <dl>
         <dt id="manifest-context"><code>@context</code></dt> <dd>JSON-LD context. SHOULD be
         present, in which case it MUST be valid according to the <a
         href="http://www.w3.org/TR/json-ld/#the-context">JSON-LD
-        @context keyword</a>. The RO bundle context SHOULD be a list,
-        and SHOULD include
-
+        @context keyword</a>. The RO bundle context SHOULD be a list, and SHOULD include
         the value <code>"https://w3id.org/bundle/context"</code>.
         This value SHOULD be the last item of the list.</dd>
 
@@ -482,22 +480,22 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
 
         <dt id="manifest-manifest"><code>manifest</code> <dd>ORE manifests describing this RO,
         relative to the <code>.ro/</code> directory. SHOULD be literal
-        <code>"manifest.json"</code>,
+        <code>manifest.json</code>,
             but MAY be a list, in which case the list MUST contain
-            <code>"manifest.json"</code></dd>
+            <code>manifest.json</code></dd>
 
         <dt id="manifest-history"><code>history</code></dt> <dd>Provenance
             trace of the life of this RO, relative to the
             <code>.ro/</code> directory. This property MAY be present, in
-            which case it SHOULD be <code>"evolution.ttl"</code>,
-            indicating that the file <code>.ro/evolution.ttl</code>
+            which case it SHOULD be <code>evolution.ttl</code>,
+            indicating that the bundle file <code>/.ro/evolution.ttl</code>
             contains the provenance trace.
-            This value MAY be a URI. The property MAY give a list if
+            This value MAY be an absolute URI. The property MAY give a list if
             several provenance traces are known, in which case the list
-            SHOULD include <code>"evolution.ttl"</code>.
+            SHOULD include <code>evolution.ttl</code>.
             <p>
             The file
-            <code>.ro/evolution.ttl</code>, if present,
+            <code>/.ro/evolution.ttl</code>, if present,
             SHOULD include a provenance trace
             of this research object
             according to the <a
@@ -529,7 +527,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                 </dd>
             <dt><code>conformsTo</code></Dt>
                 <dd>The URI of a specification, standard, schema, vocabulary or similar that
-                the resource conforms to. This key MAY be provided, in which case the
+                the resource conforms to. This member MAY be provided, in which case the
                 value SHOULD be an absolute URI identifying a versioned,
                 retrievable specification that the resource conforms to. Example:
                 <code>http://www.w3.org/TR/SVG11/</code>
@@ -565,7 +563,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                 <dt><code>filename</code></dt>
                     <dd>The filename the resource
                     is given within the given folder. The
-                    key <code>filename</code> SHOULD be present if
+                    member <code>filename</code> SHOULD be present if
                     <code>folder</code> is given. If <code>filename</code>
                     is given, the <code>folder</code> MUST be present.
                     The filename should not contain the characters
@@ -592,7 +590,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
       <dt id="manifest-annotations"><code>annotations</code></dt>
 
       <dd>
-        Annotations, MAY be present, in which case it MUST be a list. An
+        Annotations MAY be present, in which case it MUST be a list. An
         <a
         href="http://www.openannotation.org/spec/core/">annotation</a>
         provides additional metadata or descriptions which are somewhat
@@ -626,7 +624,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                 <code>"/"</code></li>
                 <li>A bundled resource, starting with
                 <code>/</code>, which SHOULD be listed under
-                    <code>aggregates</code> if that key is present</li>
+                    <code>aggregates</code> if that member is present</li>
                 <li>A proxy for an aggregated resource, starting with
                     <code>urn:uuid:</code>, which MUST be defined under
                     <code>aggregates</code> with a matching
@@ -656,7 +654,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                     directory</li>
                 <li>An aggregated bundled resource, starting with
                 <code>/</code>, which MUST be listed under
-                <code>aggregates</code> if that key is present</li>
+                <code>aggregates</code> if that member is present</li>
                 <li>An absolute URI, which may or may not be aggregated by the RO</li>
             </ul>
             </dd>
@@ -668,7 +666,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             according to <a href="#custom-json-ld" class="sectionRef"></a>.
           </p>
           <p>
-            The keys <code>about</code> or <code>content</code> SHOULD
+            The members <code>about</code> or <code>content</code> SHOULD
             identify at least one resource that is otherwise part of the research
             object (e.g. the research object itself, an aggregated resource,
             a proxy or another annotation). Annotations are considered
@@ -706,7 +704,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     </ul>
     <p>
     Provenance information is given by adding values under the
-    following keys:
+    following members:
     </p>
     <dl>
         <dt id="manifest-created"><code>createdOn</code></dt> <dd>The time the
@@ -720,7 +718,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         bundle. This MAY be different from the person forming the
         research object, which SHOULD be indicated with
         <code>authoredBy</code>. The creator SHOULD be an object
-        with the following keys:
+        with the following members:
         <dl>
             <dt><code>uri</code></dt>
             <dd>A URI identifying the agent. The URI SHOULD be present,
@@ -758,7 +756,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             The
             author SHOULD be
             present if different from <code>createdBy</code>.
-            SHOULD be an object with the same keys and requirements as
+            SHOULD be an object with the same members and requirements as
             for <code>createdBy</code>, but MAY be a list to indicate
             multiple authors.
             <p>
@@ -774,7 +772,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                     OPTIONAL property, the agent that aggregated this
                     resource to this research object, especially when
                     different from the <code>createdBy</code> of the research object.
-                    SHOULD be an object with the same keys and requirements as
+                    SHOULD be an object with the same members and requirements as
                     for <code>createdBy</code> above, but MAY be a list to indicate
                     multiple aggregators.
                 </dd>
