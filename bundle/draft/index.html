@@ -568,8 +568,11 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                 <dd>A path within the bundle. The path
                 SHOULD be prefixed with <code>/</code></dd>
             <dt><code>uri</code></dt>
-                <dd>An absolute URI. The key <code>uri</code> MUST NOT be provided at the
-                same time as <code>file</code>.</dd>
+                <dd>A path within the bundle, or an absolute URI.
+                  Bundle paths SHOULD be prefixed with <code>/</code>
+                  unless they are relative to the <code>/.ro/</code>
+                  folder. (See <a href='#prefixes'>prefixes</a>.)</dd>
+                </dd>
 
             <dt><code>mediatype</code></dt>
                 <dd>The <a
@@ -852,7 +855,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
     Note that
     the RO Bundle JSON-LD context does not specify
     the typing of properties outside this specification.
-    
+
     As an example, to provide additional [[FOAF]] properties
     for the creator of a file:
   </p>
