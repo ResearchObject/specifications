@@ -538,66 +538,89 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                 <code>http://www.w3.org/TR/SVG11/</code>
                 </dd>
               <dt id="manifest-bundledAs"><code>bundledAs</code>
-            <dd>Details of how this resource has been bundled. This
+            <dd> An
+              <a href="http://www.openarchives.org/ore/1.0/datamodel#Proxies">ORE
+            proxy</a> [[ORE]],
+
+            providing details of how this resource has been bundled. This
             object SHOULD be present for aggregated resources aggregated with
             an absolute URI, and MAY be present for other
-            aggregate dresources.
+            aggregated resources.
             Its members are:
             <dl>
                 <dt><code>uri</code></dt>
                 <dd>
-            The identifier for an <a
-            href="http://www.openarchives.org/ore/1.0/datamodel#Proxies">ORE
-            proxy</a> [[ORE]] for the resources as aggregated by this RO.
-            This property is intended the purposes of
-            referring to "resource X as aggregated in research object Y"
-            within annotations and in external documents. This property
+            The identifier for the ORE Proxy as an URI.
+            This property
             MUST be provided if the <code>bundledAs</code> object exists.
-            <p>
+            This identifier should be used if
+            referring to "resource X as aggregated in research object Y"
+            within annotations and in external documents.
             The proxy identifier SHOULD consist of the prefix <code>urn:uuid:</code> and
-                a lowercased UUID string [[RFC4122]]. For example:
+                a lowercased UUID string [[RFC4122]], for example:
                 <code>urn:uuid:d4f09040-272e-467f-9250-59593bd4ac8f</code>
                 </dd>
                 <dt><code>folder</code></dt>
-                    <dd>A folder this resource
-                    belongs to, relative to the root of the bundle.
+                    <dd>A folder in the bundle this resource
+                    belongs to.
+                    This member MUST be present
+                    if <code>filename</code> is given, and
+                    MAY be present alone.
                     The path SHOULD be prefixed with
                     <code>/</code> and SHOULD end with <code>/</code>,
-                    for instance <code>/folder2/</code>. The folder SHOULD
+                    for instance <code>/folder2/</code> or <code>/</code>.
+                    The folder SHOULD
                     be a directory in the zip archive. </dd>
                 <dt><code>filename</code></dt>
                     <dd>The filename the resource
-                    is given within the given folder. The
-                    member <code>filename</code> SHOULD be present if
-                    <code>folder</code> is given. If <code>filename</code>
-                    is given, the <code>folder</code> MUST be present.
+                    is given within the specified folder. This
+                    member SHOULD be present if <code>folder</code>
+                    is also given.
                     The filename should not contain the characters
                     <code>/</code>, <code>:</code> or <code>\</code>, but
                     MAY contain spaces and international characters.
                 </dd>
                   </dl>
+                <p>
+                 Additional members detailing the
+                 <a href="#provenance">provenance</a> of the
+                 proxy (i.e. describing who aggregated the resource)
+                 MAY be included (see below).
+                 Other metadata about a proxy (e.g. comments about
+                 why a resource was included),
+                 if present, SHOULD be added as an annotation (see below)
+                 using the proxy identifier as <code>about</code>.
+              </p>
+
+
                 </dd>
             </dl>
-      <p>
-        Additional metadata about a resource, if present, SHOULD be
-        added as an annotation (see below).
+
+        <p>
+         Additional members detailing the
+         <a href="#provenance">provenance</a> of every
+         aggregated resource SHOULD be included (see below).
+         Other metadata about a resource (e.g. a title or description),
+         if present, SHOULD be added as an annotation (see below)
+         using the resource <code>uri</code> as <code>about</code>.
       </p>
 
        <p>
        The order of the values in the <code>aggregates</code> list is insignificant, however
        the list MUST NOT contain duplicate entries. An entry is considered
        duplicate by comparing the <code>uri</code> value
-       resolved as an <a href="#absolute-uris">absolute</a>
-       URI[[URI]].
+       resolved as an <a href="#absolute-uris">absolute URI</a>
+       [[URI]].
        </p>
       </dd>
 
       <dt id="manifest-annotations"><code>annotations</code></dt>
 
       <dd>
-        Annotations MAY be present, in which case it MUST be a list. An
+        Annotations about this research object and its resources.
+        This member MAY be present, in which case it member MUST be a list. An
         <a
-        href="http://www.openannotation.org/spec/core/">annotation</a>
+        href="http://www.openannotation.org/spec/core/">annotation</a> [OA]
         provides additional metadata or descriptions which are somewhat
         about or related to the research object or some of its
         aggregated resources.
