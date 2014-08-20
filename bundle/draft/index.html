@@ -620,7 +620,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         Annotations about this research object and its resources.
         This member MAY be present, in which case it member MUST be a list. An
         <a
-        href="http://www.openannotation.org/spec/core/">annotation</a> [OA]
+        href="http://www.openannotation.org/spec/core/">annotation</a> [[OAt]]
         provides additional metadata or descriptions which are somewhat
         about or related to the research object or some of its
         aggregated resources.
@@ -722,35 +722,44 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
       SHOULD be provided for these JSON objects in the manifest:
     </p>
     <ul>
-      <li>The RO (top-level JSON object)</li>
-      <li>Aggregated resources (values under <code>aggregates</code>)</li>
+      <li><a href="#manifest-id">The RO</a> (top-level JSON object)</li>
+      <li><a href="#manifest-aggregates">Aggregated resources</a> (values under <code>aggregates</code>)</li>
     </ul>
     <p>
       Provenance information MAY also be provided for these JSON
       objects in the manifest:
     </p>
     <ul>
-      <li>ORE proxies (values under <code>bundledAs</code>)</li>
-      <li>Annotations (values under <code>annotations</code>)</li>
+      <li><a href="#manifest-bundledAs">ORE proxies</a> (values under <code>bundledAs</code>)</li>
+      <li><a href="#manifest-annotations">Annotations</a> (values under <code>annotations</code>)</li>
     </ul>
     <p>
-    Provenance information is given by adding values under the
-    following members:
+    Provenance information is given by the following members:
     </p>
     <dl>
-        <dt id="manifest-created"><code>createdOn</code></dt> <dd>The time the
-        resource was serialized (written to disk).
+        <dt id="createdOn"><code>createdOn</code></dt> <dd>The time the
+        <a href="http://purl.org/pav/html#http://purl.org/pav/createdOn">resource representation was created</a>
+        (e.g. when it was saved from an application).
         SHOULD be present, in which case it MUST be a
-        <a
-        href="http://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime
-        formatted</a> timestamp (ISO 8601), and SHOULD include the time zone.</dd>
+        <a href="http://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime
+        formatted</a> timestamp (ISO 8601), and SHOULD include the time zone.
+        </dd>
 
-        <dt id="manifest-createdBy"><code>createdBy</code></dt> <dd>The creator of the RO
-        bundle. This MAY be different from the person forming the
-        research object, which SHOULD be indicated with
+        <dt id="createdBy"><code>createdBy</code></dt> <dd>The
+          <a href="http://purl.org/pav/html#http://purl.org/pav/createdBy">creator of the
+        resource representation</a> (e.g. who saved it from an application). The creator is an
+        <a href="http://www.w3.org/TR/2013/REC-prov-dm-20130430/Overview.html#term-agent">agent</a>,
+        e.g. a person, organization or software.
+        This MAY be different from the agent who conceptually
+        formed the resource (e.g. wrote the document or chose the aggregated resources),
+        which SHOULD be indicated with
         <code>authoredBy</code>. The creator SHOULD be an object
         with the following members:
         <dl>
+            <dt><code>name</code></dt>
+            <dd>The full <a href="http://xmlns.com/foaf/spec/#term_name">name</a>
+            of the agent. The name MUST be present. Examples:
+            <code>"John Doe"</code> or <code>"University of Manchester"</code></dd>
             <dt><code>uri</code></dt>
             <dd>A URI identifying the agent. The URI SHOULD be present,
             and SHOULD be a
@@ -763,27 +772,30 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             <code>http://orcid.org/0000-0001-9842-9718</code>. An ORCID
              MAY be present if known, and MUST be a URI.
             </dd>
-            <dt><code>name</code></dt>
-            <dd>The full <a href="http://xmlns.com/foaf/spec/#term_name">name</a>
-            of the agent. The name SHOULD be present. Examples:
-            <code>"John Doe"</code> or <code>"University of Manchester"</code></dd>
         </dl>
-        Additional <a href="http://xmlns.com/foaf/0.1/">foaf:</a>
-        properties (such as <code>foaf:homepage</code>) MAY be added to
+        <p>
+        Additional [[FOAF]] properties (such as <code>foaf:homepage</code>) MAY be added to
         according to <a href="#custom-json-ld" class="sectionRef"></a>.
         </dd>
 
-        <dt id="manifest-authoredOn"><code>authoredOn</code></dt> <dd>The time the Research
-        Object
-        was conceptually formed. The author time SHOULD be present if different from
-        createdOn. The value MUST be a
+        <dt id="authoredOn"><code>authoredOn</code></dt> <dd>The time the
+
+        resource was conceptually formed. The
+          <a href="http://purl.org/pav/html#http://purl.org/pav/authoredBy">author
+        time</a>
+        SHOULD be present if different from
+        <code>createdOn</code>. The value MUST be a
         <a
         href="http://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime
-        formatted</a> timestamp (ISO 8601), and SHOULD include the time zone</dd>
+        formatted</a> timestamp (ISO 8601), and SHOULD include the time zone.</dd>
 
-        <dt id="manifest-authoredBy"><code>authoredBy</code></dt>
-        <dd>The author of the Research
-            Object, the agent(s) that conceptually formed the RO.
+        <dt id="authoredBy"><code>authoredBy</code></dt>
+        <dd>The
+          <a href="http://purl.org/pav/html#http://purl.org/pav/authoredBy">author of the
+            resource</a>, i.e.
+            the agent(s) that conceptually formed its content. Examples include
+            who authored the text of an aggregated document, or chose the resources
+            that were aggregated in a research object.
             The
             author SHOULD be
             present if different from <code>createdBy</code>.
@@ -797,25 +809,6 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
             according to <a href="#custom-json-ld" class="sectionRef"></a>.
             </p>
             </dd>
-
-                <dt><code>aggregatedBy</code></dt>
-                <dd>
-                    OPTIONAL property, the agent that aggregated this
-                    resource to this research object, especially when
-                    different from the <code>createdBy</code> of the research object.
-                    SHOULD be an object with the same members and requirements as
-                    for <code>createdBy</code> above, but MAY be a list to indicate
-                    multiple aggregators.
-                </dd>
-                <dt><code>aggregatedOn</code></dt>
-                    <dd>
-                    OPTIONAL property, when this resource was
-                    aggregated, especially when different from the
-                    <code>createdBy</code> for the research object.
-                    The value, if present, MUST be <a
-                    href="http://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime
-                    formatted</a> timestamp (ISO 8601), and SHOULD
-                    include the time zone.</dd>
     </dl>
 
 
