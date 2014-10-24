@@ -163,6 +163,11 @@
     basis for implementations. Questions, feedback and comments are
     kindly requested to be sent to the <a href="https://groups.google.com/forum/#!forum/wf4ever-public">wf4ever-public</a>
     mailing list/forum.
+    </p>
+    <p>
+    This document uses the terms [[URI]] and [[IRI]] interchangably. As long as
+    the implementing technology supports it, all uses of URIs can be interchanged
+    with IRIs (e.g. URIs containing unescaped Unicode characters).
     </section>
 
 
@@ -455,8 +460,9 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
           <em>Absolute URIs</em> (contains <code>:</code>), external to the bundle. For instance
           <code>http://www.example.com/external</code>
       </li>
-
     </ol>
+     <p>Identifiers with special characters (e.g. space) MUST be <a href="#escaping">URI escaped</a>,
+        while international characters (e.g. Unicode) MAY be escaped or expressed as an [[IRI]].</p>
 
     <section id="json-structure">
       <h4>JSON structure</h4>
@@ -518,6 +524,9 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                   Bundle paths SHOULD be prefixed with <code>/</code>
                   unless they are relative to the <code>/.ro/</code>
                   folder. (See <a href='#prefixes'>prefixes</a>.)
+                  Special characters such as space MUST be <a href="#escaping">URI escaped</a>,
+                  while international characters (e.g. Unicode) MAY be escaped
+                  or expressed as an [[IRI]].
                 </dd>
 
             <dt><code>mediatype</code></dt>
@@ -595,7 +604,6 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
 
                 </dd>
             </dl>
-
         <p>
          Additional members detailing the
          <a href="#provenance">provenance</a> of every
@@ -609,8 +617,8 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
        The order of the values in the <code>aggregates</code> list is insignificant, however
        the list MUST NOT contain duplicate entries. An entry is considered
        duplicate by comparing the <code>uri</code> value
-       resolved as an <a href="#absolute-uris">absolute URI</a>
-       [[URI]].
+       resolved as an <a href="#escaping">unescaped</a> and
+       <a href="#absolute-uris">absolute IRI</a>.
        </p>
       </dd>
 
