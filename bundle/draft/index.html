@@ -1059,139 +1059,169 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         <code>id</code> identifying the Research Object is set to
         <code>"/"</code>, meaning the root represents the RO itself.
         </p>
-        <p>
-        <section id="absolute-uris">
-            <h3>Absolute URIs for bundle resources</h3>
-            <p>
-            Applications which require an absolute URI for identifying a
-            resource within a Research Object Bundle may choose to use
-            the approach presented in this section in
-            combination with resolving against the <a href="#prefix">prefix
-            table</a> above.
-            </p>
-            <p>
-            The <a href="http://www.w3.org/TR/app-uri/">app: URI
-                scheme</a> [[APP-URI]] proposes how a URI can be formed for the
-            purposes of accessing resources within a ZIP file as if the
-            resources were retrieved from a HTTP server. While this is
-            primary intended for sandboxing <a
-                href="http://www.w3.org/TR/runtime/">HTML
-                applications</a>,
-            it is equally applicable to Research Object
-            bundles for the purposes of sandboxing and for generating a
-            URI independent of the location of the ZIP archive.
-            <p>
-            The app: URI scheme suggests
-            generating a UUID string [[RFC4122]] for minting the <em>authority</em>,
-            forming the <em>base URI</em> for the RO bundle.
-            For instance, if:
-            <pre>http://example.com/example1.robundle</pre>
-            contains the file <code>/folder/helloworld.txt</code>, then
-            we generate a new UUID
-            <code>8191dee8-0b8e-452d-8d64-7706a140185e</code> and
-            refer to the Research Object as <pre>app://8191dee8-0b8e-452d-8d64-7706a140185e/</pre>
-            and can refer to its bundled file <code>/folder/helloworld.txt</code> as:
-            <pre>app://8191dee8-0b8e-452d-8d64-7706a140185e/folder/helloworld.txt</pre>
-            <p>
-            The type of authority to generate depends on what is the purpose of the
-            absolute URI:
-            <ol>
-                <li>
-                    For security/sandboxing when interpreting RO
-                    bundles, the authority should be a <a
-                        href="http://tools.ietf.org/html/rfc4122#section-4.4">v4
-                        UUID
-                        from random numbers</a>.  Thus the URI is guaranteed to
-                    be unique for each interpretation, and can't (reasonably) be
-                    pre-guessed.
-                    <br />Applications exposing such URIs might
-                    want to record the equivalent provenance of a <a
-                        href="http://purl.org/pav/html#http://purl.org/pav/retrievedFrom">pav:retrievedFrom</a>
-                    relation to indicate where the bundle was retrieved
-                    from. For instance (in Turtle):
-                    <div id="retrievedFromExample">
-                    <pre class="example">
+        <section id="escaping">
+          <h3>Escaping URIs</h3>
+          <p>All identifieres within the manifest are in JSON expressed
+                  as escaped [[IRI]]s.
+          If the ZIP file contains a filename with escapable characters, e.g.
+          <code>/folder with spaces/Δfilename-∈unicode.txt</code>, then this
+          SHOULD in JSON be expressed as an escaped IRI, e.g.
+          <code>http://example.com/folder%20with%20spaces/Δfilename-∈unicode</code>,
+          but MAY alternatively be expressed as an ASCII-escaped URI, e.g.
+          <code>/folder%20with%20spaces/%CE%94filename-%E2%88%88unicode.txt</code>.
+          </p>
+          <p>
+          If the research object references an absolute URI (e.g. aggregating
+          or as an annotation body), e.g.
+          <code>http://www.example.中國/with%20space%20as%20well.txt</code>,
+          then this SHOULD in JSON be expressed as an IRI as-is
+          (preserving IRI escapes for special characters),
+          or using the [[RFC3492]] punycode DNS name:
+          <code>http://xn--fiqs8s.example.com</code>.
+
+          <p>
+          The filenames as stored in the ZIP file MUST be a <a href="#ucf">valid UTF-8
+          filename</a> and SHOULD NOT be URI escaped, as this causes double
+          escaping within the manifest.
+          <p>
+          <p>
+          Note that IRIs that syntactically differ may be identifying the
+          same resource if they match after comparing them as
+          <a href="#absolute-uris">absolute IRIs</a> within the bundle.
+        </p>
+      </section>
+      <section id="absolute-uris">
+          <h3>Absolute URIs for bundle resources</h3>
+          <p>
+          Applications which require an absolute URI for identifying a
+          resource within a Research Object Bundle may choose to use
+          the approach presented in this section in
+          combination with resolving against the <a href="#prefix">prefix
+          table</a> above.
+          </p>
+          <p>
+          The <a href="http://www.w3.org/TR/app-uri/">app: URI
+              scheme</a> [[APP-URI]] proposes how a URI can be formed for the
+          purposes of accessing resources within a ZIP file as if the
+          resources were retrieved from a HTTP server. While this is
+          primary intended for sandboxing <a
+              href="http://www.w3.org/TR/runtime/">HTML
+              applications</a>,
+          it is equally applicable to Research Object
+          bundles for the purposes of sandboxing and for generating a
+          URI independent of the location of the ZIP archive.
+          <p>
+          The app: URI scheme suggests
+          generating a UUID string [[RFC4122]] for minting the <em>authority</em>,
+          forming the <em>base URI</em> for the RO bundle.
+          For instance, if:
+          <pre>http://example.com/example1.robundle</pre>
+          contains the file <code>/folder/helloworld.txt</code>, then
+          we generate a new UUID
+          <code>8191dee8-0b8e-452d-8d64-7706a140185e</code> and
+          refer to the Research Object as <pre>app://8191dee8-0b8e-452d-8d64-7706a140185e/</pre>
+          and can refer to its bundled file <code>/folder/helloworld.txt</code> as:
+          <pre>app://8191dee8-0b8e-452d-8d64-7706a140185e/folder/helloworld.txt</pre>
+          <p>
+          The type of authority to generate depends on what is the purpose of the
+          absolute URI:
+          <ol>
+              <li>
+                  For security/sandboxing when interpreting RO
+                  bundles, the authority should be a <a
+                      href="http://tools.ietf.org/html/rfc4122#section-4.4">v4
+                      UUID
+                      from random numbers</a>.  Thus the URI is guaranteed to
+                  be unique for each interpretation, and can't (reasonably) be
+                  pre-guessed.
+                  <br />Applications exposing such URIs might
+                  want to record the equivalent provenance of a <a
+                      href="http://purl.org/pav/html#http://purl.org/pav/retrievedFrom">pav:retrievedFrom</a>
+                  relation to indicate where the bundle was retrieved
+                  from. For instance (in Turtle):
+                  <div id="retrievedFromExample">
+                  <pre class="example">
 @prefix pav: &lt;http://purl.org/pav/&gt; .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
 &lt;app://15259726-dcbb-42ff-8fc6-36282c98d4e6/&gt;
-    pav:retrievedFrom &lt;http://example.com/example1.robundle&gt; ;
-    pav:retrievedOn "2013-05-21T14:24:19Z"^^xsd:dateTime .
-                    </pre>
-                    </div>
-                </li>
-                <li>
-                    For describing/referencing
-                content of an RO bundle accessed at a given URL, the authority should be
-                generated as a <a href="http://tools.ietf.org/html/rfc4122#section-4.3">name
-                    based UUID</a> using v5 (SHA-1 hashing) concatination of the
-                    URL namespace
-                    <code>6ba7b811-9dad-11d1-80b4-00c04fd430c8</code> (as
-                    UUID bytes) and the ASCII-escaped version of the
-                    URL. This approach gives
-                    a predictable UUID for a particular URL, even if the
-                    content at the URL might later change. <br />
-                    Applications using this approach might want to declare the equivalent of
-                    a <code>owl:sameAs</code> relation between the accessed
-                    URI and the generated <code>app:</code> URI in order
-                    to record the original URI. For instance:
-                    <pre class="example">
+  pav:retrievedFrom &lt;http://example.com/example1.robundle&gt; ;
+  pav:retrievedOn "2013-05-21T14:24:19Z"^^xsd:dateTime .
+                  </pre>
+                  </div>
+              </li>
+              <li>
+                  For describing/referencing
+              content of an RO bundle accessed at a given URL, the authority should be
+              generated as a <a href="http://tools.ietf.org/html/rfc4122#section-4.3">name
+                  based UUID</a> using v5 (SHA-1 hashing) concatination of the
+                  URL namespace
+                  <code>6ba7b811-9dad-11d1-80b4-00c04fd430c8</code> (as
+                  UUID bytes) and the ASCII-escaped version of the
+                  URL. This approach gives
+                  a predictable UUID for a particular URL, even if the
+                  content at the URL might later change. <br />
+                  Applications using this approach might want to declare the equivalent of
+                  a <code>owl:sameAs</code> relation between the accessed
+                  URI and the generated <code>app:</code> URI in order
+                  to record the original URI. For instance:
+                  <pre class="example">
 @prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .
 &lt;app://7878e885-327c-5ad4-9868-7338f1f13b3b/&gt; owl:sameAs
-        &lt;http://example.com/example1.robundle&gt; .
-                    </pre>
-                </li>
-                <li>
-                    For purposes of
-                    describing the content of an RO bundle as a bytestream
-                    independent of its location (for instance on a USB stick),
-                    then the authority should be the hexadecimal <a
-                        href="http://csrc.nist.gov/groups/STM/cavp/documents/shs/sha256-384-512.pdf">SHA-256</a>
-                    checksum of the ZIP archive (not a UUID). This
-                    ensures a predictable URI for the same physical
-                    representation, where any change to the bundle
-                    generates a new identifier.
-                    <br />
-                    Applications exposing such URIs might
-                    want to record the equivalent provenance of a
-                    <a href="http://purl.org/pav/html#http://purl.org/pav/retrievedFrom">pav:retrievedFrom</a>
-                    relation to indicate where the bundle was retrieved
-                    from, including the time of retrieval using the
-                    equivalent of <a
-                        href="http://purl.org/pav/html#http://purl.org/pav/retrievedOn">pav:retrievedOn</a>.
-                    (See <a href="#retrievedFromExample">example
-                        above</a>).
-                </li>
-            </ol>
-            <p>Example app base URIs:</p>
-            <ul>
-                <li><code>app://15259726-dcbb-42ff-8fc6-36282c98d4e6/</code>
-                <em>UUID v4 using pseduo-random number</em></li>
-                <li><code>app://7878e885-327c-5ad4-9868-7338f1f13b3b/</code>
-                    <em>UUID v5 of the URL
-                        <code>http://example.com/bundle1.robundle</code></em></li>
-                <li><code>app://587cff3ae37d58af6886d656623bd91237759a42d8fe1575a9744898c01d97d7/</code>
-                    <em>SHA-256 of an empty RO bundle</em></li>
-            </ul>
-        </section>
-    </section>
+      &lt;http://example.com/example1.robundle&gt; .
+                  </pre>
+              </li>
+              <li>
+                  For purposes of
+                  describing the content of an RO bundle as a bytestream
+                  independent of its location (for instance on a USB stick),
+                  then the authority should be the hexadecimal <a
+                      href="http://csrc.nist.gov/groups/STM/cavp/documents/shs/sha256-384-512.pdf">SHA-256</a>
+                  checksum of the ZIP archive (not a UUID). This
+                  ensures a predictable URI for the same physical
+                  representation, where any change to the bundle
+                  generates a new identifier.
+                  <br />
+                  Applications exposing such URIs might
+                  want to record the equivalent provenance of a
+                  <a href="http://purl.org/pav/html#http://purl.org/pav/retrievedFrom">pav:retrievedFrom</a>
+                  relation to indicate where the bundle was retrieved
+                  from, including the time of retrieval using the
+                  equivalent of <a
+                      href="http://purl.org/pav/html#http://purl.org/pav/retrievedOn">pav:retrievedOn</a>.
+                  (See <a href="#retrievedFromExample">example
+                      above</a>).
+              </li>
+          </ol>
+          <p>Example app base URIs:</p>
+          <ul>
+              <li><code>app://15259726-dcbb-42ff-8fc6-36282c98d4e6/</code>
+              <em>UUID v4 using pseduo-random number</em></li>
+              <li><code>app://7878e885-327c-5ad4-9868-7338f1f13b3b/</code>
+                  <em>UUID v5 of the URL
+                      <code>http://example.com/bundle1.robundle</code></em></li>
+              <li><code>app://587cff3ae37d58af6886d656623bd91237759a42d8fe1575a9744898c01d97d7/</code>
+                  <em>SHA-256 of an empty RO bundle</em></li>
+          </ul>
+      </section>
+  </section>
 
-    <section id="conformance"></section>
+  <section id="conformance"></section>
 
-    <!--<a href="#general-structure" class="sectionRef"></a> -->
-    <section class='appendix'>
-      <h2>Acknowledgements</h2>
-      <p>
-        Thanks to Khalid Belhajjame, Graham Klyne and Piotr Hołubowicz
-        for reviewing this specification. The underlying work
-        has been funded as part of the
-        <a href="http://www.wf4ever-project.org/">Wf4Ever project</a>,
-        funded by the <a href="http://cordis.europa.eu/fp7/">European
-            Commisson's FP7 programme</a> (FP7-ICT-2007-6 270192).
+  <!--<a href="#general-structure" class="sectionRef"></a> -->
+  <section class='appendix'>
+    <h2>Acknowledgements</h2>
+    <p>
+      Thanks to Khalid Belhajjame, Graham Klyne and Piotr Hołubowicz
+      for reviewing this specification. The underlying work
+      has been funded as part of the
+      <a href="http://www.wf4ever-project.org/">Wf4Ever project</a>,
+      funded by the <a href="http://cordis.europa.eu/fp7/">European
+          Commisson's FP7 programme</a> (FP7-ICT-2007-6 270192).
 
-        Many thanks to Robin Berjon for making <a
-            href="http://dev.w3.org/2009/dap/ReSpec.js/documentation.html">ReSpec.js</a>
-        which generated this page.
-      </p>
-    </section>
-  </body>
+      Many thanks to Robin Berjon for making <a
+          href="http://dev.w3.org/2009/dap/ReSpec.js/documentation.html">ReSpec.js</a>
+      which generated this page.
+    </p>
+  </section>
+</body>
 </html>
