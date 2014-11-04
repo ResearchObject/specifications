@@ -57,7 +57,7 @@ blockquote {
     transform-origin: 50% 50%;
 
     /* Should be unset in IE9+ I think. */
-    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
 }
 
 /* The actual status box */
