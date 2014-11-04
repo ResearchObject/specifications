@@ -4,7 +4,7 @@
     <title>Research Object Bundle</title>
     <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
     <script
-    src='http://w3c.github.io/respec/builds/respec-w3c-common-3.2.25.js' async class='remove'></script>
+    src='http://w3c.github.io/respec/builds/respec-w3c-common-3.2.26.js' async class='remove'></script>
     <script class="remove">
     // Not sure why doc._esc disapppeared from respec.js
     var _esc = function (s) {
@@ -103,6 +103,7 @@
           wgPatentURI:  "",
           // Add extraReferences to bibliography database
           localBiblio: {
+// TODO: Submit remaining specs to specref
      "ORE":"<cite><a href=\"http://www.openarchives.org/ore/1.0/toc.html\">Open Archives Initiative Object Reuse and Exchange</a></cite>. <em>ORE Specifications and User Guides.</em> URL: <a href=\"http://www.openarchives.org/ore/1.0/toc.html\">http://www.openarchives.org/ore/1.0/toc.html</a>",
      "RO": "Stian Soiland-Reyes; Sean Bechhofer et al.: <cite><a href='http://purl.org/wf4ever/model'>Wf4Ever Research Object Model</a></cite>. 30 November 2012. URL: <a href='http://purl.org/wf4ever/model'>http://purl.org/wf4ever/model</a>",
      "UCF": "Adobe: <cite><a href='https://learn.adobe.com/wiki/display/PDFNAV/Universal+Container+Format'>Universal Container Format</a></cite>. URL: <a href='https://learn.adobe.com/wiki/display/PDFNAV/Universal+Container+Format'>https://learn.adobe.com/wiki/display/PDFNAV/Universal+Container+Format</a> accessed 2013-02-28.",
@@ -110,31 +111,30 @@
      "ROPrimer": "Jun Zhao et al: <cite><a href='http://purl.org/wf4ever/ro-primer'>Wf4Ever Research Object Ontologies and Vocabularies Primer</a></cite>. 13 April 2012. URL: <a href='http://purl.org/wf4ever/ro-primer'>http://purl.org/wf4ever/primer</a> accessed 2013-02-27",
      "ROSRS": "Piotr Holubowicz; Graham Klyne et al.: <cite><a href='http://www.wf4ever-project.org/wiki/display/docs/RO+SRS+interface+6'>RO SRS interface 6</a></cite>. 21 December 2012. URL: <a href='http://www.wf4ever-project.org/wiki/display/docs/RO+SRS+interface+6'>http://www.wf4ever-project.org/wiki/display/docs/RO+SRS+interface+6</a>",
      "ODF": "Rob Weir; Michael Brauer; Patrick Durusau; Dennis Hamilton: Open Document Format for Office Applications (OpenDocument) Version 1.3, Part 3: Packages. OASIS Standard. 29 September 2011. URL: <a href=''>http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2-part3.html",
-     "FOAF": {
-       "authors": [
-         "Dan Brickley",
-         "Libby Miller"
-       ],
-       "href": "http://xmlns.com/foaf/spec",
-       "title": "FOAF Vocabulary Specification 0.99",
-       "date": "14 January 2014",
-
-       "rawDate": "2014-01-14",
-       "publisher": "FOAF project",
-       "versions": {
-         "2014-01-14": {
-           "authors": [
-             "Dan Brickley",
-             "Libby Miller"
-           ],
-           "href": "http://xmlns.com/foaf/spec/20140114.html",
-           "title": "FOAF Vocabulary Specification 0.99",
-           "status": "Paddington Edition",
-           "date": "14 January 2014",
-           "rawDate": "2014-01-14",
-           "publisher": "FOAF project"
-         }
-       }
+// TODO: Remove after https://github.com/tobie/specref/pull/152
+     "OA": {
+         "authors": [
+             "Robert Sanderson",
+             "Paolo Ciccarese",
+             "Herbert Van de Sompel"
+         ],
+         "href": "http://www.openannotation.org/spec/core/",
+         "title": "Open Annotation Data Model, Community Draft, 08 February 2013",
+         "rawDate": "2013-02-08",
+         "publisher": "Open Annotation Community Group",
+         "versions": {
+             "20130208": {
+                 "authors": [
+                   "Robert Sanderson",
+                   "Paolo Ciccarese",
+                   "Herbert Van de Sompel"
+                 ],
+                 "href": "http://www.openannotation.org/spec/core/20130208/index.html",
+                 "title": "Open Annotation Data Model, Community Draft, 08 February 2013",
+                 "rawDate": "2013-02-08",
+                 "publisher": "Open Annotation Community Group"
+             }
+          }
       }
     }
   };
@@ -628,7 +628,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         Annotations about this research object and its resources.
         This member MAY be present, in which case it member MUST be a list. An
         <a
-        href="http://www.openannotation.org/spec/core/">annotation</a> [[OAt]]
+        href="http://www.openannotation.org/spec/core/">annotation</a> [[OA]]
         provides additional metadata or descriptions which are somewhat
         about or related to the research object or some of its
         aggregated resources.
