@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<rdf:RDF xmlns:manifest="http://example.org/ROs/ro1/manifest#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-	<rdf:Description rdf:about="http://example.org/ROs/ro1/manifest#ro">
-		<dc:title xml:lang="en">My research object</dc:title>
-		<dc:description xml:lang="en">This RO showcases my example workflow</dc:description>
-	</rdf:Description>
-</rdf:RDF>
