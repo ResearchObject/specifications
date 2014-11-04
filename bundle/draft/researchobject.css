@@ -1,16 +1,16 @@
 /**
- * Wf4Ever-styling of specification - overrides styling from ReSpec.js
+ * researchobject.org-styling of specification - overrides styling from ReSpec.js
  */
 
 @import url(http://fonts.googleapis.com/css?family=Tauri);
 @import url(boxes.css);
 
-body.wf4ever {
+body.researchobject {
     /* Disable 'Unofficial Draft' */
     background-image: none;
 }
 /* not so red! */
-body.wf4ever code {
+body.researchobject code {
     color: #a55;
 }
 .logo {
