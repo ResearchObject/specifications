@@ -2,8 +2,7 @@
  * researchobject.org-styling of specification - overrides styling from ReSpec.js
  */
 
-@import url(//www.w3.org/StyleSheets/TR/w3c-unofficial);
-@import url(//fonts.googleapis.com/css?family=Tauri);
+@import url(https://fonts.googleapis.com/css?family=Tauri);
 @import url(boxes.css);
 
 body.researchobject {

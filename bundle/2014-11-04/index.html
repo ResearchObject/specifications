@@ -66,7 +66,7 @@ p.practicedesc {
     }
 }
 </style><link rel="stylesheet" href="researchobject.css" type="text/css">
-    <link rel="stylesheet" href="http://www.w3.org/StyleSheets/TR/w3c-unofficial" type="text/css">
+    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/w3c-unofficial" type="text/css">
   <style>/*****************************************************************
  * ReSpec 3 CSS
  * Robin Berjon - http://berjon.com/
@@ -188,14 +188,14 @@ table.simple {
         
       
   </p>
-  <h1 class="title p-name" id="title" property="dcterms:title">Research Object Bundle</h1>
+  <h1 class="title p-name" id="title" property="dcterms:title">Research Object Bundle 1.0</h1>
   
-  <h2 id="unofficial-draft-04-november-2014" property="dcterms:issued" datatype="xsd:dateTime" content="2014-11-04T11:26:05.000Z">Candidate Specification <time class="dt-published" datetime="2014-11-04">04 November 2014</time></h2>
+  <h2 id="unofficial-draft-05-november-2014" property="dcterms:issued" datatype="xsd:dateTime" content="2014-11-05T09:44:45.000Z">researchobject.org Specification <time class="dt-published" datetime="2014-11-05">05 November 2014</time></h2>
   <dl>
     
                   
         <dt>This version:</dt>
-        <dd><a href="https://w3id.org/bundle/2014-11-04/">https://w3id.org/bundle/2014-11-04/</a></dd>
+        <dd><a href="https://w3id.org/bundle/2014-11-05/">https://w3id.org/bundle/2014-11-05/</a></dd>
                                 
         <dt>Previous version:</dt>
         <dd><a href="http://purl.org/wf4ever/ro-bundle/2013-05-21/">http://purl.org/wf4ever/ro-bundle/2013-05-21/</a></dd>
@@ -207,9 +207,7 @@ table.simple {
     
         <dt>Latest Recommendation:</dt>
         <dd><a href="https://w3id.org/bundle/">https://w3id.org/bundle/</a></dd>
-      
-
-
+    
     
     <dt>Editors:</dt>
     <dd class="p-author h-card vcard" rel="bibo:editor" inlist=""><span typeof="foaf:Person"><a class="u-url url p-name fn" rel="foaf:homepage" property="foaf:name" content="Stian Soiland-Reyes" href="http://orcid.org/0000-0001-9842-9718">Stian Soiland-Reyes</a>, <a rel="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://www.cs.manchester.ac.uk/">University of Manchester</a></span>
@@ -259,7 +257,7 @@ table.simple {
     </section><section rel="bibo:Chapter" resource="#sotd" typeof="bibo:Chapter" id="sotd" class="introductory"><h2 id="h2_sotd" role="heading">Status of This Document</h2>
   
     <p>
-      This document is a Candidate Recommendation published by 
+      This document is a specification published by 
       <a href="http://www.researchobject.org/">researchobject.org</a> and
       and does not represent the support or consensus of any standards organisation.
     </p>
@@ -267,14 +265,15 @@ table.simple {
     Questions, feedback and comments are
     kindly requested, either as <a href="https://github.com/ResearchObject/specifications/issues">GitHub issues</a>, or as <a href="https://github.com/ResearchObject/specifications/pulls">pull requests</a> of the
     <a href="https://github.com/ResearchObject/specifications/tree/gh-pages/bundle/draft">current draft</a>.
-    <p></p>
+    
     <p>
     This document uses the terms [<cite><a href="#bib-URI" class="bibref">URI</a></cite>] and [<cite><a href="#bib-IRI" class="bibref">IRI</a></cite>] interchangably. As long as
     the implementing technology supports it, all uses of URIs can be interchanged
     with IRIs (e.g. URIs containing unescaped Unicode characters).
     </p>
+    
   
-</section><section id="toc"><h2 id="h2_toc" role="heading" class="introductory">Table of Contents</h2><ul id="respecContents" role="directory" class="toc"><li class="tocline"><a class="tocxref" href="#introduction"><span class="secno">1. </span>Introduction</a></li><li class="tocline"><a class="tocxref" href="#container"><span class="secno">2. </span>Container</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#ucf"><span class="secno">2.1 </span>Universal Container Format (UCF)</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#rootfile"><span class="secno">2.1.1 </span>Rootfile</a></li></ul></li><li class="tocline"><a class="tocxref" href="#ro-bundle-container"><span class="secno">2.2 </span><abbr title="Research Object">RO</abbr> bundle container</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#media-types"><span class="secno">2.2.1 </span>Resource media type</a></li><li class="tocline"><a class="tocxref" href="#manifest-xml"><span class="secno">2.2.2 </span>META-INF/manifest.xml</a></li></ul></li></ul></li><li class="tocline"><a class="tocxref" href="#manifest"><span class="secno">3. </span>Manifest</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#manifest-json"><span class="secno">3.1 </span>.ro/manifest.json</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#json-structure"><span class="secno">3.1.1 </span>JSON structure</a></li><li class="tocline"><a class="tocxref" href="#provenance"><span class="secno">3.1.2 </span>Provenance information</a></li><li class="tocline"><a class="tocxref" href="#manifest-example"><span class="secno">3.1.3 </span>Example manifest.json</a></li></ul></li><li class="tocline"><a class="tocxref" href="#json-ld"><span class="secno">3.2 </span>JSON-LD and mapping to <abbr title="Research Object">RO</abbr> model</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#triples"><span class="secno">3.2.1 </span>Example manifest as triples</a></li></ul></li><li class="tocline"><a class="tocxref" href="#custom-json-ld"><span class="secno">3.3 </span>Custom JSON-LD</a></li><li class="tocline"><a class="tocxref" href="#alternative-manifests"><span class="secno">3.4 </span>Alternative manifest representations</a></li></ul></li><li class="tocline"><a class="tocxref" href="#identifiers"><span class="secno">4. </span>Identifiers</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#escaping"><span class="secno">4.1 </span>Escaping URIs</a></li><li class="tocline"><a class="tocxref" href="#absolute-uris"><span class="secno">4.2 </span>Absolute URIs for bundle resources</a></li></ul></li><li class="tocline"><a class="tocxref" href="#conformance"><span class="secno">5. </span>Conformance</a></li><li class="tocline"><a class="tocxref" href="#acknowledgements"><span class="secno">A. </span>Acknowledgements</a></li><li class="tocline"><a class="tocxref" href="#references"><span class="secno">B. </span>References</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><span class="secno">B.1 </span>Normative references</a></li><li class="tocline"><a class="tocxref" href="#informative-references"><span class="secno">B.2 </span>Informative references</a></li></ul></li></ul></section>
+</section><section id="toc"><h2 id="h2_toc" role="heading" class="introductory">Table of Contents</h2><ul id="respecContents" role="directory" class="toc"><li class="tocline"><a class="tocxref" href="#introduction"><span class="secno">1. </span>Introduction</a></li><li class="tocline"><a class="tocxref" href="#container"><span class="secno">2. </span>Container</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#ucf"><span class="secno">2.1 </span>Universal Container Format (UCF)</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#rootfile"><span class="secno">2.1.1 </span>Rootfile</a></li></ul></li><li class="tocline"><a class="tocxref" href="#ro-bundle-container"><span class="secno">2.2 </span><abbr title="Research Object">RO</abbr> bundle container</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#media-types"><span class="secno">2.2.1 </span>Resource media type</a></li><li class="tocline"><a class="tocxref" href="#manifest-xml"><span class="secno">2.2.2 </span>META-INF/manifest.xml</a></li></ul></li></ul></li><li class="tocline"><a class="tocxref" href="#manifest"><span class="secno">3. </span>Manifest</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#manifest-json"><span class="secno">3.1 </span>.ro/manifest.json</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#json-structure"><span class="secno">3.1.1 </span>JSON structure</a></li><li class="tocline"><a class="tocxref" href="#provenance"><span class="secno">3.1.2 </span>Provenance information</a></li><li class="tocline"><a class="tocxref" href="#manifest-example"><span class="secno">3.1.3 </span>Example manifest.json</a></li></ul></li><li class="tocline"><a class="tocxref" href="#json-ld"><span class="secno">3.2 </span>JSON-LD and mapping to <abbr title="Research Object">RO</abbr> model</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#triples"><span class="secno">3.2.1 </span>Example manifest as triples</a></li></ul></li><li class="tocline"><a class="tocxref" href="#custom-json-ld"><span class="secno">3.3 </span>Custom JSON-LD</a></li><li class="tocline"><a class="tocxref" href="#alternative-manifests"><span class="secno">3.4 </span>Alternative manifest representations</a></li></ul></li><li class="tocline"><a class="tocxref" href="#identifiers"><span class="secno">4. </span>Identifiers</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#escaping"><span class="secno">4.1 </span>Escaping URIs</a></li><li class="tocline"><a class="tocxref" href="#absolute-uris"><span class="secno">4.2 </span>Absolute URIs for bundle resources</a></li></ul></li><li class="tocline"><a class="tocxref" href="#conformance"><span class="secno">5. </span>Conformance</a></li><li class="tocline"><a class="tocxref" href="#changes"><span class="secno">A. </span>Changes</a></li><li class="tocline"><a class="tocxref" href="#acknowledgements"><span class="secno">B. </span>Acknowledgements</a></li><li class="tocline"><a class="tocxref" href="#references"><span class="secno">C. </span>References</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><span class="secno">C.1 </span>Normative references</a></li><li class="tocline"><a class="tocxref" href="#informative-references"><span class="secno">C.2 </span>Informative references</a></li></ul></li></ul></section>
     
 
 
@@ -582,7 +581,11 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         in which case it
         <em title="SHOULD" class="rfc2119">SHOULD</em> have the fixed value <code>/</code> indicating the
         relative top-level folder as the identifier.
-        (See <a href="#identifiers" class="sectionRef sec-ref">section <span class="secno">4.</span> <span class="sec-title">Identifiers</span></a>.)</dd>
+        (See <a href="#identifiers" class="sectionRef sec-ref">section <span class="secno">4.</span> <span class="sec-title">Identifiers</span></a>.)
+        If the <abbr title="Research Object">RO</abbr> bundle was downloaded from a web resource, then the URI
+        it was retrieved from <em title="SHOULD" class="rfc2119">SHOULD</em> be provided
+        with <a href="#retrievedFrom"><code>retrievedFrom</code></a>.
+        </dd>
 
         <dt id="manifest-manifest"><code>manifest</code> </dt><dd>ORE manifests describing this <abbr title="Research Object">RO</abbr>,
         relative to the <code>.ro/</code> directory. <em title="SHOULD" class="rfc2119">SHOULD</em> be literal
@@ -909,11 +912,28 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
 
         <dt id="retrievedFrom"><code>retrievedFrom</code></dt>
         <dd>
-          The URI where a resource has been
+          The absolute URI where a resource has been
             <a href="http://purl.org/pav/html#http://purl.org/pav/retrievedFrom">retrieved from</a>.
-          This
+          This property <em title="SHOULD" class="rfc2119">SHOULD</em> be included if a bundle resource was downloaded from an
+          external source. This property <em title="SHOULD" class="rfc2119">SHOULD</em> be accompanied with
+          <code>retrievedOn</code>
+          and <code>retrievedBy</code>.
         </dd>
+        <dt id="retrievedOn"><code>retrievedOn</code></dt>
+        <dd>The time the resource was
+            <a href="http://purl.org/pav/html#http://purl.org/pav/retrievedOn">retrieved on</a>.
+            If this property is present, then <code>retrievedFrom</code> <em title="MUST" class="rfc2119">MUST</em> also be present.
 
+            The value <em title="MUST" class="rfc2119">MUST</em> be a <a href="http://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime
+            formatted</a> timestamp (ISO 8601), and <em title="SHOULD" class="rfc2119">SHOULD</em> include the time zone.</dd>
+        <dt id="retrievedBy"><code>retrievedBy</code></dt>
+        <dd>The agent that the resource was
+          <a href="http://purl.org/pav/html#http://purl.org/pav/retrievedBy">retrievedBy</a>,
+            i.e. the person that downloaded the resource.
+            If this property is present, then <code>retrievedFrom</code> <em title="MUST" class="rfc2119">MUST</em> also be present.
+            The agent <em title="SHOULD" class="rfc2119">SHOULD</em> be a JSON object with the same members and requirements as
+            for <code>createdBy</code>.
+            </dd>
     </dl>
     <p>
             Additional provenance (curation, contribution, derivation, etc.) <em title="MAY" class="rfc2119">MAY</em> be added using the
@@ -1439,7 +1459,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                   be unique for each interpretation, and can't (reasonably) be
                   pre-guessed.
                   <br>Applications exposing such URIs might
-                  want to record the equivalent provenance of a <a href="http://purl.org/pav/html#http://purl.org/pav/retrievedFrom">pav:retrievedFrom</a>
+                  want to record the provenance using the <a href="http://purl.org/pav/html#http://purl.org/pav/retrievedFrom">pav:retrievedFrom</a>
                   relation to indicate where the bundle was retrieved
                   from. For instance (in Turtle):
                   <div id="retrievedFromExample">
@@ -1514,8 +1534,32 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
 </section>
 
   <!--<a href="#general-structure" class="sectionRef"></a> -->
-  <section id="acknowledgements" class="appendix">
-    <!--OddPage--><h2 id="h2_acknowledgements" role="heading"><span class="secno">A. </span>Acknowledgements</h2>
+  <section rel="bibo:Chapter" resource="#changes" typeof="bibo:Chapter" class="appendix" id="changes">
+      <!--OddPage--><h2 id="h2_changes" role="heading"><span class="secno">A. </span>Changes</h2>
+      <h2 id="2014-11-05">2014-11-05</h2>
+      <ul>
+        <li>Pubilsher is researchobject.org instead of Wf4Ever</li>
+        <li>Changes to be suggested on Github instead of mailing list </li>
+        <li>URI vs IRI</li>
+        <li>Added section for Escaping URIs</li>
+        <li>Rootfile section is now normative</li>
+        <li><code>.ro</code> <em title="MUST" class="rfc2119">MUST</em> be present</li>
+        <li><code>.ro/manifest.json</code> <em title="MUST" class="rfc2119">MUST</em> be present</li>
+        <li>Common provenance keys (<code>createdOn</code>, <code>authoredOn</code>, ..) now in separate section</li>
+        <li>Added <code>retrievedFrom</code>, <code>retrievedOn</code> and <code>retrievedBy</code></li>
+        <li>Added <code>conformsTo</code>
+        </li><li>Keys <code>file</code>, <code>proxy</code>, <code>annotation</code> replaced with <code>uri</code></li>
+        <li>Annotations are required to relate to a bundle resource </li>
+        <li>Detailed mapping to absolute URIs with examples</li>
+        <li>Example translation now in triples rather than Turtle</li>
+        <li>Now allowed to add custom JSON-LD to any node</li>
+        <li>More references made normative</li>
+        <li>Updated reference for ROAPI</li>
+      </ul>
+    </section>
+
+  <section rel="bibo:Chapter" resource="#acknowledgements" typeof="bibo:Chapter" class="appendix" id="acknowledgements">
+    <!--OddPage--><h2 id="h2_acknowledgements" role="heading"><span class="secno">B. </span>Acknowledgements</h2>
     <p>
       Thanks to Khalid Belhajjame, Graham Klyne and Piotr Hołubowicz
       for reviewing this specification. The underlying work
@@ -1530,9 +1574,9 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
   </section>
 
 
-<section rel="bibo:Chapter" resource="#references" typeof="bibo:Chapter" id="references" class="appendix"><!--OddPage--><h2 id="h2_references" role="heading"><span class="secno">B. </span>References</h2><section rel="bibo:Chapter" resource="#normative-references" typeof="bibo:Chapter" id="normative-references"><h3 id="h3_normative-references" role="heading"><span class="secno">B.1 </span>Normative references</h3><dl about="" class="bibliography"><dt id="bib-IRI">[IRI]</dt><dd rel="dcterms:requires">M. Duerst; M. Suignard. <a href="http://www.ietf.org/rfc/rfc3987.txt"><cite>Internationalized Resource Identifiers (IRIs)</cite></a>. January 2005. Proposed Standard. URL: <a href="http://www.ietf.org/rfc/rfc3987.txt">http://www.ietf.org/rfc/rfc3987.txt</a>
+<section rel="bibo:Chapter" resource="#references" typeof="bibo:Chapter" id="references" class="appendix"><!--OddPage--><h2 id="h2_references" role="heading"><span class="secno">C. </span>References</h2><section rel="bibo:Chapter" resource="#normative-references" typeof="bibo:Chapter" id="normative-references"><h3 id="h3_normative-references" role="heading"><span class="secno">C.1 </span>Normative references</h3><dl about="" class="bibliography"><dt id="bib-IRI">[IRI]</dt><dd rel="dcterms:requires">M. Duerst; M. Suignard. <a href="http://www.ietf.org/rfc/rfc3987.txt"><cite>Internationalized Resource Identifiers (IRIs)</cite></a>. January 2005. Proposed Standard. URL: <a href="http://www.ietf.org/rfc/rfc3987.txt">http://www.ietf.org/rfc/rfc3987.txt</a>
 </dd><dt id="bib-JSON-LD">[JSON-LD]</dt><dd rel="dcterms:requires">Manu Sporny; Gregg Kellogg; Markus Lanthaler. <a href="http://www.w3.org/TR/json-ld/"><cite>JSON-LD 1.0</cite></a>. 16 January 2014. W3C Recommendation. URL: <a href="http://www.w3.org/TR/json-ld/">http://www.w3.org/TR/json-ld/</a>
-</dd><dt id="bib-OA">[OA]</dt><dd rel="dcterms:requires">Robert Sanderson; Paolo Ciccarese; Herbert Van de Sompel. <a href="http://www.openannotation.org/spec/core/"><cite>Open Annotation Data Model, Community Draft, 08 February 2013</cite></a>. URL: <a href="http://www.openannotation.org/spec/core/">http://www.openannotation.org/spec/core/</a>
+</dd><dt id="bib-OA">[OA]</dt><dd rel="dcterms:requires">Robert Sanderson; Paolo Ciccarese; Herbert Van de Sompel. <a href="http://www.openannotation.org/spec/core/"><cite>Open Annotation Data Model, Community Draft, 08 February 2013</cite></a>. 8 February 2013. URL: <a href="http://www.openannotation.org/spec/core/">http://www.openannotation.org/spec/core/</a>
 </dd><dt id="bib-ORE">[ORE]</dt><dd rel="dcterms:requires"><cite><a href="http://www.openarchives.org/ore/1.0/toc.html">Open Archives Initiative Object Reuse and Exchange</a></cite>. <em>ORE Specifications and User Guides.</em> URL: <a href="http://www.openarchives.org/ore/1.0/toc.html">http://www.openarchives.org/ore/1.0/toc.html</a>
 </dd><dt id="bib-RFC2119">[RFC2119]</dt><dd rel="dcterms:requires">S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a>
 </dd><dt id="bib-RFC4122">[RFC4122]</dt><dd rel="dcterms:requires">P. Leach; M. Mealling; R. Salz. <a href="http://www.ietf.org/rfc/rfc4122.txt"><cite>A Universally Unique IDentifier (UUID) URN Namespace</cite></a>. July 2005. Proposed Standard. URL: <a href="http://www.ietf.org/rfc/rfc4122.txt">http://www.ietf.org/rfc/rfc4122.txt</a>
@@ -1541,7 +1585,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
 </dd><dt id="bib-UCF">[UCF]</dt><dd rel="dcterms:requires">Adobe: <cite><a href="https://learn.adobe.com/wiki/display/PDFNAV/Universal+Container+Format">Universal Container Format</a></cite>. URL: <a href="https://learn.adobe.com/wiki/display/PDFNAV/Universal+Container+Format">https://learn.adobe.com/wiki/display/PDFNAV/Universal+Container+Format</a> accessed 2013-02-28.
 </dd><dt id="bib-URI">[URI]</dt><dd rel="dcterms:requires">T. Berners-Lee; R. Fielding; L. Masinter. <a href="http://www.ietf.org/rfc/rfc3986.txt"><cite>Uniform Resource Identifier (URI): Generic Syntax</cite></a>. January 2005. Internet Standard. URL: <a href="http://www.ietf.org/rfc/rfc3986.txt">http://www.ietf.org/rfc/rfc3986.txt</a>
 </dd><dt id="bib-ZIP">[ZIP]</dt><dd rel="dcterms:requires"><a href="http://www.pkware.com/documents/casestudies/APPNOTE.TXT"><cite>.ZIP File Format Specification</cite></a>. 1 September 2012. Final. URL: <a href="http://www.pkware.com/documents/casestudies/APPNOTE.TXT">http://www.pkware.com/documents/casestudies/APPNOTE.TXT</a>
-</dd></dl></section><section rel="bibo:Chapter" resource="#informative-references" typeof="bibo:Chapter" id="informative-references"><h3 id="h3_informative-references" role="heading"><span class="secno">B.2 </span>Informative references</h3><dl about="" class="bibliography"><dt id="bib-FOAF">[FOAF]</dt><dd rel="dcterms:references">Dan Brickley; Libby Miller. <a href="http://xmlns.com/foaf/spec"><cite>FOAF Vocabulary Specification 0.99 (Paddington Edition)</cite></a>. 14 January 2014. URL: <a href="http://xmlns.com/foaf/spec">http://xmlns.com/foaf/spec</a>
+</dd></dl></section><section rel="bibo:Chapter" resource="#informative-references" typeof="bibo:Chapter" id="informative-references"><h3 id="h3_informative-references" role="heading"><span class="secno">C.2 </span>Informative references</h3><dl about="" class="bibliography"><dt id="bib-FOAF">[FOAF]</dt><dd rel="dcterms:references">Dan Brickley; Libby Miller. <a href="http://xmlns.com/foaf/spec"><cite>FOAF Vocabulary Specification 0.99 (Paddington Edition)</cite></a>. 14 January 2014. URL: <a href="http://xmlns.com/foaf/spec">http://xmlns.com/foaf/spec</a>
 </dd><dt id="bib-N-Quads">[N-Quads]</dt><dd rel="dcterms:references">Gavin Carothers. <a href="http://www.w3.org/TR/n-quads/"><cite>RDF 1.1 N-Quads</cite></a>. 25 February 2014. W3C Recommendation. URL: <a href="http://www.w3.org/TR/n-quads/">http://www.w3.org/TR/n-quads/</a>
 </dd><dt id="bib-OCF">[OCF]</dt><dd rel="dcterms:references">James Pritchett; Markus Gylling: <cite><a href="http://idpf.org/epub/30/spec/epub30-ocf-20111011.html">EPUB Open Container Format (OCF) 3.0</a>. Recommended Specification 11 October 2011. International Digital Publishing Forum (IDPF). URL: <a href="http://idpf.org/epub/30/spec/epub30-ocf-20111011.html">http://idpf.org/epub/30/spec/epub30-ocf-20111011.html</a>
 </cite></dd><dt id="bib-ODF">[ODF]</dt><dd rel="dcterms:references">Rob Weir; Michael Brauer; Patrick Durusau; Dennis Hamilton: Open Document Format for Office Applications (OpenDocument) Version 1.3, Part 3: Packages. OASIS Standard. 29 September 2011. URL: <a href="">http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2-part3.html
