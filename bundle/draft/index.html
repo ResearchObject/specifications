@@ -471,7 +471,11 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         in which case it
         SHOULD have the fixed value <code>/</code> indicating the
         relative top-level folder as the identifier.
-        (See <a href='#identifiers' class="sectionRef"></a>.)</dd>
+        (See <a href='#identifiers' class="sectionRef"></a>.)
+        If the RO bundle was downloaded from a web resource, then the URI
+        it was retrieved from SHOULD be provided
+        with <a href="#retrievedFrom"><code>retrievedFrom</code></a>.
+        </dd>
 
         <dt id="manifest-manifest"><code>manifest</code> <dd>ORE manifests describing this RO,
         relative to the <code>.ro/</code> directory. SHOULD be literal
@@ -1149,7 +1153,7 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
                   be unique for each interpretation, and can't (reasonably) be
                   pre-guessed.
                   <br />Applications exposing such URIs might
-                  want to record the equivalent provenance of a <a
+                  want to record the provenance using the <a
                       href="http://purl.org/pav/html#http://purl.org/pav/retrievedFrom">pav:retrievedFrom</a>
                   relation to indicate where the bundle was retrieved
                   from. For instance (in Turtle):
@@ -1229,12 +1233,20 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
         <li>Pubilsher is researchobject.org instead of Wf4Ever</li>
         <li>Changes to be suggested on Github instead of mailing list </li>
         <li>URI vs IRI</li>
-        <li>Rootfile section is normative</li>
+        <li>Added section for Escaping URIs</li>
+        <li>Rootfile section is now normative</li>
         <li><code>.ro</code> MUST be present</li>
         <li><code>.ro/manifest.json</code> MUST be present</li>
-        <li>Identifiers with special characters MUST be escaped</li>
         <li>Common provenance keys (<code>createdOn</code>, <code>authoredOn</code>, ..) now in separate section</li>
         <li>Added <code>retrievedFrom</code>, <code>retrievedOn</code> and <code>retrievedBy</code></li>
+        <li>Added <code>conformsTo</code>
+        <li>Keys <code>file</code>, <code>proxy</code>, <code>annotation</code> replaced with <code>uri</code></li>
+        <li>Annotations are required to relate to a bundle resource </li>
+        <li>Detailed mapping to absolute URIs with examples</li>
+        <li>Example translation now in triples rather than Turtle</li>
+        <li>Now allowed to add custom JSON-LD to any node</li>
+        <li>More references made normative</li>
+        <li>Updated reference for ROAPI</li>
       </ul>
     </section>
 
