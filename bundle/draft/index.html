@@ -4,7 +4,7 @@
     <title>Research Object Bundle</title>
     <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
     <script
-    src='//w3c.github.io/respec/builds/respec-w3c-common-3.2.26.js' async class='remove'></script>
+    src='https://w3c.github.io/respec/builds/respec-w3c-common-3.2.26.js' async class='remove'></script>
     <script class="remove">
     // Not sure why doc._esc disapppeared from respec.js
     var _esc = function (s) {
@@ -109,7 +109,7 @@
      "UCF": "Adobe: <cite><a href='https://learn.adobe.com/wiki/display/PDFNAV/Universal+Container+Format'>Universal Container Format</a></cite>. URL: <a href='https://learn.adobe.com/wiki/display/PDFNAV/Universal+Container+Format'>https://learn.adobe.com/wiki/display/PDFNAV/Universal+Container+Format</a> accessed 2013-02-28.",
      "OCF": "James Pritchett; Markus Gylling: <cite><a href='http://idpf.org/epub/30/spec/epub30-ocf-20111011.html'>EPUB Open Container Format (OCF) 3.0</a></cit>. Recommended Specification 11 October 2011. International Digital Publishing Forum (IDPF). URL: <a href='http://idpf.org/epub/30/spec/epub30-ocf-20111011.html'>http://idpf.org/epub/30/spec/epub30-ocf-20111011.html</a>",
      "ROPrimer": "Jun Zhao et al: <cite><a href='http://purl.org/wf4ever/ro-primer'>Wf4Ever Research Object Ontologies and Vocabularies Primer</a></cite>. 13 April 2012. URL: <a href='http://purl.org/wf4ever/ro-primer'>http://purl.org/wf4ever/primer</a> accessed 2013-02-27",
-     "ROAPI": { 
+     "ROAPI": {
       "authors": [
         "Piotr Holubowicz",
         "Graham Klyne",
@@ -127,7 +127,7 @@
   };
     </script>
     <link rel="stylesheet" href="researchobject.css" type="text/css" />
-    <link rel="stylesheet" href="http://www.w3.org/StyleSheets/TR/w3c-unofficial" type="text/css" />
+    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/w3c-unofficial" type="text/css" />
   </head>
   <body class="researchobject">
     <div class="logo"><img src="../../logo/researchobject.png" height="100" alt="researchobject.org" /></div>
@@ -143,7 +143,8 @@
         archiving, publishing and transferring research objects. </p>
     </section>
     <section id="sotd">
-    This document is an Editors' Draft published by 
+    <p>
+    This document is an Editors' Draft published by
     <a href="http://www.researchobject.org/">researchobject.org</a>.
 
     This document is currently work in progress and should not be used as a
@@ -155,6 +156,7 @@
     This document uses the terms [[!URI]] and [[!IRI]] interchangably. As long as
     the implementing technology supports it, all uses of URIs can be interchanged
     with IRIs (e.g. URIs containing unescaped Unicode characters).
+    </p>
     </section>
 
 
@@ -802,11 +804,28 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
 
         <dt id="retrievedFrom"><code>retrievedFrom</code></dt>
         <dd>
-          The URI where a resource has been
+          The absolute URI where a resource has been
             <a href="http://purl.org/pav/html#http://purl.org/pav/retrievedFrom">retrieved from</a>.
-          This
+          This property SHOULD be included if a bundle resource was downloaded from an
+          external source. This property SHOULD be accompanied with
+          <code>retrievedOn</code>
+          and <code>retrievedBy</code>.
         </dd>
+        <dt id="retrievedOn"><code>retrievedOn</code></dt>
+        <dd>The time the resource was
+            <a href="http://purl.org/pav/html#http://purl.org/pav/retrievedOn">retrieved on</a>.
+            If this property is present, then <code>retrievedFrom</code> MUST also be present.
 
+            The value MUST be a <a href="http://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime
+            formatted</a> timestamp (ISO 8601), and SHOULD include the time zone.</dd>
+        <dt id="retrievedBy"><code>retrievedBy</code></dt>
+        <dd>The agent that the resource was
+          <a href="http://purl.org/pav/html#http://purl.org/pav/retrievedBy">retrievedBy</a>,
+            i.e. the person that downloaded the resource.
+            If this property is present, then <code>retrievedFrom</code> MUST also be present.
+            The agent SHOULD be a JSON object with the same members and requirements as
+            for <code>createdBy</code>.
+            </dd>
     </dl>
     <p>
             Additional provenance (curation, contribution, derivation, etc.) MAY be added using the
@@ -1203,7 +1222,23 @@ stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
   <section id="conformance"></section>
 
   <!--<a href="#general-structure" class="sectionRef"></a> -->
-  <section class='appendix'>
+  <section class='appendix' id="changes">
+      <h2>Changes</h2>
+      <h3>2014-11-04</h3>
+      <ul>
+        <li>Pubilsher is researchobject.org instead of Wf4Ever</li>
+        <li>Changes to be suggested on Github instead of mailing list </li>
+        <li>URI vs IRI</li>
+        <li>Rootfile section is normative</li>
+        <li><code>.ro</code> MUST be present</li>
+        <li><code>.ro/manifest.json</code> MUST be present</li>
+        <li>Identifiers with special characters MUST be escaped</li>
+        <li>Common provenance keys (<code>createdOn</code>, <code>authoredOn</code>, ..) now in separate section</li>
+        <li>Added <code>retrievedFrom</code>, <code>retrievedOn</code> and <code>retrievedBy</code></li>
+      </ul>
+    </section>
+
+  <section class="appendix" id="acknowledgements">
     <h2>Acknowledgements</h2>
     <p>
       Thanks to Khalid Belhajjame, Graham Klyne and Piotr Hołubowicz
