@@ -17,7 +17,7 @@
 <!ENTITY RFC6839 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6839.xml">
 <!ENTITY TURTLE SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml4/reference.W3C.REC-turtle-20140225.xml">
 <!ENTITY JSONLD SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml4/reference.W3C.REC-json-ld-20140116.xml">
-
+<!ENTITY ARCMEDIA SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.seantek-kerwin-arcmedia-type.xml">
 
 <!ENTITY I-D.narten-iana-considerations-rfc2434bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.narten-iana-considerations-rfc2434bis.xml">
 
@@ -159,7 +159,7 @@
 				for the
 				purposes of exporting,
 				archiving, publishing and
-				transferring the
+				transferring the resulting
 				Research
 				Object as a whole.
 			</t>
@@ -168,7 +168,8 @@
 
 	<middle>
 		<section title="Introduction">
-			<t> The Research Object Model [RO] defines a way for
+			<t> The Research Object Model <xref target="RO" /> 
+				defines a way for
 				aggregating the
 				resources that contribute to a scientific work,
 				including
@@ -182,6 +183,8 @@
 				logs and
 				outputs from
 				a particular command line execution.
+				</t>	
+				<t>
 				The unit
 				that
 				collects these resources is called a Research Object (RO) and is
@@ -196,16 +199,17 @@
 			<t>
 				This specification details the RO Bundle, 
 				a serialization of the RO model as a
-				single ZIP archive for the purposes of downloading, editing and
+				single ZIP archive <xref target="ZIP" /> 
+				for the purposes of downloading, editing and
 				publishing a Research Object.
 			</t>
 			<t>
-				For instance a batch execution system can export a particular
+				For instance a batch execution system might export a particular
 				job by saving the job definition, runtime execution traces and
 				generated outputs to a set of files. An RO Bundle that
 				represents the job can aggregate and relate these
 				resources, together with their metadata, provenance
-				and annotations. 
+				and annotations. (See section XX)
 			</t>
 			<t>
 			The structure of the ZIP-file is decided by the user and/or application,
@@ -233,7 +237,107 @@
 				</t>
 			</section>
 		</section>		
+		
+		<section anchor="registration" title="Media-type registration">
+		<t>
+		This document registers the archive/robundle+zip media type in 
+		accordance with <xref target="I-D.seantek-kerwin-arcmedia-type">arcmedia</xref>. At time
+		of writing, the arcmedia WG is still to be chartered.
+		
+		<list style="hanging">
+			<t hangText="Type name:"><vspace blankLines="1"/>
+				archive</t>
+			<t hangText="Subtype name:"><vspace blankLines="1"/>
+				robundle+zip</t>
+			<t hangText="Required parameters"><vspace blankLines="1"/>
+				none</t>
+			<t hangText="Optional parameters:"><vspace blankLines="1" />
+				none</t>
+         	<t hangText="Based on media type:"><vspace blankLines="1" />
+         		application/zip</t>
+			<t hangText="Encoding considerations:"><vspace blankLines="1"/>			
+				base64 encoding is recommended when transmitting archive/*
+         		documents through MIME electronic mail.
+         		<vspace blankLines="1" />
+         		File paths within the ZIP archive MUST be valid UTF-8. 
+         		The JSON manifest MUST be encoded as UTF-8, which SHOULD refer to
+         		the filenames using IRIs or MAY refer to them as ASCII-escaped URIs.
+         		<vspace blankLines="1" />
+         		The encoding of other files contained in the archive 
+         		SHOULD be consistent with the media type expressed in the manifest
+         		or implied by section XX.         	
+         		<vspace blankLines="1" />
+         		TODO: Should filename character encoding be described elsewhere?
+         		</t>
+         	<t hangText="Security considerations:"><vspace blankLines="1"/>
+         		See section <xref target="Security" /> below</t>
+         	<t hangText="Interoperability considerations:"><vspace blankLines="1"/>         	
+         		This format is based on the 
+         		<eref target="https://www.iana.org/assignments/media-types/application/zip">application/zip</eref> 
+         		media type,
+         		and as a fallback, RO Bundles are intended to also be extractable as ZIP archives. 
+         		The manifest of the RO Bundle is serialized as JSON. Both ZIP and JSON are
+         		widely supported serializations.
+         		<vspace blankLines="1"/>         		
+         		The ZIP archive should not be modified without updating manifest.json;  
+         		consumers reading the archive as an RO Bundle SHOULD only consider files
+         		that are both present in the ZIP archive and described in the manifest.json.         		 
+         	</t>
+         	<t hangText="Published specification:"><vspace blankLines="1"/>
+         		This document (RFCXXXX)</t>
+         	<t hangText="Applications that use this media type:"><vspace blankLines="1"/>
+	         	As of 2015-01, the applications known to use this media type include:
+	         	<list style="symbols">
+	         		<t><eref target="http://taverna.incubating.apache.org/">Apache Taverna (incubating)</eref></t>
+	         		<t><eref target="https://github.com/wf4ever/robundle">RO Bundle API</eref> Java library</t>
+	         		<t><eref target="https://github.com/myGrid/ruby-ro-bundle">ro-bundle</eref> Ruby gem</t>
+	         	</list>		         
+         	</t>
+         	<t hangText="Fragment identifier considerations:"><vspace blankLines="1"/>
+         	The RO Bundle specification defines two measures to identify resources aggregated
+         	within an RO Bundle 
+         	using absolute URIs,
+         	the app:// URI scheme  <xref target="absolute_uri" />,
+			and the ORE proxies identified within the manifest per aggregated resource (see section 
+			xref target="manifest" /).			          	
+         	Therefore no specific fragment identifier has been defined for RO Bundle.
+         	<vspace blankLines="1"/>
+         	archive/robundle+zip is however extending application/zip, therefore any
+         	fragment identifier valid with application/zip is also valid with
+         	archive/robundle+zip for identifying files within the archive (which might or 
+         	might not be aggregated).
+         	As of 2015-01, no fragment identifier has been
+         	defined for application/zip.        	
+         	</t>
+         	<t hangText="Additional information:"><vspace blankLines="1"/>
+         		<list style="hanging">
+         			<t hangText="Deprecated alias names for this type:">application/vnd.wf4ver.robundle+zip</t>
+         			<t hangText="Magic number(s):">0: PK 0x03 0x04, 30: mimetype, 38: archive/robundle+zip</t>
+         			<t hangText="File extension(s):">.bundle.zip</t>         			
+         		</list>
+         	</t>
+         	<t hangText="Person and email address to contact for further information:">
+	         	Stian Soiland-Reyes, &lt;stian@soiland-reyes.com&gt;
+	         	<vspace/>
+	         	Implementors are also advised to join the
+	         	<eref target="http://www.w3.org/community/rosc/">Research Object for Scholarly
+	         	Communication W3C Community Group</eref>.          	
+         	</t>
+         	<t hangText="Intended usage:">COMMON</t>
+         	<t hangText="Restrictions on usage:">none</t>
+         	<t hangText="Author:">Stian Soiland-Reyes, Matthew Gamble, Robert Haines</t>
+         	<t hangText="Change controller:">University of Manchester</t>
+         	<t hangText="Provisional registration? (standards tree only):">No</t>         	         	  	
+		</list>
+		
 
+         
+ 		
+		 
+		</t>
+		</section>
+
+		
 		<section anchor="container" title="Container">
 			<t>
 	A Research Object Bundle is a structured [ZIP] archive, specializing
@@ -263,22 +367,7 @@
 			<t>The first file in the Zip container MUST be a file with the ASCII name of mimetype, which holds the MIME type for the Zip container (application/epub+zip as an ASCII string; no padding, white-space, or case change).</t>
 		</list>
 		
-		       <list style="hanging">
-           <t hangText="full2026:">indicating that the document is in
-           full conformance with all the provisions of Section 10 of RFC
-           2026;</t>
-
-           <t hangText="noDerivativeWorks2026:">indicating that the
-           document is in full conformance with all the provisions of
-           Section 10 of RFC 2026 except that the right to produce
-           derivative works is not granted; or,</t>
-
-           <t hangText="none:">indicating that the document is NOT
-           offered in accordance with Section 10 of RFC 2026, and the
-           author does not provide the IETF with any rights other than
-           to publish as an Internet-Draft.</t>
-       </list>
-       <list>
+		<list>
        	<t>The first file in the Zip container MUST be a file 
        	with the ASCII name of mimetype, which holds the MIME type for the Zip container (application/epub+zip as an ASCII string; no padding, white-space, or case change).</t>       
        </list>
@@ -355,6 +444,7 @@ The RO Bundle container is a specialization of a [UCF] container, with the follo
     The file .ro/manifest.json MUST be present, and MUST describe the RO according to section 3. Manifest.
 
 Applications who specialize RO Bundles MAY specify a different mimetype, for instance because the bundle is used to distribute application-specific data. It is RECOMMENDED for such extensions that their media type end with +zip according to [RFC6839] unless it is not considered meaningful for a user to treat such bundles as a general ZIP archive.
+
 2.2.1 Resource media type
 
 If an application requires a media-type for a resource, for instance because it is exposing the RO bundle over HTTP, it SHOULD resolve the media type of the resource according to this section.
@@ -421,7 +511,8 @@ aggregates
         An ORE proxy [ORE], providing details of how this resource has been bundled. This object SHOULD be present for aggregated resources aggregated with an absolute URI, and MAY be present for other aggregated resources. Its members are:
 
         uri
-            The identifier for the ORE Proxy as an URI. This property MUST be provided if the bundledAs object exists. This identifier should be used if referring to "resource X as aggregated in research object Y" within annotations and in external documents. The proxy identifier SHOULD consist of the prefix urn:uuid: and a lowercased UUID string [RFC4122], for example: urn:uuid:d4f09040-272e-467f-9250-59593bd4ac8f 
+            The identifier for the ORE Proxy as an URI. This property MUST be provided if the bundledAs object exists. This identifier should be used if referring to "resource X as aggregated in research object Y" within annotations and in external documents. The proxy identifier SHOULD consist of the prefix urn:uuid: and a lowercased UUID string 
+            <xref target="RFC4122" />, for example: urn:uuid:d4f09040-272e-467f-9250-59593bd4ac8f 
         folder
             A folder in the bundle this resource belongs to. This member MUST be present if filename is given, and MAY be present alone. The path SHOULD be prefixed with / and SHOULD end with /, for instance /folder2/ or /. The folder SHOULD be a directory in the zip archive. 
         filename
@@ -839,15 +930,24 @@ Due to their nature as ZIP files, Research Object Bundles might be downloaded, c
 4.1 Escaping URIs
 
 All identifieres within the manifest are in JSON expressed as escaped [IRI]s. If the ZIP file contains a filename with escapable characters, e.g. 
-/folder with spaces/&#x394;filename-&#x2208;unicode.txt,
- then this SHOULD in JSON be expressed as an escaped IRI, e.g. http://example.com/folder%20with%20spaces/&#x394;filename-&#x2208;unicode, but MAY alternatively be expressed as an ASCII-escaped URI, e.g. /folder%20with%20spaces/%CE%94filename-%E2%88%88unicode.txt.
+/folder with spaces/50%_discount.txt,
+ then this SHOULD in JSON be expressed as an escaped IRI, e.g. /folder%20with%20spaces/50%25_discount.txt. 
+Non-ASCII characters SHOULD NOT be escaped in the IRI, but be expressed as-is as the "manifest.json" MUST be serialized as UTF-8 character encoding according to []RFC462. 
+Alternatively, such characters MAY be expressed within an ASCII-escaped URI, 
+ e.g. /folder%20with%20spaces/%CE%94filename-%E2%88%88unicode.txt.
 
-If the research object references an absolute URI (e.g. aggregating or as an annotation body), e.g. http://www.example.&#x4e2d;&#x570b;/with%20space%20as%20well.txt, then this SHOULD in JSON be expressed as an IRI as-is (preserving IRI escapes for special characters), or using the [RFC3492] punycode DNS name: http://xn--fiqs8s.example.com.
+If the research object references an absolute URI (e.g. aggregating or as an annotation body), e.g. http://www.example.#x4e2d;#x570b;/with%20space%20as%20well.txt, then this SHOULD in JSON be expressed as an IRI as-is (preserving IRI escapes for special characters), or using the [RFC3492] punycode DNS name: http://xn--fiqs8s.example.com.
 
 The filenames as stored in the ZIP file MUST be a valid UTF-8 filename and SHOULD NOT be URI escaped, as this causes double escaping within the manifest.
 
 Note that IRIs that syntactically differ may be identifying the same resource if they match after comparing them as absolute IRIs within the bundle.
-4.2 Absolute URIs for bundle resources
+
+</t>
+
+</section>
+
+<section anchor="absolute_uri" title="Absolute URIs for bundle resources">
+<t>
 
 Applications which require an absolute URI for identifying a resource within a Research Object Bundle may choose to use the approach presented in this section in combination with resolving against the prefix table above.
 
@@ -1180,6 +1280,8 @@ main(int argc, char *argv[])
 		<section anchor="Security" title="Security Considerations">
 			<!-- <t> All drafts are required to have a security considerations section. 
 				See <xref target="RFC3552">RFC 3552</xref> for a guide. </t> -->
+				
+				
 		</section>
 	</middle>
 
@@ -1212,6 +1314,17 @@ main(int argc, char *argv[])
 			  &RFC4627;
 			  
 			  &JSONLD;
+			  
+			  <reference anchor="ZIP" target="https://www.pkware.com/documents/casestudies/APPNOTE.TXT">			  	
+				<front>
+					<title>.ZIP File Format Specification 6.3.4</title>
+					<author>
+						<organization>PKWARE Inc.</organization>
+					</author>										
+					<date year="2014" month="10" day="1"/>
+				</front>
+							  	
+			  </reference>
 
 			  
 
@@ -1219,11 +1332,14 @@ main(int argc, char *argv[])
 
 		<references title="Informative References">
 		
+		    
 			&RFC3492;
 			
 			&RFC6839;
 		
 			&TURTLE;
+		
+			&ARCMEDIA;
 		
 			<reference anchor="BUNDLE" target="https://w3id.org/bundle/2014-11-05/">
 				<front>
