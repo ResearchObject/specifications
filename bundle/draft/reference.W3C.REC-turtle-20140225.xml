@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<reference anchor='W3C.REC-turtle-20140225'
+           target='http://www.w3.org/TR/2014/REC-turtle-20140225'>
+<front>
+<title>RDF 1.1 Turtle</title>
+
+<author initials='E.' surname='Prud&amp;#039;hommeaux' fullname='Eric Prud&amp;#039;hommeaux'>
+    <organization />
+</author>
+
+<author initials='G.' surname='Carothers' fullname='Gavin Carothers'>
+    <organization />
+</author>
+
+<date month='February' day='25' year='2014' />
+</front>
+
+<seriesInfo name='World Wide Web Consortium Recommendation' value='REC-turtle-20140225' />
+<format type='HTML' target='http://www.w3.org/TR/2014/REC-turtle-20140225' />
+</reference>

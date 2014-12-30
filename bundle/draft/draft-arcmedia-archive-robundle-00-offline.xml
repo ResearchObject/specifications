@@ -1,0 +1,1392 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!-- This template is for creating an Internet Draft using xml2rfc, which 
+	is available here: http://xml.resource.org. -->
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!-- One method to get references from the online citation libraries.
+     There has to be one entity for each item to be referenced. 
+     An alternate method (rfc include) is described in the references. -->
+
+<!ENTITY RFC2119 SYSTEM "reference.RFC.2119.xml">
+<!ENTITY RFC2629 SYSTEM "reference.RFC.2629.xml">
+<!ENTITY RFC3492 SYSTEM "reference.RFC.3492.xml">
+<!ENTITY RFC3552 SYSTEM "reference.RFC.3552.xml">
+<!ENTITY RFC3986 SYSTEM "reference.RFC.3986.xml">
+<!ENTITY RFC3987 SYSTEM "reference.RFC.3987.xml">
+<!ENTITY RFC4122 SYSTEM "reference.RFC.4122.xml">
+<!ENTITY RFC4627 SYSTEM "reference.RFC.4627.xml">
+<!ENTITY RFC6839 SYSTEM "reference.RFC.6839.xml">
+<!ENTITY TURTLE SYSTEM "reference.W3C.REC-turtle-20140225.xml">
+<!ENTITY JSONLD SYSTEM "reference.W3C.REC-json-ld-20140116.xml">
+<!ENTITY ARCMEDIA SYSTEM "reference.I-D.seantek-kerwin-arcmedia-type.xml">
+<!ENTITY I-D.narten-iana-considerations-rfc2434bis SYSTEM "reference.I-D.narten-iana-considerations-rfc2434bis.xml">
+
+]>
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
+<!-- used by XSLT processors -->
+<!-- For a complete list and description of processing instructions (PIs), 
+	please see http://xml.resource.org/authoring/README.html. -->
+<!-- Below are generally applicable Processing Instructions (PIs) that most 
+	I-Ds might want to use. (Here they are set differently than their defaults 
+	in xml2rfc v1.32) -->
+<?rfc strict="yes" ?>
+<!-- give errors regarding ID-nits and DTD validation -->
+<!-- control the table of contents (ToC) -->
+<?rfc toc="yes"?>
+<!-- generate a ToC -->
+<?rfc tocdepth="4"?>
+<!-- the number of levels of subsections in ToC. default: 3 -->
+<!-- control references -->
+<?rfc symrefs="yes"?>
+<!-- use symbolic references tags, i.e, [RFC2119] instead of [1] -->
+<?rfc sortrefs="yes" ?>
+<!-- sort the reference entries alphabetically -->
+<!-- control vertical white space (using these PIs as follows is recommended 
+	by the RFC Editor) -->
+<?rfc compact="yes" ?>
+<!-- do not start each main section on a new page -->
+<?rfc subcompact="no" ?>
+<!-- keep one blank line between list items -->
+<!-- end of list of popular I-D processing instructions -->
+<rfc category="std" docName="draft-arcmedia-archive-robundle-00"
+	ipr="trust200902">
+	<!-- ipr="full3978"> -->
+	<!-- category values: std, bcp, info, exp, and historic ipr values: full3667, 
+		noModification3667, noDerivatives3667 you can add the attributes updates="NNNN" 
+		and obsoletes="NNNN" they will automatically be output with "(if approved)" -->
+
+	<!-- ***** FRONT MATTER ***** -->
+
+	<front>
+		<!-- The abbreviated title is used in the page header - it is only necessary 
+			if the full title is longer than 39 characters -->
+
+		<title abbrev="RO Bundle">The archive/robundle+zip Media Type</title>
+		<!-- add 'role="editor"' below for the editors if appropriate -->
+
+		<author fullname="Stian Soiland-Reyes" initials="S.S-R." role="editor"
+			surname="Soiland-Reyes">
+			<organization>University of Manchester</organization>
+			<address>
+				<postal>
+					<street>Oxford Road</street>
+					<city>Manchester</city>
+					<code>M13 9PL</code>
+					<country>UK</country>
+				</postal>
+				<phone>+44-161-275-0689</phone>
+				<email>stian@soiland-reyes.com</email>
+				<uri>http://orcid.org/0000-0001-9842-9718</uri>
+			</address>
+		</author>
+		<author fullname="Matthew Gamble" initials="M.G." role="editor"
+			surname="Gamble">
+			<organization>University of Manchester</organization>
+			<address>
+				<postal>
+					<street>Oxford Road</street>
+					<city>Manchester</city>
+					<code>M13 9PL</code>
+					<country>UK</country>
+				</postal>
+				
+				<email>gamble@cs.manchester.ac.uk</email>
+				<uri>http://orcid.org/0000-0003-4913-1485</uri>
+			</address>
+		</author>
+		<author fullname="Robert Haines" initials="R.H."
+			surname="Haines">
+			<organization>University of Manchester</organization>
+			<address>
+				<postal>
+					<street>Oxford Road</street>
+					<city>Manchester</city>
+					<code>M13 9PL</code>
+					<country>UK</country>
+				</postal>				
+				<email>rhaines@manchester.ac.uk</email>
+				<uri>http://orcid.org/0000-0002-9538-7919</uri>
+			</address>
+		</author>
+		
+		
+
+		<date year="2014" />
+
+		<!-- If the month and year are both specified and are the current ones, 
+			xml2rfc will fill in the current day for you. If only the current year is 
+			specified, xml2rfc will fill in the current day and month for you. If the 
+			year is not the current one, it is necessary to specify at least a month 
+			(xml2rfc assumes day="1" if not specified for the purpose of calculating 
+			the expiry date). With drafts it is normally sufficient to specify just the 
+			year. -->
+
+		<!-- Meta-data Declarations -->
+
+		<area>General</area>
+
+		<workgroup>Internet Engineering Task Force</workgroup>
+		<workgroup>Archive Top Level Media Type</workgroup>
+
+		<!-- WG name at the upperleft corner of the doc, IETF is fine for individual 
+			submissions. If this element is not present, the default is "Network Working 
+			Group", which is used by the RFC Editor as a nod to the history of the IETF. -->
+
+		<keyword>research object</keyword>
+		<keyword>robundle</keyword>
+		<keyword>json</keyword>
+		<keyword>bundle</keyword>
+		<keyword>archive</keyword>
+
+		<!-- Keywords will be incorporated into HTML output files in a meta tag 
+			but they have no effect on text or nroff output. If you submit your draft 
+			to the RFC Editor, the keywords will be used for the search engine. -->
+
+		<abstract>
+			<t>This specification defines archive/robundle+zip, a
+				ZIP-based file
+				format
+				that bundles resources which when aggregated
+				form an
+				identifiable conceptual work. 
+			</t>
+			<t>
+				The RO Bundle
+				include a manifest,
+				aggregated
+				resources, their annotations
+				and provenance
+				for the
+				purposes of exporting,
+				archiving, publishing and
+				transferring the resulting
+				Research
+				Object as a whole.
+			</t>
+		</abstract>
+	</front>
+
+	<middle>
+		<section title="Introduction">
+			<t> The Research Object Model <xref target="RO" /> 
+				defines a way for
+				aggregating the
+				resources that contribute to a scientific work,
+				including
+				domain-specific annotations and provenance traces.
+				When aggregated, the bundled resources 
+				form an
+				identifiable conceptual work,			
+				say a collection of
+				datasets resulting
+				from a scientific experiment, or a gathering of
+				logs and
+				outputs from
+				a particular command line execution.
+				</t>	
+				<t>
+				The unit
+				that
+				collects these resources is called a Research Object (RO) and is
+				described in a manifest according to the Research Object
+				model. The RO model is not particular for research outputs,
+				it is applicable
+				in a general sense for
+				capturing a set of digital resources that are
+				related to each other, and which
+				together form a trackable whole.
+			</t>
+			<t>
+				This specification details the RO Bundle, 
+				a serialization of the RO model as a
+				single ZIP archive <xref target="ZIP" /> 
+				for the purposes of downloading, editing and
+				publishing a Research Object.
+			</t>
+			<t>
+				For instance a batch execution system might export a particular
+				job by saving the job definition, runtime execution traces and
+				generated outputs to a set of files. An RO Bundle that
+				represents the job can aggregate and relate these
+				resources, together with their metadata, provenance
+				and annotations. (See section XX)
+			</t>
+			<t>
+			The structure of the ZIP-file is decided by the user and/or application,
+			except for the reserved paths for the mediatype, JSON manifest and
+			annotations.
+			</t>
+
+			<section title="Requirements Language">
+				<t>
+					The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+					"SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in
+					this
+					document are to be interpreted as described in
+					<xref target="RFC2119">RFC 2119</xref>
+					.
+				</t>
+				<t>
+					This document uses the terms "URI" and "IRI" interchangably. Within
+					serialization formats that supports it (e.g. JSON-LD), all
+					uses of
+					URIs (
+					<xref target="RFC3986"> RFC 3986</xref>
+					can be interchanged with IRIs, as described in
+					<xref target="RFC3987">RFC 3978</xref>
+				</t>
+			</section>
+		</section>		
+		
+		<section anchor="registration" title="Media-type registration">
+		<t>
+		This document registers the archive/robundle+zip media type in 
+		accordance with <xref target="I-D.seantek-kerwin-arcmedia-type">arcmedia</xref>. At time
+		of writing, the arcmedia WG is still to be chartered.
+		
+		<list style="hanging">
+			<t hangText="Type name:"><vspace blankLines="1"/>
+				archive</t>
+			<t hangText="Subtype name:"><vspace blankLines="1"/>
+				robundle+zip</t>
+			<t hangText="Required parameters"><vspace blankLines="1"/>
+				none</t>
+			<t hangText="Optional parameters:"><vspace blankLines="1" />
+				none</t>
+         	<t hangText="Based on media type:"><vspace blankLines="1" />
+         		application/zip</t>
+			<t hangText="Encoding considerations:"><vspace blankLines="1"/>			
+				base64 encoding is recommended when transmitting archive/*
+         		documents through MIME electronic mail.
+         		<vspace blankLines="1" />
+         		File paths within the ZIP archive MUST be valid UTF-8. 
+         		The JSON manifest MUST be encoded as UTF-8, which SHOULD refer to
+         		the filenames using IRIs or MAY refer to them as ASCII-escaped URIs.
+         		<vspace blankLines="1" />
+         		The encoding of other files contained in the archive 
+         		SHOULD be consistent with the media type expressed in the manifest
+         		or implied by section XX.         	
+         		<vspace blankLines="1" />
+         		TODO: Should filename character encoding be described elsewhere?
+         		</t>
+         	<t hangText="Security considerations:"><vspace blankLines="1"/>
+         		See section <xref target="Security" /> below</t>
+         	<t hangText="Interoperability considerations:"><vspace blankLines="1"/>         	
+         		This format is based on the 
+         		<eref target="https://www.iana.org/assignments/media-types/application/zip">application/zip</eref> 
+         		media type,
+         		and as a fallback, RO Bundles are intended to also be extractable as ZIP archives. 
+         		The manifest of the RO Bundle is serialized as JSON. Both ZIP and JSON are
+         		widely supported serializations.
+         		<vspace blankLines="1"/>         		
+         		The ZIP archive should not be modified without updating manifest.json;  
+         		consumers reading the archive as an RO Bundle SHOULD only consider files
+         		that are both present in the ZIP archive and described in the manifest.json.         		 
+         	</t>
+         	<t hangText="Published specification:"><vspace blankLines="1"/>
+         		This document (RFCXXXX)</t>
+         	<t hangText="Applications that use this media type:"><vspace blankLines="1"/>
+	         	As of 2015-01, the applications known to use this media type include:
+	         	<list style="symbols">
+	         		<t><eref target="http://taverna.incubating.apache.org/">Apache Taverna (incubating)</eref></t>
+	         		<t><eref target="https://github.com/wf4ever/robundle">RO Bundle API</eref> Java library</t>
+	         		<t><eref target="https://github.com/myGrid/ruby-ro-bundle">ro-bundle</eref> Ruby gem</t>
+	         	</list>		         
+         	</t>
+         	<t hangText="Fragment identifier considerations:"><vspace blankLines="1"/>
+         	The RO Bundle specification defines two measures to identify resources aggregated
+         	within an RO Bundle 
+         	using absolute URIs,
+         	the app:// URI scheme  <xref target="absolute_uri" />,
+			and the ORE proxies identified within the manifest per aggregated resource (see section 
+			xref target="manifest" /).			          	
+         	Therefore no specific fragment identifier has been defined for RO Bundle.
+         	<vspace blankLines="1"/>
+         	archive/robundle+zip is however extending application/zip, therefore any
+         	fragment identifier valid with application/zip is also valid with
+         	archive/robundle+zip for identifying files within the archive (which might or 
+         	might not be aggregated).
+         	As of 2015-01, no fragment identifier has been
+         	defined for application/zip.        	
+         	</t>
+         	<t hangText="Additional information:"><vspace blankLines="1"/>
+         		<list style="hanging">
+         			<t hangText="Deprecated alias names for this type:">application/vnd.wf4ver.robundle+zip</t>
+         			<t hangText="Magic number(s):">0: PK 0x03 0x04, 30: mimetype, 38: archive/robundle+zip</t>
+         			<t hangText="File extension(s):">.bundle.zip</t>         			
+         		</list>
+         	</t>
+         	<t hangText="Person and email address to contact for further information:">
+	         	Stian Soiland-Reyes, &lt;stian@soiland-reyes.com&gt;
+	         	<vspace/>
+	         	Implementors are also advised to join the
+	         	<eref target="http://www.w3.org/community/rosc/">Research Object for Scholarly
+	         	Communication W3C Community Group</eref>.          	
+         	</t>
+         	<t hangText="Intended usage:">COMMON</t>
+         	<t hangText="Restrictions on usage:">none</t>
+         	<t hangText="Author:">Stian Soiland-Reyes, Matthew Gamble, Robert Haines</t>
+         	<t hangText="Change controller:">University of Manchester</t>
+         	<t hangText="Provisional registration? (standards tree only):">No</t>         	         	  	
+		</list>
+		
+
+         
+ 		
+		 
+		</t>
+		</section>
+
+		
+		<section anchor="container" title="Container">
+			<t>
+	A Research Object Bundle is a structured [ZIP] archive, specializing
+	the Adobe Universal Container Format [UCF]. UCF is based on the EPUB
+	[OCF] format, but generalized to be any kind of container. The
+	following section gives an informal introduction to the UCF format. For
+	the complete, normative details, see the [UCF] specification.			
+			</t>
+			
+			<section anchor="ucf" title="Universal Container Format (UCF)">
+				<t>
+					A UCF container is based on the ZIP compression file format [ZIP], 
+					enforcing additional restrictions. The most important restrictions are:
+	
+	<list style="symbols">	
+		<t>Reserved filenames in the root directory: mimetype and META-INF</t>
+    	<t>Filenames must be encoded in UTF-8</t>
+    	<t>Compression must be Uncompressed or Flate</t>
+    	<t>MAY use Zip64 extensions, but SHOULD only do so when required</t>
+    	<t>The first file MUST be the uncompressed mimetype and without any extra attributes</t>
+	</list>
+				</t>
+
+		<t>
+		UCF says about mimetype:
+		<list style="hanging">
+			<t>The first file in the Zip container MUST be a file with the ASCII name of mimetype, which holds the MIME type for the Zip container (application/epub+zip as an ASCII string; no padding, white-space, or case change).</t>
+		</list>
+		
+		<list>
+       	<t>The first file in the Zip container MUST be a file 
+       	with the ASCII name of mimetype, which holds the MIME type for the Zip container (application/epub+zip as an ASCII string; no padding, white-space, or case change).</t>       
+       </list>
+       
+		</t>
+				
+			</section>
+		</section>
+
+		<section anchor="rest" title="THE REST">
+<t>
+
+
+
+
+ 
+See section 2.2 RO bundle container.
+
+Best Practice 1: Use zip -0 -X
+
+To add the mimetype file correctly on a UNIX/Linux installation with InfoZip, use echo -n and zip -0 -X. Below is an example which adds mimetype correctly as the first, uncompressed file, then the remaining files (excluding mimetype) with the default compression:
+Example 1
+
+<figure>
+<artwork align="left"><![CDATA[
+stain@ahtissuntu:~/test$ echo -n application/vnd.wf4ever.robundle+zip > mimetype
+
+stain@ahtissuntu:~/test$ zip -0 -X ../example.robundle mimetype
+  adding: mimetype (stored 0%)
+
+stain@ahtissuntu:~/test$ zip -X -r ../example.robundle . -x mimetype
+  adding: META-INF/ (stored 0%)
+  adding: META-INF/container.xml (stored 0%)
+  adding: .ro/ (stored 0%)
+  adding: .ro/manifest.json (stored 0%)
+  adding: helloworld.txt (stored 0%)
+]]></artwork></figure>
+
+2.1.1 Rootfile
+
+A root file is the entry-point for a UCF container, playing a similar role to index.html on web servers.
+
+UCF says about META-INF/container.xml and rootfiles:
+
+    A UCF Container MAY include a file named container.xml in the META-INF directory at the root level of the container file system. If present, the container.xml file MAY identify the MIME type of, and path to, the root file for the container and any OPTIONAL alternative renditions included in the container. 
+
+An example of META-INF/container.xml which defines the rootfile as .ro/manifest.json:
+Example 2
+
+<figure>
+<artwork align="left"><![CDATA[
+<?xml version="1.0"?>
+<container version="1.0"
+    xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
+    <rootfiles>
+        <rootfile full-path=".ro/manifest.json" media-type="application/ld+json" />
+    </rootfiles>
+</container>
+]]></artwork></figure>
+
+2.2 RO bundle container
+The RO Bundle container is a specialization of a [UCF] container, with the following additions:
+
+    Additional reserved filename in the root directory: .ro MUST be present and MUST be a directory.
+    The mimetype SHOULD be application/vnd.wf4ever.robundle+zip (see below)
+    The META-INF/container.xml, if present, SHOULD contain a rootfile entry equivalent to:
+
+<figure>
+<artwork align="left"><![CDATA[
+    <rootfile full-path=".ro/manifest.json" media-type="application/ld+json" />
+]]></artwork></figure>
+    
+    If the container file is missing, the above rootfile entry SHOULD be assumed.
+    The file .ro/manifest.json MUST be present, and MUST describe the RO according to section 3. Manifest.
+
+Applications who specialize RO Bundles MAY specify a different mimetype, for instance because the bundle is used to distribute application-specific data. It is RECOMMENDED for such extensions that their media type end with +zip according to [RFC6839] unless it is not considered meaningful for a user to treat such bundles as a general ZIP archive.
+
+2.2.1 Resource media type
+
+If an application requires a media-type for a resource, for instance because it is exposing the RO bundle over HTTP, it SHOULD resolve the media type of the resource according to this section.
+
+In order of preference:
+
+    A resource which is a root file is assumed to have the media type given by the mimetype of the corresponding (or implied) &lt;rootfile&gt; entry.
+    If a resource is an external reference (e.g. referenced with an absolute http:// URI), then its media type is given by the HTTP Content-Type, which may involve content negotiation.
+    If the resource is a aggregated in the manifest, applications SHOULD use the mediatype (dc:format in RDF manifests), if present.
+    Failing the above, the media type of a resource MAY be resolved according to the following table by case-insensitive matching of its extension (suffix):
+    Extension 	Media type
+    .txt 	text/plain; charset="utf-8"
+    .ttl 	text/turtle; charset="utf-8"
+    .rdf 	application/rdf+xml
+    .json 	application/json
+    .jsonld 	application/ld+json
+    .xml 	application/xml
+    In the absence of a resolved media type, the media type application/octet-stream MAY be assumed.
+
+2.2.2 META-INF/manifest.xml
+
+To avoid confusion with the somewhat overlapping RO manifest it is NOT RECOMMENDED to include the ODF manifest (META-INF/manifest.xml) in RO Bundles or to use the [ODF] manifest for resolving media types.
+
+3. Manifest
+
+The research object MUST be described in the file .ro/manifest.json as specified below. Alternative manifests MAY also be present.
+3.1 .ro/manifest.json
+
+The file .ro/manifest.json, MUST contain the [ORE] manifest for the research object according to this section. The file MUST be in JSON format [RFC4627], and SHOULD be valid [JSON-LD].
+
+Identifiers used below are either:
+
+    Meta-resources, path relative to /.ro/ directory, which MUST NOT contain the : character. For instance manifest.json or annotations/ann2. Depending on how meta-resources are used, the ZIP might or might not include a corresponding entry for the given path.
+    Bundled resources, the path SHOULD start with / to indicate the root of the bundle, for instance /hello.txt or /folder2/. Folders SHOULD have a path terminating with /. The resource identified by the path SHOULD be included as a corresponding file or directory in the ZIP file.
+    Absolute URIs (contains :), external to the bundle. For instance http://www.example.com/external
+
+Identifiers with special characters (e.g. space) MUST be URI escaped, while international characters (e.g. Unicode) MAY be escaped or expressed as an [IRI].
+3.1.1 JSON structure
+
+The structure of the JSON manifest is given by an JSON Object with the members:
+
+@context
+    JSON-LD context. SHOULD be present, in which case it MUST be valid according to the JSON-LD @context keyword. The RO bundle context SHOULD be a list, and SHOULD include the value "https://w3id.org/bundle/context". This value SHOULD be the last item of the list.
+id
+    RO identifier. SHOULD be present, in which case it SHOULD have the fixed value / indicating the relative top-level folder as the identifier. (See section 4. Identifiers.) If the RO bundle was downloaded from a web resource, then the URI it was retrieved from SHOULD be provided with retrievedFrom. 
+manifest
+    ORE manifests describing this RO, relative to the .ro/ directory. SHOULD be literal manifest.json, but MAY be a list, in which case the list MUST contain manifest.json
+history
+    Provenance trace of the life of this RO, relative to the .ro/ directory. This property MAY be present, in which case it SHOULD be evolution.ttl, indicating that the bundle file /.ro/evolution.ttl contains the provenance trace. This value MAY be an absolute URI. The property MAY give a list if several provenance traces are known, in which case the list SHOULD include evolution.ttl.
+
+    The file /.ro/evolution.ttl, if present, SHOULD include a provenance trace of this research object according to the roevo ontology.
+
+    The higher level provenance of the research object (e.g. it's creator and creation date) SHOULD be provided as additional members, even if the history member is present. 
+aggregates
+    This property SHOULD be present, in which case it MUST be a list of all the resources aggregated by this RO. The values in a list MUST be objects, which MUST be uniquely identified by uri. The members are:
+
+    uri
+        A path within the bundle, or an absolute URI. Bundle paths SHOULD be prefixed with / unless they are relative to the /.ro/ folder. (See prefixes.) Special characters such as space MUST be URI escaped, while international characters (e.g. Unicode) MAY be escaped or expressed as an [IRI]. 
+    mediatype
+        The IANA media type of the (typically identified by file) resource. This SHOULD be specified for resource identified by a bundle path unless its media type is correctly identified according to section 2.2.1 Resource media type. 
+    conformsTo
+        The URI of a specification, standard, schema, vocabulary or similar that the resource conforms to. This member MAY be provided, in which case the value SHOULD be an absolute URI identifying a versioned, retrievable specification that the resource conforms to. Example: http://www.w3.org/TR/SVG11/ 
+    bundledAs
+        An ORE proxy [ORE], providing details of how this resource has been bundled. This object SHOULD be present for aggregated resources aggregated with an absolute URI, and MAY be present for other aggregated resources. Its members are:
+
+        uri
+            The identifier for the ORE Proxy as an URI. This property MUST be provided if the bundledAs object exists. This identifier should be used if referring to "resource X as aggregated in research object Y" within annotations and in external documents. The proxy identifier SHOULD consist of the prefix urn:uuid: and a lowercased UUID string 
+            <xref target="RFC4122" />, for example: urn:uuid:d4f09040-272e-467f-9250-59593bd4ac8f 
+        folder
+            A folder in the bundle this resource belongs to. This member MUST be present if filename is given, and MAY be present alone. The path SHOULD be prefixed with / and SHOULD end with /, for instance /folder2/ or /. The folder SHOULD be a directory in the zip archive. 
+        filename
+            The filename the resource is given within the specified folder. This member SHOULD be present if folder is also given. The filename should not contain the characters /, : or \, but MAY contain spaces and international characters. 
+
+        Additional members detailing the provenance of the proxy (i.e. describing who aggregated the resource) MAY be included (see below). Other metadata about a proxy (e.g. comments about why a resource was included), if present, SHOULD be added as an annotation (see below) using the proxy identifier as about.
+
+    Additional members detailing the provenance of every aggregated resource SHOULD be included (see below). Other metadata about a resource (e.g. a title or description), if present, SHOULD be added as an annotation (see below) using the resource uri as about.
+
+    The order of the values in the aggregates list is insignificant, however the list MUST NOT contain duplicate entries. An entry is considered duplicate by comparing the uri value resolved as an unescaped and absolute IRI.
+annotations
+    Annotations about this research object and its resources. This member MAY be present, in which case it member MUST be a list. An annotation [OA] provides additional metadata or descriptions which are somewhat about or related to the research object or some of its aggregated resources.
+
+    An annotation is specified as an object, which have the following members:
+
+    uri
+        The identifier for this annotation. The identifier SHOULD be present, and SHOULD consist of the prefix urn:uuid: and a lowercased UUID string [RFC4122]. For example: urn:uuid:1a876f9e-4ffe-4c99-a05d-cd9d0cbd4cbb 
+    about
+        The identifier for the annotated resource, MUST be present. This is considered the target of the annotation, the resource the annotation content is "somewhat about". The "about" identifier SHOULD be one of these types:
+
+            The research object itself, which MUST match the value of its id, e.g. "/".
+            An aggregated resource, matching its uri under aggregates.
+            A proxy for an aggregated resource, which MUST match the uri of bundledAs on an aggregated resource.
+            Another annotation, which MUST match the uri as listed under annotations.
+            An absolute URI that is not aggregated by this research object. If the about resource is not aggregated, the corresponding content member SHOULD be an aggregated resource.
+            A JSON list, containing any of the above. This indicates that the annotation is about each of the listed resources, for instance because the annotation content is describing their relationship.
+
+    content
+        The identifier for a resource that contains the body of the annotation, SHOULD be present. The content identifier SHOULD be one of these types:
+
+            A (non-aggregated) meta-resource (typically an RDF graph), starting with annotations/, which MUST exist in the /.ro/annotations/ directory.
+            An aggregated resource, matching its uri under aggregates.
+            An absolute URI, which may or may not be aggregated by the RO. If the content is not aggregated, the corresponding about MUST NOT be an absolute URI that is not aggregated by the research object.
+
+    Additional properties describing the annotation using the oa: namespace MAY be added according to section 3.3 Custom JSON-LD.
+
+    The members about or content SHOULD identify at least one resource that is otherwise part of the research object (e.g. the research object itself, an aggregated resource, a proxy or another annotation). Annotations are considered implicitly aggregated by a research object, and SHOULD NOT be listed under aggregates of the same research object.
+@graph
+    A list of additional [JSON-LD] statements according to section 3.3 Custom JSON-LD. 
+
+3.1.2 Provenance information
+
+Provenance information (describing creators, dates and sources) SHOULD be provided for these JSON objects in the manifest:
+
+    The RO (top-level JSON object)
+    Aggregated resources (values under aggregates)
+
+Provenance information MAY also be provided for these JSON objects in the manifest:
+
+    ORE proxies (values under bundledAs)
+    Annotations (values under annotations)
+
+Provenance information is given by the following members:
+
+createdOn
+    The time the resource representation was created (e.g. when it was saved from an application). SHOULD be present, in which case it MUST be a xsd:dateTime formatted timestamp (ISO 8601), and SHOULD include the time zone. 
+createdBy
+    The creator of the resource representation (e.g. who saved it from an application). The creator is an agent, e.g. a person, organization or software. This MAY be different from the agent who conceptually formed the resource (e.g. wrote the document or chose the aggregated resources), which SHOULD be indicated with authoredBy. The creator SHOULD be an object with the following members:
+
+    name
+        The full name of the agent. The name MUST be present. Examples: "John Doe" or "University of Manchester"
+    uri
+        A URI identifying the agent. The URI SHOULD be present, and SHOULD be a valid WebID, for instance http://example.com/fred#fred 
+    orcid
+        An ORCID identifier for this agent. For instance, http://orcid.org/0000-0001-9842-9718. An ORCID MAY be present if known, and MUST be a URI. 
+
+    Additional [FOAF] properties (such as foaf:homepage) MAY be added to according to section 3.3 Custom JSON-LD. 
+authoredOn
+    The time the resource was conceptually formed. The author time SHOULD be present if different from createdOn. The value MUST be a xsd:dateTime formatted timestamp (ISO 8601), and SHOULD include the time zone.
+authoredBy
+    The author of the resource, i.e. the agent(s) that conceptually formed its content. Examples include who authored the text of an aggregated document, or chose the resources that were aggregated in a research object. The author SHOULD be present if different from createdBy.
+
+    The author SHOULD be a JSON object with the same members and requirements as for createdBy, but MAY be a list to indicate multiple authors. 
+retrievedFrom
+    The absolute URI where a resource has been retrieved from. This property SHOULD be included if a bundle resource was downloaded from an external source. This property SHOULD be accompanied with retrievedOn and retrievedBy. 
+retrievedOn
+    The time the resource was retrieved on. If this property is present, then retrievedFrom MUST also be present. The value MUST be a xsd:dateTime formatted timestamp (ISO 8601), and SHOULD include the time zone.
+retrievedBy
+    The agent that the resource was retrievedBy, i.e. the person that downloaded the resource. If this property is present, then retrievedFrom MUST also be present. The agent SHOULD be a JSON object with the same members and requirements as for createdBy. 
+
+Additional provenance (curation, contribution, derivation, etc.) MAY be added using the pav: namespace according to section 3.3 Custom JSON-LD or detailed in a separate history provenance trace.
+3.1.3 Example manifest.json
+
+An example of a manifest which is valid JSON-LD is included below:
+Example 3
+
+<figure>
+<artwork align="left"><![CDATA[
+{
+    "@context":  [
+        "https://w3id.org/bundle/context"
+    ],
+    "id": "/",
+    "manifest":  "manifest.json",
+    "createdOn": "2013-03-05T17:29:03Z",
+    "createdBy": {
+        "uri":     "http://example.com/foaf#alice",
+        "orcid":   "http://orcid.org/0000-0002-1825-0097",
+        "name":    "Alice W. Land" },
+    "history":   "evolution.ttl",
+    "aggregates": [
+       { "uri":  "/folder/soup.jpeg" },
+       { "uri":  "http://example.com/blog/" },
+       { "uri":      "/README.txt",
+         "mediatype": "text/plain",
+         "createdBy": {
+             "uri":     "http://example.com/foaf#bob",
+             "name":    "Bob Builder" },
+         "createdOn": "2013-02-12T19:37:32.939Z" },
+       { "uri":    "http://example.com/comments.txt",
+         "bundledAs": {
+            "uri":    "urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644",
+            "folder":   "/folder/",
+            "filename": "external.txt" }
+       }
+    ],
+    "annotations": [
+      { "uri":     "urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf",
+        "about":   "/folder/soup.jpeg",
+        "content": "annotations/soup-properties.ttl" },
+
+      { "about":   "urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644",
+        "content": "http://example.com/blog/they-aggregated-our-file" },
+
+      { "about":   [ "/", "urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf" ],
+        "content": "annotations/a-meta-annotation-in-this-ro.txt" }
+    ]
+}
+]]></artwork></figure>
+
+3.2 JSON-LD and mapping to RO model
+
+Manifests following the JSON structure defined in section 3.1 .ro/manifest.json with a "@context": [ "https://w3id.org/bundle/context" ] is intended to be valid [JSON-LD] without any additional modifications. Mapping .ro/manifest.json to the ORE and [RO] models in RDF SHOULD be performed according to the algorithm for conversion from JSON to RDF, as specified in the JSON-LD API [JSON-LD].
+
+In order to generate the RDF implied by the manifest, an absolute base URI SHOULD be assumed according to section 4.2 Absolute URIs for bundle resources with a path element of /.ro/manifest.json. This is to ensure that paths starting with / don't "climb out" of the bundle root, and so that relative paths like annotations/soup-properties.ttl are resolved correctly within the /.ro/ directory. For example, generating a random UUID for the RO bundle and assuming a base URI of app://9c13b6c1-d053-4889-b42d-691b4a54338e/.ro/manifest.json then the bundled resource /folder/soup.jpeg will be represented in the RDF graph as app://9c13b6c1-d053-4889-b42d-691b4a54338e/folder/soup.jpeg.
+
+The content of https://w3id.org/bundle/context at time of writing is:
+
+<figure>
+<artwork align="left"><![CDATA[
+{
+  "@context": {
+    "ao": "http://purl.org/ao/",
+    "oa": "http://www.w3.org/ns/oa#",
+    "dc": "http://purl.org/dc/elements/1.1/",
+    "dct": "http://purl.org/dc/terms/",
+    "ore": "http://www.openarchives.org/ore/terms/",
+    "ro": "http://purl.org/wf4ever/ro#",
+    "roterms": "http://purl.org/wf4ever/roterms#",
+    "bundle": "http://purl.org/wf4ever/bundle#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "pav": "http://purl.org/pav/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+
+    "uri": "@id",
+    "id": {
+      "@id": "owl:sameAs",
+      "@type": "@id" },
+    "file": {
+      "@id": "owl:sameAs",
+      "@type": "@id" },
+    "annotation": {
+      "@id": "owl:sameAs",
+      "@type": "@id" },
+
+    "manifest": {
+        "@id": "ore:isDescribedBy",
+        "@type": "@id"
+    },
+
+    "createdOn": {
+        "@id": "pav:createdOn",
+        "@type": "xsd:dateTime"
+    },
+    "createdBy": {
+        "@id": "pav:createdBy",
+        "@type": "@id"
+    },
+    "aggregatedOn": {
+        "@id": "pav:createdOn",
+        "@type": "xsd:dateTime"
+    },
+    "aggregatedBy": {
+        "@id": "pav:createdBy",
+        "@type": "@id"
+    },
+    "authoredOn": {
+        "@id": "pav:authoredOn",
+        "@type": "xsd:dateTime"
+    },
+    "authoredBy": {
+        "@id": "pav:authoredBy",
+        "@type": "@id"
+    },
+    "curatedOn": {
+        "@id": "pav:curatedOn",
+        "@type": "xsd:dateTime"
+    },
+    "curatedBy": {
+        "@id": "pav:curatedBy",
+        "@type": "@id"
+    },
+    "contributedOn": {
+        "@id": "pav:contributedOn",
+        "@type": "xsd:dateTime"
+    },
+    "contributedBy": {
+        "@id": "pav:contributedBy",
+        "@type": "@id"
+    },
+    "retrievedOn": {
+        "@id": "pav:retrievedOn",
+        "@type": "xsd:dateTime"
+    },
+    "retrievedBy": {
+        "@id": "pav:retrievedBy",
+        "@type": "@id"
+    },
+    "retrievedFrom": {
+        "@id": "pav:retrievedFrom",
+        "@type": "@id"
+    },
+    "name": {
+        "@id": "foaf:name"
+    },
+    "orcid": {
+        "@id": "roterms:orcid",
+        "@type": "@id"
+    },
+
+    "history": {
+        "@id": "prov:has_provenance",
+        "@type": "@id"
+    },
+    "aggregates": {
+      "@id": "ore:aggregates",
+      "@type": "@id"
+    },
+    "mediatype": {
+        "@id": "dc:format"
+    },
+    "folder": {
+      "@id": "bundle:inFolder",
+      "@type": "@id"
+    },
+    "filename": {
+        "@id": "ro:entryName"
+    },
+    "proxy": {
+      "@id": "bundle:hasProxy",
+      "@type": "@id"
+    },
+    "bundledAs": {
+        "@id": "bundle:bundledAs",
+        "@type": "@id"
+    },
+    "conformsTo": {
+        "@id": "dct:conformsTo",
+        "@type": "@id"
+    },
+    "annotations": {
+      "@id": "bundle:hasAnnotation",
+      "@type": "@id"
+    },
+    "content": {
+       "@id": "oa:hasBody",
+       "@type": "@id"
+    },
+    "about": {
+       "@id": "oa:hasTarget",
+       "@type": "@id"
+    }
+
+  }
+}
+]]></artwork></figure>
+
+3.2.1 Example manifest as triples
+
+As an example of this JSON-LD processing, below is a N-Quads [N-Quads] representation of the triples expressed by .ro/manifest.json from the example in section 3.1 .ro/manifest.json, assuming a base URI of app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/manifest.json
+Example 4
+
+<figure>
+<artwork align="left"><![CDATA[
+<app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://www.openarchives.org/ore/terms/isDescribedBy> <app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/manifest.json> .
+
+<app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://purl.org/pav/createdOn> "2013-03-05T17:29:03Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://purl.org/pav/createdBy> <http://example.com/foaf#alice> .
+  <http://example.com/foaf#alice> <http://purl.org/wf4ever/roterms#orcid> <http://orcid.org/0000-0002-1825-0097> .
+  <http://example.com/foaf#alice> <http://xmlns.com/foaf/0.1/name> "Alice W. Land" .
+
+<app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://www.w3.org/ns/prov#has_provenance> <app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/evolution.ttl> .
+
+
+<app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://www.openarchives.org/ore/terms/aggregates> <app://2b9486f0-54d8-4274-b241-7669538b0d2f/folder/soup.jpeg> .
+
+<app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://www.openarchives.org/ore/terms/aggregates> <http://example.com/blog/> .
+
+<app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://www.openarchives.org/ore/terms/aggregates> <app://2b9486f0-54d8-4274-b241-7669538b0d2f/README.txt> .
+  <app://2b9486f0-54d8-4274-b241-7669538b0d2f/README.txt> <http://purl.org/dc/elements/1.1/format> "text/plain" .
+  <app://2b9486f0-54d8-4274-b241-7669538b0d2f/README.txt> <http://purl.org/pav/createdOn> "2013-02-12T19:37:32.939Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+  <app://2b9486f0-54d8-4274-b241-7669538b0d2f/README.txt> <http://purl.org/pav/createdBy> <http://example.com/foaf#bob> .
+    <http://example.com/foaf#bob> <http://xmlns.com/foaf/0.1/name> "Bob Builder" .
+
+<app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://www.openarchives.org/ore/terms/aggregates> <http://example.com/comments.txt> .
+
+  _:b2 <http://purl.org/wf4ever/bundle#hasProxy> <urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644> .
+  _:b2 <http://purl.org/wf4ever/bundle#inFolder> <app://2b9486f0-54d8-4274-b241-7669538b0d2f/folder/> .
+  _:b2 <http://purl.org/wf4ever/ro#entryName> "external.txt" .
+  _:b2 <http://www.openarchives.org/ore/terms/proxyFor> <http://example.com/comments.txt> .
+
+
+<app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://purl.org/wf4ever/bundle#hasAnnotation> <urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf> .
+  <urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf> <http://www.w3.org/ns/oa#hasBody> <app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/annotations/soup-properties.ttl> .
+  <urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf> <http://www.w3.org/ns/oa#hasTarget> <app://2b9486f0-54d8-4274-b241-7669538b0d2f/folder/soup.jpeg> .
+
+<app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://purl.org/wf4ever/bundle#hasAnnotation> _:b0 .
+  _:b0 <http://www.w3.org/ns/oa#hasBody> <http://example.com/blog/they-aggregated-our-file> .
+  _:b0 <http://www.w3.org/ns/oa#hasTarget> <urn:uuid:a0cf8616-bee4-4a71-b21e-c60e6499a644> .
+
+<app://2b9486f0-54d8-4274-b241-7669538b0d2f/> <http://purl.org/wf4ever/bundle#hasAnnotation> _:b1 .
+  _:b1 <http://www.w3.org/ns/oa#hasBody> <app://2b9486f0-54d8-4274-b241-7669538b0d2f/.ro/annotations/a-meta-annotation-in-this-ro.txt> .
+  _:b1 <http://www.w3.org/ns/oa#hasTarget> <app://2b9486f0-54d8-4274-b241-7669538b0d2f/> .
+  _:b1 <http://www.w3.org/ns/oa#hasTarget> <urn:uuid:d67466b4-3aeb-4855-8203-90febe71abdf> .
+]]></artwork></figure>
+
+3.3 Custom JSON-LD
+
+Applications who support JSON-LD (rather than just JSON) MAY choose to parse and generate statements in .ro/manifest.json according to the [JSON-LD] specifications.
+
+Applications generating JSON-LD MAY provide additional items in the @context list, but SHOULD include https://w3id.org/bundle/context as the last item, to indicate to JSON parsers that the manifest can be parsed as plain JSON according to section 3.1 .ro/manifest.json. Applications SHOULD NOT use @context at deeper nexting levels.
+
+Applications MAY add other properties directly to JSON Objects defined from section 3.1 .ro/manifest.json, but MUST ensure they are valid JSON-LD. Note that the RO Bundle JSON-LD context does not specify the typing of properties outside this specification. As an example, to provide additional [FOAF] properties for the creator of a file:
+Example 5
+
+{
+    "@context":  [
+        "https://w3id.org/bundle/context"
+    ],
+    "id": "/",
+    "manifest": "manifest.json",
+    "aggregates": [
+       { "uri":      "/README.txt",
+         "createdBy": {
+             "uri":     "http://example.com/foaf#bob",
+             "name":    "Bob Builder",
+             
+             "foaf:homepage": {
+                 "@id": "http://example.com/bob"
+             },
+             "foaf:title": "Dr"
+           
+         }
+      }
+    ]
+}
+
+Alternatively, additional statements can be made within a top-level @graph node according to JSON-LD Named Graphs. For example:
+
+			<figure align="center" anchor="example_6">
+				<preamble>Example 6</preamble>
+
+				<artwork align="left"><![CDATA[
+{
+    "@context":  [
+        "https://w3id.org/bundle/context"
+    ],
+    "id": "/
+    "manifest": "manifest.json",
+    "aggregates": [
+       { "uri": "http://example.com/blog/2012" },
+       { "uri": "http://example.com/blog/2013" }
+    ],
+    
+    "@graph": [
+      { "@id": "http://example.com/blog/2013",
+        "dcterms:replaces": "http://example.com/blog/2012" },
+      { "@id": "http://example.com/blog/2012",
+        "dcterms:isReplacedBy": "http://example.com/blog/2013" }
+    ]
+  
+}
+]]></artwork>
+			</figure>
+
+
+
+
+Note that rather than using the above extension mechanism, it is generally RECOMMENDED to instead store such additional statements in an annotation content for purposes of provenance and separation of concern. Although technically valid, it is NOT RECOMMENDED to use the member @graph to embed semantic annotation bodies within annotations nodes, as it would duplicate the content of the annotation body in the bundle and may lead to inconsistencies.
+3.4 Alternative manifest representations
+
+In addition to the .ro/manifest.json representation specified in section 3.1 .ro/manifest.json, a Research Object Bundle MAY include the ORE manifest in alternative representations like RDF/XML [RDF-SYNTAX-GRAMMAR] and Turtle [TURTLE], for instance by generating them using the conversion from JSON to RDF algorithm in JSON-LD API [JSON-LD].
+
+    Alternative manifests SHOULD have a path starting with .ro/manifest, for instance .ro/manifest.ttl for a Turtle representation.
+    When multiple manifests are present, applications SHOULD consider .ro/manifest.json as the authorative representation of the research object.
+    Alternative manifests SHOULD represent (at least) the equivalent RDF graph of .ro/manifest.json (see section 3.2 JSON-LD and mapping to RO model)
+    Alternative manifests SHOULD be listed in the META-INF/container.xml as &lt;rootfile&gt; entries with corresponding media-type attributes.
+    Any alternative manifest listed as a rootfile MUST minimally represent the same conceptual information as .ro/manifest.json
+
+If an application is modifying a research object bundle which contains manifests it can't handle (and thus can't update), the application SHOULD remove the rootfile entry for those unsupported manifests, and MAY delete those manifests from the archive.
+4. Identifiers
+
+This section is non-normative.
+
+Objects in a research object bundle are identified within the JSON manifest relative to .ro/manifest.json, with / resolving to the root of the ZIP archive.
+Prefix 	Interpretation
+/ 	Path relative to root of ZIP archive
+urn:uuid: 	UUID according to [RFC4122]
+(containing :) 	Absolute URI
+(no prefix) 	Path relative to /.ro/ in the ZIP archive
+
+Due to their nature as ZIP files, Research Object Bundles might be downloaded, copied, moved and republished. In order to avoid ambiguity about RO identity and evolution, each Research Object Bundle serialization is considered to represent unique Research Objects. Thus any of the prefixes above describing resources within the bundle are relative to the root of the ZIP file, and the id identifying the Research Object is set to "/", meaning the root represents the RO itself.
+4.1 Escaping URIs
+
+All identifieres within the manifest are in JSON expressed as escaped [IRI]s. If the ZIP file contains a filename with escapable characters, e.g. 
+/folder with spaces/50%_discount.txt,
+ then this SHOULD in JSON be expressed as an escaped IRI, e.g. /folder%20with%20spaces/50%25_discount.txt. 
+Non-ASCII characters SHOULD NOT be escaped in the IRI, but be expressed as-is as the "manifest.json" MUST be serialized as UTF-8 character encoding according to []RFC462. 
+Alternatively, such characters MAY be expressed within an ASCII-escaped URI, 
+ e.g. /folder%20with%20spaces/%CE%94filename-%E2%88%88unicode.txt.
+
+If the research object references an absolute URI (e.g. aggregating or as an annotation body), e.g. http://www.example.#x4e2d;#x570b;/with%20space%20as%20well.txt, then this SHOULD in JSON be expressed as an IRI as-is (preserving IRI escapes for special characters), or using the [RFC3492] punycode DNS name: http://xn--fiqs8s.example.com.
+
+The filenames as stored in the ZIP file MUST be a valid UTF-8 filename and SHOULD NOT be URI escaped, as this causes double escaping within the manifest.
+
+Note that IRIs that syntactically differ may be identifying the same resource if they match after comparing them as absolute IRIs within the bundle.
+
+</t>
+
+</section>
+
+<section anchor="absolute_uri" title="Absolute URIs for bundle resources">
+<t>
+
+Applications which require an absolute URI for identifying a resource within a Research Object Bundle may choose to use the approach presented in this section in combination with resolving against the prefix table above.
+
+The app: URI scheme [[APP-URI!]] proposes how a URI can be formed for the purposes of accessing resources within a ZIP file as if the resources were retrieved from a HTTP server. While this is primary intended for sandboxing HTML applications, it is equally applicable to Research Object bundles for the purposes of sandboxing and for generating a URI independent of the location of the ZIP archive.
+
+The app: URI scheme suggests generating a UUID string [RFC4122] for minting the authority, forming the base URI for the RO bundle. For instance, if:
+
+http://example.com/example1.robundle
+
+contains the file /folder/helloworld.txt, then we generate a new UUID 8191dee8-0b8e-452d-8d64-7706a140185e and refer to the Research Object as
+
+app://8191dee8-0b8e-452d-8d64-7706a140185e/
+
+and can refer to its bundled file /folder/helloworld.txt as:
+
+app://8191dee8-0b8e-452d-8d64-7706a140185e/folder/helloworld.txt
+
+The type of authority to generate depends on what is the purpose of the absolute URI:
+
+    For security/sandboxing when interpreting RO bundles, the authority should be a v4 UUID from random numbers. Thus the URI is guaranteed to be unique for each interpretation, and can't (reasonably) be pre-guessed.
+    Applications exposing such URIs might want to record the provenance using the pav:retrievedFrom relation to indicate where the bundle was retrieved from. For instance (in Turtle):
+    Example 7
+
+<figure>
+<artwork align="left"><![CDATA[
+    @prefix pav: <http://purl.org/pav/> .
+    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+    <app://15259726-dcbb-42ff-8fc6-36282c98d4e6/>
+      pav:retrievedFrom <http://example.com/example1.robundle> ;
+      pav:retrievedOn "2013-05-21T14:24:19Z"^^xsd:dateTime .
+]]></artwork></figure>
+
+    For describing/referencing content of an RO bundle accessed at a given URL, the authority should be generated as a name based UUID using v5 (SHA-1 hashing) concatination of the URL namespace 6ba7b811-9dad-11d1-80b4-00c04fd430c8 (as UUID bytes) and the ASCII-escaped version of the URL. This approach gives a predictable UUID for a particular URL, even if the content at the URL might later change.
+    Applications using this approach might want to declare the equivalent of a owl:sameAs relation between the accessed URI and the generated app: URI in order to record the original URI. For instance:
+    Example 8
+
+<figure>
+<artwork align="left"><![CDATA[
+    @prefix owl: <http://www.w3.org/2002/07/owl#> .
+    <app://7878e885-327c-5ad4-9868-7338f1f13b3b/> owl:sameAs
+          <http://example.com/example1.robundle> .
+]]></artwork></figure>
+
+    For purposes of describing the content of an RO bundle as a bytestream independent of its location (for instance on a USB stick), then the authority should be the hexadecimal SHA-256 checksum of the ZIP archive (not a UUID). This ensures a predictable URI for the same physical representation, where any change to the bundle generates a new identifier.
+    Applications exposing such URIs might want to record the equivalent provenance of a pav:retrievedFrom relation to indicate where the bundle was retrieved from, including the time of retrieval using the equivalent of pav:retrievedOn. (See example above).
+
+Example app base URIs:
+
+    app://15259726-dcbb-42ff-8fc6-36282c98d4e6/ UUID v4 using pseduo-random number
+    app://7878e885-327c-5ad4-9868-7338f1f13b3b/ UUID v5 of the URL http://example.com/bundle1.robundle
+    app://587cff3ae37d58af6886d656623bd91237759a42d8fe1575a9744898c01d97d7/ SHA-256 of an empty RO bundle    
+    
+</t>    		
+		</section>
+
+
+		<section anchor="simple_list" title="Simple List">
+			<t>List styles: 'empty', 'symbols', 'letters', 'numbers', 'hanging',
+				'format'.
+			</t>
+
+			<t>
+				<list style="symbols">
+					<t>First bullet</t>
+
+					<t>Second bullet</t>
+				</list>
+				You can write text here as well.
+			</t>
+		</section>
+
+		<section title="Figures">
+			<t>Figures should not exceed 69 characters wide to allow for the
+				indent
+				of sections.
+			</t>
+
+			<figure align="center" anchor="xml_happy">
+				<preamble>Preamble text - can be omitted or empty.</preamble>
+
+				<artwork align="left"><![CDATA[
++-----------------------+
+| Use XML, be Happy :-) |
+|_______________________|
+            ]]></artwork>
+
+				<postamble>
+					Cross-references allowed in pre- and postamble.
+					
+					.
+				</postamble>
+			</figure>
+
+			<t>The
+				CDATA means you don't need to escape meta-characters (especially
+				&lt;&nbsp;(&amp;lt;)
+				and &amp;&nbsp;(&amp;amp;))
+				but is not essential.
+				Figures may also have a title attribute but it
+				won't be displayed unless
+				there is also an anchor. White space, both
+				horizontal and vertical,
+				is
+				significant in figures even if you don't
+				use CDATA.
+			</t>
+		</section>
+
+		<!-- This PI places the pagebreak correctly (before the section title) 
+			in the text output. -->
+
+    <?rfc needLines="8" ?>
+
+		<section title="Subsections and Tables">
+			<section title="A Subsection">
+				<t>By default 3 levels of nesting show in table of contents but that
+					can be adjusted with the value of the "tocdepth" processing
+					instruction.
+				</t>
+			</section>
+
+			<section title="Tables">
+				<t>.. are very similar to figures:</t>
+
+				<texttable anchor="table_example" title="A Very Simple Table">
+					<preamble>Tables use ttcol to define column headers and widths.
+						Every cell then has a "c" element for its content.
+					</preamble>
+
+					<ttcol align="center">ttcol #1</ttcol>
+
+					<ttcol align="center">ttcol #2</ttcol>
+
+					<c>c #1</c>
+
+					<c>c #2</c>
+
+					<c>c #3</c>
+
+					<c>c #4</c>
+
+					<c>c #5</c>
+
+					<c>c #6</c>
+
+					<postamble>which is a very simple example.</postamble>
+				</texttable>
+			</section>
+		</section>
+
+		<section anchor="nested_lists" title="More about Lists">
+			<t>
+				Lists with 'hanging labels': the list item is indented the amount of
+				the hangIndent:
+				<list hangIndent="8" style="hanging">
+					<t hangText="short">With a label shorter than the hangIndent.</t>
+
+					<t hangText="fantastically long label">With a label longer than the
+						hangIndent.
+					</t>
+
+					<t hangText="vspace_trick">
+						<vspace blankLines="0" />
+						Forces the new
+						item to start on a new line.
+					</t>
+				</list>
+			</t>
+
+			<!-- It would be nice to see the next piece (12 lines) all on one page. -->
+
+      <?rfc needLines="12" ?>
+
+			<t>Simulating
+				more than one paragraph in a list item using
+				&lt;vspace&gt;:
+				<list style="letters">
+					<t>First, a short item.</t>
+
+					<t>
+						Second, a longer list item.
+						<vspace blankLines="1" />
+						And
+						something that looks like a separate pararaph..
+					</t>
+				</list>
+			</t>
+
+			<t>
+				Simple indented paragraph using the "empty" style:
+				<list hangIndent="10" style="empty">
+					<t>The quick, brown fox jumped over the lazy dog and lived to fool
+						many another hunter in the great wood in the west.
+					</t>
+				</list>
+			</t>
+
+			<section title="Numbering Lists across Lists and Sections">
+				<t>Numbering items continuously although they are in separate
+					&lt;list&gt; elements, maybe in separate sections using the
+					"format"
+					style and a "counter" variable.
+				</t>
+
+				<t>
+					First list:
+					<list counter="reqs" hangIndent="4" style="format R%d">
+						<t>#1</t>
+
+						<t>#2</t>
+
+						<t>#3</t>
+					</list>
+					Specify the indent explicitly so that all the items line up
+					nicely.
+				</t>
+
+				<t>
+					Second list:
+					<list counter="reqs" hangIndent="4" style="format R%d">
+						<t>#4</t>
+
+						<t>#5</t>
+
+						<t>#6</t>
+					</list>
+				</t>
+			</section>
+
+			<section title="Where the List Numbering Continues">
+				<t>List continues here.</t>
+
+				<t>
+					Third list:
+					<list counter="reqs" hangIndent="4" style="format R%d">
+						<t>#7</t>
+
+						<t>#8</t>
+
+						<t>#9</t>
+
+						<t>#10</t>
+					</list>
+					The end of the list.
+				</t>
+			</section>
+		</section>
+
+		<section anchor="codeExample"
+			title="Example of Code or MIB Module To Be Extracted">
+			<figure>
+				<preamble>The &lt;artwork&gt; element has a number of extra
+					attributes
+					that can be used to substitute a more aesthetically
+					pleasing rendition
+					into HTML output while continuing to use the
+					ASCII art version in
+					the
+					text and nroff outputs (see the xml2rfc
+					README for details). It also
+					has a "type" attribute. This is
+					currently ignored except in the
+					case
+					'type="abnf"'. In this case the
+					"artwork" is expected to contain a
+					piece of valid Augmented
+					Backus-Naur Format (ABNF) grammar. This will
+					be syntax checked by
+					xml2rfc and any errors will cause a fatal error
+					if the "strict"
+					processing instruction is set to "yes". The ABNF
+					will
+					also be
+					colorized in HTML output to highlight the syntactic
+					components.
+					Checking of additional "types" may be provided in future
+					versions of
+					xml2rfc.
+				</preamble>
+
+				<artwork><![CDATA[
+
+/**** an example C program */
+
+#include <stdio.h>
+
+void
+main(int argc, char *argv[])
+{
+    int i;
+
+    printf("program arguments are:\n");
+    for (i = 0; i < argc; i++) {
+        printf("%d: \"%s\"\n", i, argv[i]);
+    }
+
+    exit(0);
+} /* main */
+
+/* end of file */
+
+            ]]></artwork>
+			</figure>
+		</section>
+
+		<section anchor="Acknowledgements" title="Acknowledgements">
+			<t>
+				This template was derived from the researchobject.org
+				specification
+				<xref target="BUNDLE">
+					Research Object Bundle 1.0.
+				</xref>
+			</t>
+
+		</section>
+
+		<!-- Possibly a 'Contributors' section ... -->
+
+		<section anchor="IANA" title="IANA Considerations">
+			<t>This memo includes no request to IANA.</t>
+
+			<!-- <t> All drafts are required to have an IANA considerations section 
+				(see <xref target="I-D.narten-iana-considerations-rfc2434bis">the update 
+				of RFC 2434</xref> for a guide). If the draft does not require IANA to do 
+				anything, the section contains an explicit statement that this is the case 
+				(as above). If there are no requirements for IANA, the section will be removed 
+				during conversion into an RFC by the RFC Editor. </t> -->
+		</section>
+
+		<section anchor="Security" title="Security Considerations">
+			<!-- <t> All drafts are required to have a security considerations section. 
+				See <xref target="RFC3552">RFC 3552</xref> for a guide. </t> -->
+				
+				
+		</section>
+	</middle>
+
+	<!-- *****BACK MATTER ***** -->
+
+	<back>
+		<!-- References split into informative and normative -->
+
+		<!-- There are 2 ways to insert reference entries from the citation libraries: 
+			1. define an ENTITY at the top, and use "ampersand character"RFC2629; here 
+			(as shown) 2. simply use a PI "less than character"?rfc include="reference.RFC.2119.xml"?> 
+			here (for I-Ds: include="reference.I-D.narten-iana-considerations-rfc2434bis.xml") 
+			Both are cited textually in the same manner: by using xref elements. If you 
+			use the PI option, xml2rfc will, by default, try to find included files in 
+			the same directory as the including file. You can also define the XML_LIBRARY 
+			environment variable with a value containing a set of directories to search. 
+			These can be either in the local filing system or remote ones accessed by 
+			http (http://domain/dir/... ). -->
+
+		<references title="Normative References">
+			<!--?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml"? -->
+		      &RFC2119;
+			
+			  &RFC3986;
+
+			  &RFC3987;
+			  
+			  &RFC4122;
+			  
+			  &RFC4627;
+			  
+			  &JSONLD;
+			  
+			  <reference anchor="ZIP" target="https://www.pkware.com/documents/casestudies/APPNOTE.TXT">			  	
+				<front>
+					<title>.ZIP File Format Specification 6.3.4</title>
+					<author>
+						<organization>PKWARE Inc.</organization>
+					</author>										
+					<date year="2014" month="10" day="1"/>
+				</front>
+							  	
+			  </reference>
+
+			  
+
+		</references>
+
+		<references title="Informative References">
+		
+		    
+			&RFC3492;
+			
+			&RFC6839;
+		
+			&TURTLE;
+		
+			&ARCMEDIA;
+		
+			<reference anchor="BUNDLE" target="https://w3id.org/bundle/2014-11-05/">
+				<front>
+					<title>Research Object Bundle 1.0</title>
+					<author initials="S" surname="Soiland-Reyes">
+						<organization>University of Manchester, UK</organization>
+					</author>
+					<author initials="M" surname="Gamble">
+						<organization>University of Manchester, UK</organization>
+					</author>
+					<author initials="R" surname="Haines">
+						<organization>University of Manchester, UK</organization>
+					</author>
+					<date year="2014" month="11" day="05" />
+				</front>
+			</reference>
+
+			<!-- A reference written by by an organization not a person. -->
+
+			<reference anchor="RO"
+				target="http://dx.doi.org/10.1016/j.future.2011.08.004">
+				<front>
+					<title>Why linked data is not enough for scientists</title>					
+					<author initials="S" surname="Bechhofer" />
+					<author initials="I" surname="Buchan" />
+					<author initials="D" surname="De Roure" />
+					<author initials="P" surname="Missier" />
+					<author initials="J" surname="Ainsworth" />
+					<author initials="J" surname="Bhagat" />
+					<author initials="P" surname="Couch" />
+					<author initials="D" surname="Cruickshank" />
+					<author initials="M" surname="Delderfield" />
+					<author initials="I" surname="Dunlop" />
+					<author initials="M" surname="Gamble" />
+					<author initials="D" surname="Michaelides" />
+					<author initials="S" surname="Owen" />
+					<author initials="D" surname="Newman" />
+					<author initials="S" surname="Sufi" />
+					<author initials="C" surname="Goble" />
+					<date year="2011" />
+				</front>
+			</reference>
+		</references>
+
+		<section anchor="app-additional" title="Additional Stuff">
+			<t>This becomes an Appendix.</t>
+		</section>
+
+		<!-- Change Log v00 2014-11-14 SSR Initial version -->
+	</back>
+</rfc>

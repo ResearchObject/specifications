@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<reference anchor='I-D.seantek-kerwin-arcmedia-type'>
+<front>
+<title>The Archive Primary Media Type for File Archives</title>
+
+<author initials='S' surname='Leonard' fullname='Sean Leonard'>
+    <organization />
+</author>
+
+<author initials='M' surname='Kerwin' fullname='Matthew Kerwin'>
+    <organization />
+</author>
+
+<date month='November' day='4' year='2014' />
+
+<abstract><t>This document defines a new primary content-type to be known as "archive", which defines a fundamental type of content with unique presentational, hardware, and processing aspects.</t></abstract>
+
+</front>
+
+<seriesInfo name='Internet-Draft' value='draft-seantek-kerwin-arcmedia-type-00' />
+<format type='TXT'
+        target='http://www.ietf.org/internet-drafts/draft-seantek-kerwin-arcmedia-type-00.txt' />
+</reference>

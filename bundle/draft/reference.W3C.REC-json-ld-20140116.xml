@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<reference anchor='W3C.REC-json-ld-20140116'
+           target='http://www.w3.org/TR/2014/REC-json-ld-20140116'>
+<front>
+<title>JSON-LD 1.0</title>
+
+<author initials='M.' surname='Sporny' fullname='Manu Sporny'>
+    <organization />
+</author>
+
+<author initials='G.' surname='Kellogg' fullname='Gregg Kellogg'>
+    <organization />
+</author>
+
+<author initials='M.' surname='Lanthaler' fullname='Markus Lanthaler'>
+    <organization />
+</author>
+
+<date month='January' day='16' year='2014' />
+</front>
+
+<seriesInfo name='World Wide Web Consortium Recommendation' value='REC-json-ld-20140116' />
+<format type='HTML' target='http://www.w3.org/TR/2014/REC-json-ld-20140116' />
+</reference>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<reference anchor='RFC6839'>
+
+<front>
+<title>Additional Media Type Structured Syntax Suffixes</title>
+<author initials='T.' surname='Hansen' fullname='T. Hansen'>
+<organization /></author>
+<author initials='A.' surname='Melnikov' fullname='A. Melnikov'>
+<organization /></author>
+<date year='2013' month='January' />
+<abstract>
+<t>A content media type name sometimes includes partitioned meta- information distinguished by a structured syntax to permit noting an attribute of the media as a suffix to the name.  This document defines several structured syntax suffixes for use with media type registrations.  In particular, it defines and registers the "+json", "+ber", "+der", "+fastinfoset", "+wbxml" and "+zip" structured syntax suffixes, and provides a media type structured syntax suffix registration form for the "+xml" structured syntax suffix.  This document is not an Internet Standards Track specification; it is published for informational purposes.</t></abstract></front>
+
+<seriesInfo name='RFC' value='6839' />
+<format type='TXT' octets='26071' target='http://www.rfc-editor.org/rfc/rfc6839.txt' />
+</reference>
