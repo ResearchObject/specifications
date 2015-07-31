@@ -1,0 +1,362 @@
+<h2>4. Cross reference for Wfprov classes and properties</h2>
+This section provides details for each class and property defined by Wfprov.
+<div id="classes">
+   <h2>Classes</h2>
+   <ul class="hlist">
+      <li>
+         <a href="#Artifact" title="http://purl.org/wf4ever/wfprov#Artifact">
+            <span>artifact</span>
+         </a>
+      </li>
+      <li>
+         <a href="#ProcessRun" title="http://purl.org/wf4ever/wfprov#ProcessRun">
+            <span>process run</span>
+         </a>
+      </li>
+      <li>
+         <a href="#WorkflowEngine" title="http://purl.org/wf4ever/wfprov#WorkflowEngine">
+            <span>workflow engine</span>
+         </a>
+      </li>
+      <li>
+         <a href="#WorkflowRun" title="http://purl.org/wf4ever/wfprov#WorkflowRun">
+            <span>workflow run</span>
+         </a>
+      </li>
+   </ul>
+   <div class="entity" id="Artifact">
+      <h3>artifact<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/wf4ever/wfprov#Artifact</p>
+      <div class="comment">
+         <p>Artifact is a general concept that represents immutable piece of state, which may have a physical embodiment in a physical object, or a digital representation in a computer system. In the case of wfprov, an artifact is used as input to a process run, or produced by the output of a process run.</p>
+      </div>
+      <dl class="description">
+         <dt>is in domain of</dt>
+         <dd>
+            <a href="#describedByParameter"
+               title="http://purl.org/wf4ever/wfprov#describedByParameter">described by parameter</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#wasOutputFrom" title="http://purl.org/wf4ever/wfprov#wasOutputFrom">was output from</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+         <dt>is in range of</dt>
+         <dd>
+            <a href="#usedInput" title="http://purl.org/wf4ever/wfprov#usedInput">used input</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="ProcessRun">
+      <h3>process run<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/wf4ever/wfprov#ProcessRun</p>
+      <div class="comment">
+         <p>A process run is a particular execution of a wfdesc:Process description (wfprov:describedByProcess), which can wfprov:usedInput some wfprov:Artifact instances, and produce new artifacts (wfprov:wasOutputFrom). A wfprov:WorkflowRun is a specialisation of this class.</p>
+      </div>
+      <dl class="description">
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#WorkflowRun" title="http://purl.org/wf4ever/wfprov#WorkflowRun">workflow run</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>is in domain of</dt>
+         <dd>
+            <a href="#describedByProcess" title="http://purl.org/wf4ever/wfprov#describedByProcess">described by process</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#usedInput" title="http://purl.org/wf4ever/wfprov#usedInput">used input</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#wasEnactedBy" title="http://purl.org/wf4ever/wfprov#wasEnactedBy">was enacted by</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#wasPartOfWorkflowRun"
+               title="http://purl.org/wf4ever/wfprov#wasPartOfWorkflowRun">was part of workflow run</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+         <dt>is in range of</dt>
+         <dd>
+            <a href="#wasOutputFrom" title="http://purl.org/wf4ever/wfprov#wasOutputFrom">was output from</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="WorkflowEngine">
+      <h3>workflow engine<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/wf4ever/wfprov#WorkflowEngine</p>
+      <div class="comment">
+         <p>A workflow engine is an foaf:Agent that is responsible for enacting a workflow definition (which could be described in a wfdesc:Workflow). The result of workflow enactment gives rise to a wfprov:WorkflowRun.</p>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <span class="dotted" title="http://xmlns.com/foaf/0.1/Agent">agent</span>
+         </dd>
+         <dt>is in range of</dt>
+         <dd>
+            <a href="#wasEnactedBy" title="http://purl.org/wf4ever/wfprov#wasEnactedBy">was enacted by</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="WorkflowRun">
+      <h3>workflow run<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/wf4ever/wfprov#WorkflowRun</p>
+      <div class="comment">
+         <p>A workflow run is a wfprov:ProcessRun which have been enacted by a wfprov:WorkflowEngine, according to a workflow definition (which could be wfdesc:describedByWorkflow a wfdesc:Workflow). Such a process typically contains several subprocesses (wfprov:wasPartOfWorkflowRun) corresponding to wfdesc:Process descriptions</p>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#ProcessRun" title="http://purl.org/wf4ever/wfprov#ProcessRun">process run</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>is in domain of</dt>
+         <dd>
+            <a href="#describedByWorkflow"
+               title="http://purl.org/wf4ever/wfprov#describedByWorkflow">described by workflow</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+         <dt>is in range of</dt>
+         <dd>
+            <a href="#wasPartOfWorkflowRun"
+               title="http://purl.org/wf4ever/wfprov#wasPartOfWorkflowRun">was part of workflow run</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+      </dl>
+   </div>
+</div><div id="objectproperties">
+   <h2>Object Properties</h2>
+   <ul class="hlist">
+      <li>
+         <a href="#describedByParameter"
+            title="http://purl.org/wf4ever/wfprov#describedByParameter">
+            <span>described by parameter</span>
+         </a>
+      </li>
+      <li>
+         <a href="#describedByProcess" title="http://purl.org/wf4ever/wfprov#describedByProcess">
+            <span>described by process</span>
+         </a>
+      </li>
+      <li>
+         <a href="#describedByWorkflow"
+            title="http://purl.org/wf4ever/wfprov#describedByWorkflow">
+            <span>described by workflow</span>
+         </a>
+      </li>
+      <li>
+         <a href="#usedInput" title="http://purl.org/wf4ever/wfprov#usedInput">
+            <span>used input</span>
+         </a>
+      </li>
+      <li>
+         <a href="#wasEnactedBy" title="http://purl.org/wf4ever/wfprov#wasEnactedBy">
+            <span>was enacted by</span>
+         </a>
+      </li>
+      <li>
+         <a href="#wasOutputFrom" title="http://purl.org/wf4ever/wfprov#wasOutputFrom">
+            <span>was output from</span>
+         </a>
+      </li>
+      <li>
+         <a href="#wasPartOfWorkflowRun"
+            title="http://purl.org/wf4ever/wfprov#wasPartOfWorkflowRun">
+            <span>was part of workflow run</span>
+         </a>
+      </li>
+   </ul>
+   <div class="entity" id="describedByParameter">
+      <h3>described by parameter<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/wf4ever/wfprov#describedByParameter</p>
+      <div class="comment">
+         <p>This object property is used to associate a wfprov:Artifact to the wfdesc:Parameter description.</p>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#Artifact" title="http://purl.org/wf4ever/wfprov#Artifact">artifact</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <span class="dotted" title="http://purl.org/wf4ever/wfdesc#Parameter">parameter</span>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="describedByProcess">
+      <h3>described by process<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/wf4ever/wfprov#describedByProcess</p>
+      <div class="comment">
+         <p>This object property associate a wfprov:Processrun to its wfdesc:Process description .</p>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#describedByWorkflow"
+                  title="http://purl.org/wf4ever/wfprov#describedByWorkflow">described by workflow</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#ProcessRun" title="http://purl.org/wf4ever/wfprov#ProcessRun">process run</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <span class="dotted" title="http://purl.org/wf4ever/wfdesc#Process">process</span>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="describedByWorkflow">
+      <h3>described by workflow<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/wf4ever/wfprov#describedByWorkflow</p>
+      <div class="comment">
+         <p>This property associates a wfprov:WorkflowRun to its corresponding wfdesc:Workflow description.</p>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#describedByProcess" title="http://purl.org/wf4ever/wfprov#describedByProcess">described by process</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#WorkflowRun" title="http://purl.org/wf4ever/wfprov#WorkflowRun">workflow run</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <span class="dotted" title="http://purl.org/wf4ever/wfdesc#WorkflowTemplate">workflow template</span>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="usedInput">
+      <h3>used input<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/wf4ever/wfprov#usedInput</p>
+      <div class="comment">
+         <p>This property specifies that a wfprov:ProcessRun used an wfprov:Artifact as an input</p>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#ProcessRun" title="http://purl.org/wf4ever/wfprov#ProcessRun">process run</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#Artifact" title="http://purl.org/wf4ever/wfprov#Artifact">artifact</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="wasEnactedBy">
+      <h3>was enacted by<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/wf4ever/wfprov#wasEnactedBy</p>
+      <div class="comment">
+         <p>wfprov:wasEnactedBy associates a wfprov:ProcessRun with a wfprov:WorkflowEngine, specifying that the execution of the process was enacted by the engine.</p>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#ProcessRun" title="http://purl.org/wf4ever/wfprov#ProcessRun">process run</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#WorkflowEngine" title="http://purl.org/wf4ever/wfprov#WorkflowEngine">workflow engine</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="wasOutputFrom">
+      <h3>was output from<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/wf4ever/wfprov#wasOutputFrom</p>
+      <div class="comment">
+         <p>This property specifies that a wfprov:Artifact was generated as an output from a wfprov:ProcessRun</p>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#Artifact" title="http://purl.org/wf4ever/wfprov#Artifact">artifact</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#ProcessRun" title="http://purl.org/wf4ever/wfprov#ProcessRun">process run</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="wasPartOfWorkflowRun">
+      <h3>was part of workflow run<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/wf4ever/wfprov#wasPartOfWorkflowRun</p>
+      <div class="comment">
+         <p>This property specifies that a wfprov:ProcessRun was executed as part of a wfprov:WorkflowRun. This typically corresponds to wfdesc:hasSubProcess in the workflow description.</p>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#ProcessRun" title="http://purl.org/wf4ever/wfprov#ProcessRun">process run</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#WorkflowRun" title="http://purl.org/wf4ever/wfprov#WorkflowRun">workflow run</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+</div>

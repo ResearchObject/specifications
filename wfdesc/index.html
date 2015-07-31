@@ -15,44 +15,40 @@ function loadHash() {
       $("#overview").load("sections/overview.html"); 
       $("#description").load("sections/description.html"); 
       $("#crossref").load("sections/crossref.html", null, loadHash); 
-	  $("#example").load("sections/example.html");
-      $("#references").load("sections/references.html"); 
+      $("#examples").load("sections/example.html"); 
+	  $("#references").load("sections/references.html"); 
     });
     </script> 
   </head> 
 
-<body resource="http://purl.org/wf4ever/ro" typeOf="owl:Ontology schema:TechArticle">
+<body resource="http://purl.org/wf4ever/wfdesc" typeOf="owl:Ontology schema:TechArticle">
 <span resource="" typeOf="foaf:Document schema:WebPage">
 <span property="dc:created schema:dateCreated" content="2013-11-30"></span>
-<span property="dc:isVersionOf prov:specializationOf" resource="http://purl.org/wf4ever/ro"></span>
+<span property="dc:isVersionOf prov:specializationOf" resource="http://purl.org/wf4ever/wfdesc"></span>
 <span property="prov:alternateOf prov:revisionOf" resource="https://w3id.org/ro/2013-08-20/"></span>
 <span property="dc:contributor prov:wasAttributedTo schema:contributor" resource="http://purl.org/net/dgarijo"></span>
 </span>
 <div class="head">
-<h1 property="dc:title schema:name">The Research Object Ontology (ro)</h1>
+<h1 property="dc:title schema:name">The Workflow Descriprion Ontology (Wfdesc)</h1>
 <span property="dc:modified schema:dateModified" content="2013-11-30"></span>
 <h2>Release 2013-11-30</h2>
 <dl>
 <dt>This version:</dt>
 <dd><a href="https://w3id.org/ro/2013-11-30/">https://w3id.org/ro/2013-11-30/</a></dd>
 </dl><dl><dt>Latest version:</dt>
-<dd><a href="http://purl.org/wf4ever/ro">http://purl.org/wf4ever/ro</a></dd>
+<dd><a href="http://purl.org/wf4ever/wfdesc">http://purl.org/wf4ever/wfdesc</a></dd>
 </dl><dl>
 <dt>Previous version:</dt>
 <dd><a property="schema:significantLink prov:wasRevisionOf" href="https://w3id.org/ro/2013-08-20/">https://w3id.org/ro/2013-08-20/</a></dd>
 </dl>
 <dt>Revision</dt>
 <dd property="schema:version">0.1.1</dd>
-
 <dl><dt>Editors:</dt>
 <dd><a property="dc:creator schema:author prov:wasAttributedTo" resource="http://orcid.org/0000-0001-9842-9718" href="http://orcid.org/0000-0001-9842-9718">Stian Soiland-Reyes</a>, University of Manchester</dd><dd><a property="dc:creator schema:author prov:wasAttributedTo" resource="http://www.cs.manchester.ac.uk/~seanb/" href="http://www.cs.manchester.ac.uk/~seanb/">Sean Bechhofer</a>, University of Manchester</dd>
 </dl>
-
 <dl><dt>Authors:</dt>
 <dd><a property="dc:creator schema:author prov:wasAttributedTo" resource="http://orcid.org/0000-0001-6938-0820" href="http://orcid.org/0000-0001-6938-0820">Khalid Belhajjame</a>, University of Manchester</dd><dd>Graham Klyne, University of Oxford</dd><dd><a property="dc:creator schema:author prov:wasAttributedTo" resource="http://orcid.org/0000-0003-0454-7145" href="http://orcid.org/0000-0003-0454-7145">Daniel Garijo</a>, Universidad Politecnica de Madrid</dd><dd><a property="dc:creator schema:author prov:wasAttributedTo" resource="http://orcid.org/0000-0002-9260-0753" href="http://orcid.org/0000-0002-9260-0753">Oscar Corcho</a>, Universidad Politecnica de Madrid</dd><dd>Esteban Garcia Cuesta, iSOCO</dd><dd>Raul Palma, PSNC</dd></dl>
 
-<dl><dt>Extended Ontologies:</dt>
-<dd><a property=" schema:mentions" resource="http://www.openarchives.org/ore/terms/" href="http://www.openarchives.org/ore/terms/">OAI-ORE</a> The Object Reuse and Exchange model</dd><dd><a property=" schema:mentions" resource="http://purl.org/ao/" href="http://purl.org/ao/">AO</a> The Annotation Ontology</dd></dl>
 
 <dl>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>. <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/3.0/88x31.png" /></dl>
 <span property="dc:license" resource="http://creativecommons.org/licenses/by/3.0/"></span>
@@ -63,13 +59,12 @@ function loadHash() {
 <ul>
 <li><a href="#introduction">1. Introduction</a></li>
 <ul><li><a href="#namespacedeclarations">1.1 Namespace declarations</a></li></ul>
-<li><a href="#overview">2. RO Overview</a></li>
-<li><a href="#description">3. RO Description</a></li>
-<li><a href="#crossref">4. Cross reference for RO classes, properties and dataproperties</a></li>
+<li><a href="#overview">2. Wfdesc Overview</a></li>
+<li><a href="#description">3. Wfdesc Description</a></li>
+<li><a href="#crossref">4. Cross reference for Wfdesc classes, properties and dataproperties</a></li>
 <ul>
 <li><a href="#classes">4.1 Classes</a></li>
 <li><a href="#objectproperties">4.2 Object Properties</a></li>
-        <li><a href="#dataproperties">4.3 Data Properties</a></li>
 </ul>
 <li><a href="#references">5. References</a></li>
 <li><a href="#acknowledgements">6. Acknowledgements</a></li>
@@ -79,7 +74,7 @@ function loadHash() {
      <div id="overview"></div>
      <div id="description"></div>
      <div id="crossref"></div>
-	 <div id="example"></div>
+	 <div id="examples"></div>
      <div id="references"></div>
 <div id="acknowledgements">
 <h2>6. Acknowledgements <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>

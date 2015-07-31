@@ -1,0 +1,78 @@
+<h2>1. Introduction <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<p>Research Objects (as discussed in [<a href="#bech">[BECHHOFER11]</a>]) are a general idea that aims to extend traditional publication mechanisms and take us "beyond the pdf" [<a href="force">[FORCE]</a>]. An RO is an aggregation of resources along with annotations on those resources. The aggregation itself may also be annotated, where by annotation, we mean the association of arbitrary additional information with a resource. The Research Object thus collects together relevant resources along with annotations that enable the understanding, reuse etc. of its constituent parts. In a workflow-centric Reearch Object describing an investigation for example, annotations could describe how data sources have been used or how intermediate results were derived. Executable papers [<a href="#exec">[EXEC]</a>] similarly aim to support validation, exploration and interaction in publication in order to support validation. Hunter [<a href="#hunter">[HUNTER06]</a>] proposes the notion of Scientific Publication Packages (SPP) to describe "the selective encapsulation of raw data, derived products, algorithms, software and textual publications". SPPs are motivated primarily by the need to create archives for the variety of artifacts produced during the course of a scientific investigation; they ideally contain data, methods, software and documents, but also their provenance as well.</p>
+
+<section id="scope"><h3>Scope Research Objects</h3>
+
+<p>This document describes the v0.1 release of the ontology.</p>
+</section><!-- scope-doc --><section id="tech-soc"><h3>Technical and Social Objects</h3>
+
+<p>Research Objects play multiple roles. In the first case, they are
+<em>technical</em> objects. They provide access to the resources that
+are needed to support execution of investigations and record the
+provenance traces of those executions. They encapsulate dependencies
+between resources and maintain versioning information about the
+lineage and evolution of those resources.</p>
+
+<p>At the same time, they are <em>social</em> objects. They
+encapsulate reusable protocols and know-how. They record best
+practices and support reproducability. They are citable artifacts that
+can be referred to and quoted. They record and represent information
+about the people involved in investigations -- those who create, use,
+extend and curate the objects.
+</p>
+
+<p>These roles bring requirements on the representation structure and
+vocabularies used to describe Research Objects. This specification
+focuses on the <em>technical aspects</em> and describes the core
+Wf4Ever Research Object vocabularies that provide container
+structures and vocabulary for describing workflow objects. Additional
+vocabularies covering evolution, lifecycle, versioning and other
+social aspects will be covered elsewhere.</p>
+
+</section><!-- tech-soc -->
+
+<section id="organisation"><h3>Research Object Principles</h3>
+
+<div style="margin: 0 0 0 100; width: 100px">
+<img src="resources/rocore.png"  width="600">
+</div>
+
+<p>At the heart of the research object approach are three principles:</p>
+
+<ul>
+  <li>
+    <h4>Identiy</h4>
+    Use globally unique identifiers as names for things. For example DOI’s for publications or ORCID IDs for researchers. This is for two reasons
+    <ul>
+      <li>So that we can talk unambiguously about things.
+      </li>
+      <li>So that people can find those things.</li>
+    </ul>
+  </li>
+  <li>
+    <h4>Aggregation</h4> Use some mechanism of aggregation to associate things that are related or part of the broader investigation, study, etc. This is core to the value of Research Objects – providing the supporting artefacts that make the research potentially useful to someone else.
+
+  </li>
+  <li>
+    <h4>Annotation</h4> Provide additional metadata about those things, how they relate to each other, where they came from, when etc. This helps people discover data that are relevant and potentially useful.
+  </li>
+</ul>
+
+<p>The RO Model uses two existing vocabularies to provide aggregation and annotation functionality. Object Reuse and Exchange [<a href="#ORE">[ORE]</a>] is used for specifying aggregation of resources and the Annotation Ontology [<a href="#ao">[AO]</a>] is used to represent annotations.</p>
+
+
+<div id="namespacedeclarations">
+<h2>1.1. Namespace declarations <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+</p><div id="ns" align="center">
+<table>
+<caption> <a href="#ns"> Table 1</a>: Namespaces used in the document </caption>
+<tbody>
+<tr><td><b>wf4ever</b></td><td>&lt;http://purl.org/wf4ever/&gt;</td></tr>
+<tr><td><b>ao</b></td><td>&lt;http://purl.org/ao/&gt;</td></tr>
+<tr><td><b>terms</b></td><td>&lt;http://www.openarchives.org/ore/terms/&gt;</td></tr>
+<tr><td><b>ro</b></td><td>&lt;http://purl.org/wf4ever/ro#&gt;</td></tr>
+<tr><td><b>dc</b></td><td>&lt;http://purl.org/dc/elements/1.1/&gt;</td></tr>
+</tbody>
+</table>
+</div>
+</div>
